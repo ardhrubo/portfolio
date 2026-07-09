@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import { Joyride, STATUS } from 'react-joyride';
 
 const projectsData = [
   { name: "horizontaxsolution", title: "Horizon Tax Solution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url", desc: "A professional tax and accounting services web application built for Australian clientele to handle seamless lead generation and consulting inquiries." },
@@ -315,10 +316,67 @@ function App() {
   const [lineNumbers, setLineNumbers] = useState([]);
   const [cursor, setCursor] = useState({ ln: 1, col: 1 });
   const [animate, setAnimate] = useState(false);
-  const [tourStep, setTourStep] = useState(0);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [{ runTour, tourSteps }, setTourState] = useState({
+    runTour: false,
+    tourSteps: [
+      {
+        target: '#tour-explorer',
+        content: (
+          <div>
+            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-regular fa-copy" style={{color: 'var(--syntax-func)', marginRight: '10px'}}></i>File Explorer</h3>
+            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>On the left, the Explorer lets you open files like <code>projects.js</code> or <code>README.md</code>.</p>
+          </div>
+        ),
+        disableBeacon: true,
+      },
+      {
+        target: '#tour-career',
+        content: (
+          <div>
+            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-solid fa-code-branch" style={{color: 'var(--accent)', marginRight: '10px'}}></i>Career Control</h3>
+            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>Click the Git Branch icon to view my career timeline, designed just like a real Git commit graph.</p>
+          </div>
+        ),
+      },
+      {
+        target: '#tour-settings',
+        content: (
+          <div>
+            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-solid fa-gear" style={{color: 'var(--syntax-string)', marginRight: '10px'}}></i>Customization</h3>
+            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>Click the Gear icon to open Settings. From there, you can switch between amazing color themes!</p>
+          </div>
+        ),
+      },
+      {
+        target: '#tour-editor',
+        content: (
+          <div>
+            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-solid fa-code" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Editor</h3>
+            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>And finally, this is the main editor. View all my portfolio details here. Enjoy your stay!</p>
+          </div>
+        ),
+      }
+    ]
+  });
+
+  const handleJoyrideCallback = (data) => {
+    const { status } = data;
+    const finishedStatuses = [STATUS.FINISHED, STATUS.SKIPPED];
+    if (finishedStatuses.includes(status)) {
+      setTourState({ runTour: false, tourSteps });
+    }
+  };
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeActivity, setActiveActivity] = useState('explorer');
   const [theme, setTheme] = useState('synthwave');
+  
+  const themeColors = {
+    cafe: '#e8a07c',
+    synthwave: '#e22f80',
+    green: '#8eca3c',
+    blue: '#2f2fe4'
+  };
   const [sidebarWidth, setSidebarWidth] = useState(250);
   const [isResizing, setIsResizing] = useState(false);
 
@@ -404,88 +462,65 @@ function App() {
 
   return (
     <>
-    {tourStep !== -1 && (
+    {showWelcome && (
       <div className="guide-modal-overlay">
-        <div className="guide-modal" style={{minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-          {tourStep === 0 && (
-            <div className="tour-content" style={{animation: 'modalPop 0.3s ease-out'}}>
-              <h2><i className="fa-solid fa-terminal" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Welcome to Dhrubo's IDE!</h2>
-              <p style={{marginBottom: '30px', color: 'var(--text-muted)', lineHeight: '1.5'}}>This portfolio is designed like a real code editor. Would you like a quick tour to see how to navigate?</p>
-              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-                <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => setTourStep(1)}>Take a Tour</button>
-                <button className="tour-btn" onClick={() => setTourStep(-1)}>Explore Freely</button>
-              </div>
-            </div>
-          )}
-
-          {tourStep === 1 && (
-            <div className="tour-content" style={{animation: 'modalPop 0.3s ease-out'}}>
-              <h2><i className="fa-regular fa-copy" style={{color: '#699dfb', marginRight: '10px'}}></i>1. File Explorer</h2>
-              <p style={{marginBottom: '20px', color: 'var(--text-muted)', lineHeight: '1.5'}}>On the left, the Explorer lets you open files like <code>projects.js</code> or <code>README.md</code>. They will open in the main editor area as tabs!</p>
-              <div style={{ background: 'var(--bg-dark)', padding: '10px', borderRadius: '6px', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <i className="fa-solid fa-code" style={{color: '#f1e05a'}}></i> <span style={{fontFamily: 'Fira Code', fontSize: '13px'}}>projects.js</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
-                <button className="tour-btn" style={{padding: '8px 15px', fontSize: '13px'}} onClick={() => setTourStep(-1)}>Skip Tour</button>
-                <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => setTourStep(2)}>Next <i className="fa-solid fa-arrow-right"></i></button>
-              </div>
-            </div>
-          )}
-
-          {tourStep === 2 && (
-            <div className="tour-content" style={{animation: 'modalPop 0.3s ease-out'}}>
-              <h2><i className="fa-solid fa-code-branch" style={{color: 'var(--accent)', marginRight: '10px'}}></i>2. Career Control</h2>
-              <p style={{marginBottom: '20px', color: 'var(--text-muted)', lineHeight: '1.5'}}>Click the Git Branch icon in the Activity Bar to view my career timeline, designed just like a real Git commit graph with branching tracks.</p>
-              <div style={{ background: 'var(--bg-dark)', padding: '10px', borderRadius: '6px', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                <div style={{width: '2px', height: '20px', background: 'var(--accent)'}}></div>
-                <div style={{width: '10px', height: '10px', borderRadius: '50%', border: '2px solid var(--accent)', marginLeft: '-21px'}}></div>
-                <span style={{fontFamily: 'Fira Code', fontSize: '13px', color: 'var(--syntax-func)'}}>feat(career): join team</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
-                <button className="tour-btn" style={{padding: '8px 15px', fontSize: '13px'}} onClick={() => setTourStep(-1)}>Skip Tour</button>
-                <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => setTourStep(3)}>Next <i className="fa-solid fa-arrow-right"></i></button>
-              </div>
-            </div>
-          )}
-
-          {tourStep === 3 && (
-            <div className="tour-content" style={{animation: 'modalPop 0.3s ease-out'}}>
-              <h2><i className="fa-solid fa-gear" style={{color: '#83cd29', marginRight: '10px'}}></i>3. Customization</h2>
-              <p style={{marginBottom: '20px', color: 'var(--text-muted)', lineHeight: '1.5'}}>Click the Gear icon in the bottom left to open Settings. From there, you can instantly switch between incredible color themes!</p>
-              <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '25px' }}>
-                <div className="theme-swatch" style={{background: '#ffeed6', border: '1px solid var(--border)'}}></div>
-                <div className="theme-swatch" style={{background: '#e22f80', border: '1px solid var(--border)'}}></div>
-                <div className="theme-swatch" style={{background: '#8eca3c', border: '1px solid var(--border)'}}></div>
-                <div className="theme-swatch" style={{background: '#2f2fe4', border: '1px solid var(--border)'}}></div>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
-                <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold', width: '100%', justifyContent: 'center'}} onClick={() => setTourStep(-1)}><i className="fa-solid fa-check"></i> Finish & Explore</button>
-              </div>
-            </div>
-          )}
-          
-          {tourStep > 0 && (
-            <div className="tour-progress" style={{display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '20px'}}>
-              <div style={{width: '8px', height: '8px', borderRadius: '50%', background: tourStep === 1 ? 'var(--accent)' : 'var(--bg-dark)'}}></div>
-              <div style={{width: '8px', height: '8px', borderRadius: '50%', background: tourStep === 2 ? 'var(--accent)' : 'var(--bg-dark)'}}></div>
-              <div style={{width: '8px', height: '8px', borderRadius: '50%', background: tourStep === 3 ? 'var(--accent)' : 'var(--bg-dark)'}}></div>
-            </div>
-          )}
+        <div className="guide-modal" style={{animation: 'modalPop 0.3s ease-out'}}>
+          <h2><i className="fa-solid fa-terminal" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Welcome to Dhrubo's IDE!</h2>
+          <p style={{marginBottom: '30px', color: 'var(--text-muted)', lineHeight: '1.5'}}>This portfolio is designed like a real code editor. Would you like a guided tour to see how to navigate?</p>
+          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+            <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => { setShowWelcome(false); setTourState(prev => ({...prev, runTour: true})); }}>Take a Tour</button>
+            <button className="tour-btn" onClick={() => setShowWelcome(false)}>Explore Freely</button>
+          </div>
         </div>
       </div>
     )}
+    
+    <Joyride
+      callback={handleJoyrideCallback}
+      continuous
+      hideCloseButton
+      run={runTour}
+      scrollToFirstStep
+      showProgress
+      showSkipButton
+      steps={tourSteps}
+      floaterProps={{
+        styles: {
+          floater: {
+            maxWidth: '90vw'
+          }
+        }
+      }}
+      styles={{
+        options: {
+          zIndex: 10000,
+          primaryColor: themeColors[theme] || '#e22f80',
+          backgroundColor: 'var(--bg-dark)',
+          textColor: 'var(--text)',
+          arrowColor: 'var(--bg-dark)',
+          overlayColor: 'rgba(0, 0, 0, 0.7)'
+        },
+        buttonNext: {
+          fontWeight: 'bold',
+          color: 'var(--bg-darkest)'
+        },
+        buttonBack: {
+          color: 'var(--text-muted)'
+        }
+      }}
+    />
 
     <div className="app-container">
       {/* Activity Bar */}
       <div className="activity-bar">
-          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} title="Explorer" onClick={() => { setActiveActivity('explorer'); setMobileMenuOpen(true); }}>
+          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} id="tour-explorer" title="Explorer" onClick={() => { setActiveActivity('explorer'); setMobileMenuOpen(true); }}>
               <i className="fa-regular fa-copy"></i>
           </div>
-          <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} title="Career Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
+          <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} id="tour-career" title="Career Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
               <i className="fa-solid fa-code-branch"></i>
           </div>
           <div className="activity-spacer"></div>
-          <div className={`activity-icon ${activeActivity === 'settings' ? 'active' : ''}`} title="Settings" onClick={() => { setActiveActivity('settings'); setMobileMenuOpen(true); }}>
+          <div className={`activity-icon ${activeActivity === 'settings' ? 'active' : ''}`} id="tour-settings" title="Settings" onClick={() => { setActiveActivity('settings'); setMobileMenuOpen(true); }}>
               <i className="fa-solid fa-gear"></i>
           </div>
       </div>
@@ -558,7 +593,7 @@ function App() {
       <div className="sidebar-resizer" onMouseDown={startResizing}></div>
 
       {/* Editor Area */}
-      <div className="editor-area">
+      <div id="tour-editor" className="editor-area">
           <div className="editor-tabs">
               {tabs.map(tabId => (
                 <div key={tabId} className={`tab ${activeTab === tabId ? 'active' : ''}`} onClick={() => setActiveTab(tabId)}>
