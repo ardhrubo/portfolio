@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, forwardRef } from 'react'
 import './App.css'
 import { Joyride, STATUS } from 'react-joyride';
 
@@ -318,29 +318,40 @@ function App() {
   const [animate, setAnimate] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
 
-  // Custom beacon component that says "Click here"
+  // Custom beacon component that says "Click here" using a GIF
   const CustomBeacon = React.forwardRef((props, ref) => {
     return (
-      <div
-        ref={ref}
-        {...props}
-        className="custom-tour-beacon"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          background: '#ffca95',
-          color: '#11111b',
-          padding: '6px 12px',
-          borderRadius: '20px',
-          fontWeight: 'bold',
-          fontSize: '13px',
-          cursor: 'pointer',
-          animation: 'modalPop 1.5s infinite alternate ease-in-out',
-          boxShadow: '0 0 15px rgba(255, 202, 149, 0.6)',
-          transformOrigin: 'center'
-        }}
-      >
-        <i className="fa-solid fa-arrow-pointer" style={{ marginRight: '6px' }}></i> Click here
+      <div ref={ref} {...props} className="custom-tour-beacon">
+        {/* Inner container to safely offset the GIF without Joyride overriding it */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '25px', // Push to the right so it doesn't cover the icon
+            top: '-25px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#ffca95',
+            padding: '6px',
+            borderRadius: '12px',
+            cursor: 'pointer',
+            animation: 'modalPop 1.5s infinite alternate ease-in-out',
+            boxShadow: '0 0 20px rgba(255, 202, 149, 0.8)',
+            transformOrigin: 'center'
+          }}
+          title="Click here"
+        >
+          <img 
+            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTJnN2NyZTZuZGNsZjRmN243ODAzbmNpdzFpZmhlbG90bTRmaTI3MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kd9BlRovbPOykLBMqX/giphy.gif" 
+            alt="Click here"
+            style={{
+              width: '140px',
+              height: '140px',
+              objectFit: 'cover',
+              borderRadius: '8px'
+            }}
+          />
+        </div>
       </div>
     );
   });
@@ -356,6 +367,7 @@ function App() {
             <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>On the left, the Explorer lets you open files like <code>projects.js</code> or <code>README.md</code>.</p>
           </div>
         ),
+        placement: 'bottom',
       },
       {
         target: '#tour-career',
@@ -365,6 +377,7 @@ function App() {
             <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>Click the Git Branch icon to view my career timeline, designed just like a real Git commit graph.</p>
           </div>
         ),
+        placement: 'bottom',
       },
       {
         target: '#tour-settings',
@@ -374,6 +387,7 @@ function App() {
             <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>Click the Gear icon to open Settings. From there, you can switch between amazing color themes!</p>
           </div>
         ),
+        placement: 'bottom',
       },
       {
         target: '#tour-editor',
@@ -383,6 +397,7 @@ function App() {
             <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>And finally, this is the main editor. View all my portfolio details here. Enjoy your stay!</p>
           </div>
         ),
+        placement: 'bottom',
       }
     ]
   });
