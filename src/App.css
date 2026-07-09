@@ -664,7 +664,7 @@ body,
     position: absolute;
     top: 48px;
     left: 0;
-    width: 100%;
+    width: 80% !important;
     height: calc(100vh - 48px - 22px);
     z-index: 50;
     transform: translateX(-100%);
