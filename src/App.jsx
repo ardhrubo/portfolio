@@ -2,27 +2,27 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 const projectsData = [
-  { name: "horizontaxsolution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "scrapeautomate", url: "https://scrapeautomate.com/", tech: ["Scraper"], image: "https://api.microlink.io/?url=https%3A%2F%2Fscrapeautomate.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "admissionbondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"], image: "https://api.microlink.io/?url=https%3A%2F%2Fadmissionbondhu.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "emailhider", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fcopippkpbpdkhjpcbaibpjdmaanccocc%3Futm_source%3Ditem-share-cb&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "password-generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpasswordgeneratordhrubo.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "bot", url: "https://github.com/ardhrubo/bot", tech: ["Python"] },
-  { name: "bulk-duckduckgo-search-tool", url: "https://github.com/ardhrubo/bulk-duckduckgo-search-tool", tech: ["JS"] },
-  { name: "form-timer", url: "https://github.com/ardhrubo/form-timer", tech: ["JS"] },
-  { name: "free-claude-code", url: "https://github.com/ardhrubo/free-claude-code", tech: ["JS"] },
-  { name: "fullstack-docker", url: "https://github.com/ardhrubo/fullstack-docker", tech: ["Docker"] },
-  { name: "hasib", url: "https://github.com/ardhrubo/hasib", tech: ["Web"] },
-  { name: "indianvisa", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"] },
-  { name: "medusajs", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"] },
-  { name: "mohan", url: "https://github.com/ardhrubo/mohan", tech: ["Web"] },
-  { name: "orbital", url: "https://github.com/ardhrubo/orbital", tech: ["Web"] },
-  { name: "passglobaledu", url: "https://passglobaledu.com", tech: ["Next.js"] },
-  { name: "researchtool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"] },
-  { name: "tiktactoe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"] },
-  { name: "usage-monitor", url: "https://github.com/ardhrubo/usage-monitor", tech: ["Tool"] },
-  { name: "vibetest-docs", url: "https://github.com/ardhrubo/vibetest-docs", tech: ["Docs"] },
-  { name: "watchfirebd", url: "https://watchfirebd.com", tech: ["Web"] }
+  { name: "horizontaxsolution", title: "Horizon Tax Solution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "scrapeautomate", title: "ScrapeAutomate", url: "https://scrapeautomate.com/", tech: ["Scraper"], image: "https://api.microlink.io/?url=https%3A%2F%2Fscrapeautomate.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "admissionbondhu", title: "Admission Bondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"], image: "https://api.microlink.io/?url=https%3A%2F%2Fadmissionbondhu.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "emailhider", title: "Email Blurrer", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fcopippkpbpdkhjpcbaibpjdmaanccocc%3Futm_source%3Ditem-share-cb&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "password-generator", title: "Password Generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpasswordgeneratordhrubo.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "bot", title: "Custom Bot", url: "https://github.com/ardhrubo/bot", tech: ["Python"] },
+  { name: "bulk-duckduckgo-search-tool", title: "DuckDuckGo Search Tool", url: "https://github.com/ardhrubo/bulk-duckduckgo-search-tool", tech: ["JS"] },
+  { name: "form-timer", title: "Form Timer", url: "https://github.com/ardhrubo/form-timer", tech: ["JS"] },
+  { name: "free-claude-code", title: "Free Claude Code", url: "https://github.com/ardhrubo/free-claude-code", tech: ["JS"] },
+  { name: "fullstack-docker", title: "Fullstack Docker Env", url: "https://github.com/ardhrubo/fullstack-docker", tech: ["Docker"] },
+  { name: "hasib", title: "Hasib Portfolio", url: "https://github.com/ardhrubo/hasib", tech: ["Web"] },
+  { name: "indianvisa", title: "Indian Visa Bot", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"] },
+  { name: "medusajs", title: "MedusaJS Store", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"] },
+  { name: "mohan", title: "Mohan Web", url: "https://github.com/ardhrubo/mohan", tech: ["Web"] },
+  { name: "orbital", title: "Orbital Website", url: "https://github.com/ardhrubo/orbital", tech: ["Web"] },
+  { name: "passglobaledu", title: "Pass Global Edu", url: "https://passglobaledu.com", tech: ["Next.js"] },
+  { name: "researchtool", title: "Research Tool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"] },
+  { name: "tiktactoe", title: "Tic Tac Toe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"] },
+  { name: "usage-monitor", title: "Usage Monitor", url: "https://github.com/ardhrubo/usage-monitor", tech: ["Tool"] },
+  { name: "vibetest-docs", title: "VibeTest Docs", url: "https://github.com/ardhrubo/vibetest-docs", tech: ["Docs"] },
+  { name: "watchfirebd", title: "WatchFire BD", url: "https://watchfirebd.com", tech: ["Web"] }
 ];
 
 const fileContents = {
@@ -46,7 +46,53 @@ const fileContents = {
             <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
             <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
           </ul>
-
+          <p>
+            <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
+              <i className="fa-brands fa-github"></i> View my GitHub Profile
+            </a>
+          </p>
+          <div style={{ marginTop: '20px' }}>
+            <button 
+              onClick={() => openFile('projects')} 
+              style={{
+                background: 'var(--accent)', 
+                color: 'white', 
+                border: 'none', 
+                padding: '8px 16px', 
+                borderRadius: '4px', 
+                cursor: 'pointer',
+                fontFamily: 'Inter',
+                fontSize: '14px',
+                marginRight: '10px'
+              }}
+            >
+              🚀 View My Projects
+            </button>
+            <button 
+              onClick={() => openFile('work-history')} 
+              style={{
+                background: 'transparent', 
+                color: 'var(--accent)', 
+                border: '1px solid var(--accent)', 
+                padding: '8px 16px', 
+                borderRadius: '4px', 
+                cursor: 'pointer',
+                fontFamily: 'Inter',
+                fontSize: '14px'
+              }}
+            >
+              💼 View Experience
+            </button>
+          </div>
+        </>
+      )
+  },
+  'work-history': {
+      title: 'experience/work-history.md',
+      lang: 'Markdown',
+      icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
+      content: (
+        <>
           <h2><span className="syntax-func">Experience</span></h2>
           
           <div className="experience-item" style={{ marginBottom: '20px' }}>
@@ -83,28 +129,6 @@ const fileContents = {
               <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
             </ul>
           </div>
-          <p>
-            <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
-              <i className="fa-brands fa-github"></i> View my GitHub Profile
-            </a>
-          </p>
-          <div style={{ marginTop: '20px' }}>
-            <button 
-              onClick={() => openFile('projects')} 
-              style={{
-                background: 'var(--accent)', 
-                color: 'white', 
-                border: 'none', 
-                padding: '8px 16px', 
-                borderRadius: '4px', 
-                cursor: 'pointer',
-                fontFamily: 'Inter',
-                fontSize: '14px'
-              }}
-            >
-              🚀 View My Projects
-            </button>
-          </div>
         </>
       )
   },
@@ -130,11 +154,14 @@ const fileContents = {
       content: (
         <>
           <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
+          <p style={{marginBottom: '20px', color: 'var(--text-muted)'}}>
+            I shipped more than <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong>, among them some top client projects are:
+          </p>
           <div className="project-grid">
             {projectsData.map(p => (
               <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
-                  <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.name}`} alt={`${p.name} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
-                  <h3>{p.name}</h3>
+                  <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.title.replace(/ /g, '+')}`} alt={`${p.title} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
+                  <h3>{p.title}</h3>
                   <p>A web development project built to solve specific problems and enhance user experience.</p>
                   <div className="project-tech">
                       {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
@@ -150,7 +177,7 @@ const fileContents = {
 function App() {
   const [activeTab, setActiveTab] = useState('about');
   const [tabs, setTabs] = useState(['about']);
-  const [folderOpen, setFolderOpen] = useState({ portfolio: true, projects: false });
+  const [folderOpen, setFolderOpen] = useState({ portfolio: true, experience: true, projects: false });
   const [lineNumbers, setLineNumbers] = useState([]);
   const [cursor, setCursor] = useState({ ln: 1, col: 1 });
   const [animate, setAnimate] = useState(false);
@@ -162,6 +189,7 @@ function App() {
     let lines = 25;
     if (activeTab === 'projects') lines = 35;
     if (activeTab === 'contact') lines = 10;
+    if (activeTab === 'work-history') lines = 30;
     
     setLineNumbers(Array.from({length: lines}, (_, i) => i + 1));
     setCursor({ ln: Math.floor(Math.random() * lines) + 1, col: Math.floor(Math.random() * 40) + 1 });
@@ -229,6 +257,21 @@ function App() {
                         <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
                         <span>about.md</span>
                     </div>
+
+                    <div className={`folder-item ${!folderOpen.experience ? 'collapsed' : ''}`} onClick={() => toggleFolder('experience')}>
+                        <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                        <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
+                        <span>experience</span>
+                    </div>
+                    
+                    {folderOpen.experience && (
+                      <div className="folder-contents">
+                          <div className={`file-item file-md ${activeTab === 'work-history' ? 'active' : ''}`} onClick={() => openFile('work-history')}>
+                            <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
+                            <span>work-history.md</span>
+                          </div>
+                      </div>
+                    )}
                     
                     <div className={`folder-item ${!folderOpen.projects ? 'collapsed' : ''}`} onClick={() => toggleFolder('projects')}>
                         <i className="fa-solid fa-chevron-down toggle-icon"></i>
@@ -241,7 +284,7 @@ function App() {
                           {projectsData.map(p => (
                             <div className="file-item" key={p.name} onClick={() => openFile('projects')}>
                               <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
-                              <span>{p.name}.js</span>
+                              <span>{p.title}.js</span>
                             </div>
                           ))}
                       </div>
