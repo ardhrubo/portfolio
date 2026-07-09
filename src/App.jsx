@@ -328,7 +328,6 @@ function App() {
             <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>On the left, the Explorer lets you open files like <code>projects.js</code> or <code>README.md</code>.</p>
           </div>
         ),
-        disableBeacon: true,
       },
       {
         target: '#tour-career',
@@ -494,11 +493,18 @@ function App() {
       styles={{
         options: {
           zIndex: 10000,
-          primaryColor: themeColors[theme] || '#e22f80',
+          primaryColor: '#ffca95',
           backgroundColor: 'var(--bg-dark)',
           textColor: 'var(--text)',
           arrowColor: 'var(--bg-dark)',
           overlayColor: 'rgba(0, 0, 0, 0.7)'
+        },
+        beaconInner: {
+          backgroundColor: '#ffca95'
+        },
+        beaconOuter: {
+          border: '2px solid #ffca95',
+          backgroundColor: 'transparent'
         },
         buttonNext: {
           fontWeight: 'bold',
