@@ -15,7 +15,6 @@ const projectsData = [
   { name: "hasib", title: "Hasib Portfolio", url: "https://github.com/ardhrubo/hasib", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fhasib&screenshot=true&meta=false&embed=screenshot.url", desc: "A personal portfolio website designed and developed for a client named Hasib." },
   { name: "indianvisa", title: "Indian Visa Bot", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Findianvisa&screenshot=true&meta=false&embed=screenshot.url", desc: "An automated bot designed to streamline checking and applying for Indian visa slots." },
   { name: "medusajs", title: "MedusaJS Store", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fmedusajs&screenshot=true&meta=false&embed=screenshot.url", desc: "An e-commerce storefront built using the powerful MedusaJS headless commerce engine." },
-  { name: "mohan", title: "Mohan Web", url: "https://github.com/ardhrubo/mohan", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fmohan&screenshot=true&meta=false&embed=screenshot.url", desc: "A custom web solution tailored to client specifications for project Mohan." },
   { name: "orbital", title: "Orbital Website", url: "https://github.com/ardhrubo/orbital", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Forbital&screenshot=true&meta=false&embed=screenshot.url", desc: "A sleek and responsive website built for the Orbital project." },
   { name: "passglobaledu", title: "Pass Global Edu", url: "https://passglobaledu.com", tech: ["Next.js"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpassglobaledu.com&screenshot=true&meta=false&embed=screenshot.url", desc: "An educational consultancy portal built with Next.js for Pass Global Edu." },
   { name: "researchtool", title: "Research Tool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fresearchtool&screenshot=true&meta=false&embed=screenshot.url", desc: "A specialized tool designed to assist with data aggregation and research processes." },
@@ -58,6 +57,49 @@ const ProjectsCarousel = () => {
   );
 };
 
+
+const SettingsPanel = ({ currentTheme, setTheme }) => (
+  <div className="source-control-panel">
+    <div className="sidebar-header" style={{borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px'}}>
+        <h2>SETTINGS</h2>
+        <i className="fa-solid fa-ellipsis"></i>
+    </div>
+    <div className="settings-panel">
+      <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>COLOR THEME</h3>
+      
+      <div className={`theme-card ${currentTheme === 'cafe' ? 'active' : ''}`} onClick={() => setTheme('cafe')}>
+        <div className="theme-preview">
+          <div className="theme-swatch" style={{background: '#161412'}}></div>
+          <div className="theme-swatch" style={{background: '#ffeed6'}}></div>
+          <div className="theme-swatch" style={{background: '#e8a07c'}}></div>
+          <div className="theme-swatch" style={{background: '#827148'}}></div>
+        </div>
+        <span style={{fontSize: '14px'}}>Earthy Cafe</span>
+      </div>
+
+      <div className={`theme-card ${currentTheme === 'synthwave' ? 'active' : ''}`} onClick={() => setTheme('synthwave')}>
+        <div className="theme-preview">
+          <div className="theme-swatch" style={{background: '#120e18'}}></div>
+          <div className="theme-swatch" style={{background: '#e22f80'}}></div>
+          <div className="theme-swatch" style={{background: '#ff7873'}}></div>
+          <div className="theme-swatch" style={{background: '#8140dc'}}></div>
+        </div>
+        <span style={{fontSize: '14px'}}>Synthwave Sunset</span>
+      </div>
+
+      <div className={`theme-card ${currentTheme === 'green' ? 'active' : ''}`} onClick={() => setTheme('green')}>
+        <div className="theme-preview">
+          <div className="theme-swatch" style={{background: '#121612'}}></div>
+          <div className="theme-swatch" style={{background: '#8eca3c'}}></div>
+          <div className="theme-swatch" style={{background: '#bbdc12'}}></div>
+          <div className="theme-swatch" style={{background: '#499a13'}}></div>
+        </div>
+        <span style={{fontSize: '14px'}}>Dark Hacker Green</span>
+      </div>
+    </div>
+  </div>
+);
+
 const SourceControlPanel = () => (
   <div className="source-control-panel">
     <div className="sidebar-header" style={{borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px'}}>
@@ -67,7 +109,9 @@ const SourceControlPanel = () => (
     <div style={{padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100vh - 120px)'}}>
       <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>CAREER HISTORY</h3>
       <div className="git-timeline">
-        <div className="git-commit">
+        <div className="git-commit branch">
+          <div className="git-branch-curve"></div>
+          <div className="git-merge-curve"></div>
           <div className="git-line"></div>
           <div className="git-dot"></div>
           <div className="git-content">
@@ -82,7 +126,8 @@ const SourceControlPanel = () => (
             </div>
           </div>
         </div>
-        <div className="git-commit">
+        <div className="git-commit branch">
+          <div className="git-branch-curve"></div>
           <div className="git-line"></div>
           <div className="git-dot"></div>
           <div className="git-content">
@@ -109,7 +154,8 @@ const SourceControlPanel = () => (
             </div>
           </div>
         </div>
-        <div className="git-commit">
+        <div className="git-commit branch">
+          <div className="git-branch-curve"></div>
           <div className="git-line"></div>
           <div className="git-dot"></div>
           <div className="git-content">
@@ -261,6 +307,11 @@ function App() {
   const [showGuide, setShowGuide] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeActivity, setActiveActivity] = useState('explorer');
+  const [theme, setTheme] = useState('cafe');
+
+  useEffect(() => {
+    document.body.className = `theme-${theme}`;
+  }, [theme]);
 
   useEffect(() => {
     const data = fileContents[activeTab];
@@ -352,7 +403,7 @@ function App() {
               <i className="fa-solid fa-code-branch"></i>
           </div>
           <div className="activity-spacer"></div>
-          <div className="activity-icon" title="Settings">
+          <div className={`activity-icon ${activeActivity === 'settings' ? 'active' : ''}`} title="Settings" onClick={() => { setActiveActivity('settings'); setMobileMenuOpen(true); }}>
               <i className="fa-solid fa-gear"></i>
           </div>
       </div>
@@ -416,8 +467,10 @@ function App() {
               )}
           </div>
             </>
-          ) : (
+          ) : activeActivity === 'source-control' ? (
             <SourceControlPanel />
+          ) : (
+            <SettingsPanel currentTheme={theme} setTheme={setTheme} />
           )}
       </div>
 
