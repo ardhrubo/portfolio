@@ -2,28 +2,65 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 const projectsData = [
-  { name: "horizontaxsolution", title: "Horizon Tax Solution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "scrapeautomate", title: "ScrapeAutomate", url: "https://scrapeautomate.com/", tech: ["Scraper"], image: "https://api.microlink.io/?url=https%3A%2F%2Fscrapeautomate.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "admissionbondhu", title: "Admission Bondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"], image: "https://api.microlink.io/?url=https%3A%2F%2Fadmissionbondhu.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "emailhider", title: "Email Blurrer", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fcopippkpbpdkhjpcbaibpjdmaanccocc%3Futm_source%3Ditem-share-cb&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "password-generator", title: "Password Generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpasswordgeneratordhrubo.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url" },
-  { name: "bot", title: "Custom Bot", url: "https://github.com/ardhrubo/bot", tech: ["Python"] },
-  { name: "bulk-duckduckgo-search-tool", title: "DuckDuckGo Search Tool", url: "https://github.com/ardhrubo/bulk-duckduckgo-search-tool", tech: ["JS"] },
-  { name: "form-timer", title: "Form Timer", url: "https://github.com/ardhrubo/form-timer", tech: ["JS"] },
-  { name: "free-claude-code", title: "Free Claude Code", url: "https://github.com/ardhrubo/free-claude-code", tech: ["JS"] },
-  { name: "fullstack-docker", title: "Fullstack Docker Env", url: "https://github.com/ardhrubo/fullstack-docker", tech: ["Docker"] },
-  { name: "hasib", title: "Hasib Portfolio", url: "https://github.com/ardhrubo/hasib", tech: ["Web"] },
-  { name: "indianvisa", title: "Indian Visa Bot", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"] },
-  { name: "medusajs", title: "MedusaJS Store", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"] },
-  { name: "mohan", title: "Mohan Web", url: "https://github.com/ardhrubo/mohan", tech: ["Web"] },
-  { name: "orbital", title: "Orbital Website", url: "https://github.com/ardhrubo/orbital", tech: ["Web"] },
-  { name: "passglobaledu", title: "Pass Global Edu", url: "https://passglobaledu.com", tech: ["Next.js"] },
-  { name: "researchtool", title: "Research Tool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"] },
-  { name: "tiktactoe", title: "Tic Tac Toe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"] },
-  { name: "usage-monitor", title: "Usage Monitor", url: "https://github.com/ardhrubo/usage-monitor", tech: ["Tool"] },
-  { name: "vibetest-docs", title: "VibeTest Docs", url: "https://github.com/ardhrubo/vibetest-docs", tech: ["Docs"] },
-  { name: "watchfirebd", title: "WatchFire BD", url: "https://watchfirebd.com", tech: ["Web"] }
+  { name: "horizontaxsolution", title: "Horizon Tax Solution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url", desc: "A professional tax and accounting services web application built for Australian clientele to handle seamless lead generation and consulting inquiries." },
+  { name: "scrapeautomate", title: "ScrapeAutomate", url: "https://scrapeautomate.com/", tech: ["Scraper"], image: "https://api.microlink.io/?url=https%3A%2F%2Fscrapeautomate.com%2F&screenshot=true&meta=false&embed=screenshot.url", desc: "A robust web scraping and automation platform engineered with Puppeteer for executing complex data extraction workflows at scale." },
+  { name: "admissionbondhu", title: "Admission Bondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"], image: "https://api.microlink.io/?url=https%3A%2F%2Fadmissionbondhu.com%2F&screenshot=true&meta=false&embed=screenshot.url", desc: "A comprehensive higher education portal designed to assist students in navigating the complexities of university admissions and enrollment processes." },
+  { name: "emailhider", title: "Email Blurrer", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fcopippkpbpdkhjpcbaibpjdmaanccocc%3Futm_source%3Ditem-share-cb&screenshot=true&meta=false&embed=screenshot.url", desc: "A privacy-centric Chrome Extension that automatically obfuscates sensitive email addresses on webpages." },
+  { name: "password-generator", title: "Password Generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpasswordgeneratordhrubo.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url", desc: "A fast, customizable, and secure web application for generating strong cryptographic passwords locally in the browser." },
+  { name: "bot", title: "Custom Bot", url: "https://github.com/ardhrubo/bot", tech: ["Python"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fbot&screenshot=true&meta=false&embed=screenshot.url", desc: "A Python-based automation bot tailored for specific repetitive tasks." },
+  { name: "bulk-duckduckgo-search-tool", title: "DuckDuckGo Search Tool", url: "https://github.com/ardhrubo/bulk-duckduckgo-search-tool", tech: ["JS"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fbulk-duckduckgo-search-tool&screenshot=true&meta=false&embed=screenshot.url", desc: "A JavaScript utility for performing bulk queries on DuckDuckGo and extracting search results." },
+  { name: "form-timer", title: "Form Timer", url: "https://github.com/ardhrubo/form-timer", tech: ["JS"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fform-timer&screenshot=true&meta=false&embed=screenshot.url", desc: "A handy JS tool to monitor and enforce time limits on web forms." },
+  { name: "free-claude-code", title: "Free Claude Code", url: "https://github.com/ardhrubo/free-claude-code", tech: ["JS"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Ffree-claude-code&screenshot=true&meta=false&embed=screenshot.url", desc: "An experimental repository exploring AI integrations and capabilities." },
+  { name: "fullstack-docker", title: "Fullstack Docker Env", url: "https://github.com/ardhrubo/fullstack-docker", tech: ["Docker"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Ffullstack-docker&screenshot=true&meta=false&embed=screenshot.url", desc: "A complete, Dockerized boilerplate environment for full-stack application development." },
+  { name: "hasib", title: "Hasib Portfolio", url: "https://github.com/ardhrubo/hasib", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fhasib&screenshot=true&meta=false&embed=screenshot.url", desc: "A personal portfolio website designed and developed for a client named Hasib." },
+  { name: "indianvisa", title: "Indian Visa Bot", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Findianvisa&screenshot=true&meta=false&embed=screenshot.url", desc: "An automated bot designed to streamline checking and applying for Indian visa slots." },
+  { name: "medusajs", title: "MedusaJS Store", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fmedusajs&screenshot=true&meta=false&embed=screenshot.url", desc: "An e-commerce storefront built using the powerful MedusaJS headless commerce engine." },
+  { name: "mohan", title: "Mohan Web", url: "https://github.com/ardhrubo/mohan", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fmohan&screenshot=true&meta=false&embed=screenshot.url", desc: "A custom web solution tailored to client specifications for project Mohan." },
+  { name: "orbital", title: "Orbital Website", url: "https://github.com/ardhrubo/orbital", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Forbital&screenshot=true&meta=false&embed=screenshot.url", desc: "A sleek and responsive website built for the Orbital project." },
+  { name: "passglobaledu", title: "Pass Global Edu", url: "https://passglobaledu.com", tech: ["Next.js"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpassglobaledu.com&screenshot=true&meta=false&embed=screenshot.url", desc: "An educational consultancy portal built with Next.js for Pass Global Edu." },
+  { name: "researchtool", title: "Research Tool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fresearchtool&screenshot=true&meta=false&embed=screenshot.url", desc: "A specialized tool designed to assist with data aggregation and research processes." },
+  { name: "tiktactoe", title: "Tic Tac Toe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Ftiktactoe&screenshot=true&meta=false&embed=screenshot.url", desc: "A classic, interactive Tic-Tac-Toe game built for the web." },
+  { name: "usage-monitor", title: "Usage Monitor", url: "https://github.com/ardhrubo/usage-monitor", tech: ["Tool"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fusage-monitor&screenshot=true&meta=false&embed=screenshot.url", desc: "A lightweight tool to track and visualize system or application usage metrics." },
+  { name: "vibetest-docs", title: "VibeTest Docs", url: "https://github.com/ardhrubo/vibetest-docs", tech: ["Docs"], image: "https://api.microlink.io/?url=https%3A%2F%2Fgithub.com%2Fardhrubo%2Fvibetest-docs&screenshot=true&meta=false&embed=screenshot.url", desc: "Comprehensive technical documentation site built for the VibeTest platform." },
+  { name: "watchfirebd", title: "WatchFire BD", url: "https://watchfirebd.com", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwatchfirebd.com&screenshot=true&meta=false&embed=screenshot.url", desc: "A modern and responsive web presence created for WatchFire BD." }
 ];
+
+const ProjectsCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const topProjects = projectsData.slice(0, 5); // The top 5 projects
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % topProjects.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [topProjects.length]);
+
+  return (
+    <div style={{ position: 'relative', width: '100%', maxWidth: '800px', height: '350px', margin: '20px 0', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border)', backgroundColor: '#000' }}>
+      {topProjects.map((item, index) => (
+        <div key={item.name} style={{
+          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          opacity: index === currentIndex ? 1 : 0, transition: 'opacity 0.8s ease-in-out',
+          display: 'flex', flexDirection: 'column'
+        }}>
+          <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', background: 'linear-gradient(transparent, rgba(0,0,0,0.95))', padding: '30px 20px 20px' }}>
+            <h3 style={{ margin: '0 0 10px 0', fontSize: '24px' }}>
+              <a href={item.url} target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-var)', textDecoration: 'none'}}>{item.title}</a>
+            </h3>
+            <p style={{ margin: 0, fontSize: '14px', color: '#ccc', maxWidth: '650px', lineHeight: '1.4' }}>{item.desc}</p>
+          </div>
+        </div>
+      ))}
+      <div style={{position: 'absolute', bottom: '15px', right: '20px', display: 'flex', gap: '8px', zIndex: 10}}>
+        {topProjects.map((_, i) => (
+          <div key={i} onClick={() => setCurrentIndex(i)} style={{width: '10px', height: '10px', borderRadius: '50%', backgroundColor: i === currentIndex ? 'var(--accent)' : 'rgba(255,255,255,0.3)', cursor: 'pointer', transition: 'background-color 0.3s'}} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const fileContents = {
   'about': {
@@ -51,24 +88,10 @@ const fileContents = {
           <p style={{ marginBottom: '15px' }}>
             I have shipped over <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong> throughout my career. Below are some of my top client projects and tools that are actively making an impact:
           </p>
-          <ul style={{ marginBottom: '20px' }}>
-            <li style={{ marginBottom: '10px' }}>
-              <a href="https://www.horizontaxsolutions.com.au/" target="_blank" rel="noopener noreferrer">Horizon Tax Solution</a>: A professional tax and accounting services web application built for Australian clientele to handle seamless lead generation and consulting inquiries.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <a href="https://scrapeautomate.com/" target="_blank" rel="noopener noreferrer">ScrapeAutomate</a>: A robust web scraping and automation platform engineered with Puppeteer for executing complex data extraction workflows at scale.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <a href="https://admissionbondhu.com/" target="_blank" rel="noopener noreferrer">Admission Bondhu</a>: A comprehensive higher education portal designed to assist students in navigating the complexities of university admissions and enrollment processes.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <a href="https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">Email Blurrer</a>: A privacy-centric Chrome Extension actively available on the Chrome Web Store that automatically obfuscates sensitive email addresses on webpages.
-            </li>
-            <li style={{ marginBottom: '10px' }}>
-              <a href="https://passwordgeneratordhrubo.vercel.app/" target="_blank" rel="noopener noreferrer">Password Generator</a>: A fast, customizable, and secure web application for generating strong cryptographic passwords locally in the browser.
-            </li>
-          </ul>
-          <p>
+          
+          <ProjectsCarousel />
+          
+          <p style={{marginTop: '20px'}}>
             <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
               <i className="fa-brands fa-github"></i> View my GitHub Profile
             </a>
@@ -184,7 +207,7 @@ const fileContents = {
               <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
                   <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.title.replace(/ /g, '+')}`} alt={`${p.title} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
                   <h3>{p.title}</h3>
-                  <p>A web development project built to solve specific problems and enhance user experience.</p>
+                  <p>{p.desc}</p>
                   <div className="project-tech">
                       {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
                   </div>
