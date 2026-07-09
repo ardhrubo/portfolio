@@ -30,6 +30,11 @@ const fileContents = {
             <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
             <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
           </ul>
+          <p>
+            <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
+              <i className="fa-brands fa-github"></i> View my GitHub Profile
+            </a>
+          </p>
           <p><em>Click on the <strong>projects</strong> folder in the Explorer on the left to see what I've been building!</em></p>
         </>
       )
@@ -42,8 +47,8 @@ const fileContents = {
     <span class="syntax-keyword">"name"</span>: <span class="syntax-string">"Dhrubo"</span>,
     <span class="syntax-keyword">"email"</span>: <span class="syntax-string">"hello@example.com"</span>,
     <span class="syntax-keyword">"socials"</span>: <span class="syntax-string">{</span>
-        <span class="syntax-keyword">"github"</span>: <span class="syntax-string">"github.com/dhrubo"</span>,
-        <span class="syntax-keyword">"linkedin"</span>: <span class="syntax-string">"linkedin.com/in/dhrubo"</span>
+        <span class="syntax-keyword">"github"</span>: <a href="https://github.com/ardhrubo" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://github.com/ardhrubo"</a>,
+        <span class="syntax-keyword">"linkedin"</span>: <a href="https://linkedin.com/in/dhrubo" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://linkedin.com/in/dhrubo"</a>
     <span class="syntax-string">}</span>,
     <span class="syntax-keyword">"availability"</span>: <span class="syntax-var">true</span>,
     <span class="syntax-keyword">"message"</span>: <span class="syntax-string">"Open for new opportunities and exciting projects!"</span>
@@ -58,15 +63,15 @@ const fileContents = {
           <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
           <div className="project-grid">
             {projectsData.map(p => (
-              <div className="project-card" key={p} onClick={() => alert(`Viewing project: ${p}`)}>
+              <a href={`https://github.com/ardhrubo/${p}`} target="_blank" rel="noopener noreferrer" className="project-card" key={p} style={{ textDecoration: 'none' }}>
+                  <img src={`https://picsum.photos/seed/${p}/300/150`} alt={`${p} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px' }} />
                   <h3>{p}</h3>
                   <p>A web development project built to solve specific problems and enhance user experience.</p>
                   <div className="project-tech">
-                      <span className="tech-tag">React</span>
-                      <span className="tech-tag">Vite</span>
-                      <span className="tech-tag">CSS</span>
+                      <span className="tech-tag">Repo</span>
+                      <span className="tech-tag">Code</span>
                   </div>
-              </div>
+              </a>
             ))}
           </div>
         </>
