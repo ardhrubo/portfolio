@@ -37,25 +37,21 @@ const ProjectsCarousel = () => {
   }, [topProjects.length]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: '800px', height: '350px', margin: '20px 0', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border)', backgroundColor: '#000' }}>
+    <div className="carousel-container">
       {topProjects.map((item, index) => (
-        <div key={item.name} style={{
-          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-          opacity: index === currentIndex ? 1 : 0, transition: 'opacity 0.8s ease-in-out',
-          display: 'flex', flexDirection: 'column'
-        }}>
-          <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }} />
-          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', background: 'linear-gradient(transparent, rgba(0,0,0,0.95))', padding: '30px 20px 20px' }}>
-            <h3 style={{ margin: '0 0 10px 0', fontSize: '24px' }}>
-              <a href={item.url} target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-var)', textDecoration: 'none'}}>{item.title}</a>
+        <div key={item.name} className={`carousel-slide ${index === currentIndex ? 'active' : ''}`}>
+          <img src={item.image} alt={item.title} className="carousel-image" />
+          <div className="carousel-content">
+            <h3>
+              <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a>
             </h3>
-            <p style={{ margin: 0, fontSize: '14px', color: '#ccc', maxWidth: '650px', lineHeight: '1.4' }}>{item.desc}</p>
+            <p>{item.desc}</p>
           </div>
         </div>
       ))}
-      <div style={{position: 'absolute', bottom: '15px', right: '20px', display: 'flex', gap: '8px', zIndex: 10}}>
+      <div className="carousel-dots">
         {topProjects.map((_, i) => (
-          <div key={i} onClick={() => setCurrentIndex(i)} style={{width: '10px', height: '10px', borderRadius: '50%', backgroundColor: i === currentIndex ? 'var(--accent)' : 'rgba(255,255,255,0.3)', cursor: 'pointer', transition: 'background-color 0.3s'}} />
+          <div key={i} onClick={() => setCurrentIndex(i)} className={`carousel-dot ${i === currentIndex ? 'active' : ''}`} />
         ))}
       </div>
     </div>
@@ -63,8 +59,8 @@ const ProjectsCarousel = () => {
 };
 
 const fileContents = {
-  'about': {
-      title: 'about.md',
+  'readme': {
+      title: 'README.md',
       lang: 'Markdown',
       icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
       content: (openFile) => (
@@ -114,7 +110,7 @@ const fileContents = {
               🚀 View My Projects
             </button>
             <button 
-              onClick={() => openFile('work-history')} 
+              onClick={() => openFile('experience')} 
               style={{
                 background: 'transparent', 
                 color: 'var(--accent)', 
@@ -132,10 +128,10 @@ const fileContents = {
         </>
       )
   },
-  'work-history': {
-      title: 'experience/work-history.md',
-      lang: 'Markdown',
-      icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
+  'experience': {
+      title: 'src/controllers/experience.js',
+      lang: 'JavaScript',
+      icon: <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>,
       content: (
         <>
           <h2><span className="syntax-func">Experience</span></h2>
@@ -177,25 +173,31 @@ const fileContents = {
         </>
       )
   },
-  'contact': {
-      title: 'contact.json',
+  'package-json': {
+      title: 'package.json',
       lang: 'JSON',
       icon: <i className="fa-brands fa-node-js" style={{color: '#83cd29'}}></i>,
       content: `<div style="white-space: pre-wrap"><span class="syntax-string">{</span>
-    <span class="syntax-keyword">"name"</span>: <span class="syntax-string">"Dhrubo"</span>,
-    <span class="syntax-keyword">"email"</span>: <span class="syntax-string">"hello@example.com"</span>,
+    <span class="syntax-keyword">"name"</span>: <span class="syntax-string">"dhrubo-portfolio"</span>,
+    <span class="syntax-keyword">"version"</span>: <span class="syntax-string">"1.0.0"</span>,
+    <span class="syntax-keyword">"description"</span>: <span class="syntax-string">"Full-stack developer portfolio"</span>,
+    <span class="syntax-keyword">"main"</span>: <span class="syntax-string">"src/app.js"</span>,
+    <span class="syntax-keyword">"author"</span>: <span class="syntax-string">"Dhrubo <hello@example.com>"</span>,
     <span class="syntax-keyword">"socials"</span>: <span class="syntax-string">{</span>
         <span class="syntax-keyword">"github"</span>: <a href="https://github.com/ardhrubo" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://github.com/ardhrubo"</a>,
         <span class="syntax-keyword">"linkedin"</span>: <a href="https://linkedin.com/in/dhrubo" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://linkedin.com/in/dhrubo"</a>
     <span class="syntax-string">}</span>,
-    <span class="syntax-keyword">"availability"</span>: <span class="syntax-var">true</span>,
-    <span class="syntax-keyword">"message"</span>: <span class="syntax-string">"Open for new opportunities and exciting projects!"</span>
+    <span class="syntax-keyword">"dependencies"</span>: <span class="syntax-string">{</span>
+        <span class="syntax-keyword">"react"</span>: <span class="syntax-string">"^18.2.0"</span>,
+        <span class="syntax-keyword">"puppeteer"</span>: <span class="syntax-string">"^21.0.0"</span>
+    <span class="syntax-string">}</span>,
+    <span class="syntax-keyword">"availability"</span>: <span class="syntax-var">true</span>
 <span class="syntax-string">}</span></div>`
   },
   'projects': {
-      title: 'projects/index.html',
-      lang: 'HTML',
-      icon: <i className="fa-brands fa-html5" style={{color: '#e34f26'}}></i>,
+      title: 'src/routes/projects.js',
+      lang: 'JavaScript',
+      icon: <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>,
       content: (
         <>
           <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
@@ -220,9 +222,9 @@ const fileContents = {
 };
 
 function App() {
-  const [activeTab, setActiveTab] = useState('about');
-  const [tabs, setTabs] = useState(['about']);
-  const [folderOpen, setFolderOpen] = useState({ portfolio: true, experience: true, projects: false });
+  const [activeTab, setActiveTab] = useState('readme');
+  const [tabs, setTabs] = useState(['readme']);
+  const [folderOpen, setFolderOpen] = useState({ portfolio: true, node_modules: false, src: true, controllers: true, routes: true });
   const [lineNumbers, setLineNumbers] = useState([]);
   const [cursor, setCursor] = useState({ ln: 1, col: 1 });
   const [animate, setAnimate] = useState(false);
@@ -233,8 +235,8 @@ function App() {
     
     let lines = 25;
     if (activeTab === 'projects') lines = 35;
-    if (activeTab === 'contact') lines = 10;
-    if (activeTab === 'work-history') lines = 30;
+    if (activeTab === 'package-json') lines = 20;
+    if (activeTab === 'experience') lines = 30;
     
     setLineNumbers(Array.from({length: lines}, (_, i) => i + 1));
     setCursor({ ln: Math.floor(Math.random() * lines) + 1, col: Math.floor(Math.random() * 40) + 1 });
@@ -298,46 +300,58 @@ function App() {
               
               {folderOpen.portfolio && (
                 <div className="file-tree">
-                    <div className={`file-item file-md ${activeTab === 'about' ? 'active' : ''}`} onClick={() => openFile('about')}>
-                        <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
-                        <span>about.md</span>
+                    <div className={`folder-item ${!folderOpen.node_modules ? 'collapsed' : ''}`} onClick={() => toggleFolder('node_modules')}>
+                        <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                        <i className="fa-solid fa-folder" style={{color: '#83cd29'}}></i>
+                        <span>node_modules</span>
                     </div>
 
-                    <div className={`folder-item ${!folderOpen.experience ? 'collapsed' : ''}`} onClick={() => toggleFolder('experience')}>
+                    <div className={`folder-item ${!folderOpen.src ? 'collapsed' : ''}`} onClick={() => toggleFolder('src')}>
                         <i className="fa-solid fa-chevron-down toggle-icon"></i>
-                        <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
-                        <span>experience</span>
+                        <i className="fa-solid fa-folder" style={{color: '#699dfb'}}></i>
+                        <span>src</span>
                     </div>
                     
-                    {folderOpen.experience && (
+                    {folderOpen.src && (
                       <div className="folder-contents">
-                          <div className={`file-item file-md ${activeTab === 'work-history' ? 'active' : ''}`} onClick={() => openFile('work-history')}>
-                            <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
-                            <span>work-history.md</span>
+                          <div className={`folder-item ${!folderOpen.controllers ? 'collapsed' : ''}`} onClick={() => toggleFolder('controllers')}>
+                              <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                              <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
+                              <span>controllers</span>
                           </div>
-                      </div>
-                    )}
-                    
-                    <div className={`folder-item ${!folderOpen.projects ? 'collapsed' : ''}`} onClick={() => toggleFolder('projects')}>
-                        <i className="fa-solid fa-chevron-down toggle-icon"></i>
-                        <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
-                        <span>projects</span>
-                    </div>
-                    
-                    {folderOpen.projects && (
-                      <div className="folder-contents">
-                          {projectsData.map(p => (
-                            <div className="file-item" key={p.name} onClick={() => openFile('projects')}>
-                              <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
-                              <span>{p.title}.js</span>
+                          {folderOpen.controllers && (
+                            <div className="folder-contents">
+                                <div className={`file-item file-md ${activeTab === 'experience' ? 'active' : ''}`} onClick={() => openFile('experience')} style={{paddingLeft: '55px'}}>
+                                  <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
+                                  <span>experience.js</span>
+                                </div>
                             </div>
-                          ))}
+                          )}
+
+                          <div className={`folder-item ${!folderOpen.routes ? 'collapsed' : ''}`} onClick={() => toggleFolder('routes')}>
+                              <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                              <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
+                              <span>routes</span>
+                          </div>
+                          {folderOpen.routes && (
+                            <div className="folder-contents">
+                                <div className={`file-item file-md ${activeTab === 'projects' ? 'active' : ''}`} onClick={() => openFile('projects')} style={{paddingLeft: '55px'}}>
+                                  <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
+                                  <span>projects.js</span>
+                                </div>
+                            </div>
+                          )}
                       </div>
                     )}
 
-                    <div className={`file-item file-json ${activeTab === 'contact' ? 'active' : ''}`} onClick={() => openFile('contact')}>
+                    <div className={`file-item file-md ${activeTab === 'readme' ? 'active' : ''}`} onClick={() => openFile('readme')}>
+                        <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
+                        <span>README.md</span>
+                    </div>
+
+                    <div className={`file-item file-json ${activeTab === 'package-json' ? 'active' : ''}`} onClick={() => openFile('package-json')}>
                         <i className="fa-brands fa-node-js" style={{color: '#83cd29'}}></i>
-                        <span>contact.json</span>
+                        <span>package.json</span>
                     </div>
                 </div>
               )}
