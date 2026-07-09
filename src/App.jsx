@@ -100,7 +100,13 @@ const fileContents = {
               💼 View Experience
             </button>
             <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
-              <i className="fa-brands fa-github" style={{fontSize: '16px'}}></i> GitHub Profile
+              <i className="fa-brands fa-github" style={{fontSize: '16px'}}></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/ardhrubo/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
+              <i className="fa-brands fa-linkedin" style={{fontSize: '16px', color: '#0a66c2'}}></i> LinkedIn
+            </a>
+            <a href="https://peerlist.io/ardhruboF" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
+              <i className="fa-solid fa-p" style={{fontSize: '16px', color: '#00aa45'}}></i> Peerlist
             </a>
           </div>
 
@@ -209,7 +215,8 @@ const fileContents = {
     <span class="syntax-keyword">"author"</span>: <span class="syntax-string">"Dhrubo <hello@example.com>"</span>,
     <span class="syntax-keyword">"socials"</span>: <span class="syntax-string">{</span>
         <span class="syntax-keyword">"github"</span>: <a href="https://github.com/ardhrubo" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://github.com/ardhrubo"</a>,
-        <span class="syntax-keyword">"linkedin"</span>: <a href="https://linkedin.com/in/dhrubo" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://linkedin.com/in/dhrubo"</a>
+        <span class="syntax-keyword">"linkedin"</span>: <a href="https://www.linkedin.com/in/ardhrubo/" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://www.linkedin.com/in/ardhrubo/"</a>,
+        <span class="syntax-keyword">"peerlist"</span>: <a href="https://peerlist.io/ardhruboF" target="_blank" style="color: var(--syntax-string); text-decoration: underline;">"https://peerlist.io/ardhruboF"</a>
     <span class="syntax-string">}</span>,
     <span class="syntax-keyword">"dependencies"</span>: <span class="syntax-string">{</span>
         <span class="syntax-keyword">"react"</span>: <span class="syntax-string">"^18.2.0"</span>,
