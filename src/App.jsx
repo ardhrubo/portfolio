@@ -473,10 +473,7 @@ function App() {
           )}
         </div>
       </div>
-    )}>Just let me explore freely</button>
-        </div>
-      </div>
-    )}
+
     <div className="app-container">
       {/* Activity Bar */}
       <div className="activity-bar">
