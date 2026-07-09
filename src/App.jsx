@@ -46,6 +46,28 @@ const fileContents = {
             <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
             <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
           </ul>
+          
+          <h2><span className="syntax-func">Top Client Projects</span></h2>
+          <p style={{ marginBottom: '15px' }}>
+            I have shipped over <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong> throughout my career. Below are some of my top client projects and tools that are actively making an impact:
+          </p>
+          <ul style={{ marginBottom: '20px' }}>
+            <li style={{ marginBottom: '10px' }}>
+              <a href="https://www.horizontaxsolutions.com.au/" target="_blank" rel="noopener noreferrer">Horizon Tax Solution</a>: A professional tax and accounting services web application built for Australian clientele to handle seamless lead generation and consulting inquiries.
+            </li>
+            <li style={{ marginBottom: '10px' }}>
+              <a href="https://scrapeautomate.com/" target="_blank" rel="noopener noreferrer">ScrapeAutomate</a>: A robust web scraping and automation platform engineered with Puppeteer for executing complex data extraction workflows at scale.
+            </li>
+            <li style={{ marginBottom: '10px' }}>
+              <a href="https://admissionbondhu.com/" target="_blank" rel="noopener noreferrer">Admission Bondhu</a>: A comprehensive higher education portal designed to assist students in navigating the complexities of university admissions and enrollment processes.
+            </li>
+            <li style={{ marginBottom: '10px' }}>
+              <a href="https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">Email Blurrer</a>: A privacy-centric Chrome Extension actively available on the Chrome Web Store that automatically obfuscates sensitive email addresses on webpages.
+            </li>
+            <li style={{ marginBottom: '10px' }}>
+              <a href="https://passwordgeneratordhrubo.vercel.app/" target="_blank" rel="noopener noreferrer">Password Generator</a>: A fast, customizable, and secure web application for generating strong cryptographic passwords locally in the browser.
+            </li>
+          </ul>
           <p>
             <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
               <i className="fa-brands fa-github"></i> View my GitHub Profile
