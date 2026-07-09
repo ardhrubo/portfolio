@@ -1,0 +1,249 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+
+const projectsData = [
+  "admissionbondhu", "bot", "bulk-duckduckgo-search-tool", "emailhider", 
+  "form-timer", "free-claude-code", "fullstack-docker", "hasib", 
+  "horizontaxsolution", "indianvisa", "medusajs", "mohan", 
+  "orbital", "passglobaledu", "researchtool", "scrapeautomate", 
+  "tiktactoe", "usage-monitor", "vibetest-docs", "watchfirebd"
+];
+
+const fileContents = {
+  'about': {
+      title: 'about.md',
+      lang: 'Markdown',
+      icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
+      content: (
+        <>
+          <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> 👋</h1>
+          <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
+          <h2><span className="syntax-func">About Me</span></h2>
+          <ul>
+            <li>🔭 I'm currently working on building awesome web experiences.</li>
+            <li>🌱 I'm always learning new technologies and refining my craft.</li>
+            <li>⚡ Fun fact: I love building tools that automate the boring stuff.</li>
+          </ul>
+          <h2><span className="syntax-func">My Arsenal</span></h2>
+          <ul>
+            <li><span className="syntax-var">Frontend:</span> HTML, CSS, JavaScript, React, Next.js, Vite</li>
+            <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
+            <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
+          </ul>
+          <p><em>Click on the <strong>projects</strong> folder in the Explorer on the left to see what I've been building!</em></p>
+        </>
+      )
+  },
+  'contact': {
+      title: 'contact.json',
+      lang: 'JSON',
+      icon: <i className="fa-brands fa-node-js" style={{color: '#83cd29'}}></i>,
+      content: `<div style="white-space: pre-wrap"><span class="syntax-string">{</span>
+    <span class="syntax-keyword">"name"</span>: <span class="syntax-string">"Dhrubo"</span>,
+    <span class="syntax-keyword">"email"</span>: <span class="syntax-string">"hello@example.com"</span>,
+    <span class="syntax-keyword">"socials"</span>: <span class="syntax-string">{</span>
+        <span class="syntax-keyword">"github"</span>: <span class="syntax-string">"github.com/dhrubo"</span>,
+        <span class="syntax-keyword">"linkedin"</span>: <span class="syntax-string">"linkedin.com/in/dhrubo"</span>
+    <span class="syntax-string">}</span>,
+    <span class="syntax-keyword">"availability"</span>: <span class="syntax-var">true</span>,
+    <span class="syntax-keyword">"message"</span>: <span class="syntax-string">"Open for new opportunities and exciting projects!"</span>
+<span class="syntax-string">}</span></div>`
+  },
+  'projects': {
+      title: 'projects/index.html',
+      lang: 'HTML',
+      icon: <i className="fa-brands fa-html5" style={{color: '#e34f26'}}></i>,
+      content: (
+        <>
+          <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
+          <div className="project-grid">
+            {projectsData.map(p => (
+              <div className="project-card" key={p} onClick={() => alert(`Viewing project: ${p}`)}>
+                  <h3>{p}</h3>
+                  <p>A web development project built to solve specific problems and enhance user experience.</p>
+                  <div className="project-tech">
+                      <span className="tech-tag">React</span>
+                      <span className="tech-tag">Vite</span>
+                      <span className="tech-tag">CSS</span>
+                  </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )
+  }
+};
+
+function App() {
+  const [activeTab, setActiveTab] = useState('about');
+  const [tabs, setTabs] = useState(['about']);
+  const [folderOpen, setFolderOpen] = useState({ portfolio: true, projects: false });
+  const [lineNumbers, setLineNumbers] = useState([]);
+  const [cursor, setCursor] = useState({ ln: 1, col: 1 });
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    // Generate some line numbers based on the active tab
+    const data = fileContents[activeTab];
+    let lines = 25;
+    if (activeTab === 'projects') lines = 35;
+    if (activeTab === 'contact') lines = 10;
+    
+    setLineNumbers(Array.from({length: lines}, (_, i) => i + 1));
+    setCursor({ ln: Math.floor(Math.random() * lines) + 1, col: Math.floor(Math.random() * 40) + 1 });
+    
+    setAnimate(true);
+    const timer = setTimeout(() => setAnimate(false), 300);
+    return () => clearTimeout(timer);
+  }, [activeTab]);
+
+  const openFile = (id) => {
+    if (!tabs.includes(id)) {
+      setTabs([...tabs, id]);
+    }
+    setActiveTab(id);
+  };
+
+  const closeTab = (e, id) => {
+    e.stopPropagation();
+    const newTabs = tabs.filter(t => t !== id);
+    setTabs(newTabs);
+    if (activeTab === id) {
+      if (newTabs.length > 0) {
+        setActiveTab(newTabs[newTabs.length - 1]);
+      } else {
+        setActiveTab(null);
+      }
+    }
+  };
+
+  const toggleFolder = (folder) => {
+    setFolderOpen(prev => ({ ...prev, [folder]: !prev[folder] }));
+  };
+
+  return (
+    <div className="app-container">
+      {/* Activity Bar */}
+      <div className="activity-bar">
+          <div className="activity-icon active" title="Explorer">
+              <i className="fa-regular fa-copy"></i>
+          </div>
+          <div className="activity-icon" title="Search">
+              <i className="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div className="activity-icon" title="Source Control">
+              <i className="fa-solid fa-code-branch"></i>
+          </div>
+          <div className="activity-spacer"></div>
+          <div className="activity-icon" title="Settings">
+              <i className="fa-solid fa-gear"></i>
+          </div>
+      </div>
+
+      {/* Sidebar */}
+      <div className="sidebar">
+          <div className="sidebar-header">
+              <h2>EXPLORER</h2>
+              <i className="fa-solid fa-ellipsis"></i>
+          </div>
+          <div className="sidebar-section">
+              <div className="section-header" onClick={() => toggleFolder('portfolio')}>
+                  <i className={`fa-solid fa-chevron-down toggle-icon ${!folderOpen.portfolio ? 'collapsed' : ''}`}></i>
+                  <span>DHRUBO_PORTFOLIO</span>
+              </div>
+              
+              {folderOpen.portfolio && (
+                <div className="file-tree">
+                    <div className={`file-item file-md ${activeTab === 'about' ? 'active' : ''}`} onClick={() => openFile('about')}>
+                        <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
+                        <span>about.md</span>
+                    </div>
+                    
+                    <div className={`folder-item ${!folderOpen.projects ? 'collapsed' : ''}`} onClick={() => toggleFolder('projects')}>
+                        <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                        <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
+                        <span>projects</span>
+                    </div>
+                    
+                    {folderOpen.projects && (
+                      <div className="folder-contents">
+                          {projectsData.map(p => (
+                            <div className="file-item" key={p} onClick={() => openFile('projects')}>
+                              <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
+                              <span>{p}.js</span>
+                            </div>
+                          ))}
+                      </div>
+                    )}
+
+                    <div className={`file-item file-json ${activeTab === 'contact' ? 'active' : ''}`} onClick={() => openFile('contact')}>
+                        <i className="fa-brands fa-node-js" style={{color: '#83cd29'}}></i>
+                        <span>contact.json</span>
+                    </div>
+                </div>
+              )}
+          </div>
+      </div>
+
+      {/* Editor Area */}
+      <div className="editor-area">
+          <div className="editor-tabs">
+              {tabs.map(tabId => (
+                <div key={tabId} className={`tab ${activeTab === tabId ? 'active' : ''}`} onClick={() => setActiveTab(tabId)}>
+                    {fileContents[tabId].icon}
+                    <span>{fileContents[tabId].title}</span>
+                    <i className="fa-solid fa-xmark close-tab" onClick={(e) => closeTab(e, tabId)}></i>
+                </div>
+              ))}
+          </div>
+          
+          <div className="breadcrumbs">
+              <span>DHRUBO_PORTFOLIO</span>
+              <i className="fa-solid fa-chevron-right"></i>
+              <span>{activeTab ? fileContents[activeTab].title : ''}</span>
+          </div>
+
+          <div className="editor-content-container">
+              <div className="line-numbers">
+                {activeTab && lineNumbers.map(n => <div key={n}>{n}</div>)}
+              </div>
+              
+              <div className={`editor-content ${animate ? 'animate-in' : ''}`}>
+                  {activeTab ? (
+                    typeof fileContents[activeTab].content === 'string' ? 
+                      <div dangerouslySetInnerHTML={{__html: fileContents[activeTab].content}} /> :
+                      fileContents[activeTab].content
+                  ) : (
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-muted)'}}>
+                      <i className="fa-brands fa-react" style={{fontSize: '100px', opacity: 0.1}}></i>
+                    </div>
+                  )}
+              </div>
+          </div>
+      </div>
+
+      {/* Status Bar */}
+      <div className="status-bar" style={{position: 'fixed', bottom: 0, width: '100%'}}>
+          <div className="status-left">
+              <div className="status-item"><i className="fa-solid fa-code-branch"></i> main</div>
+              <div className="status-item"><i className="fa-solid fa-rotate"></i> 0 <i className="fa-solid fa-arrow-up"></i> 0</div>
+              <div className="status-item"><i className="fa-solid fa-xmark" style={{color:'#f14c4c'}}></i> 0 &nbsp;&nbsp;<i className="fa-solid fa-triangle-exclamation" style={{color:'#cca700'}}></i> 0</div>
+          </div>
+          <div className="status-right">
+              {activeTab && (
+                <>
+                  <div className="status-item">Ln {cursor.ln}, Col {cursor.col}</div>
+                  <div className="status-item">Spaces: 4</div>
+                  <div className="status-item">UTF-8</div>
+                  <div className="status-item">CRLF</div>
+                  <div className="status-item">{fileContents[activeTab].lang}</div>
+                </>
+              )}
+              <div className="status-item"><i className="fa-regular fa-bell"></i></div>
+          </div>
+      </div>
+    </div>
+  )
+}
+
+export default App
