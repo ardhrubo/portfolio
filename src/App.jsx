@@ -58,6 +58,75 @@ const ProjectsCarousel = () => {
   );
 };
 
+const SourceControlPanel = () => (
+  <div className="source-control-panel">
+    <div className="sidebar-header" style={{borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px'}}>
+        <h2>SOURCE CONTROL</h2>
+        <i className="fa-solid fa-check"></i>
+    </div>
+    <div style={{padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100vh - 120px)'}}>
+      <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>CAREER HISTORY</h3>
+      <div className="git-timeline">
+        <div className="git-commit">
+          <div className="git-line"></div>
+          <div className="git-dot"></div>
+          <div className="git-content">
+            <div className="git-message">feat(career): join Jagannath University as Academic Researcher</div>
+            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2026</span> <span className="git-hash">a1b2c3d</span></div>
+            <div className="git-details">
+              <ul>
+                <li>Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA).</li>
+                <li>Performing DFT calculations for molecular modeling utilizing ORCA and Gaussian on Linux (Ubuntu).</li>
+                <li>Quantifying uncertainty in environmental contaminants to advance beyond deterministic risk estimates.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="git-commit">
+          <div className="git-line"></div>
+          <div className="git-dot"></div>
+          <div className="git-content">
+            <div className="git-message">feat(career): join CRILab as Researcher</div>
+            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">f4e5d6c</span></div>
+            <div className="git-details">
+              <ul>
+                <li>Leading technical research initiatives and managing software development projects bridging chemistry and technology.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="git-commit">
+          <div className="git-line"></div>
+          <div className="git-dot"></div>
+          <div className="git-content">
+            <div className="git-message">feat(career): start as Software Engineer at DataAutomators</div>
+            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Dec 2024</span> <span className="git-hash">9a8b7c6</span></div>
+            <div className="git-details">
+              <ul>
+                <li>Led full-stack development with a primary focus on the <strong>ScrapeAutomate</strong> platform.</li>
+                <li>Engineered web automation workflows using Puppeteer, developed core features, and maintained system documentation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="git-commit">
+          <div className="git-line"></div>
+          <div className="git-dot"></div>
+          <div className="git-content">
+            <div className="git-message">init(career): start Freelance Back-End Developer journey</div>
+            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">e5d4c3b</span></div>
+            <div className="git-details">
+              <ul>
+                <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const fileContents = {
   'readme': {
       title: 'README.md',
@@ -65,7 +134,7 @@ const fileContents = {
       icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
       content: (openFile) => (
         <>
-          <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> 👋</h1>
+          <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> <span className="syntax-string" style={{fontSize: '0.8em', marginLeft: '5px'}}>&gt;_</span></h1>
           <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
           
           <div style={{ marginTop: '15px', marginBottom: '30px', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
@@ -82,10 +151,10 @@ const fileContents = {
                 fontSize: '14px'
               }}
             >
-              🚀 View My Projects
+              <i className="fa-solid fa-code"></i> View My Projects
             </button>
             <button 
-              onClick={() => openFile('experience')} 
+              onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }} 
               style={{
                 background: 'transparent', 
                 color: 'var(--accent)', 
@@ -97,7 +166,7 @@ const fileContents = {
                 fontSize: '14px'
               }}
             >
-              💼 View Experience
+              <i className="fa-solid fa-code-commit"></i> View Experience
             </button>
             <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
               <i className="fa-brands fa-github" style={{fontSize: '16px'}}></i> GitHub
@@ -112,9 +181,9 @@ const fileContents = {
 
           <h2><span className="syntax-func">About Me</span></h2>
           <ul>
-            <li>🔭 I'm currently working on building awesome web experiences.</li>
-            <li>🌱 I'm always learning new technologies and refining my craft.</li>
-            <li>⚡ Fun fact: I love building tools that automate the boring stuff.</li>
+            <li><span className="syntax-keyword" style={{marginRight: '8px'}}>[+]</span> I'm currently working on building awesome web experiences.</li>
+            <li><span className="syntax-keyword" style={{marginRight: '8px'}}>[&gt;]</span> I'm always learning new technologies and refining my craft.</li>
+            <li><span className="syntax-keyword" style={{marginRight: '8px'}}>[*]</span> Fun fact: I love building tools that automate the boring stuff.</li>
           </ul>
           <h2><span className="syntax-func">My Arsenal</span></h2>
           <ul>
@@ -132,77 +201,7 @@ const fileContents = {
         </>
       )
   },
-  'experience': {
-      title: 'src/controllers/experience.js',
-      lang: 'JavaScript',
-      icon: <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>,
-      content: (
-        <>
-          <h2><span className="syntax-func">Experience</span></h2>
-          
-          <div className="git-timeline">
-            <div className="git-commit">
-              <div className="git-line"></div>
-              <div className="git-dot"></div>
-              <div className="git-content">
-                <div className="git-message">feat(career): join Jagannath University as Academic Researcher</div>
-                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2026</span> <span className="git-hash">a1b2c3d</span></div>
-                <div className="git-details">
-                  <ul>
-                    <li>Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA).</li>
-                    <li>Performing DFT calculations for molecular modeling utilizing ORCA and Gaussian on Linux (Ubuntu).</li>
-                    <li>Quantifying uncertainty in environmental contaminants to advance beyond deterministic risk estimates.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
 
-            <div className="git-commit">
-              <div className="git-line"></div>
-              <div className="git-dot"></div>
-              <div className="git-content">
-                <div className="git-message">feat(career): join CRILab as Researcher</div>
-                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">f4e5d6c</span></div>
-                <div className="git-details">
-                  <ul>
-                    <li>Leading technical research initiatives and managing software development projects bridging chemistry and technology.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="git-commit">
-              <div className="git-line"></div>
-              <div className="git-dot"></div>
-              <div className="git-content">
-                <div className="git-message">feat(career): start as Software Engineer at DataAutomators</div>
-                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Dec 2024</span> <span className="git-hash">9a8b7c6</span></div>
-                <div className="git-details">
-                  <ul>
-                    <li>Led full-stack development with a primary focus on the <strong>ScrapeAutomate</strong> platform.</li>
-                    <li>Engineered web automation workflows using Puppeteer, developed core features, and maintained system documentation.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="git-commit">
-              <div className="git-line"></div>
-              <div className="git-dot"></div>
-              <div className="git-content">
-                <div className="git-message">init(career): start Freelance Back-End Developer journey</div>
-                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">e5d4c3b</span></div>
-                <div className="git-details">
-                  <ul>
-                    <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      )
-  },
   'package-json': {
       title: 'package.json',
       lang: 'JSON',
@@ -261,6 +260,7 @@ function App() {
   const [animate, setAnimate] = useState(false);
   const [showGuide, setShowGuide] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeActivity, setActiveActivity] = useState('explorer');
 
   useEffect(() => {
     const data = fileContents[activeTab];
@@ -309,7 +309,7 @@ function App() {
     {showGuide && (
       <div className="guide-modal-overlay">
         <div className="guide-modal">
-          <h2>👋 Welcome to Dhrubo's IDE!</h2>
+          <h2><i className="fa-solid fa-terminal" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Welcome to Dhrubo's IDE!</h2>
           <p style={{marginBottom: '20px', color: 'var(--text-muted)'}}>What would you like to explore first?</p>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
@@ -327,7 +327,7 @@ function App() {
             </button>
             <button 
               className="tour-btn"
-              onClick={() => { openFile('experience'); setShowGuide(false); }}
+              onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); setShowGuide(false); }}
             >
               <i className="fa-brands fa-js" style={{color: '#f1e05a', width: '20px', textAlign: 'center'}}></i> Career Timeline
             </button>
@@ -345,10 +345,10 @@ function App() {
     <div className="app-container">
       {/* Activity Bar */}
       <div className="activity-bar">
-          <div className="activity-icon active" title="Explorer" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} title="Explorer" onClick={() => { setActiveActivity('explorer'); setMobileMenuOpen(true); }}>
               <i className="fa-regular fa-copy"></i>
           </div>
-          <div className="activity-icon" title="Source Control">
+          <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} title="Source Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
               <i className="fa-solid fa-code-branch"></i>
           </div>
           <div className="activity-spacer"></div>
@@ -359,6 +359,8 @@ function App() {
 
       {/* Sidebar */}
       <div className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+          {activeActivity === 'explorer' ? (
+            <>
           <div className="sidebar-header">
               <h2>EXPLORER</h2>
               <i className="fa-solid fa-ellipsis"></i>
@@ -385,20 +387,6 @@ function App() {
                     
                     {folderOpen.src && (
                       <div className="folder-contents">
-                          <div className={`folder-item ${!folderOpen.controllers ? 'collapsed' : ''}`} onClick={() => toggleFolder('controllers')}>
-                              <i className="fa-solid fa-chevron-down toggle-icon"></i>
-                              <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
-                              <span>controllers</span>
-                          </div>
-                          {folderOpen.controllers && (
-                            <div className="folder-contents">
-                                <div className={`file-item file-md ${activeTab === 'experience' ? 'active' : ''}`} onClick={() => openFile('experience')} style={{paddingLeft: '55px'}}>
-                                  <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
-                                  <span>experience.js</span>
-                                </div>
-                            </div>
-                          )}
-
                           <div className={`folder-item ${!folderOpen.routes ? 'collapsed' : ''}`} onClick={() => toggleFolder('routes')}>
                               <i className="fa-solid fa-chevron-down toggle-icon"></i>
                               <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
@@ -427,6 +415,10 @@ function App() {
                 </div>
               )}
           </div>
+            </>
+          ) : (
+            <SourceControlPanel />
+          )}
       </div>
 
       {/* Editor Area */}
