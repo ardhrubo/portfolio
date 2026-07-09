@@ -67,32 +67,8 @@ const fileContents = {
         <>
           <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> 👋</h1>
           <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
-          <h2><span className="syntax-func">About Me</span></h2>
-          <ul>
-            <li>🔭 I'm currently working on building awesome web experiences.</li>
-            <li>🌱 I'm always learning new technologies and refining my craft.</li>
-            <li>⚡ Fun fact: I love building tools that automate the boring stuff.</li>
-          </ul>
-          <h2><span className="syntax-func">My Arsenal</span></h2>
-          <ul>
-            <li><span className="syntax-var">Frontend:</span> HTML, CSS, JavaScript, React, Next.js, Vite</li>
-            <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
-            <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
-          </ul>
           
-          <h2><span className="syntax-func">Top Client Projects</span></h2>
-          <p style={{ marginBottom: '15px' }}>
-            I have shipped over <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong> throughout my career. Below are some of my top client projects and tools that are actively making an impact:
-          </p>
-          
-          <ProjectsCarousel />
-          
-          <p style={{marginTop: '20px'}}>
-            <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
-              <i className="fa-brands fa-github"></i> View my GitHub Profile
-            </a>
-          </p>
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: '15px', marginBottom: '30px', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
             <button 
               onClick={() => openFile('projects')} 
               style={{
@@ -103,8 +79,7 @@ const fileContents = {
                 borderRadius: '4px', 
                 cursor: 'pointer',
                 fontFamily: 'Inter',
-                fontSize: '14px',
-                marginRight: '10px'
+                fontSize: '14px'
               }}
             >
               🚀 View My Projects
@@ -124,7 +99,30 @@ const fileContents = {
             >
               💼 View Experience
             </button>
+            <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
+              <i className="fa-brands fa-github" style={{fontSize: '16px'}}></i> GitHub Profile
+            </a>
           </div>
+
+          <h2><span className="syntax-func">About Me</span></h2>
+          <ul>
+            <li>🔭 I'm currently working on building awesome web experiences.</li>
+            <li>🌱 I'm always learning new technologies and refining my craft.</li>
+            <li>⚡ Fun fact: I love building tools that automate the boring stuff.</li>
+          </ul>
+          <h2><span className="syntax-func">My Arsenal</span></h2>
+          <ul>
+            <li><span className="syntax-var">Frontend:</span> HTML, CSS, JavaScript, React, Next.js, Vite</li>
+            <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
+            <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
+          </ul>
+          
+          <h2><span className="syntax-func">Top Client Projects</span></h2>
+          <p style={{ marginBottom: '15px' }}>
+            I have shipped over <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong> throughout my career. Below are some of my top client projects and tools that are actively making an impact:
+          </p>
+          
+          <ProjectsCarousel />
         </>
       )
   },
