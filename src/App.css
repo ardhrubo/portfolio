@@ -78,6 +78,30 @@ body {
   --syntax-num: #bbdc12;
 }
 
+.theme-blue {
+  --bg-dark: #0a081a;
+  --bg-darker: #080616;
+  --bg-darkest: #05030d;
+  --bg-activity: #1a1953;
+  --text-main: #e0e0e0;
+  --text-muted: #85859e;
+  --accent: #2f2fe4;
+  --accent-hover: #162e93;
+  --border: #1a1953;
+  --tab-active: #0a081a;
+  --tab-inactive: #080616;
+  --item-hover: #1a1953;
+  --item-active: #162e93;
+  --status-bg: #162e93;
+  --status-fg: #ffffff;
+  --syntax-keyword: #2f2fe4;
+  --syntax-string: #6b8afc;
+  --syntax-comment: #50508a;
+  --syntax-func: #2f2fe4;
+  --syntax-var: #6b8afc;
+  --syntax-num: #2f2fe4;
+}
+
 .settings-panel {
   padding: 0 15px;
 }

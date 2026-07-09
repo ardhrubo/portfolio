@@ -65,7 +65,7 @@ const SettingsPanel = ({ currentTheme, setTheme }) => (
         <i className="fa-solid fa-ellipsis"></i>
     </div>
     <div className="settings-panel">
-      <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>COLOR THEME</h3>
+      <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>CHOOSE THEME</h3>
       
       <div className={`theme-card ${currentTheme === 'cafe' ? 'active' : ''}`} onClick={() => setTheme('cafe')}>
         <div className="theme-preview">
@@ -95,6 +95,16 @@ const SettingsPanel = ({ currentTheme, setTheme }) => (
           <div className="theme-swatch" style={{background: '#499a13'}}></div>
         </div>
         <span style={{fontSize: '14px'}}>Dark Hacker Green</span>
+      </div>
+
+      <div className={`theme-card ${currentTheme === 'blue' ? 'active' : ''}`} onClick={() => setTheme('blue')}>
+        <div className="theme-preview">
+          <div className="theme-swatch" style={{background: '#080616'}}></div>
+          <div className="theme-swatch" style={{background: '#2f2fe4'}}></div>
+          <div className="theme-swatch" style={{background: '#162e93'}}></div>
+          <div className="theme-swatch" style={{background: '#1a1953'}}></div>
+        </div>
+        <span style={{fontSize: '14px'}}>Deep Blue</span>
       </div>
     </div>
   </div>
