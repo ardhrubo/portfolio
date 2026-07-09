@@ -318,6 +318,42 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeActivity, setActiveActivity] = useState('explorer');
   const [theme, setTheme] = useState('synthwave');
+  const [sidebarWidth, setSidebarWidth] = useState(250);
+  const [isResizing, setIsResizing] = useState(false);
+
+  const startResizing = (e) => {
+    setIsResizing(true);
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isResizing) return;
+      let newWidth = e.clientX - 50; // Activity bar is ~50px
+      if (newWidth < 150) newWidth = 150;
+      if (newWidth > 600) newWidth = 600;
+      setSidebarWidth(newWidth);
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+    };
+
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    } else {
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing]);
 
   useEffect(() => {
     document.body.className = `theme-${theme}`;
@@ -384,19 +420,19 @@ function App() {
               className="tour-btn"
               onClick={() => { openFile('projects'); setShowGuide(false); }}
             >
-              <i className="fa-brands fa-js" style={{color: '#f1e05a', width: '20px', textAlign: 'center'}}></i> Top Projects
+              <i className="fa-solid fa-code" style={{color: '#f1e05a', width: '20px', textAlign: 'center'}}></i> Top Projects
             </button>
             <button 
               className="tour-btn"
               onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); setShowGuide(false); }}
             >
-              <i className="fa-brands fa-js" style={{color: '#f1e05a', width: '20px', textAlign: 'center'}}></i> Career Timeline
+              <i className="fa-solid fa-code-branch" style={{color: 'var(--accent)', width: '20px', textAlign: 'center'}}></i> Career Timeline
             </button>
             <button 
               className="tour-btn"
               onClick={() => { openFile('package-json'); setShowGuide(false); }}
             >
-              <i className="fa-brands fa-node-js" style={{color: '#83cd29', width: '20px', textAlign: 'center'}}></i> Socials (package.json)
+              <i className="fa-solid fa-share-nodes" style={{color: '#83cd29', width: '20px', textAlign: 'center'}}></i> Socials (package.json)
             </button>
           </div>
           <button style={{marginTop: '20px', width: '100%', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-muted)'}} onClick={() => setShowGuide(false)}>Just let me explore freely</button>
@@ -419,7 +455,7 @@ function App() {
       </div>
 
       {/* Sidebar */}
-      <div className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+      <div className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`} style={{ width: mobileMenuOpen ? '80%' : `${sidebarWidth}px` }}>
           {activeActivity === 'explorer' ? (
             <>
           <div className="sidebar-header">
@@ -483,6 +519,7 @@ function App() {
             <SettingsPanel currentTheme={theme} setTheme={setTheme} />
           )}
       </div>
+      <div className="sidebar-resizer" onMouseDown={startResizing}></div>
 
       {/* Editor Area */}
       <div className="editor-area">
