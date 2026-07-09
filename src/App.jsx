@@ -321,7 +321,7 @@ function App() {
   // Custom beacon component that says "Click here" using a GIF
   const CustomBeacon = React.forwardRef((props, ref) => {
     return (
-      <div ref={ref} {...props} className="custom-tour-beacon">
+      <div id="custom-tour-beacon" ref={ref} {...props} className="custom-tour-beacon">
         {/* Inner container to safely offset the GIF without Joyride overriding it */}
         <div
           style={{
@@ -563,7 +563,12 @@ function App() {
     <div className="app-container">
       {/* Activity Bar */}
       <div className="activity-bar">
-          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} id="tour-explorer" title="Explorer" onClick={() => { setActiveActivity('explorer'); setMobileMenuOpen(true); }}>
+          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} id="tour-explorer" title="Explorer" onClick={() => { 
+            setActiveActivity('explorer'); 
+            setMobileMenuOpen(true);
+            const beacon = document.getElementById('custom-tour-beacon');
+            if (beacon) beacon.click();
+          }}>
               <i className="fa-regular fa-copy"></i>
           </div>
           <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} id="tour-career" title="Career Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
