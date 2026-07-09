@@ -2,23 +2,23 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 const projectsData = [
-  { name: "admissionbondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"] },
+  { name: "horizontaxsolution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "scrapeautomate", url: "https://scrapeautomate.com/", tech: ["Scraper"], image: "https://api.microlink.io/?url=https%3A%2F%2Fscrapeautomate.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "admissionbondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"], image: "https://api.microlink.io/?url=https%3A%2F%2Fadmissionbondhu.com%2F&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "emailhider", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"], image: "https://api.microlink.io/?url=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fcopippkpbpdkhjpcbaibpjdmaanccocc%3Futm_source%3Ditem-share-cb&screenshot=true&meta=false&embed=screenshot.url" },
+  { name: "password-generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"], image: "https://api.microlink.io/?url=https%3A%2F%2Fpasswordgeneratordhrubo.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url" },
   { name: "bot", url: "https://github.com/ardhrubo/bot", tech: ["Python"] },
   { name: "bulk-duckduckgo-search-tool", url: "https://github.com/ardhrubo/bulk-duckduckgo-search-tool", tech: ["JS"] },
-  { name: "emailhider", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"] },
   { name: "form-timer", url: "https://github.com/ardhrubo/form-timer", tech: ["JS"] },
   { name: "free-claude-code", url: "https://github.com/ardhrubo/free-claude-code", tech: ["JS"] },
   { name: "fullstack-docker", url: "https://github.com/ardhrubo/fullstack-docker", tech: ["Docker"] },
   { name: "hasib", url: "https://github.com/ardhrubo/hasib", tech: ["Web"] },
-  { name: "horizontaxsolution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"] },
   { name: "indianvisa", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"] },
   { name: "medusajs", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"] },
   { name: "mohan", url: "https://github.com/ardhrubo/mohan", tech: ["Web"] },
   { name: "orbital", url: "https://github.com/ardhrubo/orbital", tech: ["Web"] },
   { name: "passglobaledu", url: "https://passglobaledu.com", tech: ["Next.js"] },
-  { name: "password-generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"] },
   { name: "researchtool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"] },
-  { name: "scrapeautomate", url: "https://scrapeautomate.com/", tech: ["Scraper"] },
   { name: "tiktactoe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"] },
   { name: "usage-monitor", url: "https://github.com/ardhrubo/usage-monitor", tech: ["Tool"] },
   { name: "vibetest-docs", url: "https://github.com/ardhrubo/vibetest-docs", tech: ["Docs"] },
@@ -46,6 +46,43 @@ const fileContents = {
             <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
             <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
           </ul>
+
+          <h2><span className="syntax-func">Experience</span></h2>
+          
+          <div className="experience-item" style={{ marginBottom: '20px' }}>
+            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Academic Researcher</span> | Jagannath University</h3>
+            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Mar 2026 – Present</p>
+            <ul>
+              <li>Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA).</li>
+              <li>Performing DFT calculations for molecular modeling utilizing ORCA and Gaussian on Linux (Ubuntu).</li>
+              <li>Quantifying uncertainty in environmental contaminants to advance beyond deterministic risk estimates.</li>
+            </ul>
+          </div>
+
+          <div className="experience-item" style={{ marginBottom: '20px' }}>
+            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Researcher</span> | Constant Research and Innovation Lab (CRILab)</h3>
+            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Mar 2024 – Present</p>
+            <ul>
+              <li>Leading technical research initiatives and managing software development projects bridging chemistry and technology.</li>
+            </ul>
+          </div>
+
+          <div className="experience-item" style={{ marginBottom: '20px' }}>
+            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Software Engineer</span> | DataAutomators</h3>
+            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Dec 2024 – Jun 2025</p>
+            <ul>
+              <li>Led full-stack development with a primary focus on the <strong>ScrapeAutomate</strong> platform.</li>
+              <li>Engineered web automation workflows using Puppeteer, developed core features, and maintained system documentation.</li>
+            </ul>
+          </div>
+
+          <div className="experience-item" style={{ marginBottom: '20px' }}>
+            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Freelance Back-End Developer</span></h3>
+            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Mar 2024 – Present</p>
+            <ul>
+              <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
+            </ul>
+          </div>
           <p>
             <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--syntax-keyword)', textDecoration: 'underline'}}>
               <i className="fa-brands fa-github"></i> View my GitHub Profile
@@ -96,7 +133,7 @@ const fileContents = {
           <div className="project-grid">
             {projectsData.map(p => (
               <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
-                  <img src={`https://placehold.co/600x400/252526/cccccc?text=${p.name}`} alt={`${p.name} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px' }} />
+                  <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.name}`} alt={`${p.name} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
                   <h3>{p.name}</h3>
                   <p>A web development project built to solve specific problems and enhance user experience.</p>
                   <div className="project-tech">
