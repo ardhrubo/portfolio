@@ -134,39 +134,65 @@ const fileContents = {
         <>
           <h2><span className="syntax-func">Experience</span></h2>
           
-          <div className="experience-item" style={{ marginBottom: '20px' }}>
-            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Academic Researcher</span> | Jagannath University</h3>
-            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Mar 2026 – Present</p>
-            <ul>
-              <li>Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA).</li>
-              <li>Performing DFT calculations for molecular modeling utilizing ORCA and Gaussian on Linux (Ubuntu).</li>
-              <li>Quantifying uncertainty in environmental contaminants to advance beyond deterministic risk estimates.</li>
-            </ul>
-          </div>
+          <div className="git-timeline">
+            <div className="git-commit">
+              <div className="git-line"></div>
+              <div className="git-dot"></div>
+              <div className="git-content">
+                <div className="git-message">feat(career): join Jagannath University as Academic Researcher</div>
+                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2026</span> <span className="git-hash">a1b2c3d</span></div>
+                <div className="git-details">
+                  <ul>
+                    <li>Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA).</li>
+                    <li>Performing DFT calculations for molecular modeling utilizing ORCA and Gaussian on Linux (Ubuntu).</li>
+                    <li>Quantifying uncertainty in environmental contaminants to advance beyond deterministic risk estimates.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-          <div className="experience-item" style={{ marginBottom: '20px' }}>
-            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Researcher</span> | Constant Research and Innovation Lab (CRILab)</h3>
-            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Mar 2024 – Present</p>
-            <ul>
-              <li>Leading technical research initiatives and managing software development projects bridging chemistry and technology.</li>
-            </ul>
-          </div>
+            <div className="git-commit">
+              <div className="git-line"></div>
+              <div className="git-dot"></div>
+              <div className="git-content">
+                <div className="git-message">feat(career): join CRILab as Researcher</div>
+                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">f4e5d6c</span></div>
+                <div className="git-details">
+                  <ul>
+                    <li>Leading technical research initiatives and managing software development projects bridging chemistry and technology.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-          <div className="experience-item" style={{ marginBottom: '20px' }}>
-            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Software Engineer</span> | DataAutomators</h3>
-            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Dec 2024 – Jun 2025</p>
-            <ul>
-              <li>Led full-stack development with a primary focus on the <strong>ScrapeAutomate</strong> platform.</li>
-              <li>Engineered web automation workflows using Puppeteer, developed core features, and maintained system documentation.</li>
-            </ul>
-          </div>
+            <div className="git-commit">
+              <div className="git-line"></div>
+              <div className="git-dot"></div>
+              <div className="git-content">
+                <div className="git-message">feat(career): start as Software Engineer at DataAutomators</div>
+                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Dec 2024</span> <span className="git-hash">9a8b7c6</span></div>
+                <div className="git-details">
+                  <ul>
+                    <li>Led full-stack development with a primary focus on the <strong>ScrapeAutomate</strong> platform.</li>
+                    <li>Engineered web automation workflows using Puppeteer, developed core features, and maintained system documentation.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-          <div className="experience-item" style={{ marginBottom: '20px' }}>
-            <h3 style={{ margin: '10px 0 5px 0' }}><span className="syntax-keyword">Freelance Back-End Developer</span></h3>
-            <p style={{ margin: '0 0 10px 0', fontStyle: 'italic', color: 'var(--syntax-comment)' }}>Mar 2024 – Present</p>
-            <ul>
-              <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
-            </ul>
+            <div className="git-commit">
+              <div className="git-line"></div>
+              <div className="git-dot"></div>
+              <div className="git-content">
+                <div className="git-message">init(career): start Freelance Back-End Developer journey</div>
+                <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">e5d4c3b</span></div>
+                <div className="git-details">
+                  <ul>
+                    <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </>
       )
