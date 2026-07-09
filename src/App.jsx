@@ -228,6 +228,8 @@ function App() {
   const [lineNumbers, setLineNumbers] = useState([]);
   const [cursor, setCursor] = useState({ ln: 1, col: 1 });
   const [animate, setAnimate] = useState(false);
+  const [showGuide, setShowGuide] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const data = fileContents[activeTab];
@@ -251,6 +253,7 @@ function App() {
       setTabs([...tabs, id]);
     }
     setActiveTab(id);
+    setMobileMenuOpen(false);
   };
 
   const closeTab = (e, id) => {
@@ -271,10 +274,24 @@ function App() {
   };
 
   return (
+    <>
+    {showGuide && (
+      <div className="guide-modal-overlay">
+        <div className="guide-modal">
+          <h2>👋 Welcome to my IDE!</h2>
+          <p>
+            Navigate through the <strong>file explorer</strong> on the left to view my projects, 
+            work history, and contact information. 
+            On mobile, tap the <strong>Explorer icon</strong> (top left) to open the menu!
+          </p>
+          <button onClick={() => setShowGuide(false)}>Got it, let's code!</button>
+        </div>
+      </div>
+    )}
     <div className="app-container">
       {/* Activity Bar */}
       <div className="activity-bar">
-          <div className="activity-icon active" title="Explorer">
+          <div className="activity-icon active" title="Explorer" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <i className="fa-regular fa-copy"></i>
           </div>
           <div className="activity-icon" title="Source Control">
@@ -287,7 +304,7 @@ function App() {
       </div>
 
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <div className="sidebar-header">
               <h2>EXPLORER</h2>
               <i className="fa-solid fa-ellipsis"></i>
@@ -418,6 +435,7 @@ function App() {
           </div>
       </div>
     </div>
+    </>
   )
 }
 
