@@ -309,13 +309,36 @@ function App() {
     {showGuide && (
       <div className="guide-modal-overlay">
         <div className="guide-modal">
-          <h2>👋 Welcome to my IDE!</h2>
-          <p>
-            Navigate through the <strong>file explorer</strong> on the left to view my projects, 
-            work history, and contact information. 
-            On mobile, tap the <strong>Explorer icon</strong> (top left) to open the menu!
-          </p>
-          <button onClick={() => setShowGuide(false)}>Got it, let's code!</button>
+          <h2>👋 Welcome to Dhrubo's IDE!</h2>
+          <p style={{marginBottom: '20px', color: 'var(--text-muted)'}}>What would you like to explore first?</p>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
+            <button 
+              className="tour-btn"
+              onClick={() => { openFile('readme'); setShowGuide(false); }}
+            >
+              <i className="fa-brands fa-markdown" style={{color: '#699dfb', width: '20px', textAlign: 'center'}}></i> About Me (README.md)
+            </button>
+            <button 
+              className="tour-btn"
+              onClick={() => { openFile('projects'); setShowGuide(false); }}
+            >
+              <i className="fa-brands fa-js" style={{color: '#f1e05a', width: '20px', textAlign: 'center'}}></i> Top Projects
+            </button>
+            <button 
+              className="tour-btn"
+              onClick={() => { openFile('experience'); setShowGuide(false); }}
+            >
+              <i className="fa-brands fa-js" style={{color: '#f1e05a', width: '20px', textAlign: 'center'}}></i> Career Timeline
+            </button>
+            <button 
+              className="tour-btn"
+              onClick={() => { openFile('package-json'); setShowGuide(false); }}
+            >
+              <i className="fa-brands fa-node-js" style={{color: '#83cd29', width: '20px', textAlign: 'center'}}></i> Socials (package.json)
+            </button>
+          </div>
+          <button style={{marginTop: '20px', width: '100%', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-muted)'}} onClick={() => setShowGuide(false)}>Just let me explore freely</button>
         </div>
       </div>
     )}
