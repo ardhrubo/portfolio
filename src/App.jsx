@@ -103,7 +103,7 @@ const SettingsPanel = ({ currentTheme, setTheme }) => (
 const SourceControlPanel = () => (
   <div className="source-control-panel">
     <div className="sidebar-header" style={{borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px'}}>
-        <h2>SOURCE CONTROL</h2>
+        <h2>CAREER CONTROL</h2>
         <i className="fa-solid fa-check"></i>
     </div>
     <div style={{padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100vh - 120px)'}}>
@@ -307,7 +307,7 @@ function App() {
   const [showGuide, setShowGuide] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeActivity, setActiveActivity] = useState('explorer');
-  const [theme, setTheme] = useState('cafe');
+  const [theme, setTheme] = useState('synthwave');
 
   useEffect(() => {
     document.body.className = `theme-${theme}`;
@@ -399,7 +399,7 @@ function App() {
           <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} title="Explorer" onClick={() => { setActiveActivity('explorer'); setMobileMenuOpen(true); }}>
               <i className="fa-regular fa-copy"></i>
           </div>
-          <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} title="Source Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
+          <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} title="Career Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
               <i className="fa-solid fa-code-branch"></i>
           </div>
           <div className="activity-spacer"></div>
