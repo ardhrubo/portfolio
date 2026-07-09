@@ -2,11 +2,26 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 const projectsData = [
-  "admissionbondhu", "bot", "bulk-duckduckgo-search-tool", "emailhider", 
-  "form-timer", "free-claude-code", "fullstack-docker", "hasib", 
-  "horizontaxsolution", "indianvisa", "medusajs", "mohan", 
-  "orbital", "passglobaledu", "researchtool", "scrapeautomate", 
-  "tiktactoe", "usage-monitor", "vibetest-docs", "watchfirebd"
+  { name: "admissionbondhu", url: "https://admissionbondhu.com/", tech: ["React", "Node"] },
+  { name: "bot", url: "https://github.com/ardhrubo/bot", tech: ["Python"] },
+  { name: "bulk-duckduckgo-search-tool", url: "https://github.com/ardhrubo/bulk-duckduckgo-search-tool", tech: ["JS"] },
+  { name: "emailhider", url: "https://chromewebstore.google.com/detail/copippkpbpdkhjpcbaibpjdmaanccocc?utm_source=item-share-cb", tech: ["Web"] },
+  { name: "form-timer", url: "https://github.com/ardhrubo/form-timer", tech: ["JS"] },
+  { name: "free-claude-code", url: "https://github.com/ardhrubo/free-claude-code", tech: ["JS"] },
+  { name: "fullstack-docker", url: "https://github.com/ardhrubo/fullstack-docker", tech: ["Docker"] },
+  { name: "hasib", url: "https://github.com/ardhrubo/hasib", tech: ["Web"] },
+  { name: "horizontaxsolution", url: "https://www.horizontaxsolutions.com.au/", tech: ["Web"] },
+  { name: "indianvisa", url: "https://github.com/ardhrubo/indianvisa", tech: ["Bot"] },
+  { name: "medusajs", url: "https://github.com/ardhrubo/medusajs", tech: ["Ecommerce"] },
+  { name: "mohan", url: "https://github.com/ardhrubo/mohan", tech: ["Web"] },
+  { name: "orbital", url: "https://github.com/ardhrubo/orbital", tech: ["Web"] },
+  { name: "passglobaledu", url: "https://passglobaledu.com", tech: ["Next.js"] },
+  { name: "researchtool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"] },
+  { name: "scrapeautomate", url: "https://scrapeautomate.com/", tech: ["Scraper"] },
+  { name: "tiktactoe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"] },
+  { name: "usage-monitor", url: "https://github.com/ardhrubo/usage-monitor", tech: ["Tool"] },
+  { name: "vibetest-docs", url: "https://github.com/ardhrubo/vibetest-docs", tech: ["Docs"] },
+  { name: "watchfirebd", url: "https://watchfirebd.com", tech: ["Web"] }
 ];
 
 const fileContents = {
@@ -14,7 +29,7 @@ const fileContents = {
       title: 'about.md',
       lang: 'Markdown',
       icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
-      content: (
+      content: (openFile) => (
         <>
           <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> 👋</h1>
           <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
@@ -35,7 +50,23 @@ const fileContents = {
               <i className="fa-brands fa-github"></i> View my GitHub Profile
             </a>
           </p>
-          <p><em>Click on the <strong>projects</strong> folder in the Explorer on the left to see what I've been building!</em></p>
+          <div style={{ marginTop: '20px' }}>
+            <button 
+              onClick={() => openFile('projects')} 
+              style={{
+                background: 'var(--accent)', 
+                color: 'white', 
+                border: 'none', 
+                padding: '8px 16px', 
+                borderRadius: '4px', 
+                cursor: 'pointer',
+                fontFamily: 'Inter',
+                fontSize: '14px'
+              }}
+            >
+              🚀 View My Projects
+            </button>
+          </div>
         </>
       )
   },
@@ -63,13 +94,12 @@ const fileContents = {
           <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
           <div className="project-grid">
             {projectsData.map(p => (
-              <a href={`https://github.com/ardhrubo/${p}`} target="_blank" rel="noopener noreferrer" className="project-card" key={p} style={{ textDecoration: 'none' }}>
-                  <img src={`https://picsum.photos/seed/${p}/300/150`} alt={`${p} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px' }} />
-                  <h3>{p}</h3>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
+                  <img src={`https://placehold.co/600x400/252526/cccccc?text=${p.name}`} alt={`${p.name} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px' }} />
+                  <h3>{p.name}</h3>
                   <p>A web development project built to solve specific problems and enhance user experience.</p>
                   <div className="project-tech">
-                      <span className="tech-tag">Repo</span>
-                      <span className="tech-tag">Code</span>
+                      {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
                   </div>
               </a>
             ))}
@@ -88,8 +118,9 @@ function App() {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    // Generate some line numbers based on the active tab
     const data = fileContents[activeTab];
+    if (!data) return;
+    
     let lines = 25;
     if (activeTab === 'projects') lines = 35;
     if (activeTab === 'contact') lines = 10;
@@ -133,9 +164,6 @@ function App() {
           <div className="activity-icon active" title="Explorer">
               <i className="fa-regular fa-copy"></i>
           </div>
-          <div className="activity-icon" title="Search">
-              <i className="fa-solid fa-magnifying-glass"></i>
-          </div>
           <div className="activity-icon" title="Source Control">
               <i className="fa-solid fa-code-branch"></i>
           </div>
@@ -173,9 +201,9 @@ function App() {
                     {folderOpen.projects && (
                       <div className="folder-contents">
                           {projectsData.map(p => (
-                            <div className="file-item" key={p} onClick={() => openFile('projects')}>
+                            <div className="file-item" key={p.name} onClick={() => openFile('projects')}>
                               <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
-                              <span>{p}.js</span>
+                              <span>{p.name}.js</span>
                             </div>
                           ))}
                       </div>
@@ -217,7 +245,9 @@ function App() {
                   {activeTab ? (
                     typeof fileContents[activeTab].content === 'string' ? 
                       <div dangerouslySetInnerHTML={{__html: fileContents[activeTab].content}} /> :
-                      fileContents[activeTab].content
+                      (typeof fileContents[activeTab].content === 'function' ? 
+                        fileContents[activeTab].content(openFile) : 
+                        fileContents[activeTab].content)
                   ) : (
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-muted)'}}>
                       <i className="fa-brands fa-react" style={{fontSize: '100px', opacity: 0.1}}></i>
