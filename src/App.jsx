@@ -317,6 +317,34 @@ function App() {
   const [cursor, setCursor] = useState({ ln: 1, col: 1 });
   const [animate, setAnimate] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+
+  // Custom beacon component that says "Click here"
+  const CustomBeacon = React.forwardRef((props, ref) => {
+    return (
+      <div
+        ref={ref}
+        {...props}
+        className="custom-tour-beacon"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          background: '#ffca95',
+          color: '#11111b',
+          padding: '6px 12px',
+          borderRadius: '20px',
+          fontWeight: 'bold',
+          fontSize: '13px',
+          cursor: 'pointer',
+          animation: 'modalPop 1.5s infinite alternate ease-in-out',
+          boxShadow: '0 0 15px rgba(255, 202, 149, 0.6)',
+          transformOrigin: 'center'
+        }}
+      >
+        <i className="fa-solid fa-arrow-pointer" style={{ marginRight: '6px' }}></i> Click here
+      </div>
+    );
+  });
+
   const [{ runTour, tourSteps }, setTourState] = useState({
     runTour: false,
     tourSteps: [
@@ -482,6 +510,7 @@ function App() {
       scrollToFirstStep
       showProgress
       showSkipButton
+      beaconComponent={CustomBeacon}
       steps={tourSteps}
       floaterProps={{
         styles: {
