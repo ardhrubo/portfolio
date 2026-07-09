@@ -1,26 +1,26 @@
 :root {
-  --bg-dark: #121612; /* Deep dark green tint */
-  --bg-darker: #0c100c;
-  --bg-darkest: #070907;
-  --bg-activity: #181d18;
+  --bg-dark: #120e18; /* Deep dark purple tint */
+  --bg-darker: #0c0910;
+  --bg-darkest: #070509;
+  --bg-activity: #181220;
   --text-main: #cccccc;
-  --text-muted: #859685;
-  --accent: #8eca3c;
-  --accent-hover: #bbdc12;
-  --border: #276f27;
-  --tab-active: #121612;
-  --tab-inactive: #0c100c;
-  --item-hover: #276f27;
-  --item-active: #499a13;
-  --status-bg: #499a13;
+  --text-muted: #8b8596;
+  --accent: #e22f80;
+  --accent-hover: #ff7873;
+  --border: #4a2185; /* Dark purple border */
+  --tab-active: #120e18;
+  --tab-inactive: #0c0910;
+  --item-hover: #29124a;
+  --item-active: #8140dc;
+  --status-bg: #8140dc;
   --status-fg: #ffffff;
   
-  --syntax-keyword: #bbdc12;
-  --syntax-string: #8eca3c;
-  --syntax-comment: #499a13;
-  --syntax-func: #bbdc12;
-  --syntax-var: #8eca3c;
-  --syntax-num: #bbdc12;
+  --syntax-keyword: #ffca95;
+  --syntax-string: #ff7873;
+  --syntax-comment: #8140dc;
+  --syntax-func: #ffca95;
+  --syntax-var: #ff7873;
+  --syntax-num: #ffca95;
   
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
