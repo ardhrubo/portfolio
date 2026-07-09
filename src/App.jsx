@@ -178,7 +178,7 @@ const fileContents = {
       title: 'README.md',
       lang: 'Markdown',
       icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
-      content: (openFile) => (
+      content: (openFile, setActiveActivity, setMobileMenuOpen) => (
         <>
           <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> <span className="syntax-string" style={{fontSize: '0.8em', marginLeft: '5px'}}>&gt;_</span></h1>
           <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
@@ -502,7 +502,7 @@ function App() {
                     typeof fileContents[activeTab].content === 'string' ? 
                       <div dangerouslySetInnerHTML={{__html: fileContents[activeTab].content}} /> :
                       (typeof fileContents[activeTab].content === 'function' ? 
-                        fileContents[activeTab].content(openFile) : 
+                        fileContents[activeTab].content(openFile, setActiveActivity, setMobileMenuOpen) : 
                         fileContents[activeTab].content)
                   ) : (
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-muted)'}}>
