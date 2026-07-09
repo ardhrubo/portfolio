@@ -16,6 +16,7 @@ const projectsData = [
   { name: "mohan", url: "https://github.com/ardhrubo/mohan", tech: ["Web"] },
   { name: "orbital", url: "https://github.com/ardhrubo/orbital", tech: ["Web"] },
   { name: "passglobaledu", url: "https://passglobaledu.com", tech: ["Next.js"] },
+  { name: "password-generator", url: "https://passwordgeneratordhrubo.vercel.app/", tech: ["React"] },
   { name: "researchtool", url: "https://github.com/ardhrubo/researchtool", tech: ["Tool"] },
   { name: "scrapeautomate", url: "https://scrapeautomate.com/", tech: ["Scraper"] },
   { name: "tiktactoe", url: "https://github.com/ardhrubo/tiktactoe", tech: ["Game"] },
