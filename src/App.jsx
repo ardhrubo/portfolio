@@ -473,6 +473,7 @@ function App() {
           )}
         </div>
       </div>
+    )}
 
     <div className="app-container">
       {/* Activity Bar */}
