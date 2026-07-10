@@ -61,51 +61,51 @@ const ProjectsCarousel = () => {
 
 const SettingsPanel = ({ currentTheme, setTheme }) => (
   <div className="source-control-panel">
-    <div className="sidebar-header" style={{borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px'}}>
-        <h2>SETTINGS</h2>
-        <i className="fa-solid fa-ellipsis"></i>
+    <div className="sidebar-header" style={{ borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px' }}>
+      <h2>SETTINGS</h2>
+      <i className="fa-solid fa-ellipsis"></i>
     </div>
     <div className="settings-panel">
-      <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>CHOOSE THEME</h3>
-      
+      <h3 style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px' }}>CHOOSE THEME</h3>
+
       <div className={`theme-card ${currentTheme === 'cafe' ? 'active' : ''}`} onClick={() => setTheme('cafe')}>
         <div className="theme-preview">
-          <div className="theme-swatch" style={{background: '#161412'}}></div>
-          <div className="theme-swatch" style={{background: '#ffeed6'}}></div>
-          <div className="theme-swatch" style={{background: '#e8a07c'}}></div>
-          <div className="theme-swatch" style={{background: '#827148'}}></div>
+          <div className="theme-swatch" style={{ background: '#161412' }}></div>
+          <div className="theme-swatch" style={{ background: '#ffeed6' }}></div>
+          <div className="theme-swatch" style={{ background: '#e8a07c' }}></div>
+          <div className="theme-swatch" style={{ background: '#827148' }}></div>
         </div>
-        <span style={{fontSize: '14px'}}>Earthy Cafe</span>
+        <span style={{ fontSize: '14px' }}>Earthy Cafe</span>
       </div>
 
       <div className={`theme-card ${currentTheme === 'synthwave' ? 'active' : ''}`} onClick={() => setTheme('synthwave')}>
         <div className="theme-preview">
-          <div className="theme-swatch" style={{background: '#120e18'}}></div>
-          <div className="theme-swatch" style={{background: '#e22f80'}}></div>
-          <div className="theme-swatch" style={{background: '#ff7873'}}></div>
-          <div className="theme-swatch" style={{background: '#8140dc'}}></div>
+          <div className="theme-swatch" style={{ background: '#120e18' }}></div>
+          <div className="theme-swatch" style={{ background: '#e22f80' }}></div>
+          <div className="theme-swatch" style={{ background: '#ff7873' }}></div>
+          <div className="theme-swatch" style={{ background: '#8140dc' }}></div>
         </div>
-        <span style={{fontSize: '14px'}}>Synthwave Sunset</span>
+        <span style={{ fontSize: '14px' }}>Synthwave Sunset</span>
       </div>
 
       <div className={`theme-card ${currentTheme === 'green' ? 'active' : ''}`} onClick={() => setTheme('green')}>
         <div className="theme-preview">
-          <div className="theme-swatch" style={{background: '#121612'}}></div>
-          <div className="theme-swatch" style={{background: '#8eca3c'}}></div>
-          <div className="theme-swatch" style={{background: '#bbdc12'}}></div>
-          <div className="theme-swatch" style={{background: '#499a13'}}></div>
+          <div className="theme-swatch" style={{ background: '#121612' }}></div>
+          <div className="theme-swatch" style={{ background: '#8eca3c' }}></div>
+          <div className="theme-swatch" style={{ background: '#bbdc12' }}></div>
+          <div className="theme-swatch" style={{ background: '#499a13' }}></div>
         </div>
-        <span style={{fontSize: '14px'}}>Dark Hacker Green</span>
+        <span style={{ fontSize: '14px' }}>Dark Hacker Green</span>
       </div>
 
       <div className={`theme-card ${currentTheme === 'blue' ? 'active' : ''}`} onClick={() => setTheme('blue')}>
         <div className="theme-preview">
-          <div className="theme-swatch" style={{background: '#080616'}}></div>
-          <div className="theme-swatch" style={{background: '#2f2fe4'}}></div>
-          <div className="theme-swatch" style={{background: '#162e93'}}></div>
-          <div className="theme-swatch" style={{background: '#1a1953'}}></div>
+          <div className="theme-swatch" style={{ background: '#080616' }}></div>
+          <div className="theme-swatch" style={{ background: '#2f2fe4' }}></div>
+          <div className="theme-swatch" style={{ background: '#162e93' }}></div>
+          <div className="theme-swatch" style={{ background: '#1a1953' }}></div>
         </div>
-        <span style={{fontSize: '14px'}}>Deep Blue</span>
+        <span style={{ fontSize: '14px' }}>Deep Blue</span>
       </div>
     </div>
   </div>
@@ -113,12 +113,12 @@ const SettingsPanel = ({ currentTheme, setTheme }) => (
 
 const SourceControlPanel = () => (
   <div className="source-control-panel">
-    <div className="sidebar-header" style={{borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px'}}>
-        <h2>CAREER CONTROL</h2>
-        <i className="fa-solid fa-check"></i>
+    <div className="sidebar-header" style={{ borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '10px' }}>
+      <h2>CAREER CONTROL</h2>
+      <i className="fa-solid fa-check"></i>
     </div>
-    <div style={{padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100vh - 120px)'}}>
-      <h3 style={{fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px'}}>CAREER HISTORY</h3>
+    <div style={{ padding: '0 15px', overflowY: 'auto', maxHeight: 'calc(100vh - 120px)' }}>
+      <h3 style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '15px', marginTop: '10px' }}>CAREER HISTORY</h3>
       <div className="git-timeline">
         <div className="git-commit branch">
           <div className="git-branch-curve"></div>
@@ -127,7 +127,7 @@ const SourceControlPanel = () => (
           <div className="git-dot"></div>
           <div className="git-content">
             <div className="git-message">feat(career): join Jagannath University as Academic Researcher</div>
-            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2026</span> <span className="git-hash">a1b2c3d</span></div>
+            <div className="git-meta">dhrubo committed on <span style={{ color: 'var(--syntax-comment)' }}>Mar 2026</span> <span className="git-hash">a1b2c3d</span></div>
             <div className="git-details">
               <ul>
                 <li>Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA).</li>
@@ -143,7 +143,7 @@ const SourceControlPanel = () => (
           <div className="git-dot"></div>
           <div className="git-content">
             <div className="git-message">feat(career): join CRILab as Researcher</div>
-            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">f4e5d6c</span></div>
+            <div className="git-meta">dhrubo committed on <span style={{ color: 'var(--syntax-comment)' }}>Mar 2024</span> <span className="git-hash">f4e5d6c</span></div>
             <div className="git-details">
               <ul>
                 <li>Leading technical research initiatives and managing software development projects bridging chemistry and technology.</li>
@@ -156,7 +156,7 @@ const SourceControlPanel = () => (
           <div className="git-dot"></div>
           <div className="git-content">
             <div className="git-message">feat(career): start as Software Engineer at DataAutomators</div>
-            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Dec 2024</span> <span className="git-hash">9a8b7c6</span></div>
+            <div className="git-meta">dhrubo committed on <span style={{ color: 'var(--syntax-comment)' }}>Dec 2024</span> <span className="git-hash">9a8b7c6</span></div>
             <div className="git-details">
               <ul>
                 <li>Led full-stack development with a primary focus on the <strong>ScrapeAutomate</strong> platform.</li>
@@ -171,7 +171,7 @@ const SourceControlPanel = () => (
           <div className="git-dot"></div>
           <div className="git-content">
             <div className="git-message">init(career): start Freelance Back-End Developer journey</div>
-            <div className="git-meta">dhrubo committed on <span style={{color: 'var(--syntax-comment)'}}>Mar 2024</span> <span className="git-hash">e5d4c3b</span></div>
+            <div className="git-meta">dhrubo committed on <span style={{ color: 'var(--syntax-comment)' }}>Mar 2024</span> <span className="git-hash">e5d4c3b</span></div>
             <div className="git-details">
               <ul>
                 <li>Architecting back-end systems, web applications, and scalable REST APIs (documented with Swagger) for diverse global clients.</li>
@@ -186,84 +186,84 @@ const SourceControlPanel = () => (
 
 const fileContents = {
   'readme': {
-      title: 'README.md',
-      lang: 'Markdown',
-      icon: <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>,
-      content: (openFile, setActiveActivity, setMobileMenuOpen) => (
-        <>
-          <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> <span className="syntax-string" style={{fontSize: '0.8em', marginLeft: '5px'}}>&gt;_</span></h1>
-          <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
-          
-          <div style={{ marginTop: '15px', marginBottom: '30px', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
-            <button 
-              onClick={() => openFile('projects')} 
-              style={{
-                background: 'var(--accent)', 
-                color: 'white', 
-                border: 'none', 
-                padding: '8px 16px', 
-                borderRadius: '4px', 
-                cursor: 'pointer',
-                fontFamily: 'Inter',
-                fontSize: '14px'
-              }}
-            >
-              <i className="fa-solid fa-code"></i> View My Projects
-            </button>
-            <button 
-              onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }} 
-              style={{
-                background: 'transparent', 
-                color: 'var(--accent)', 
-                border: '1px solid var(--accent)', 
-                padding: '8px 16px', 
-                borderRadius: '4px', 
-                cursor: 'pointer',
-                fontFamily: 'Inter',
-                fontSize: '14px'
-              }}
-            >
-              <i className="fa-solid fa-code-commit"></i> View Experience
-            </button>
-            <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
-              <i className="fa-brands fa-github" style={{fontSize: '16px'}}></i> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/ardhrubo/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
-              <i className="fa-brands fa-linkedin" style={{fontSize: '16px', color: '#0a66c2'}}></i> LinkedIn
-            </a>
-            <a href="https://peerlist.io/ardhruboF" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px'}}>
-              <i className="fa-solid fa-p" style={{fontSize: '16px', color: '#00aa45'}}></i> Peerlist
-            </a>
-          </div>
+    title: 'README.md',
+    lang: 'Markdown',
+    icon: <i className="fa-brands fa-markdown" style={{ color: '#699dfb' }}></i>,
+    content: (openFile, setActiveActivity, setMobileMenuOpen) => (
+      <>
+        <h1><span className="syntax-keyword">Hi there, I'm Dhrubo</span> <span className="syntax-string" style={{ fontSize: '0.8em', marginLeft: '5px' }}>&gt;_</span></h1>
+        <p>I'm a passionate web developer who loves building unique, performant, and beautiful applications.</p>
 
-          <h2><span className="syntax-func">About Me</span></h2>
-          <ul>
-            <li><span className="syntax-keyword" style={{marginRight: '8px'}}>[+]</span> I'm currently working on building awesome web experiences.</li>
-            <li><span className="syntax-keyword" style={{marginRight: '8px'}}>[&gt;]</span> I'm always learning new technologies and refining my craft.</li>
-            <li><span className="syntax-keyword" style={{marginRight: '8px'}}>[*]</span> Fun fact: I love building tools that automate the boring stuff.</li>
-          </ul>
-          <h2><span className="syntax-func">My Arsenal</span></h2>
-          <ul>
-            <li><span className="syntax-var">Frontend:</span> HTML, CSS, JavaScript, React, Next.js, Vite</li>
-            <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
-            <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
-          </ul>
-          
-          <h2><span className="syntax-func">Top Client Projects</span></h2>
-          <p style={{ marginBottom: '15px' }}>
-            I have shipped over <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong> throughout my career. Below are some of my top client projects and tools that are actively making an impact:
-          </p>
-          
-          <ProjectsCarousel />
-        </>
-      )
+        <div style={{ marginTop: '15px', marginBottom: '30px', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+          <button
+            onClick={() => openFile('projects')}
+            style={{
+              background: 'var(--accent)',
+              color: 'white',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontFamily: 'Inter',
+              fontSize: '14px'
+            }}
+          >
+            <i className="fa-solid fa-code"></i> View My Projects
+          </button>
+          <button
+            onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}
+            style={{
+              background: 'transparent',
+              color: 'var(--accent)',
+              border: '1px solid var(--accent)',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontFamily: 'Inter',
+              fontSize: '14px'
+            }}
+          >
+            <i className="fa-solid fa-code-commit"></i> View Experience
+          </button>
+          <a href="https://github.com/ardhrubo" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px' }}>
+            <i className="fa-brands fa-github" style={{ fontSize: '16px' }}></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/ardhrubo/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px' }}>
+            <i className="fa-brands fa-linkedin" style={{ fontSize: '16px', color: '#0a66c2' }}></i> LinkedIn
+          </a>
+          <a href="https://peerlist.io/ardhrubo" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', border: '1px solid var(--border)', padding: '7px 12px', borderRadius: '4px' }}>
+            <i className="fa-solid fa-p" style={{ fontSize: '16px', color: '#00aa45' }}></i> Peerlist
+          </a>
+        </div>
+
+        <h2><span className="syntax-func">About Me</span></h2>
+        <ul>
+          <li><span className="syntax-keyword" style={{ marginRight: '8px' }}>[+]</span> I'm currently working on building awesome web experiences.</li>
+          <li><span className="syntax-keyword" style={{ marginRight: '8px' }}>[&gt;]</span> I'm always learning new technologies and refining my craft.</li>
+          <li><span className="syntax-keyword" style={{ marginRight: '8px' }}>[*]</span> Fun fact: I love building tools that automate the boring stuff.</li>
+        </ul>
+        <h2><span className="syntax-func">My Arsenal</span></h2>
+        <ul>
+          <li><span className="syntax-var">Frontend:</span> HTML, CSS, JavaScript, React, Next.js, Vite</li>
+          <li><span className="syntax-var">Backend:</span> Node.js, Python, Docker</li>
+          <li><span className="syntax-var">Tools:</span> VS Code, Git, Terminal</li>
+        </ul>
+
+        <h2><span className="syntax-func">Top Client Projects</span></h2>
+        <p style={{ marginBottom: '15px' }}>
+          I have shipped over <strong style={{ color: 'var(--syntax-keyword)' }}>50+ projects</strong> throughout my career. Below are some of my top client projects and tools that are actively making an impact:
+        </p>
+
+        <ProjectsCarousel />
+      </>
+    )
   },
 
   'package-json': {
-      title: 'package.json',
-      lang: 'JSON',
-      icon: <i className="fa-brands fa-node-js" style={{color: '#83cd29'}}></i>,
-      content: `<div style="white-space: pre-wrap"><span class="syntax-string">{</span>
+    title: 'package.json',
+    lang: 'JSON',
+    icon: <i className="fa-brands fa-node-js" style={{ color: '#83cd29' }}></i>,
+    content: `<div style="white-space: pre-wrap"><span class="syntax-string">{</span>
     <span class="syntax-keyword">"name"</span>: <span class="syntax-string">"dhrubo-portfolio"</span>,
     <span class="syntax-keyword">"version"</span>: <span class="syntax-string">"1.0.0"</span>,
     <span class="syntax-keyword">"description"</span>: <span class="syntax-string">"Full-stack developer portfolio"</span>,
@@ -282,29 +282,29 @@ const fileContents = {
 <span class="syntax-string">}</span></div>`
   },
   'projects': {
-      title: 'src/routes/projects.js',
-      lang: 'JavaScript',
-      icon: <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>,
-      content: (
-        <>
-          <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
-          <p style={{marginBottom: '20px', color: 'var(--text-muted)'}}>
-            I shipped more than <strong style={{color: 'var(--syntax-keyword)'}}>50+ projects</strong>, among them some top client projects are:
-          </p>
-          <div className="project-grid">
-            {projectsData.map(p => (
-              <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
-                  <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.title.replace(/ /g, '+')}`} alt={`${p.title} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                  <div className="project-tech">
-                      {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
-                  </div>
-              </a>
-            ))}
-          </div>
-        </>
-      )
+    title: 'src/routes/projects.js',
+    lang: 'JavaScript',
+    icon: <i className="fa-brands fa-js" style={{ color: '#f1e05a' }}></i>,
+    content: (
+      <>
+        <span className="syntax-comment">&lt;!-- My Projects Portfolio --&gt;</span>
+        <p style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>
+          I shipped more than <strong style={{ color: 'var(--syntax-keyword)' }}>50+ projects</strong>, among them some top client projects are:
+        </p>
+        <div className="project-grid">
+          {projectsData.map(p => (
+            <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
+              <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.title.replace(/ /g, '+')}`} alt={`${p.title} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+              <div className="project-tech">
+                {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
+              </div>
+            </a>
+          ))}
+        </div>
+      </>
+    )
   }
 };
 
@@ -343,8 +343,8 @@ function App() {
           }}
           title="Click here"
         >
-          <img 
-            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTJnN2NyZTZuZGNsZjRmN243ODAzbmNpdzFpZmhlbG90bTRmaTI3MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kd9BlRovbPOykLBMqX/giphy.gif" 
+          <img
+            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTJnN2NyZTZuZGNsZjRmN243ODAzbmNpdzFpZmhlbG90bTRmaTI3MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kd9BlRovbPOykLBMqX/giphy.gif"
             alt="Click here"
             style={{
               width: '140px',
@@ -365,8 +365,8 @@ function App() {
         target: '#tour-explorer',
         content: (
           <div>
-            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-regular fa-copy" style={{color: 'var(--syntax-func)', marginRight: '10px'}}></i>File Explorer</h3>
-            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>On the left, the Explorer lets you open files like <code>projects.js</code> or <code>README.md</code>.</p>
+            <h3 style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}><i className="fa-regular fa-copy" style={{ color: 'var(--syntax-func)', marginRight: '10px' }}></i>File Explorer</h3>
+            <p style={{ lineHeight: '1.5', fontSize: '14px', margin: 0 }}>On the left, the Explorer lets you open files like <code>projects.js</code> or <code>README.md</code>.</p>
           </div>
         ),
         placement: 'bottom',
@@ -375,8 +375,8 @@ function App() {
         target: '#tour-career',
         content: (
           <div>
-            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-solid fa-code-branch" style={{color: 'var(--accent)', marginRight: '10px'}}></i>Career Control</h3>
-            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>Click the Git Branch icon to view my career timeline, designed just like a real Git commit graph.</p>
+            <h3 style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}><i className="fa-solid fa-code-branch" style={{ color: 'var(--accent)', marginRight: '10px' }}></i>Career Control</h3>
+            <p style={{ lineHeight: '1.5', fontSize: '14px', margin: 0 }}>Click the Git Branch icon to view my career timeline, designed just like a real Git commit graph.</p>
           </div>
         ),
         placement: 'bottom',
@@ -385,8 +385,8 @@ function App() {
         target: '#tour-settings',
         content: (
           <div>
-            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-solid fa-gear" style={{color: 'var(--syntax-string)', marginRight: '10px'}}></i>Customization</h3>
-            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>Click the Gear icon to open Settings. From there, you can switch between amazing color themes!</p>
+            <h3 style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}><i className="fa-solid fa-gear" style={{ color: 'var(--syntax-string)', marginRight: '10px' }}></i>Customization</h3>
+            <p style={{ lineHeight: '1.5', fontSize: '14px', margin: 0 }}>Click the Gear icon to open Settings. From there, you can switch between amazing color themes!</p>
           </div>
         ),
         placement: 'bottom',
@@ -395,8 +395,8 @@ function App() {
         target: '#tour-editor',
         content: (
           <div>
-            <h3 style={{display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px'}}><i className="fa-solid fa-code" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Editor</h3>
-            <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>And finally, this is the main editor. View all my portfolio details here. Enjoy your stay!</p>
+            <h3 style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', fontSize: '16px' }}><i className="fa-solid fa-code" style={{ color: 'var(--syntax-keyword)', marginRight: '10px' }}></i>Editor</h3>
+            <p style={{ lineHeight: '1.5', fontSize: '14px', margin: 0 }}>And finally, this is the main editor. View all my portfolio details here. Enjoy your stay!</p>
           </div>
         ),
         placement: 'center',
@@ -415,7 +415,7 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeActivity, setActiveActivity] = useState('explorer');
   const [theme, setTheme] = useState('synthwave');
-  
+
   const themeColors = {
     cafe: '#e8a07c',
     synthwave: '#e22f80',
@@ -466,15 +466,15 @@ function App() {
   useEffect(() => {
     const data = fileContents[activeTab];
     if (!data) return;
-    
+
     let lines = 25;
     if (activeTab === 'projects') lines = 35;
     if (activeTab === 'package-json') lines = 20;
     if (activeTab === 'experience') lines = 30;
-    
-    setLineNumbers(Array.from({length: lines}, (_, i) => i + 1));
+
+    setLineNumbers(Array.from({ length: lines }, (_, i) => i + 1));
     setCursor({ ln: Math.floor(Math.random() * lines) + 1, col: Math.floor(Math.random() * 40) + 1 });
-    
+
     setAnimate(true);
     const timer = setTimeout(() => setAnimate(false), 300);
     return () => clearTimeout(timer);
@@ -507,225 +507,231 @@ function App() {
 
   return (
     <>
-    {showWelcome && (
-      <div className="guide-modal-overlay">
-        <div className="guide-modal" style={{animation: 'modalPop 0.3s ease-out'}}>
-          <h2><i className="fa-solid fa-terminal" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Welcome to Dhrubo's IDE!</h2>
-          <p style={{marginBottom: '30px', color: 'var(--text-muted)', lineHeight: '1.5'}}>This portfolio is designed like a real code editor. Would you like a guided tour to see how to navigate?</p>
-          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-            <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => { setShowWelcome(false); setTourState(prev => ({...prev, runTour: true})); }}>Take a Tour</button>
-            <button className="tour-btn" onClick={() => setShowWelcome(false)}>Explore Freely</button>
+      {showWelcome && (
+        <div className="guide-modal-overlay">
+          <div className="guide-modal" style={{ animation: 'modalPop 0.3s ease-out' }}>
+            <h2><i className="fa-solid fa-terminal" style={{ color: 'var(--syntax-keyword)', marginRight: '10px' }}></i>Welcome to Dhrubo's IDE!</h2>
+            <p style={{ marginBottom: isMobile ? '15px' : '30px', color: 'var(--text-muted)', lineHeight: '1.5' }}>This portfolio is designed like a real code editor. Would you like a guided tour to see how to navigate?</p>
+            {isMobile && (
+              <div style={{ backgroundColor: 'rgba(255, 202, 149, 0.1)', border: '1px solid var(--accent)', padding: '12px', borderRadius: '6px', marginBottom: '25px', fontSize: '13.5px', color: 'var(--text-main)', textAlign: 'left', lineHeight: '1.5' }}>
+                <i className="fa-solid fa-desktop" style={{ color: 'var(--accent)', marginRight: '8px' }}></i>
+                <strong>Desktop Recommended:</strong> For the full interactive IDE experience, we highly suggest viewing this on a larger screen.
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+              <button className="tour-btn" style={{ background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold' }} onClick={() => { setShowWelcome(false); setTourState(prev => ({ ...prev, runTour: true })); }}>Take a Tour</button>
+              <button className="tour-btn" onClick={() => setShowWelcome(false)}>Explore Freely</button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
 
-    {showTourFinished && (
-      <div className="guide-modal-overlay">
-        <div className="guide-modal" style={{animation: 'modalPop 0.3s ease-out'}}>
-          <h2><i className="fa-solid fa-flag-checkered" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Tour Finished!</h2>
-          <p style={{marginBottom: '30px', color: 'var(--text-muted)', lineHeight: '1.5'}}>You have successfully completed the tour. Feel free to explore the IDE freely now!</p>
-          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-            <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => setShowTourFinished(false)}>Finish</button>
+      {showTourFinished && (
+        <div className="guide-modal-overlay">
+          <div className="guide-modal" style={{ animation: 'modalPop 0.3s ease-out' }}>
+            <h2><i className="fa-solid fa-flag-checkered" style={{ color: 'var(--syntax-keyword)', marginRight: '10px' }}></i>Tour Finished!</h2>
+            <p style={{ marginBottom: '30px', color: 'var(--text-muted)', lineHeight: '1.5' }}>You have successfully completed the tour. Feel free to explore the IDE freely now!</p>
+            <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+              <button className="tour-btn" style={{ background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold' }} onClick={() => setShowTourFinished(false)}>Finish</button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
-    
-    {runTour && (
-      <Joyride
-        callback={handleJoyrideCallback}
-        continuous
-        hideCloseButton
-        run={runTour}
-        scrollToFirstStep
-        showProgress
-        showSkipButton
-        beaconComponent={CustomBeacon}
-        locale={{ last: 'Finish', close: 'Finish', skip: 'Skip' }}
-        steps={tourSteps}
-        floaterProps={{
-          disableFlip: true,
-          styles: {
-            floater: {
-              maxWidth: '90vw'
+      )}
+
+      {runTour && (
+        <Joyride
+          callback={handleJoyrideCallback}
+          continuous
+          hideCloseButton
+          run={runTour}
+          scrollToFirstStep
+          showProgress
+          showSkipButton
+          beaconComponent={CustomBeacon}
+          locale={{ last: 'Finish', close: 'Finish', skip: 'Skip' }}
+          steps={tourSteps}
+          floaterProps={{
+            disableFlip: true,
+            styles: {
+              floater: {
+                maxWidth: '90vw'
+              }
             }
-          }
-        }}
-        styles={{
-          options: {
-            zIndex: 10000,
-            primaryColor: '#ffca95',
-            backgroundColor: 'var(--bg-dark)',
-            textColor: 'var(--text)',
-            arrowColor: 'var(--bg-dark)',
-            overlayColor: 'rgba(0, 0, 0, 0.7)'
-          },
-          beaconInner: {
-            backgroundColor: '#ffca95'
-          },
-          beaconOuter: {
-            border: '2px solid #ffca95',
-            backgroundColor: 'transparent'
-          },
-          buttonNext: {
-            fontWeight: 'bold',
-            color: 'var(--bg-darkest)'
-          },
-          buttonBack: {
-            color: 'var(--text-muted)'
-          }
-        }}
-      />
-    )}
+          }}
+          styles={{
+            options: {
+              zIndex: 10000,
+              primaryColor: '#ffca95',
+              backgroundColor: 'var(--bg-dark)',
+              textColor: 'var(--text)',
+              arrowColor: 'var(--bg-dark)',
+              overlayColor: 'rgba(0, 0, 0, 0.7)'
+            },
+            beaconInner: {
+              backgroundColor: '#ffca95'
+            },
+            beaconOuter: {
+              border: '2px solid #ffca95',
+              backgroundColor: 'transparent'
+            },
+            buttonNext: {
+              fontWeight: 'bold',
+              color: 'var(--bg-darkest)'
+            },
+            buttonBack: {
+              color: 'var(--text-muted)'
+            }
+          }}
+        />
+      )}
 
-    <div className="app-container">
-      {/* Activity Bar */}
-      <div className="activity-bar">
-          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} id="tour-explorer" title="Explorer" onClick={() => { 
-            setActiveActivity('explorer'); 
+      <div className="app-container">
+        {/* Activity Bar */}
+        <div className="activity-bar">
+          <div className={`activity-icon ${activeActivity === 'explorer' ? 'active' : ''}`} id="tour-explorer" title="Explorer" onClick={() => {
+            setActiveActivity('explorer');
             setMobileMenuOpen(true);
             const beacon = document.getElementById('custom-tour-beacon');
             if (beacon) beacon.click();
           }}>
-              <i className="fa-regular fa-copy"></i>
+            <i className="fa-regular fa-copy"></i>
           </div>
           <div className={`activity-icon ${activeActivity === 'source-control' ? 'active' : ''}`} id="tour-career" title="Career Control" onClick={() => { setActiveActivity('source-control'); setMobileMenuOpen(true); }}>
-              <i className="fa-solid fa-code-branch"></i>
+            <i className="fa-solid fa-code-branch"></i>
           </div>
           <div className="activity-spacer"></div>
           <div className={`activity-icon ${activeActivity === 'settings' ? 'active' : ''}`} id="tour-settings" title="Settings" onClick={() => { setActiveActivity('settings'); setMobileMenuOpen(true); }}>
-              <i className="fa-solid fa-gear"></i>
+            <i className="fa-solid fa-gear"></i>
           </div>
-      </div>
+        </div>
 
-      {/* Sidebar */}
-      <div className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`} style={{ width: `${sidebarWidth}px` }}>
+        {/* Sidebar */}
+        <div className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`} style={{ width: `${sidebarWidth}px` }}>
           {activeActivity === 'explorer' ? (
             <>
-          <div className="sidebar-header">
-              <h2>EXPLORER</h2>
-              <i className="fa-solid fa-ellipsis"></i>
-          </div>
-          <div className="sidebar-section">
-              <div className="section-header" onClick={() => toggleFolder('portfolio')}>
+              <div className="sidebar-header">
+                <h2>EXPLORER</h2>
+                <i className="fa-solid fa-ellipsis"></i>
+              </div>
+              <div className="sidebar-section">
+                <div className="section-header" onClick={() => toggleFolder('portfolio')}>
                   <i className={`fa-solid fa-chevron-down toggle-icon ${!folderOpen.portfolio ? 'collapsed' : ''}`}></i>
                   <span>DHRUBO_PORTFOLIO</span>
-              </div>
-              
-              {folderOpen.portfolio && (
-                <div className="file-tree">
+                </div>
+
+                {folderOpen.portfolio && (
+                  <div className="file-tree">
                     <div className={`folder-item ${!folderOpen.node_modules ? 'collapsed' : ''}`} onClick={() => toggleFolder('node_modules')}>
-                        <i className="fa-solid fa-chevron-down toggle-icon"></i>
-                        <i className="fa-solid fa-folder" style={{color: '#83cd29'}}></i>
-                        <span>node_modules</span>
+                      <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                      <i className="fa-solid fa-folder" style={{ color: '#83cd29' }}></i>
+                      <span>node_modules</span>
                     </div>
 
                     <div className={`folder-item ${!folderOpen.src ? 'collapsed' : ''}`} onClick={() => toggleFolder('src')}>
-                        <i className="fa-solid fa-chevron-down toggle-icon"></i>
-                        <i className="fa-solid fa-folder" style={{color: '#699dfb'}}></i>
-                        <span>src</span>
+                      <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                      <i className="fa-solid fa-folder" style={{ color: '#699dfb' }}></i>
+                      <span>src</span>
                     </div>
-                    
+
                     {folderOpen.src && (
                       <div className="folder-contents">
-                          <div className={`folder-item ${!folderOpen.routes ? 'collapsed' : ''}`} onClick={() => toggleFolder('routes')}>
-                              <i className="fa-solid fa-chevron-down toggle-icon"></i>
-                              <i className="fa-solid fa-folder" style={{color: '#dcb67a'}}></i>
-                              <span>routes</span>
-                          </div>
-                          {folderOpen.routes && (
-                            <div className="folder-contents">
-                                <div className={`file-item file-md ${activeTab === 'projects' ? 'active' : ''}`} onClick={() => openFile('projects')} style={{paddingLeft: '55px'}}>
-                                  <i className="fa-brands fa-js" style={{color: '#f1e05a'}}></i>
-                                  <span>projects.js</span>
-                                </div>
+                        <div className={`folder-item ${!folderOpen.routes ? 'collapsed' : ''}`} onClick={() => toggleFolder('routes')}>
+                          <i className="fa-solid fa-chevron-down toggle-icon"></i>
+                          <i className="fa-solid fa-folder" style={{ color: '#dcb67a' }}></i>
+                          <span>routes</span>
+                        </div>
+                        {folderOpen.routes && (
+                          <div className="folder-contents">
+                            <div className={`file-item file-md ${activeTab === 'projects' ? 'active' : ''}`} onClick={() => openFile('projects')} style={{ paddingLeft: '55px' }}>
+                              <i className="fa-brands fa-js" style={{ color: '#f1e05a' }}></i>
+                              <span>projects.js</span>
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     )}
 
                     <div className={`file-item file-md ${activeTab === 'readme' ? 'active' : ''}`} onClick={() => openFile('readme')}>
-                        <i className="fa-brands fa-markdown" style={{color: '#699dfb'}}></i>
-                        <span>README.md</span>
+                      <i className="fa-brands fa-markdown" style={{ color: '#699dfb' }}></i>
+                      <span>README.md</span>
                     </div>
 
                     <div className={`file-item file-json ${activeTab === 'package-json' ? 'active' : ''}`} onClick={() => openFile('package-json')}>
-                        <i className="fa-brands fa-node-js" style={{color: '#83cd29'}}></i>
-                        <span>package.json</span>
+                      <i className="fa-brands fa-node-js" style={{ color: '#83cd29' }}></i>
+                      <span>package.json</span>
                     </div>
-                </div>
-              )}
-          </div>
+                  </div>
+                )}
+              </div>
             </>
           ) : activeActivity === 'source-control' ? (
             <SourceControlPanel />
           ) : (
             <SettingsPanel currentTheme={theme} setTheme={setTheme} />
           )}
-      </div>
-      <div className="sidebar-resizer" onMouseDown={startResizing}></div>
+        </div>
+        <div className="sidebar-resizer" onMouseDown={startResizing}></div>
 
-      {/* Editor Area */}
-      <div id="tour-editor" className="editor-area">
+        {/* Editor Area */}
+        <div id="tour-editor" className="editor-area">
           <div className="editor-tabs">
-              {tabs.map(tabId => (
-                <div key={tabId} className={`tab ${activeTab === tabId ? 'active' : ''}`} onClick={() => setActiveTab(tabId)}>
-                    {fileContents[tabId].icon}
-                    <span>{fileContents[tabId].title}</span>
-                    <i className="fa-solid fa-xmark close-tab" onClick={(e) => closeTab(e, tabId)}></i>
-                </div>
-              ))}
+            {tabs.map(tabId => (
+              <div key={tabId} className={`tab ${activeTab === tabId ? 'active' : ''}`} onClick={() => setActiveTab(tabId)}>
+                {fileContents[tabId].icon}
+                <span>{fileContents[tabId].title}</span>
+                <i className="fa-solid fa-xmark close-tab" onClick={(e) => closeTab(e, tabId)}></i>
+              </div>
+            ))}
           </div>
-          
+
           <div className="breadcrumbs">
-              <span>DHRUBO_PORTFOLIO</span>
-              <i className="fa-solid fa-chevron-right"></i>
-              <span>{activeTab ? fileContents[activeTab].title : ''}</span>
+            <span>DHRUBO_PORTFOLIO</span>
+            <i className="fa-solid fa-chevron-right"></i>
+            <span>{activeTab ? fileContents[activeTab].title : ''}</span>
           </div>
 
           <div className="editor-content-container">
-              <div className="line-numbers">
-                {activeTab && lineNumbers.map(n => <div key={n}>{n}</div>)}
-              </div>
-              
-              <div className={`editor-content ${animate ? 'animate-in' : ''}`}>
-                  {activeTab ? (
-                    typeof fileContents[activeTab].content === 'string' ? 
-                      <div dangerouslySetInnerHTML={{__html: fileContents[activeTab].content}} /> :
-                      (typeof fileContents[activeTab].content === 'function' ? 
-                        fileContents[activeTab].content(openFile, setActiveActivity, setMobileMenuOpen) : 
-                        fileContents[activeTab].content)
-                  ) : (
-                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-muted)'}}>
-                      <i className="fa-brands fa-react" style={{fontSize: '100px', opacity: 0.1}}></i>
-                    </div>
-                  )}
-              </div>
-          </div>
-      </div>
+            <div className="line-numbers">
+              {activeTab && lineNumbers.map(n => <div key={n}>{n}</div>)}
+            </div>
 
-      {/* Status Bar */}
-      <div className="status-bar" style={{position: 'fixed', bottom: 0, width: '100%'}}>
+            <div className={`editor-content ${animate ? 'animate-in' : ''}`}>
+              {activeTab ? (
+                typeof fileContents[activeTab].content === 'string' ?
+                  <div dangerouslySetInnerHTML={{ __html: fileContents[activeTab].content }} /> :
+                  (typeof fileContents[activeTab].content === 'function' ?
+                    fileContents[activeTab].content(openFile, setActiveActivity, setMobileMenuOpen) :
+                    fileContents[activeTab].content)
+              ) : (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-muted)' }}>
+                  <i className="fa-brands fa-react" style={{ fontSize: '100px', opacity: 0.1 }}></i>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Status Bar */}
+        <div className="status-bar" style={{ position: 'fixed', bottom: 0, width: '100%' }}>
           <div className="status-left">
-              <div className="status-item"><i className="fa-solid fa-code-branch"></i> main</div>
-              <div className="status-item"><i className="fa-solid fa-rotate"></i> 0 <i className="fa-solid fa-arrow-up"></i> 0</div>
-              <div className="status-item"><i className="fa-solid fa-xmark" style={{color:'#f14c4c'}}></i> 0 &nbsp;&nbsp;<i className="fa-solid fa-triangle-exclamation" style={{color:'#cca700'}}></i> 0</div>
+            <div className="status-item"><i className="fa-solid fa-code-branch"></i> main</div>
+            <div className="status-item"><i className="fa-solid fa-rotate"></i> 0 <i className="fa-solid fa-arrow-up"></i> 0</div>
+            <div className="status-item"><i className="fa-solid fa-xmark" style={{ color: '#f14c4c' }}></i> 0 &nbsp;&nbsp;<i className="fa-solid fa-triangle-exclamation" style={{ color: '#cca700' }}></i> 0</div>
           </div>
           <div className="status-right">
-              {activeTab && (
-                <>
-                  <div className="status-item">Ln {cursor.ln}, Col {cursor.col}</div>
-                  <div className="status-item">Spaces: 4</div>
-                  <div className="status-item">UTF-8</div>
-                  <div className="status-item">CRLF</div>
-                  <div className="status-item">{fileContents[activeTab].lang}</div>
-                </>
-              )}
-              <div className="status-item"><i className="fa-regular fa-bell"></i></div>
+            {activeTab && (
+              <>
+                <div className="status-item">Ln {cursor.ln}, Col {cursor.col}</div>
+                <div className="status-item">Spaces: 4</div>
+                <div className="status-item">UTF-8</div>
+                <div className="status-item">CRLF</div>
+                <div className="status-item">{fileContents[activeTab].lang}</div>
+              </>
+            )}
+            <div className="status-item"><i className="fa-regular fa-bell"></i></div>
           </div>
+        </div>
       </div>
-    </div>
     </>
   )
 }
