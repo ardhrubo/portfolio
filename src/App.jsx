@@ -317,11 +317,13 @@ function App() {
   const [cursor, setCursor] = useState({ ln: 1, col: 1 });
   const [animate, setAnimate] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+  const [showTourFinished, setShowTourFinished] = useState(false);
 
   // Custom beacon component that says "Click here" using a GIF
   const CustomBeacon = React.forwardRef((props, ref) => {
+    const { isLastStep, continuous, index, size, step, setTooltipRef, ...rest } = props;
     return (
-      <div id="custom-tour-beacon" ref={ref} {...props} className="custom-tour-beacon">
+      <div id="custom-tour-beacon" ref={ref} {...rest} className="custom-tour-beacon">
         {/* Inner container to safely offset the GIF without Joyride overriding it */}
         <div
           style={{
@@ -403,10 +405,12 @@ function App() {
   });
 
   const handleJoyrideCallback = (data) => {
+    console.log('Joyride Callback Data:', data);
     const { status } = data;
     const finishedStatuses = [STATUS.FINISHED, STATUS.SKIPPED];
     if (finishedStatuses.includes(status)) {
       setTourState({ runTour: false, tourSteps });
+      setShowTourFinished(true);
     }
   };
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -516,49 +520,65 @@ function App() {
         </div>
       </div>
     )}
+
+    {showTourFinished && (
+      <div className="guide-modal-overlay">
+        <div className="guide-modal" style={{animation: 'modalPop 0.3s ease-out'}}>
+          <h2><i className="fa-solid fa-flag-checkered" style={{color: 'var(--syntax-keyword)', marginRight: '10px'}}></i>Tour Finished!</h2>
+          <p style={{marginBottom: '30px', color: 'var(--text-muted)', lineHeight: '1.5'}}>You have successfully completed the tour. Feel free to explore the IDE freely now!</p>
+          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+            <button className="tour-btn" style={{background: 'var(--accent)', color: 'var(--bg-darkest)', border: 'none', fontWeight: 'bold'}} onClick={() => setShowTourFinished(false)}>Finish</button>
+          </div>
+        </div>
+      </div>
+    )}
     
-    <Joyride
-      callback={handleJoyrideCallback}
-      continuous
-      hideCloseButton
-      run={runTour}
-      scrollToFirstStep
-      showProgress
-      showSkipButton
-      beaconComponent={CustomBeacon}
-      steps={tourSteps}
-      floaterProps={{
-        styles: {
-          floater: {
-            maxWidth: '90vw'
+    {runTour && (
+      <Joyride
+        callback={handleJoyrideCallback}
+        continuous
+        hideCloseButton
+        run={runTour}
+        scrollToFirstStep
+        showProgress
+        showSkipButton
+        beaconComponent={CustomBeacon}
+        locale={{ last: 'Finish' }}
+        steps={tourSteps}
+        floaterProps={{
+          disableFlip: true,
+          styles: {
+            floater: {
+              maxWidth: '90vw'
+            }
           }
-        }
-      }}
-      styles={{
-        options: {
-          zIndex: 10000,
-          primaryColor: '#ffca95',
-          backgroundColor: 'var(--bg-dark)',
-          textColor: 'var(--text)',
-          arrowColor: 'var(--bg-dark)',
-          overlayColor: 'rgba(0, 0, 0, 0.7)'
-        },
-        beaconInner: {
-          backgroundColor: '#ffca95'
-        },
-        beaconOuter: {
-          border: '2px solid #ffca95',
-          backgroundColor: 'transparent'
-        },
-        buttonNext: {
-          fontWeight: 'bold',
-          color: 'var(--bg-darkest)'
-        },
-        buttonBack: {
-          color: 'var(--text-muted)'
-        }
-      }}
-    />
+        }}
+        styles={{
+          options: {
+            zIndex: 10000,
+            primaryColor: '#ffca95',
+            backgroundColor: 'var(--bg-dark)',
+            textColor: 'var(--text)',
+            arrowColor: 'var(--bg-dark)',
+            overlayColor: 'rgba(0, 0, 0, 0.7)'
+          },
+          beaconInner: {
+            backgroundColor: '#ffca95'
+          },
+          beaconOuter: {
+            border: '2px solid #ffca95',
+            backgroundColor: 'transparent'
+          },
+          buttonNext: {
+            fontWeight: 'bold',
+            color: 'var(--bg-darkest)'
+          },
+          buttonBack: {
+            color: 'var(--text-muted)'
+          }
+        }}
+      />
+    )}
 
     <div className="app-container">
       {/* Activity Bar */}
