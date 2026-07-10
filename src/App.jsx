@@ -399,16 +399,15 @@ function App() {
             <p style={{lineHeight: '1.5', fontSize: '14px', margin: 0}}>And finally, this is the main editor. View all my portfolio details here. Enjoy your stay!</p>
           </div>
         ),
-        placement: 'bottom',
+        placement: 'center',
       }
     ]
   });
 
   const handleJoyrideCallback = (data) => {
     console.log('Joyride Callback Data:', data);
-    const { status } = data;
-    const finishedStatuses = [STATUS.FINISHED, STATUS.SKIPPED];
-    if (finishedStatuses.includes(status)) {
+    const { status, type } = data;
+    if (status === 'finished' || status === 'skipped' || status === 'error' || type === 'tour:end') {
       setTourState({ runTour: false, tourSteps });
       setShowTourFinished(true);
     }
@@ -543,7 +542,7 @@ function App() {
         showProgress
         showSkipButton
         beaconComponent={CustomBeacon}
-        locale={{ last: 'Finish' }}
+        locale={{ last: 'Finish', close: 'Finish', skip: 'Skip' }}
         steps={tourSteps}
         floaterProps={{
           disableFlip: true,
