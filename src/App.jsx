@@ -40,7 +40,12 @@ const ProjectsCarousel = () => {
     <div className="carousel-container">
       {topProjects.map((item, index) => (
         <div key={item.name} className={`carousel-slide ${index === currentIndex ? 'active' : ''}`}>
-          <img src={item.image} alt={item.title} className="carousel-image" />
+          <img 
+            src={item.image} 
+            alt={item.title} 
+            className="carousel-image" 
+            onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/600x400/252526/cccccc?text=${encodeURIComponent(item.title)}`; }} 
+          />
           <div className="carousel-content">
             <h3>
               <a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a>
@@ -294,7 +299,12 @@ const fileContents = {
         <div className="project-grid">
           {projectsData.map(p => (
             <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card" key={p.name} style={{ textDecoration: 'none' }}>
-              <img src={p.image || `https://placehold.co/600x400/252526/cccccc?text=${p.title.replace(/ /g, '+')}`} alt={`${p.title} preview`} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} />
+              <img 
+                src={p.image} 
+                alt={`${p.title} preview`} 
+                onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/600x400/252526/cccccc?text=${encodeURIComponent(p.title)}`; }}
+                style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', marginBottom: '10px', backgroundColor: '#1e1e1e' }} 
+              />
               <h3>{p.title}</h3>
               <p>{p.desc}</p>
               <div className="project-tech">
