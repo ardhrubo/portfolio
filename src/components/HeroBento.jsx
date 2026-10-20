@@ -56,14 +56,14 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             </p>
 
             <div className="bento-cta-row">
-              <a href="#flagship" className="btn-primary">
-                <span>Explore Projects</span>
-                <i className="fa-solid fa-arrow-down"></i>
+              <a href="#experience" className="btn-primary">
+                <span>View Experience</span>
+                <i className="fa-solid fa-briefcase"></i>
               </a>
 
-              <a href="#contact" className="btn-secondary">
-                <span>Let's Talk</span>
-                <i className="fa-regular fa-paper-plane"></i>
+              <a href="#projects" className="btn-secondary">
+                <span>Featured Projects</span>
+                <i className="fa-solid fa-layer-group"></i>
               </a>
 
               <button

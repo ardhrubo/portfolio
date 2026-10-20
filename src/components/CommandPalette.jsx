@@ -28,8 +28,8 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
 
   const sections = [
     { name: 'About & Overview', href: '#hero', icon: 'fa-solid fa-user' },
-    { name: 'Flagship Deliveries', href: '#flagship', icon: 'fa-solid fa-star' },
-    { name: `Project Vault (${projectsData.length} Projects)`, href: '#projects', icon: 'fa-solid fa-folder-open' },
+    { name: 'Flagship Deliveries', href: '#projects', icon: 'fa-solid fa-star' },
+    { name: 'Complete Project Vault', href: '#all-projects', icon: 'fa-solid fa-folder-open' },
     { name: 'Live Automation Simulator', href: '#playground', icon: 'fa-solid fa-terminal' },
     { name: 'Career & Research Timeline', href: '#experience', icon: 'fa-solid fa-briefcase' },
     { name: 'Skills & Arsenal', href: '#skills', icon: 'fa-solid fa-layer-group' },
@@ -41,7 +41,11 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
       onSelectProject(val);
       onClose(false);
     } else if (type === 'link') {
-      window.location.href = val;
+      if (val === '#all-projects' && onNavigateToAllProjects) {
+        onNavigateToAllProjects();
+      } else {
+        window.location.href = val;
+      }
       onClose(false);
     } else if (type === 'copy') {
       navigator.clipboard.writeText(personalInfo.email);

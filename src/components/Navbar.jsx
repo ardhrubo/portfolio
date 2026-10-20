@@ -1,47 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import { personalInfo, projectsData } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
 
-export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
+export default function Navbar({
+  currentTheme,
+  currentView,
+  onToggleTheme,
+  onOpenCmd,
+  onNavigateToAllProjects,
+  onNavigateToHome
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
+    if (currentView === 'all-projects') {
+      setActiveSection('all-projects');
+      return;
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = ['hero', 'flagship', 'projects', 'strategy', 'playground', 'experience', 'skills', 'contact'];
-      const scrollPos = window.scrollY + 140;
+      const scrollPos = window.scrollY + 180;
+      const sections = ['contact', 'skills', 'projects', 'experience'];
 
+      let found = '';
       for (const section of sections) {
         const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
-          }
+        if (el && scrollPos >= el.offsetTop) {
+          found = section;
+          break;
         }
       }
+      setActiveSection(found);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentView]);
 
   const navLinks = [
-    { name: 'About', href: '#hero', id: 'hero' },
-    { name: 'Flagship', href: '#flagship', id: 'flagship' },
-    { name: `Projects (${projectsData.length})`, href: '#projects', id: 'projects' },
-    { name: 'Strategy', href: '#strategy', id: 'strategy' },
-    { name: 'Simulator', href: '#playground', id: 'playground' },
     { name: 'Experience', href: '#experience', id: 'experience' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
-  const handleLinkClick = () => {
+  const handleNavClick = (e, link) => {
     setMobileMenuOpen(false);
+
+    if (currentView === 'all-projects') {
+      e.preventDefault();
+      onNavigateToHome(link.href);
+    }
+  };
+
+  const handleBrandClick = (e) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    onNavigateToHome('#hero');
   };
 
   return (
@@ -49,7 +67,7 @@ export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
       <div className="container">
         <nav className="navbar-container">
           {/* Brand */}
-          <a href="#hero" className="nav-brand">
+          <a href="#hero" onClick={handleBrandClick} className="nav-brand">
             <div className="brand-badge">D</div>
             <div className="brand-text">
               <span className="brand-name">{personalInfo.name}</span>
@@ -63,7 +81,8 @@ export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
               <li key={link.id}>
                 <a
                   href={link.href}
-                  className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={`nav-link ${(currentView === 'all-projects' ? link.id === 'projects' : activeSection === link.id) ? 'active' : ''}`}
                 >
                   {link.name}
                 </a>
@@ -88,72 +107,72 @@ export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
             <button
               onClick={onToggleTheme}
               className="theme-toggle-btn"
-              title={`Switch to ${currentTheme === 'light' ? 'Dark Forest' : 'Greenish White'} mode`}
+              title={`Switch to ${currentTheme === 'light' ? 'Dark mode' : 'Light mode'}`}
               aria-label="Toggle theme"
             >
               <i className={`fa-solid ${currentTheme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
             </button>
 
-            <a href="#contact" className="btn-hire">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                if (currentView === 'all-projects') {
+                  e.preventDefault();
+                  onNavigateToHome('#contact');
+                }
+              }}
+              className="btn-hire"
+            >
               <span>Let's Talk</span>
               <i className="fa-solid fa-arrow-right"></i>
             </a>
 
+            {/* Mobile Hamburger Toggle */}
             <button
-              className="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle navigation menu"
+              className="mobile-toggle-btn"
+              aria-label="Toggle menu"
             >
               <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
             </button>
           </div>
         </nav>
-      </div>
 
-      {/* Mobile Drawer */}
-      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-          <button
-            onClick={() => { setMobileMenuOpen(false); onOpenCmd(); }}
-            className="btn-secondary"
-            style={{ flex: 1, justifyContent: 'center' }}
-          >
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <span>Search Projects (⌘K)</span>
-          </button>
-        </div>
-
-        {navLinks.map((link) => (
-          <a
-            key={link.id}
-            href={link.href}
-            onClick={handleLinkClick}
-            className={`mobile-nav-link ${activeSection === link.id ? 'active' : ''}`}
-          >
-            {link.name}
-          </a>
-        ))}
-
-        <div style={{ display: 'flex', gap: '12px', marginTop: '14px' }}>
-          <button
-            onClick={onToggleTheme}
-            className="btn-secondary"
-            style={{ flex: 1, justifyContent: 'center' }}
-          >
-            <i className={`fa-solid ${currentTheme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
-            <span>{currentTheme === 'light' ? 'Dark Forest Mode' : 'Greenish White Mode'}</span>
-          </button>
-        </div>
-
-        <a
-          href="#contact"
-          onClick={handleLinkClick}
-          className="btn-primary"
-          style={{ marginTop: '10px', justifyContent: 'center' }}
-        >
-          <span>Get in Touch</span>
-          <i className="fa-solid fa-arrow-right"></i>
-        </a>
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="mobile-menu">
+            <ul className="mobile-nav-links">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className={`mobile-nav-link ${(currentView === 'all-projects' ? link.id === 'projects' : activeSection === link.id) ? 'active' : ''}`}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+              <li style={{ marginTop: '12px' }}>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    if (currentView === 'all-projects') {
+                      e.preventDefault();
+                      onNavigateToHome('#contact');
+                    }
+                  }}
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  <span>Let's Talk</span>
+                  <i className="fa-solid fa-arrow-right"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );

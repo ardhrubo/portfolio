@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroBento from './components/HeroBento';
 import ProjectsShowcase from './components/ProjectsShowcase';
+import AllProjectsView from './components/AllProjectsView';
 import Strategy from './components/Strategy';
 import AutomationPlayground from './components/AutomationPlayground';
 import Experience from './components/Experience';
@@ -17,6 +18,9 @@ export default function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('portfolio-theme') || 'light';
   });
+  const [currentView, setCurrentView] = useState(() => {
+    return window.location.hash === '#all-projects' ? 'all-projects' : 'home';
+  });
   const [selectedProject, setSelectedProject] = useState(null);
   const [isCmdOpen, setIsCmdOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
@@ -26,6 +30,21 @@ export default function App() {
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
 
+  // Listen to hash changes for deep linking between Home and All Projects view
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#all-projects') {
+        setCurrentView('all-projects');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (currentView === 'all-projects') {
+        setCurrentView('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentView]);
+
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
@@ -34,6 +53,20 @@ export default function App() {
 
   const handleShowToast = (msg) => {
     setToastMessage(msg);
+  };
+
+  const navigateToAllProjects = () => {
+    setCurrentView('all-projects');
+    window.location.hash = '#all-projects';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToHome = (targetHash = '#hero') => {
+    setCurrentView('home');
+    window.location.hash = targetHash;
+    if (targetHash === '#hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -48,33 +81,50 @@ export default function App() {
       {/* Floating Island Navigation */}
       <Navbar
         currentTheme={theme}
+        currentView={currentView}
         onToggleTheme={toggleTheme}
         onOpenCmd={() => setIsCmdOpen(true)}
+        onNavigateToAllProjects={navigateToAllProjects}
+        onNavigateToHome={navigateToHome}
       />
 
-      {/* Main Content Sections */}
+      {/* Main Content Area */}
       <main>
-        <HeroBento
-          onCopyEmail={handleShowToast}
-          onOpenCmd={() => setIsCmdOpen(true)}
-        />
-        <ProjectsShowcase
-          onSelectProject={(project) => setSelectedProject(project)}
-        />
-        <Strategy />
-        <AutomationPlayground
-          onShowToast={handleShowToast}
-        />
-        <Experience />
-        <Skills />
-        <Services />
-        <Contact
-          onShowToast={handleShowToast}
-        />
+        {currentView === 'all-projects' ? (
+          <AllProjectsView
+            onBackToHome={() => navigateToHome('#hero')}
+            onSelectProject={(project) => setSelectedProject(project)}
+          />
+        ) : (
+          <>
+            <HeroBento
+              onCopyEmail={handleShowToast}
+              onOpenCmd={() => setIsCmdOpen(true)}
+            />
+            <Experience />
+            <ProjectsShowcase
+              onSelectProject={(project) => setSelectedProject(project)}
+              onNavigateToAllProjects={navigateToAllProjects}
+            />
+            <Skills />
+            <Strategy />
+            <AutomationPlayground
+              onShowToast={handleShowToast}
+            />
+            <Services />
+            <Contact
+              onShowToast={handleShowToast}
+            />
+          </>
+        )}
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer
+        currentView={currentView}
+        onNavigateToAllProjects={navigateToAllProjects}
+        onNavigateToHome={navigateToHome}
+      />
 
       {/* Slide-Over Project Inspector Drawer */}
       {selectedProject && (
@@ -91,6 +141,7 @@ export default function App() {
         onClose={setIsCmdOpen}
         onSelectProject={(p) => setSelectedProject(p)}
         onShowToast={handleShowToast}
+        onNavigateToAllProjects={navigateToAllProjects}
       />
 
       {/* Toast Feedback */}

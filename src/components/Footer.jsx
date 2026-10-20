@@ -1,9 +1,21 @@
 import React from 'react';
-import { personalInfo, projectsData } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
 
-export default function Footer() {
+export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToHome }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (e, targetHash) => {
+    if (targetHash === '#all-projects') {
+      e.preventDefault();
+      if (onNavigateToAllProjects) onNavigateToAllProjects();
+    } else {
+      if (currentView === 'all-projects') {
+        e.preventDefault();
+        if (onNavigateToHome) onNavigateToHome(targetHash);
+      }
+    }
   };
 
   return (
@@ -11,7 +23,15 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <a href="#hero" className="nav-brand" style={{ marginBottom: '8px' }}>
+            <a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigateToHome) onNavigateToHome('#hero');
+              }}
+              className="nav-brand"
+              style={{ marginBottom: '8px' }}
+            >
               <div className="brand-badge">D</div>
               <div className="brand-text">
                 <span className="brand-name">{personalInfo.name}</span>
@@ -65,15 +85,11 @@ export default function Footer() {
           </div>
 
           <div className="footer-nav">
-            <a href="#hero" className="footer-nav-link">About</a>
-            <a href="#flagship" className="footer-nav-link">Flagship</a>
-            <a href="#projects" className="footer-nav-link">Projects ({projectsData.length})</a>
-            <a href="#strategy" className="footer-nav-link">Strategy</a>
-            <a href="#playground" className="footer-nav-link">Simulator</a>
-            <a href="#experience" className="footer-nav-link">Experience</a>
-            <a href="#skills" className="footer-nav-link">Skills</a>
-            <a href="#services" className="footer-nav-link">Services</a>
-            <a href="#contact" className="footer-nav-link">Contact</a>
+            <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="footer-nav-link">About</a>
+            <a href="#experience" onClick={(e) => handleLinkClick(e, '#experience')} className="footer-nav-link">Experience</a>
+            <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="footer-nav-link">Projects</a>
+            <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="footer-nav-link">Skills</a>
+            <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="footer-nav-link">Contact</a>
           </div>
         </div>
 
