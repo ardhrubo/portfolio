@@ -1,6 +1,7 @@
 export const personalInfo = {
   name: "Dhrubo",
   fullName: "A. R. Dhrubo",
+  avatar: "/dhrubo-profile.jpg",
   role: "Full-Stack Software Engineer & Scientific Computing Researcher",
   tagline: "Architecting high-performance full-stack web platforms and scientific computing simulations (Monte Carlo & quantum DFT modeling).",
   bio: "Full-stack software engineer and computational researcher with 50+ shipped projects. I build fast React/Next.js web applications, resilient backend architectures, and high-performance scientific simulations.",
@@ -542,67 +543,189 @@ export const skillsData = [
 
 export const experienceData = [
   {
-    role: "Software Engineer",
-    company: "DataAutomators",
-    period: "Dec 2024 – Present",
-    type: "Full-Stack & Automation",
-    location: "Remote",
-    icon: "fa-solid fa-laptop-code",
-    color: "#10b981",
-    description: "Core engineer powering the ScrapeAutomate platform and high-concurrency crawling infrastructure.",
-    achievements: [
-      "Architected enterprise scraping pipelines with Puppeteer extracting 1M+ records monthly.",
-      "Engineered anti-detection heuristics and rotating proxy pools achieving 99.9% crawl success rate.",
-      "Built resilient backend microservices and async job queues for real-time customer data feeds."
-    ],
-    tech: ["Node.js", "Puppeteer", "React", "REST APIs", "Docker", "Microservices"]
-  },
-  {
     role: "Academic Researcher",
-    company: "Jagannath University",
-    period: "Mar 2024 – Present",
-    type: "Research & Computation",
+    company: "Jagannath University, Dhaka",
+    period: "Mar 2026 – Present",
+    duration: "8 mos",
+    type: "Scientific Computing & Research",
+    category: "research",
     location: "Dhaka, Bangladesh",
-    icon: "fa-solid fa-graduation-cap",
+    icon: "fa-solid fa-atom",
     color: "#059669",
-    description: "Leading computational modeling for environmental risk analysis and quantum molecular simulations.",
+    description: "Developing computational models and stochastic simulations for Probabilistic Health Risk Assessment (HRA) and molecular systems.",
     achievements: [
-      "Developed Python Monte Carlo simulations (100k+ iterations) for Probabilistic Health Risk Assessments.",
-      "Conducted Density Functional Theory (DFT) calculations with ORCA and Gaussian on Ubuntu Linux HPC clusters.",
-      "Published empirical research advancing environmental modeling beyond single-point deterministic estimates."
+      "Developing Python-based Monte Carlo simulations (100k+ iterations) for Probabilistic Health Risk Assessment (HRA).",
+      "Utilizing ORCA and Gaussian on Linux (Ubuntu) HPC environments to perform DFT calculations for molecular modeling.",
+      "Quantifying uncertainty in environmental contaminants to move beyond single-point deterministic risk estimates."
     ],
-    tech: ["Python", "Monte Carlo", "ORCA", "Gaussian", "Linux (Ubuntu)", "Data Analysis"]
+    tech: ["Python", "Monte Carlo", "ORCA", "Gaussian", "Linux (Ubuntu)", "NumPy/SciPy", "DFT"]
   },
   {
-    role: "Freelance Full-Stack Developer",
-    company: "Self-Employed",
-    period: "Mar 2023 – Present",
-    type: "Contract / Global",
-    location: "Worldwide Remote",
-    icon: "fa-solid fa-briefcase",
-    color: "#16a34a",
-    description: "Delivering end-to-end web apps, custom APIs, and tailored automation tools for international clients.",
-    achievements: [
-      "Delivered 50+ digital products spanning client portals, e-commerce stores, and Chrome extensions across AU, US, and BD.",
-      "Engineered high-converting client applications including Horizon Tax Solution (AU) and campus food ordering platforms.",
-      "Maintained 100% on-time delivery with ongoing maintenance, SEO optimization, and infrastructure tuning."
-    ],
-    tech: ["React", "Next.js", "Node.js", "Express", "Docker", "Tailored CSS", "Swagger"]
-  },
-  {
-    role: "Researcher",
-    company: "CRILab",
-    period: "Mar 2024 – Nov 2024",
-    type: "Scientific Tech",
+    role: "Software Associate",
+    company: "Constant Research and Innovation Lab (CRILab)",
+    period: "Mar 2024 – Present",
+    duration: "2 yrs 8 mos",
+    type: "Scientific Software & Lab",
+    category: "research",
     location: "Dhaka, Bangladesh",
     icon: "fa-solid fa-flask-vial",
     color: "#0d9488",
-    description: "Built computational data pipelines and automated analytical tools for interdisciplinary researchers.",
+    description: "Architecting scientific data aggregation pipelines, computational chemistry utilities, and lab workflow tooling.",
     achievements: [
-      "Automated scientific data aggregation and sanitization from heterogeneous laboratory datasets.",
-      "Developed reusable Python software utilities for accelerated chemical research workflows."
+      "Automated scientific data aggregation and sanitization across heterogeneous laboratory experimental datasets.",
+      "Developed reusable Python software libraries and analysis modules for accelerated chemistry research workflows.",
+      "Collaborated with interdisciplinary researchers to turn lab raw data into structured computational models."
     ],
-    tech: ["Python", "Data Aggregation", "Computational Chemistry", "Git", "Scientific Computing"]
+    tech: ["Python", "Data Aggregation", "Computational Chemistry", "Linux", "Git"]
+  },
+  {
+    role: "Back End Developer",
+    company: "Upwork",
+    period: "Oct 2024 – Present",
+    duration: "2 yrs 1 mo",
+    type: "Contract / Global Freelance",
+    category: "engineering",
+    location: "Worldwide Remote",
+    icon: "fa-solid fa-briefcase",
+    color: "#10b981",
+    description: "Delivering production-grade backend microservices, high-scale scrapers, and database architectures for global clients.",
+    achievements: [
+      "Architected scalable Node.js and Python backend services integrated with PostgreSQL and Supabase.",
+      "Built resilient Puppeteer web scraping pipelines and headless automation clusters with proxy rotation.",
+      "Achieved 100% on-time delivery with end-to-end API documentation, testing, and cloud deployments."
+    ],
+    tech: ["Node.js", "Python", "PostgreSQL", "Supabase", "Docker", "REST APIs", "Puppeteer"]
+  },
+  {
+    role: "Software Engineer",
+    company: "DataAutomators",
+    period: "Dec 2024 – Jun 2025",
+    duration: "7 mos",
+    type: "Full-Stack & Automation",
+    category: "engineering",
+    location: "Dhaka, Bangladesh",
+    icon: "fa-solid fa-laptop-code",
+    color: "#047857",
+    description: "Played full-stack role developing features, fixing issues, and documenting high-concurrency systems for ScrapeAutomate.",
+    achievements: [
+      "Mostly worked on ScrapeAutomate as a full-stack engineer developing core features and fixing system bottlenecks.",
+      "Responsible for developing scalable crawling features, comprehensive technical documentation, and stability patches.",
+      "Collaborated with a fast-paced, high-performance team delivering high-throughput data extraction services."
+    ],
+    tech: ["React", "Node.js", "Puppeteer", "Docker", "REST APIs", "Microservices"]
+  },
+  {
+    role: "Back End Developer",
+    company: "PeoplePerHour",
+    period: "Mar 2024 – Apr 2025",
+    duration: "1 yr 2 mos",
+    type: "Contract / Backend",
+    category: "engineering",
+    location: "Worldwide Remote",
+    icon: "fa-solid fa-server",
+    color: "#0284c7",
+    description: "Engineered custom server-side automation workflows, webhooks, and REST APIs for international business clients.",
+    achievements: [
+      "Developed modular REST APIs and webhook integrations connecting third-party platforms with client databases.",
+      "Automated scheduled data synchronization and task execution, minimizing manual operational overhead.",
+      "Delivered maintainable backend code with clean architecture, error logging, and post-deployment support."
+    ],
+    tech: ["Node.js", "Express", "REST APIs", "PostgreSQL", "Webhooks", "Automation"]
+  },
+  {
+    role: "Writer (Technical & Chemistry)",
+    company: "Students Bee",
+    period: "Jan 2023 – Jul 2023",
+    duration: "7 mos",
+    type: "Science Communication",
+    category: "education",
+    location: "Dhaka, Bangladesh",
+    icon: "fa-solid fa-pen-nib",
+    color: "#6366f1",
+    description: "Authored in-depth chemistry learning content, conceptual guides, and scientific problem-solving articles.",
+    achievements: [
+      "Authored accessible educational content covering core chemistry topics in both English and Bangla.",
+      "Created step-by-step problem-solving walkthroughs to clarify difficult scientific concepts.",
+      "Fostered deep student engagement with clear visual analogies and structured study notes."
+    ],
+    tech: ["Chemistry Education", "Technical Writing", "Science Communication", "Curriculum"]
+  },
+  {
+    role: "Teacher (Chemistry & Science)",
+    company: "Future Point Academy",
+    period: "Apr 2022 – Dec 2022",
+    duration: "9 mos",
+    type: "Education & Mentorship",
+    category: "education",
+    location: "Dhaka, Bangladesh",
+    icon: "fa-solid fa-chalkboard-user",
+    color: "#8b5cf6",
+    description: "Instructed higher secondary science students in organic, inorganic, and physical chemistry foundations.",
+    achievements: [
+      "Delivered structured chemistry lectures covering reaction mechanisms, atomic models, and thermodynamics.",
+      "Mentored students in analytical problem-solving and systematic scientific methodologies.",
+      "Prepared students for national examinations through interactive quizzes and personalized feedback."
+    ],
+    tech: ["Chemistry Teaching", "Analytical Thinking", "Mentorship", "Pedagogy"]
+  }
+];
+
+export const educationData = [
+  {
+    degree: "Bachelor of Science (BS) in Chemistry",
+    institution: "Jagannath University, Dhaka",
+    period: "Mar 2022 – Jul 2027",
+    status: "In Progress",
+    location: "Dhaka, Bangladesh",
+    icon: "fa-solid fa-graduation-cap",
+    color: "#059669",
+    description: "Concentrating on physical chemistry, computational modeling, and environmental risk assessment.",
+    highlights: [
+      "Academic Researcher developing Monte Carlo simulations and DFT calculations with ORCA/Gaussian",
+      "Software Associate at Constant Research and Innovation Lab (CRILab)",
+      "Prospective PhD Researcher in computational chemistry and cheminformatics"
+    ]
+  },
+  {
+    degree: "Higher Secondary Certificate (HSC) in Science",
+    institution: "Birshreshtha Munshi Abdur Rouf Public College (BMRPC)",
+    period: "Jul 2018 – Jan 2021",
+    status: "Completed",
+    location: "Dhaka, Bangladesh",
+    icon: "fa-solid fa-school",
+    color: "#0d9488",
+    description: "Rigorous scientific foundation covering chemistry, physics, mathematics, and biology.",
+    highlights: [
+      "Extensive laboratory coursework and analytical problem-solving training",
+      "Active participant in science seminars and Olympiad competitions"
+    ]
+  }
+];
+
+export const certificationsData = [
+  {
+    title: "DevOps Hackathon",
+    issuer: "Brain Station 23",
+    badge: "Hackathon Participant",
+    icon: "fa-solid fa-trophy",
+    color: "#10b981",
+    description: "Hands-on hackathon focused on containerization, CI/CD automated deployment pipelines, and cloud resilience."
+  },
+  {
+    title: "AI Literacy Workshop",
+    issuer: "AI Training & Literacy Initiative",
+    badge: "Certified",
+    icon: "fa-solid fa-brain",
+    color: "#6366f1",
+    description: "Comprehensive workshop covering modern LLM fundamentals, prompt engineering protocols, and intelligent workflows."
+  },
+  {
+    title: "ACS Member (American Chemical Society)",
+    issuer: "American Chemical Society",
+    badge: "Student & Associate Member",
+    icon: "fa-solid fa-award",
+    color: "#0284c7",
+    description: "Affiliated member engaged with global chemical sciences community, publications, and computational chemistry advancements."
   }
 ];
 

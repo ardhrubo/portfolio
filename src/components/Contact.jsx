@@ -78,8 +78,17 @@ export default function Contact({ onShowToast }) {
           {/* Left Column: Direct Info Cards */}
           <div className="contact-info-col">
             <div className="contact-card-box">
-              <h3 style={{ fontSize: '1.25rem' }}>Direct Reachout</h3>
-              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>
+              <div className="contact-author-header">
+                <div className="contact-author-photo-wrapper">
+                  <img src={personalInfo.avatar || "/dhrubo-profile.jpg"} alt={personalInfo.name} className="contact-author-photo" />
+                  <span className="contact-author-status" title="Available"></span>
+                </div>
+                <div>
+                  <h3 className="contact-author-name">{personalInfo.name}</h3>
+                  <span className="contact-author-title">Full-Stack Engineer & Researcher</span>
+                </div>
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginTop: '14px' }}>
                 Feel free to email me directly or connect on LinkedIn. I am based in Dhaka, Bangladesh (GMT+6) and work with international teams worldwide.
               </p>
 

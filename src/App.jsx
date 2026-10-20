@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ProjectDrawer from './components/ProjectDrawer';
 import CommandPalette from './components/CommandPalette';
 import Toast from './components/Toast';
+import AiChatModal from './components/AiChatModal';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -23,6 +24,7 @@ export default function App() {
   });
   const [selectedProject, setSelectedProject] = useState(null);
   const [isCmdOpen, setIsCmdOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
   useEffect(() => {
@@ -84,6 +86,7 @@ export default function App() {
         currentView={currentView}
         onToggleTheme={toggleTheme}
         onOpenCmd={() => setIsCmdOpen(true)}
+        onOpenChat={() => setIsChatOpen(true)}
         onNavigateToAllProjects={navigateToAllProjects}
         onNavigateToHome={navigateToHome}
       />
@@ -151,6 +154,28 @@ export default function App() {
         message={toastMessage}
         onClose={() => setToastMessage(null)}
       />
+
+      {/* Interactive AI Assistant Modal */}
+      <AiChatModal
+        isOpen={isChatOpen}
+        onClose={setIsChatOpen}
+        onSelectProject={(p) => setSelectedProject(p)}
+      />
+
+      {/* Floating Chat with Dhrubo Launcher */}
+      <button
+        onClick={() => setIsChatOpen(prev => !prev)}
+        className="floating-ai-launcher"
+        title="Chat with Dhrubo (⌘J / Ctrl+J)"
+        aria-label="Chat with Dhrubo"
+      >
+        <div className="floating-ai-avatar-box">
+          <img src="/dhrubo-profile.jpg" alt="Dhrubo" className="floating-ai-avatar-img" />
+          <span className="floating-ai-online-dot"></span>
+        </div>
+        <span className="floating-ai-text">Chat with Dhrubo</span>
+        <span className="floating-ai-ping"></span>
+      </button>
     </div>
   );
 }

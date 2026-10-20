@@ -33,14 +33,16 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
         <div className="bento-grid">
           {/* Main Profile & Bio Card (Spans 2 cols, 2 rows on desktop) */}
           <div className="bento-card bento-card-main">
-            <div className="bento-status-pill">
-              <span className="pulse-dot"></span>
-              <span>{personalInfo.status}</span>
-            </div>
-
             <div className="bento-hero-header">
               <div className="bento-avatar-wrapper">
-                <Logo size={52} />
+                <div className="bento-photo-frame">
+                  <img
+                    src={personalInfo.avatar || "/dhrubo-profile.jpg"}
+                    alt={personalInfo.name}
+                    className="bento-photo-img"
+                  />
+                  <span className="bento-photo-status" title="Active & Available"></span>
+                </div>
               </div>
               <div className="bento-title-group">
                 <h1 className="bento-hero-title">
@@ -143,19 +145,28 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             </div>
           </div>
 
-          {/* Location & Timezone Card */}
+          {/* Global Collaboration & Remote Card */}
           <div className="bento-card bento-card-location">
             <div className="bento-card-header-icon">
               <i className="fa-solid fa-location-dot"></i>
-              <span className="bento-card-tag">Dhaka, Bangladesh</span>
+              <span className="bento-card-tag">Dhaka, Bangladesh &bull; GMT+6</span>
             </div>
-            <div className="bento-time-display">
-              <span className="bento-time-clock">{localTime || 'GMT+6'}</span>
-              <span className="bento-time-label">Local Time (GMT+6)</span>
+            <div className="bento-remote-display">
+              <div className="bento-remote-heading">
+                <i className="fa-solid fa-earth-americas"></i>
+                <span>Worldwide Remote</span>
+              </div>
+              <p className="bento-remote-desc">
+                High-bandwidth collaboration across US, European, and APAC timezones.
+              </p>
             </div>
-            <div className="bento-remote-badge">
-              <i className="fa-solid fa-globe"></i>
-              <span>Available for Worldwide Remote</span>
+            <div className="bento-collab-pills">
+              <span className="bento-collab-pill">
+                <i className="fa-solid fa-bolt"></i> Async & Live
+              </span>
+              <span className="bento-collab-pill open">
+                <span className="collab-pulse"></span> Open for Roles
+              </span>
             </div>
           </div>
 

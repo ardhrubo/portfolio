@@ -7,6 +7,7 @@ export default function Navbar({
   currentView,
   onToggleTheme,
   onOpenCmd,
+  onOpenChat,
   onNavigateToAllProjects,
   onNavigateToHome
 }) {
@@ -79,7 +80,7 @@ export default function Navbar({
           {/* Brand Header */}
           <a href="#hero" onClick={handleBrandClick} className="left-brand-link">
             <div className="left-brand-avatar">
-              <Logo size={38} />
+              <img src={personalInfo.avatar || "/dhrubo-profile.jpg"} alt={personalInfo.name} className="left-brand-photo" />
               <span className="left-avatar-status" title="Available for hire"></span>
             </div>
             <div className="left-brand-meta">
@@ -166,6 +167,19 @@ export default function Navbar({
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <span>Quick Search</span>
                 <kbd>⌘K</kbd>
+              </button>
+
+              <button
+                onClick={onOpenChat}
+                className="right-tool-btn right-tool-ai-btn"
+                title="Chat with Dhrubo (⌘J / Ctrl+J)"
+                aria-label="Chat with Dhrubo"
+              >
+                <div className="right-tool-avatar-mini">
+                  <img src={personalInfo.avatar || "/dhrubo-profile.jpg"} alt="Dhrubo" className="right-tool-avatar-img" />
+                </div>
+                <span>Chat with Me</span>
+                <span className="right-dock-kbd">⌘J</span>
               </button>
 
               <button
@@ -256,7 +270,7 @@ export default function Navbar({
       <header className="mobile-top-bar" aria-label="Mobile Top Header">
         <div className="mobile-top-left">
           <a href="#hero" onClick={handleBrandClick} className="mobile-top-brand">
-            <Logo size={32} />
+            <img src={personalInfo.avatar || "/dhrubo-profile.jpg"} alt={personalInfo.name} className="mobile-top-avatar" />
             <span className="mobile-top-name">{personalInfo.name}</span>
           </a>
         </div>
