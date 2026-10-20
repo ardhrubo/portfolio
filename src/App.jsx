@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Stats from './components/Stats';
+import HeroBento from './components/HeroBento';
+import ProjectsShowcase from './components/ProjectsShowcase';
 import Strategy from './components/Strategy';
 import AutomationPlayground from './components/AutomationPlayground';
-import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ProjectModal from './components/ProjectModal';
+import ProjectDrawer from './components/ProjectDrawer';
+import CommandPalette from './components/CommandPalette';
 import Toast from './components/Toast';
 
 export default function App() {
-  // Default is 'light' (The requested Greenish-White aesthetic)
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('portfolio-theme') || 'light';
   });
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isCmdOpen, setIsCmdOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
   useEffect(() => {
@@ -45,32 +45,53 @@ export default function App() {
         <div className="ambient-grid"></div>
       </div>
 
-      {/* Main Navigation with Theme Switcher */}
-      <Navbar currentTheme={theme} onToggleTheme={toggleTheme} />
+      {/* Floating Island Navigation */}
+      <Navbar
+        currentTheme={theme}
+        onToggleTheme={toggleTheme}
+        onOpenCmd={() => setIsCmdOpen(true)}
+      />
 
       {/* Main Content Sections */}
       <main>
-        <Hero onCopyEmail={handleShowToast} />
-        <Stats />
+        <HeroBento
+          onCopyEmail={handleShowToast}
+          onOpenCmd={() => setIsCmdOpen(true)}
+        />
+        <ProjectsShowcase
+          onSelectProject={(project) => setSelectedProject(project)}
+        />
         <Strategy />
-        <AutomationPlayground onShowToast={handleShowToast} />
-        <Projects onSelectProject={(project) => setSelectedProject(project)} />
+        <AutomationPlayground
+          onShowToast={handleShowToast}
+        />
         <Experience />
         <Skills />
         <Services />
-        <Contact onShowToast={handleShowToast} />
+        <Contact
+          onShowToast={handleShowToast}
+        />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Project Deep-Dive Modal */}
+      {/* Slide-Over Project Inspector Drawer */}
       {selectedProject && (
-        <ProjectModal
+        <ProjectDrawer
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
+          onSelectProject={(p) => setSelectedProject(p)}
         />
       )}
+
+      {/* Quick Search & Command Palette */}
+      <CommandPalette
+        isOpen={isCmdOpen}
+        onClose={setIsCmdOpen}
+        onSelectProject={(p) => setSelectedProject(p)}
+        onShowToast={handleShowToast}
+      />
 
       {/* Toast Feedback */}
       <Toast

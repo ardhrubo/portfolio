@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Navbar({ currentTheme, onToggleTheme }) {
+export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -10,7 +10,7 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = ['hero', 'strategy', 'playground', 'projects', 'experience', 'skills', 'services', 'contact'];
+      const sections = ['hero', 'flagship', 'projects', 'strategy', 'playground', 'experience', 'skills', 'contact'];
       const scrollPos = window.scrollY + 140;
 
       for (const section of sections) {
@@ -32,12 +32,11 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
 
   const navLinks = [
     { name: 'About', href: '#hero', id: 'hero' },
+    { name: 'Flagship', href: '#flagship', id: 'flagship' },
+    { name: 'Projects (20)', href: '#projects', id: 'projects' },
     { name: 'Strategy', href: '#strategy', id: 'strategy' },
     { name: 'Simulator', href: '#playground', id: 'playground' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'Experience', href: '#experience', id: 'experience' },
-    { name: 'Skills', href: '#skills', id: 'skills' },
-    { name: 'Services', href: '#services', id: 'services' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
@@ -49,6 +48,7 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
     <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <nav className="navbar-container">
+          {/* Brand */}
           <a href="#hero" className="nav-brand">
             <div className="brand-badge">D</div>
             <div className="brand-text">
@@ -71,8 +71,19 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
             ))}
           </ul>
 
-          {/* CTA & Theme Switcher */}
+          {/* Actions: Command Palette, Theme, Hire CTA */}
           <div className="nav-actions">
+            {/* Quick Command Trigger */}
+            <button
+              onClick={onOpenCmd}
+              className="nav-cmd-btn"
+              title="Quick Search & Commands (⌘K)"
+              aria-label="Open command palette"
+            >
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <span className="cmd-key-hint">⌘K</span>
+            </button>
+
             {/* Theme Toggle Button */}
             <button
               onClick={onToggleTheme}
@@ -101,6 +112,17 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
 
       {/* Mobile Drawer */}
       <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+          <button
+            onClick={() => { setMobileMenuOpen(false); onOpenCmd(); }}
+            className="btn-secondary"
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            <i className="fa-solid fa-magnifying-glass"></i>
+            <span>Search Projects (⌘K)</span>
+          </button>
+        </div>
+
         {navLinks.map((link) => (
           <a
             key={link.id}
@@ -111,6 +133,7 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
             {link.name}
           </a>
         ))}
+
         <div style={{ display: 'flex', gap: '12px', marginTop: '14px' }}>
           <button
             onClick={onToggleTheme}
@@ -121,6 +144,7 @@ export default function Navbar({ currentTheme, onToggleTheme }) {
             <span>{currentTheme === 'light' ? 'Dark Forest Mode' : 'Greenish White Mode'}</span>
           </button>
         </div>
+
         <a
           href="#contact"
           onClick={handleLinkClick}
