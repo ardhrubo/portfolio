@@ -1,5 +1,6 @@
 import React from 'react';
 import { personalInfo } from '../data/portfolioData';
+import Logo from './Logo';
 
 export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToHome }) {
   const scrollToTop = () => {
@@ -32,7 +33,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
               className="nav-brand"
               style={{ marginBottom: '8px' }}
             >
-              <div className="brand-badge">D</div>
+              <Logo size={36} />
               <div className="brand-text">
                 <span className="brand-name">{personalInfo.name}</span>
                 <span className="brand-role">Software Engineer</span>
@@ -72,6 +73,26 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 aria-label="Peerlist Profile"
               >
                 <i className="fa-solid fa-p"></i>
+              </a>
+              <a
+                href={personalInfo.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-btn"
+                title="Backbencher Chemist Facebook Channel"
+                aria-label="Backbencher Chemist Facebook Channel"
+              >
+                <i className="fa-brands fa-facebook"></i>
+              </a>
+              <a
+                href={personalInfo.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-btn"
+                title="YouTube Channel (@randomdhrubo)"
+                aria-label="YouTube Channel"
+              >
+                <i className="fa-brands fa-youtube"></i>
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}

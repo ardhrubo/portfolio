@@ -1,9 +1,9 @@
 export const personalInfo = {
   name: "Dhrubo",
   fullName: "A. R. Dhrubo",
-  role: "Full-Stack Software Engineer & Web Automation Specialist",
-  tagline: "Engineering scalable web platforms, distributed automation systems, and high-performance user experiences.",
-  bio: "Full-stack engineer and automation specialist with 50+ shipped projects. I build fast React/Next.js web applications, high-throughput Puppeteer scrapers, and resilient backend systems.",
+  role: "Full-Stack Software Engineer & Scientific Computing Researcher",
+  tagline: "Architecting high-performance full-stack web platforms and scientific computing simulations (Monte Carlo & quantum DFT modeling).",
+  bio: "Full-stack software engineer and computational researcher with 50+ shipped projects. I build fast React/Next.js web applications, resilient backend architectures, and high-performance scientific simulations.",
   location: "Dhaka, Bangladesh",
   timezone: "GMT+6 (Worldwide Remote)",
   status: "Available for Full-time Roles & Contracts",
@@ -12,13 +12,15 @@ export const personalInfo = {
   socials: {
     github: "https://github.com/ardhrubo",
     linkedin: "https://www.linkedin.com/in/ardhrubo/",
-    peerlist: "https://peerlist.io/ardhrubo"
+    peerlist: "https://peerlist.io/ardhrubo",
+    facebook: "https://www.facebook.com/backbencherchemist",
+    youtube: "https://www.youtube.com/@randomdhrubo"
   },
   stats: [
-    { label: "Shipped Projects", value: "50+", icon: "fa-solid fa-rocket", desc: "Across web, bots & APIs" },
-    { label: "Years Experience", value: "3+", icon: "fa-solid fa-code-commit", desc: "Full-stack & research" },
-    { label: "Client Satisfaction", value: "100%", icon: "fa-solid fa-star", desc: "Global clientele" },
-    { label: "Automation Tasks", value: "1M+", icon: "fa-solid fa-bolt", desc: "Records scraped & processed" }
+    { label: "Shipped Projects", value: "50+", icon: "fa-solid fa-rocket", desc: "Full-stack web & tools" },
+    { label: "Years Experience", value: "3+", icon: "fa-solid fa-code-commit", desc: "Full-stack & scientific research" },
+    { label: "Simulation Runs", value: "100k+", icon: "fa-solid fa-chart-line", desc: "Monte Carlo stochastic models" },
+    { label: "Client Satisfaction", value: "100%", icon: "fa-solid fa-star", desc: "Global clients & research" }
   ]
 };
 

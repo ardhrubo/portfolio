@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData';
+import Logo from './Logo';
 
 export default function Navbar({
   currentTheme,
@@ -9,23 +10,31 @@ export default function Navbar({
   onNavigateToAllProjects,
   onNavigateToHome
 }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [localTime, setLocalTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      setLocalTime(new Intl.DateTimeFormat('en-US', options).format(now));
+    };
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (currentView === 'all-projects') {
-      setActiveSection('all-projects');
+      setActiveSection('projects');
       return;
     }
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-
-      const scrollPos = window.scrollY + 180;
+      const scrollPos = window.scrollY + 220;
       const sections = ['contact', 'skills', 'projects', 'experience'];
 
-      let found = '';
+      let found = 'hero';
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el && scrollPos >= el.offsetTop) {
@@ -37,19 +46,18 @@ export default function Navbar({
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentView]);
 
-  const navLinks = [
-    { name: 'Experience', href: '#experience', id: 'experience' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
-    { name: 'Skills', href: '#skills', id: 'skills' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+  const navItems = [
+    { id: 'experience', name: 'Experience', href: '#experience', icon: 'fa-solid fa-briefcase', badge: 'Career' },
+    { id: 'projects', name: 'Projects', href: '#projects', icon: 'fa-solid fa-layer-group', badge: '16 Works' },
+    { id: 'skills', name: 'Skills', href: '#skills', icon: 'fa-solid fa-bolt', badge: 'Stack' },
+    { id: 'contact', name: 'Contact', href: '#contact', icon: 'fa-solid fa-paper-plane', badge: 'Hire' },
   ];
 
   const handleNavClick = (e, link) => {
-    setMobileMenuOpen(false);
-
     if (currentView === 'all-projects') {
       e.preventDefault();
       onNavigateToHome(link.href);
@@ -58,61 +66,101 @@ export default function Navbar({
 
   const handleBrandClick = (e) => {
     e.preventDefault();
-    setMobileMenuOpen(false);
     onNavigateToHome('#hero');
   };
 
   return (
-    <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container">
-        <nav className="navbar-container">
-          {/* Brand */}
-          <a href="#hero" onClick={handleBrandClick} className="nav-brand">
-            <div className="brand-badge">D</div>
-            <div className="brand-text">
-              <span className="brand-name">{personalInfo.name}</span>
-              <span className="brand-role">Software Engineer</span>
+    <>
+      {/* ===================================================================
+          1. Desktop Left Rail: Core Navigation Dock
+          =================================================================== */}
+      <aside className="desktop-left-nav" aria-label="Desktop Left Navigation">
+        <div className="left-nav-card">
+          {/* Brand Header */}
+          <a href="#hero" onClick={handleBrandClick} className="left-brand-link">
+            <div className="left-brand-avatar">
+              <Logo size={38} />
+              <span className="left-avatar-status" title="Available for hire"></span>
+            </div>
+            <div className="left-brand-meta">
+              <span className="left-brand-name">{personalInfo.name}</span>
+              <span className="left-brand-role">Full-Stack & Research</span>
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <ul className="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.id}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link)}
-                  className={`nav-link ${(currentView === 'all-projects' ? link.id === 'projects' : activeSection === link.id) ? 'active' : ''}`}
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {/* Nav List */}
+          <div className="left-nav-group">
+            <span className="left-nav-section-label">Navigation</span>
+            <ul className="left-nav-links">
+              {navItems.map((item) => {
+                const isActive = currentView === 'all-projects' ? item.id === 'projects' : activeSection === item.id;
+                return (
+                  <li key={item.id}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item)}
+                      className={`left-nav-link ${isActive ? 'active' : ''}`}
+                    >
+                      <div className="left-nav-icon">
+                        <i className={item.icon}></i>
+                      </div>
+                      <span className="left-nav-title">{item.name}</span>
+                      {item.badge && <span className="left-nav-badge">{item.badge}</span>}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </aside>
 
-          {/* Actions: Command Palette, Theme, Hire CTA */}
-          <div className="nav-actions">
-            {/* Quick Command Trigger */}
-            <button
-              onClick={onOpenCmd}
-              className="nav-cmd-btn"
-              title="Quick Search & Commands (⌘K)"
-              aria-label="Open command palette"
-            >
-              <i className="fa-solid fa-magnifying-glass"></i>
-              <span className="cmd-key-hint">⌘K</span>
-            </button>
+      {/* ===================================================================
+          2. Desktop Right Rail: Actions, Tools, & Contact Dock
+          =================================================================== */}
+      <aside className="desktop-right-dock" aria-label="Desktop Right Utilities">
+        <div className="right-dock-card">
+          {/* Status & Local Time */}
+          <div className="right-dock-header">
+            <div className="right-status-badge">
+              <span className="right-status-ping"></span>
+              <span>Available for Hire</span>
+            </div>
+            <div className="right-clock-box">
+              <span className="right-clock-time">{localTime || 'GMT+6'}</span>
+              <span className="right-clock-label">Dhaka (GMT+6)</span>
+            </div>
+          </div>
 
-            {/* Theme Toggle Button */}
-            <button
-              onClick={onToggleTheme}
-              className="theme-toggle-btn"
-              title={`Switch to ${currentTheme === 'light' ? 'Dark mode' : 'Light mode'}`}
-              aria-label="Toggle theme"
-            >
-              <i className={`fa-solid ${currentTheme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
-            </button>
+          {/* Quick Tools */}
+          <div className="right-dock-group">
+            <span className="right-dock-label">Quick Tools</span>
+            <div className="right-tools-col">
+              <button
+                onClick={onOpenCmd}
+                className="right-tool-btn"
+                title="Quick Search (⌘K)"
+                aria-label="Open Command Search"
+              >
+                <i className="fa-solid fa-magnifying-glass"></i>
+                <span>Quick Search</span>
+                <kbd>⌘K</kbd>
+              </button>
 
+              <button
+                onClick={onToggleTheme}
+                className="right-tool-btn"
+                title={`Switch to ${currentTheme === 'light' ? 'Dark' : 'Light'} Mode`}
+                aria-label="Toggle Theme"
+              >
+                <i className={`fa-solid ${currentTheme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
+                <span>{currentTheme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Contact & Socials */}
+          <div className="right-dock-footer">
             <a
               href="#contact"
               onClick={(e) => {
@@ -121,59 +169,154 @@ export default function Navbar({
                   onNavigateToHome('#contact');
                 }
               }}
-              className="btn-hire"
+              className="right-btn-hire"
             >
               <span>Let's Talk</span>
               <i className="fa-solid fa-arrow-right"></i>
             </a>
 
-            {/* Mobile Hamburger Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="mobile-toggle-btn"
-              aria-label="Toggle menu"
-            >
-              <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
-            </button>
+            <div className="right-socials-row">
+              <a
+                href={personalInfo.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="right-social-link"
+                title="GitHub"
+                aria-label="GitHub Profile"
+              >
+                <i className="fa-brands fa-github"></i>
+              </a>
+              <a
+                href={personalInfo.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="right-social-link"
+                title="LinkedIn"
+                aria-label="LinkedIn Profile"
+              >
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+              <a
+                href={personalInfo.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="right-social-link"
+                title="Backbencher Chemist (Facebook)"
+                aria-label="Backbencher Chemist Facebook"
+              >
+                <i className="fa-brands fa-facebook"></i>
+              </a>
+              <a
+                href={personalInfo.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="right-social-link"
+                title="YouTube Channel (@randomdhrubo)"
+                aria-label="YouTube Channel"
+              >
+                <i className="fa-brands fa-youtube"></i>
+              </a>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="right-social-link"
+                title="Email"
+                aria-label="Send Email"
+              >
+                <i className="fa-solid fa-envelope"></i>
+              </a>
+            </div>
           </div>
-        </nav>
+        </div>
+      </aside>
 
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="mobile-menu">
-            <ul className="mobile-nav-links">
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link)}
-                    className={`mobile-nav-link ${(currentView === 'all-projects' ? link.id === 'projects' : activeSection === link.id) ? 'active' : ''}`}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-              <li style={{ marginTop: '12px' }}>
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    setMobileMenuOpen(false);
-                    if (currentView === 'all-projects') {
-                      e.preventDefault();
-                      onNavigateToHome('#contact');
-                    }
-                  }}
-                  className="btn-primary"
-                  style={{ width: '100%', justifyContent: 'center' }}
-                >
-                  <span>Let's Talk</span>
-                  <i className="fa-solid fa-arrow-right"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
-    </header>
+      {/* ===================================================================
+          3. Mobile Top Bar (< 1024px) - Features Experience & Projects on Top!
+          =================================================================== */}
+      <header className="mobile-top-bar" aria-label="Mobile Top Header">
+        <div className="mobile-top-left">
+          <a href="#hero" onClick={handleBrandClick} className="mobile-top-brand">
+            <Logo size={32} />
+            <span className="mobile-top-name">{personalInfo.name}</span>
+          </a>
+        </div>
+
+        {/* Navigation on Top: Experience & Contact */}
+        <div className="mobile-top-nav-pills">
+          <a
+            href="#experience"
+            onClick={(e) => handleNavClick(e, { href: '#experience' })}
+            className={`mobile-top-pill ${activeSection === 'experience' ? 'active' : ''}`}
+          >
+            <i className="fa-solid fa-briefcase"></i>
+            <span>Experience</span>
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, { href: '#contact' })}
+            className={`mobile-top-pill mobile-top-pill-cta ${activeSection === 'contact' ? 'active' : ''}`}
+          >
+            <i className="fa-solid fa-paper-plane"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+
+        {/* Actions: Search & Theme */}
+        <div className="mobile-top-actions">
+          <button
+            onClick={onOpenCmd}
+            className="mobile-top-icon-btn"
+            title="Search (⌘K)"
+            aria-label="Search"
+          >
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button
+            onClick={onToggleTheme}
+            className="mobile-top-icon-btn"
+            title="Toggle Theme"
+            aria-label="Toggle Theme"
+          >
+            <i className={`fa-solid ${currentTheme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
+          </button>
+        </div>
+      </header>
+
+      {/* ===================================================================
+          4. Mobile Bottom Bar (< 1024px) - Home, Projects, Skills
+          =================================================================== */}
+      <nav className="mobile-bottom-bar" aria-label="Mobile Bottom Tabs">
+        <div className="mobile-bottom-inner">
+          <a
+            href="#hero"
+            onClick={handleBrandClick}
+            className={`mobile-bottom-tab ${activeSection === 'hero' ? 'active' : ''}`}
+            aria-label="Home"
+          >
+            <i className="fa-solid fa-house"></i>
+            <span>Home</span>
+          </a>
+
+          <a
+            href="#projects"
+            onClick={(e) => handleNavClick(e, { href: '#projects' })}
+            className={`mobile-bottom-tab ${activeSection === 'projects' || currentView === 'all-projects' ? 'active' : ''}`}
+            aria-label="Projects"
+          >
+            <i className="fa-solid fa-layer-group"></i>
+            <span>Projects</span>
+          </a>
+
+          <a
+            href="#skills"
+            onClick={(e) => handleNavClick(e, { href: '#skills' })}
+            className={`mobile-bottom-tab ${activeSection === 'skills' ? 'active' : ''}`}
+            aria-label="Skills"
+          >
+            <i className="fa-solid fa-bolt"></i>
+            <span>Skills</span>
+          </a>
+        </div>
+      </nav>
+    </>
   );
 }

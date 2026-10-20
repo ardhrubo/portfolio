@@ -88,43 +88,45 @@ export default function App() {
         onNavigateToHome={navigateToHome}
       />
 
-      {/* Main Content Area */}
-      <main>
-        {currentView === 'all-projects' ? (
-          <AllProjectsView
-            onBackToHome={() => navigateToHome('#hero')}
-            onSelectProject={(project) => setSelectedProject(project)}
-          />
-        ) : (
-          <>
-            <HeroBento
-              onCopyEmail={handleShowToast}
-              onOpenCmd={() => setIsCmdOpen(true)}
-            />
-            <Experience />
-            <ProjectsShowcase
+      {/* Main Content Area (Side-by-side with Desktop Sidebar) */}
+      <div className="app-content-wrapper">
+        <main>
+          {currentView === 'all-projects' ? (
+            <AllProjectsView
+              onBackToHome={() => navigateToHome('#hero')}
               onSelectProject={(project) => setSelectedProject(project)}
-              onNavigateToAllProjects={navigateToAllProjects}
             />
-            <Skills />
-            <Strategy />
-            <AutomationPlayground
-              onShowToast={handleShowToast}
-            />
-            <Services />
-            <Contact
-              onShowToast={handleShowToast}
-            />
-          </>
-        )}
-      </main>
+          ) : (
+            <>
+              <HeroBento
+                onCopyEmail={handleShowToast}
+                onOpenCmd={() => setIsCmdOpen(true)}
+              />
+              <Experience />
+              <ProjectsShowcase
+                onSelectProject={(project) => setSelectedProject(project)}
+                onNavigateToAllProjects={navigateToAllProjects}
+              />
+              <Skills />
+              <Strategy />
+              <AutomationPlayground
+                onShowToast={handleShowToast}
+              />
+              <Services />
+              <Contact
+                onShowToast={handleShowToast}
+              />
+            </>
+          )}
+        </main>
 
-      {/* Footer */}
-      <Footer
-        currentView={currentView}
-        onNavigateToAllProjects={navigateToAllProjects}
-        onNavigateToHome={navigateToHome}
-      />
+        {/* Footer */}
+        <Footer
+          currentView={currentView}
+          onNavigateToAllProjects={navigateToAllProjects}
+          onNavigateToHome={navigateToHome}
+        />
+      </div>
 
       {/* Slide-Over Project Inspector Drawer */}
       {selectedProject && (

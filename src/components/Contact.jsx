@@ -175,6 +175,40 @@ export default function Contact({ onShowToast }) {
                     </div>
                     <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
                   </a>
+
+                  <a
+                    href={personalInfo.socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-card"
+                    title="Follow Backbencher Chemist Channel"
+                  >
+                    <div className="contact-social-card-icon facebook">
+                      <i className="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div className="contact-social-card-info">
+                      <span className="contact-social-card-name">Facebook Channel</span>
+                      <span className="contact-social-card-handle">@backbencherchemist</span>
+                    </div>
+                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                  </a>
+
+                  <a
+                    href={personalInfo.socials.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-card"
+                    title="Watch on YouTube"
+                  >
+                    <div className="contact-social-card-icon youtube">
+                      <i className="fa-brands fa-youtube"></i>
+                    </div>
+                    <div className="contact-social-card-info">
+                      <span className="contact-social-card-name">YouTube Channel</span>
+                      <span className="contact-social-card-handle">@randomdhrubo</span>
+                    </div>
+                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                  </a>
                 </div>
               </div>
             </div>

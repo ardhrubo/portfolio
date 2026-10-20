@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData';
+import Logo from './Logo';
 
 export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   const [copied, setCopied] = useState(false);
@@ -39,7 +40,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
 
             <div className="bento-hero-header">
               <div className="bento-avatar-wrapper">
-                <div className="bento-avatar">D</div>
+                <Logo size={52} />
               </div>
               <div className="bento-title-group">
                 <h1 className="bento-hero-title">
@@ -50,9 +51,9 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             </div>
 
             <p className="bento-hero-desc">
-              Full-Stack Engineer & Automation Specialist with{' '}
+              Full-Stack Software Engineer & Computational Researcher with{' '}
               <strong style={{ color: 'var(--accent-dark)' }}>50+ shipped projects</strong>.
-              I build fast React/Next.js web apps, distributed Puppeteer scraping pipelines, and resilient backend systems.
+              I engineer scalable React/Next.js web applications, resilient backend microservices, and high-performance scientific simulations.
             </p>
 
             <div className="bento-cta-row">
@@ -117,6 +118,28 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
                 <i className="fa-solid fa-p" style={{ color: '#00aa45' }}></i>
                 <span>Peerlist</span>
               </a>
+
+              <a
+                href={personalInfo.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bento-social-link"
+                title="Backbencher Chemist Facebook Channel"
+              >
+                <i className="fa-brands fa-facebook" style={{ color: '#1877f2' }}></i>
+                <span>Backbencher Chemist</span>
+              </a>
+
+              <a
+                href={personalInfo.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bento-social-link"
+                title="YouTube Channel (@randomdhrubo)"
+              >
+                <i className="fa-brands fa-youtube" style={{ color: '#ff0000' }}></i>
+                <span>YouTube</span>
+              </a>
             </div>
           </div>
 
@@ -157,12 +180,13 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             <div className="bento-tech-cloud">
               <span className="bento-tech-pill"><i className="fa-brands fa-react" style={{ color: '#059669' }}></i> React</span>
               <span className="bento-tech-pill"><i className="fa-solid fa-n" style={{ color: '#064e3b' }}></i> Next.js</span>
+              <span className="bento-tech-pill"><i className="fa-solid fa-code" style={{ color: '#2563eb' }}></i> TypeScript</span>
               <span className="bento-tech-pill"><i className="fa-brands fa-node" style={{ color: '#16a34a' }}></i> Node.js</span>
               <span className="bento-tech-pill"><i className="fa-brands fa-python" style={{ color: '#0d9488' }}></i> Python</span>
-              <span className="bento-tech-pill"><i className="fa-solid fa-spider" style={{ color: '#059669' }}></i> Puppeteer</span>
-              <span className="bento-tech-pill"><i className="fa-brands fa-docker" style={{ color: '#0284c7' }}></i> Docker</span>
-              <span className="bento-tech-pill"><i className="fa-brands fa-linux" style={{ color: '#d97706' }}></i> Ubuntu Linux</span>
               <span className="bento-tech-pill"><i className="fa-solid fa-chart-line" style={{ color: '#7c3aed' }}></i> Monte Carlo</span>
+              <span className="bento-tech-pill"><i className="fa-solid fa-atom" style={{ color: '#0284c7' }}></i> DFT / ORCA</span>
+              <span className="bento-tech-pill"><i className="fa-brands fa-docker" style={{ color: '#0284c7' }}></i> Docker</span>
+              <span className="bento-tech-pill"><i className="fa-solid fa-spider" style={{ color: '#059669' }}></i> Web Crawling</span>
             </div>
           </div>
 
@@ -170,12 +194,12 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
           <div className="bento-card bento-card-lab">
             <div className="bento-lab-content">
               <div className="bento-lab-badge">
-                <i className="fa-solid fa-terminal"></i>
+                <i className="fa-solid fa-flask-vial"></i>
                 <span>Interactive Playground</span>
               </div>
-              <h3 className="bento-lab-title">Live Scraper & Automation Simulator</h3>
+              <h3 className="bento-lab-title">Live Simulator & Scientific Lab</h3>
               <p className="bento-lab-desc">
-                Test real-time headless crawling and anti-bot evasion right in your browser.
+                Explore real-time headless crawling pipelines and Monte Carlo stochastic uncertainty simulations right in your browser.
               </p>
               <a href="#playground" className="btn-lab-jump">
                 <span>Launch Simulator</span>
