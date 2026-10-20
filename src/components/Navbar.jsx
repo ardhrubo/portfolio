@@ -112,6 +112,27 @@ export default function Navbar({
               })}
             </ul>
           </div>
+
+          {/* Quick Meta Footer */}
+          <div className="left-nav-footer">
+            <div className="left-metric-badge">
+              <span className="left-metric-pulse"></span>
+              <span>50+ Projects &bull; 100k+ Runs</span>
+            </div>
+            <a
+              href={personalInfo.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="left-code-link"
+              title="View GitHub @ardhrubo"
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <i className="fa-brands fa-github"></i>
+                <span>ardhrubo</span>
+              </span>
+              <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: '0.65rem' }}></i>
+            </a>
+          </div>
         </div>
       </aside>
 
