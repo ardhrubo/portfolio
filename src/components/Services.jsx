@@ -15,8 +15,7 @@ export default function Services() {
             How I Can <span className="gradient-text">Help Your Team</span>
           </h2>
           <p className="section-subtitle">
-            Whether you need a high-converting web presence, a distributed scraping engine, or custom computational
-            modeling, I deliver production-ready software built to last.
+            Specialized engineering services tailored for scalability, performance, and reliability.
           </p>
         </div>
 

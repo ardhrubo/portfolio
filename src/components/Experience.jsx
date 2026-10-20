@@ -15,8 +15,7 @@ export default function Experience() {
             Professional Experience & <span className="gradient-text">Research</span>
           </h2>
           <p className="section-subtitle">
-            Bridging academia and industry — delivering computational models, high-scale scraping infrastructures,
-            and reliable full-stack applications.
+            Track record in production software engineering, distributed web scraping, and computational research.
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { personalInfo } from '../data/portfolioData';
+import { personalInfo, projectsData } from '../data/portfolioData';
 
 export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
   const [scrolled, setScrolled] = useState(false);
@@ -33,7 +33,7 @@ export default function Navbar({ currentTheme, onToggleTheme, onOpenCmd }) {
   const navLinks = [
     { name: 'About', href: '#hero', id: 'hero' },
     { name: 'Flagship', href: '#flagship', id: 'flagship' },
-    { name: 'Projects (20)', href: '#projects', id: 'projects' },
+    { name: `Projects (${projectsData.length})`, href: '#projects', id: 'projects' },
     { name: 'Strategy', href: '#strategy', id: 'strategy' },
     { name: 'Simulator', href: '#playground', id: 'playground' },
     { name: 'Experience', href: '#experience', id: 'experience' },

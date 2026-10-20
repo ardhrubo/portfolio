@@ -50,15 +50,14 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             </div>
 
             <p className="bento-hero-desc">
-              Full-Stack Software Engineer & Academic Researcher with{' '}
+              Full-Stack Engineer & Automation Specialist with{' '}
               <strong style={{ color: 'var(--accent-dark)' }}>50+ shipped projects</strong>.
-              I architect high-performance React & Next.js web applications, distributed Puppeteer web scraping pipelines,
-              and stochastic scientific risk models at Jagannath University.
+              I build fast React/Next.js web apps, distributed Puppeteer scraping pipelines, and resilient backend systems.
             </p>
 
             <div className="bento-cta-row">
               <a href="#flagship" className="btn-primary">
-                <span>View Flagship Projects</span>
+                <span>Explore Projects</span>
                 <i className="fa-solid fa-arrow-down"></i>
               </a>
 

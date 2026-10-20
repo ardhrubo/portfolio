@@ -56,8 +56,7 @@ export default function AutomationPlayground({ onShowToast }) {
             Live Web Automation & <span className="gradient-text">Scraper Simulator</span>
           </h2>
           <p className="section-subtitle">
-            Don't just take my word for it. Test drive a real-time simulation of my headless Puppeteer crawlers,
-            anti-bot evasion engines, and Monte Carlo stochastic algorithms below.
+            Simulate live headless crawling, anti-bot evasion, and data extraction pipelines in real-time.
           </p>
         </div>
 

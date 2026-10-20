@@ -1,5 +1,5 @@
 import React from 'react';
-import { personalInfo } from '../data/portfolioData';
+import { personalInfo, projectsData } from '../data/portfolioData';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -25,9 +25,10 @@ export default function Footer() {
 
           <div className="footer-nav">
             <a href="#hero" className="footer-nav-link">About</a>
+            <a href="#flagship" className="footer-nav-link">Flagship</a>
+            <a href="#projects" className="footer-nav-link">Projects ({projectsData.length})</a>
             <a href="#strategy" className="footer-nav-link">Strategy</a>
             <a href="#playground" className="footer-nav-link">Simulator</a>
-            <a href="#projects" className="footer-nav-link">Projects (20)</a>
             <a href="#experience" className="footer-nav-link">Experience</a>
             <a href="#skills" className="footer-nav-link">Skills</a>
             <a href="#services" className="footer-nav-link">Services</a>

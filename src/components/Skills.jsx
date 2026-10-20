@@ -15,8 +15,7 @@ export default function Skills() {
             Skills & <span className="gradient-text">Engineering Arsenal</span>
           </h2>
           <p className="section-subtitle">
-            A comprehensive overview of the programming languages, frameworks, automation tools,
-            and computational methodologies I employ across production systems.
+            Core technologies, frameworks, and methodologies used across production systems.
           </p>
         </div>
 

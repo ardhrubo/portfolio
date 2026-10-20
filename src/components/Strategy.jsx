@@ -12,14 +12,13 @@ export default function Strategy() {
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-compass-drafting"></i>
-            <span>Engineering Blueprint</span>
+            <span>Engineering Framework</span>
           </div>
           <h2 className="section-title">
-            The Unique Strategy: <span className="gradient-text">How I Build & Scale</span>
+            How I Build & <span className="gradient-text">Scale Systems</span>
           </h2>
           <p className="section-subtitle">
-            Most developers jump straight into code and hit roadblocks. My hybrid background in academic research
-            and production engineering follows a battle-tested 4-phase delivery framework.
+            A battle-tested 4-step framework ensuring clean architecture, performance, and reliable releases.
           </p>
         </div>
 
@@ -57,8 +56,8 @@ export default function Strategy() {
 
           <div className="strategy-deliverables-box">
             <h4 className="strategy-deliverables-title">
-              <i className="fa-solid fa-shield-halved"></i>
-              <span>Core Deliverables & Standards</span>
+              <i className="fa-solid fa-circle-check"></i>
+              <span>Key Deliverables</span>
             </h4>
             <div className="strategy-deliverables-grid">
               {current.deliverables.map((item, idx) => (

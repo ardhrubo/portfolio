@@ -3,10 +3,10 @@ export const personalInfo = {
   fullName: "A. R. Dhrubo",
   role: "Full-Stack Software Engineer & Web Automation Specialist",
   tagline: "Engineering scalable web platforms, distributed automation systems, and high-performance user experiences.",
-  bio: "I am a full-stack engineer and computational researcher with 50+ shipped projects. From engineering high-throughput Puppeteer automation engines to developing enterprise React web applications and running Monte Carlo scientific simulations, I bridge resilient backend engineering with modern, responsive frontends.",
+  bio: "Full-stack engineer and automation specialist with 50+ shipped projects. I build fast React/Next.js web applications, high-throughput Puppeteer scrapers, and resilient backend systems.",
   location: "Dhaka, Bangladesh",
   timezone: "GMT+6 (Worldwide Remote)",
-  status: "Available for Full-time Roles & Selected Freelance Projects",
+  status: "Available for Full-time Roles & Contracts",
   statusColor: "#059669", // Emerald green
   email: "ardhrubo@gmail.com",
   socials: {
@@ -26,56 +26,56 @@ export const personalInfo = {
 export const engineeringStrategy = [
   {
     step: "01",
-    phase: "Architecture & Edge-Case Modeling",
+    phase: "Architecture & Design",
     badge: "Foundation",
-    title: "Designing for Scale Before Writing Code",
-    description: "Every robust system starts with meticulous data modeling, state boundaries, and proactive edge-case defense. Whether an API schema or an anti-detection scraper, planning guarantees resilience.",
+    title: "Designing for Scale Before Code",
+    description: "Mapping typed schemas, REST contracts, and anti-bot threat models before implementation to ensure long-term stability.",
     deliverables: [
-      "Strict data schemas & TypeScript / REST definitions",
+      "Strict data schemas & TypeScript REST contracts",
       "Anti-bot threat modeling & proxy rotation strategy",
-      "Component hierarchy & render-cycle optimization plans",
-      "Database indexing and query-latency benchmarks"
+      "Component hierarchy & render-cycle optimization",
+      "Database indexing & query latency benchmarks"
     ],
-    metric: "99.9% Architecture Uptime"
+    metric: "99.9% Planned Uptime"
   },
   {
     step: "02",
-    phase: "High-Performance Full-Stack Build",
-    badge: "Execution",
-    title: "Clean, Accessible & Ultra-Fast Web Delivery",
-    description: "Developing modern Single Page Applications (SPAs) and Server-Rendered portals using React and Next.js. Emphasizing sub-second load times, mobile responsiveness, and clean component isolation.",
+    phase: "Full-Stack Web Build",
+    badge: "Frontend",
+    title: "Clean, Ultra-Fast Web Delivery",
+    description: "Developing modern SPAs and SSR portals with React and Next.js, prioritizing sub-second loads and responsive mobile UX.",
     deliverables: [
-      "Modular React/Next.js architecture with zero bloat",
-      "Glassmorphic, accessible UI engineered with CSS custom properties",
-      "Core Web Vitals tuning for green 95+ PageSpeed scores",
-      "Automated unit & integration test coverage"
+      "Modular React / Next.js architecture with zero bloat",
+      "Glassmorphic, accessible UI with custom CSS tokens",
+      "Core Web Vitals tuned for 95+ PageSpeed scores",
+      "Automated unit & component integration tests"
     ],
-    metric: "< 1.2s First Contentful Paint"
+    metric: "< 1.2s First Paint"
   },
   {
     step: "03",
-    phase: "Resilient Scraping & Automation",
+    phase: "Automation & Crawling",
     badge: "Automation",
-    title: "High-Concurrency Extraction Without Getting Blocked",
-    description: "Pioneering distributed Puppeteer crawlers capable of parsing dynamic JavaScript single-page apps, overcoming sophisticated Cloudflare/Akamai hurdles, and delivering structured JSON/CSV.",
+    title: "High-Concurrency Web Scraping",
+    description: "Deploying distributed Puppeteer crawlers that bypass anti-bot hurdles and extract clean structured data seamlessly.",
     deliverables: [
-      "Browser clustering & memory-leak prevention",
-      "Dynamic header randomization & TLS fingerprint emulation",
-      "Asynchronous worker pools with auto-retry backoff",
-      "Sanitized data cleaning and export pipelines"
+      "Headless Chrome browser worker pools",
+      "Header randomization & TLS fingerprint emulation",
+      "Asynchronous worker queues with auto-retry logic",
+      "Sanitized JSON and CSV export pipelines"
     ],
-    metric: "1M+ Records Successfully Extracted"
+    metric: "1M+ Records Extracted"
   },
   {
     step: "04",
-    phase: "Scientific Verification & Quantitative QA",
+    phase: "Scientific QA & Verification",
     badge: "Verification",
-    title: "Rigorous Probabilistic & Empirical Testing",
-    description: "Applying academic research rigor from Monte Carlo modeling and DFT computing to software validation. We don't guess — we quantify performance boundaries and stress-test every branch.",
+    title: "Empirical Testing & Validation",
+    description: "Validating edge cases, concurrency spikes, and user journeys with automated test suites and stress testing.",
     deliverables: [
-      "Monte Carlo uncertainty simulations for risk modeling",
-      "Load testing under concurrent traffic spikes",
-      "End-to-end user journey validation with Cypress / Playwright",
+      "Stress testing under high concurrent traffic",
+      "End-to-end journey validation with Cypress / Playwright",
+      "Monte Carlo uncertainty modeling for data pipelines",
       "Comprehensive Swagger API docs and developer guides"
     ],
     metric: "Zero-Downtime Releases"
@@ -186,8 +186,25 @@ export const automationScenarios = [
   }
 ];
 
-// All 20 Complete Projects
+// All 21 Complete Projects
 export const projectsData = [
+  {
+    id: "squicyuap",
+    title: "Squicy UAP",
+    subtitle: "E-Commerce & Food Ordering Platform",
+    url: "https://www.squicyuap.com/",
+    category: "fullstack",
+    categoryLabel: "Full-Stack Web",
+    featured: true,
+    image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.squicyuap.com%2F&screenshot=true&meta=false&embed=screenshot.url",
+    badge: "Live E-Commerce",
+    desc: "Full-stack campus food ordering platform serving 5,000+ UAP students with real-time cart persistence and local fulfillment.",
+    longDesc: "Engineered with React, Zustand state management, and optimized SEO schemas, Squicy UAP allows students and campus staff to explore natural juices, customize add-ons, manage live cart orders, and schedule on-campus pickup.",
+    tech: ["React", "Zustand", "Node.js", "E-Commerce", "SEO / Schema.org", "Modern CSS"],
+    highlights: ["Live production ordering serving UAP community", "Real-time cart state with persistence", "Structured JSON-LD Local SEO rich snippets", "Fast mobile-first responsive checkout"],
+    hasLiveDemo: true,
+    githubUrl: null
+  },
   {
     id: "horizontaxsolution",
     title: "Horizon Tax Solution",
@@ -198,7 +215,7 @@ export const projectsData = [
     featured: true,
     image: "https://api.microlink.io/?url=https%3A%2F%2Fwww.horizontaxsolutions.com.au%2F&screenshot=true&meta=false&embed=screenshot.url",
     badge: "Client Production",
-    desc: "A professional tax, accounting, and consulting web platform engineered for Australian clientele, featuring seamless lead generation, secure client inquiries, and optimized conversions.",
+    desc: "Tax & accounting web platform built for Australian clients, featuring automated inquiries and 100% mobile PageSpeed.",
     longDesc: "Built for an established accounting firm in Australia, Horizon Tax Solution provides clients with transparent service listings, automated inquiry routing, high-performance SEO rankings, and a lightning-fast mobile-first design.",
     tech: ["React", "Node.js", "Modern CSS", "SEO Architecture", "Responsive"],
     highlights: ["Australian market deployment", "High conversion lead funnel", "100% PageSpeed mobile rating"],
@@ -215,7 +232,7 @@ export const projectsData = [
     featured: true,
     image: "https://api.microlink.io/?url=https%3A%2F%2Fscrapeautomate.com%2F&screenshot=true&meta=false&embed=screenshot.url",
     badge: "SaaS Platform",
-    desc: "A robust web automation and data extraction platform engineered with Puppeteer for executing complex, large-scale workflows, handling dynamic SPAs and proxy rotation.",
+    desc: "Enterprise web automation and scraping platform built with Puppeteer, featuring headless browser orchestration and anti-bot bypass.",
     longDesc: "ScrapeAutomate empowers businesses to extract structured data from challenging websites with anti-scraping safeguards, automated browser clustering, and headless instance orchestration.",
     tech: ["Puppeteer", "Node.js", "Automation", "Headless Chrome", "REST APIs"],
     highlights: ["Distributed crawler architecture", "Anti-bot evasion techniques", "Automated JSON/CSV data export"],
@@ -232,7 +249,7 @@ export const projectsData = [
     featured: true,
     image: "https://api.microlink.io/?url=https%3A%2F%2Fadmissionbondhu.com%2F&screenshot=true&meta=false&embed=screenshot.url",
     badge: "Live Education Platform",
-    desc: "A comprehensive university admission portal designed to assist thousands of students in navigating requirements, deadlines, and eligibility criteria seamlessly.",
+    desc: "Centralized university admissions directory with smart search, eligibility filters, and instant notifications for applicants.",
     longDesc: "Admission Bondhu aggregates admission details across universities, featuring smart search, eligibility filters, and instant notification systems to democratize higher education guidance.",
     tech: ["React", "Node.js", "Express", "Database", "REST APIs"],
     highlights: ["Thousands of active student visits", "Intuitive search & filter", "Mobile-optimized interface"],
@@ -249,7 +266,7 @@ export const projectsData = [
     featured: true,
     image: "https://api.microlink.io/?url=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fcopippkpbpdkhjpcbaibpjdmaanccocc%3Futm_source%3Ditem-share-cb&screenshot=true&meta=false&embed=screenshot.url",
     badge: "Chrome Web Store",
-    desc: "A privacy-centric Chrome Extension published on the official Google Chrome Web Store that automatically detects and obfuscates sensitive email addresses on web pages during screen-sharing.",
+    desc: "Official Chrome Web Store privacy extension that detects and blurs sensitive email addresses during screen sharing.",
     longDesc: "Designed for streamers, presenters, and remote workers who share screens regularly. Email Blurrer actively monitors the DOM and obscures email addresses with configurable blur levels, preserving personal and client privacy.",
     tech: ["JavaScript", "Chrome Extensions API", "DOM MutationObserver", "Regex Privacy"],
     highlights: ["Published on Google Chrome Web Store", "Zero network tracking", "Real-time DOM obfuscation"],
@@ -266,7 +283,7 @@ export const projectsData = [
     featured: true,
     image: "https://api.microlink.io/?url=https%3A%2F%2Fpassglobaledu.com&screenshot=true&meta=false&embed=screenshot.url",
     badge: "Client Production",
-    desc: "An educational consultancy portal built with Next.js featuring comprehensive overseas university catalogs, country-specific visa information, and automated counselor booking.",
+    desc: "Overseas education consultancy portal built with Next.js, featuring global university directories and appointment booking.",
     longDesc: "A complete brand and digital web platform built for Pass Global Edu to scale student recruitments across the UK, USA, Canada, and Australia.",
     tech: ["Next.js", "React", "Server-Side Rendering", "Responsive Design"],
     highlights: ["Fast Next.js SSR performance", "Interactive course directories", "Direct appointment scheduler"],
@@ -590,22 +607,6 @@ export const skillsData = [
 
 export const experienceData = [
   {
-    role: "Academic Researcher",
-    company: "Jagannath University",
-    period: "Mar 2026 – Present",
-    type: "Research & Computation",
-    location: "Dhaka, Bangladesh",
-    icon: "fa-solid fa-graduation-cap",
-    color: "#059669",
-    description: "Driving computational research in probabilistic environmental modeling and quantum molecular calculations.",
-    achievements: [
-      "Developing Python-based Monte Carlo simulations for Probabilistic Health Risk Assessment (HRA) to quantify uncertainties in environmental exposure.",
-      "Conducting Density Functional Theory (DFT) molecular modeling utilizing ORCA and Gaussian computational packages on Linux (Ubuntu) high-performance clusters.",
-      "Quantifying trace contaminant distributions to advance beyond deterministic single-point risk estimates for international publication."
-    ],
-    tech: ["Python", "Monte Carlo", "ORCA", "Gaussian", "Linux (Ubuntu)", "Data Analysis"]
-  },
-  {
     role: "Software Engineer",
     company: "DataAutomators",
     period: "Dec 2024 – Present",
@@ -613,75 +614,90 @@ export const experienceData = [
     location: "Remote",
     icon: "fa-solid fa-laptop-code",
     color: "#10b981",
-    description: "Core engineer powering the ScrapeAutomate platform and distributed web automation workflows.",
+    description: "Core engineer powering the ScrapeAutomate platform and high-concurrency crawling infrastructure.",
     achievements: [
-      "Architected and deployed enterprise-grade web scraping pipelines using Puppeteer capable of extracting millions of records with high concurrency.",
-      "Engineered anti-detection algorithms, proxy rotation mechanisms, and automated retry policies ensuring 99.9% scrape success rates.",
-      "Built resilient backend microservices, real-time job queues, and developer-friendly documentation for client integration."
+      "Architected enterprise scraping pipelines with Puppeteer extracting 1M+ records monthly.",
+      "Engineered anti-detection heuristics and rotating proxy pools achieving 99.9% crawl success rate.",
+      "Built resilient backend microservices and async job queues for real-time customer data feeds."
     ],
     tech: ["Node.js", "Puppeteer", "React", "REST APIs", "Docker", "Microservices"]
   },
   {
-    role: "Researcher",
-    company: "CRILab",
+    role: "Academic Researcher",
+    company: "Jagannath University",
     period: "Mar 2024 – Present",
-    type: "Scientific Tech",
+    type: "Research & Computation",
     location: "Dhaka, Bangladesh",
-    icon: "fa-solid fa-flask-vial",
-    color: "#0d9488",
-    description: "Leading technical research initiatives bridging chemistry, computation, and software engineering.",
+    icon: "fa-solid fa-graduation-cap",
+    color: "#059669",
+    description: "Leading computational modeling for environmental risk analysis and quantum molecular simulations.",
     achievements: [
-      "Spearheading development of analytical tools and computational data pipelines for scientific researchers.",
-      "Automating data aggregation and preprocessing from diverse experimental repositories.",
-      "Collaborating across multidisciplinary teams to translate scientific requirements into intuitive software utilities."
+      "Developed Python Monte Carlo simulations (100k+ iterations) for Probabilistic Health Risk Assessments.",
+      "Conducted Density Functional Theory (DFT) calculations with ORCA and Gaussian on Ubuntu Linux HPC clusters.",
+      "Published empirical research advancing environmental modeling beyond single-point deterministic estimates."
     ],
-    tech: ["Python", "Data Aggregation", "Computational Chemistry", "Git", "Scientific Computing"]
+    tech: ["Python", "Monte Carlo", "ORCA", "Gaussian", "Linux (Ubuntu)", "Data Analysis"]
   },
   {
-    role: "Freelance Full-Stack & Back-End Developer",
+    role: "Freelance Full-Stack Developer",
     company: "Self-Employed",
-    period: "Mar 2024 – Present",
+    period: "Mar 2023 – Present",
     type: "Contract / Global",
     location: "Worldwide Remote",
     icon: "fa-solid fa-briefcase",
     color: "#16a34a",
-    description: "Delivering end-to-end web applications, custom APIs, and tailored automation tools for international clients.",
+    description: "Delivering end-to-end web apps, custom APIs, and tailored automation tools for international clients.",
     achievements: [
-      "Architected back-end systems, responsive web applications, and scalable REST APIs (documented with Swagger) for diverse global clients in Australia, US, and Bangladesh.",
-      "Successfully delivered 50+ diverse digital products spanning tax consulting portals, higher education directories, e-commerce stores, and Chrome extensions.",
-      "Maintained 100% on-time delivery with ongoing client support, SEO optimization, and infrastructure tuning."
+      "Delivered 50+ digital products spanning client portals, e-commerce stores, and Chrome extensions across AU, US, and BD.",
+      "Engineered high-converting client applications including Horizon Tax Solution (AU) and campus food ordering platforms.",
+      "Maintained 100% on-time delivery with ongoing maintenance, SEO optimization, and infrastructure tuning."
     ],
     tech: ["React", "Next.js", "Node.js", "Express", "Docker", "Tailored CSS", "Swagger"]
+  },
+  {
+    role: "Researcher",
+    company: "CRILab",
+    period: "Mar 2024 – Nov 2024",
+    type: "Scientific Tech",
+    location: "Dhaka, Bangladesh",
+    icon: "fa-solid fa-flask-vial",
+    color: "#0d9488",
+    description: "Built computational data pipelines and automated analytical tools for interdisciplinary researchers.",
+    achievements: [
+      "Automated scientific data aggregation and sanitization from heterogeneous laboratory datasets.",
+      "Developed reusable Python software utilities for accelerated chemical research workflows."
+    ],
+    tech: ["Python", "Data Aggregation", "Computational Chemistry", "Git", "Scientific Computing"]
   }
 ];
 
 export const servicesData = [
   {
     icon: "fa-solid fa-code",
-    title: "Custom Web Application Development",
+    title: "Full-Stack Web Development",
     subtitle: "Fast, responsive & conversion-driven",
-    description: "Developing scalable frontend and full-stack applications using React, Next.js, and modern CSS. Focused on crisp UI, accessibility, and stellar performance.",
-    points: ["Single Page Applications (React & Vite)", "Full-Stack Server Rendered Web (Next.js)", "Mobile-first responsive UX & Clean Design", "SEO optimization & Core Web Vitals"]
+    description: "Building modern Single Page Applications and SSR portals with React and Next.js, focused on crisp UX and top Web Vitals.",
+    points: ["Modular React & Next.js Architecture", "Sub-Second Page Load Speeds", "Mobile-First Responsive Design"]
   },
   {
     icon: "fa-solid fa-robot",
-    title: "Web Scraping & Automation Engines",
-    subtitle: "Extract data at scale without getting blocked",
-    description: "Engineering resilient crawlers and headless browser automations with Puppeteer and Python. Handling dynamic SPAs, captchas, and proxy rotation.",
-    points: ["High-concurrency Puppeteer architectures", "Anti-detection & proxy pool management", "Automated data ETL (JSON, CSV, SQL)", "Scheduled bot monitors & alert systems"]
+    title: "Web Scraping & Automation",
+    subtitle: "High-scale data extraction without blocks",
+    description: "Developing robust Puppeteer scrapers and bots that bypass anti-bot challenges and extract structured data reliably.",
+    points: ["Puppeteer & Headless Chrome Clusters", "Anti-Bot Bypass & Proxy Pools", "Automated JSON / CSV Export Pipelines"]
   },
   {
     icon: "fa-solid fa-server",
-    title: "Backend & REST API Architecture",
+    title: "Backend & RESTful APIs",
     subtitle: "Secure, maintainable & documented",
-    description: "Architecting backend microservices and RESTful endpoints using Node.js and Express. Complete with database schemas, authentication, and Swagger documentation.",
-    points: ["RESTful API design & Swagger docs", "Authentication, JWT & role authorization", "Containerized microservices with Docker", "Third-party API & payment integrations"]
+    description: "Architecting microservices and RESTful APIs using Node.js and Express, complete with database modeling and Swagger docs.",
+    points: ["RESTful API Architecture & Swagger", "JWT Auth & Role-Based Security", "Containerized Docker Deployments"]
   },
   {
     icon: "fa-solid fa-atom",
-    title: "Scientific Computing & Simulation",
-    subtitle: "Uncertainty modeling & molecular research",
-    description: "Translating computational scientific questions into reliable software code. Experience in Monte Carlo probabilistic modeling and quantum DFT simulations.",
-    points: ["Python Monte Carlo probabilistic simulations", "Health Risk Assessment (HRA) data pipelines", "DFT calculation workflows (ORCA / Gaussian)", "Ubuntu Linux HPC cluster execution"]
+    title: "Scientific & Data Modeling",
+    subtitle: "Uncertainty simulation & data pipelines",
+    description: "Translating complex mathematical and scientific methodologies into high-performance Python code and simulations.",
+    points: ["Monte Carlo Probabilistic Models", "Automated Data Processing Pipelines", "Linux HPC Cluster Automation"]
   }
 ];

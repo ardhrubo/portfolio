@@ -70,8 +70,7 @@ export default function Contact({ onShowToast }) {
             Let's Build Something <span className="gradient-text">Exceptional</span>
           </h2>
           <p className="section-subtitle">
-            Looking for a dedicated software engineer, need automated data workflows, or have an exciting product idea?
-            Pick a topic below to get in touch directly.
+            Have a project, role, or collaboration in mind? Pick a topic below to reach out directly.
           </p>
         </div>
 

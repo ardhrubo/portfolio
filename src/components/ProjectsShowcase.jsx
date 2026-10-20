@@ -7,9 +7,10 @@ export default function ProjectsShowcase({ onSelectProject }) {
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'table'
   const [imageErrors, setImageErrors] = useState({});
 
-  // Flagship projects (Top 4 standout client/production works)
+  // Flagship projects (Top standout client/production works)
   const flagshipProjects = useMemo(() => {
     return [
+      projectsData.find(p => p.id === 'squicyuap'),
       projectsData.find(p => p.id === 'horizontaxsolution'),
       projectsData.find(p => p.id === 'scrapeautomate'),
       projectsData.find(p => p.id === 'admissionbondhu'),
@@ -73,8 +74,7 @@ export default function ProjectsShowcase({ onSelectProject }) {
               Flagship Client & <span className="gradient-text">Production Works</span>
             </h2>
             <p className="section-subtitle">
-              High-impact solutions engineered for Australian accounting clients, live higher-education portals,
-              enterprise Puppeteer platforms, and published Chrome extensions.
+              Production applications built for global clients and active communities.
             </p>
           </div>
 
@@ -137,19 +137,19 @@ export default function ProjectsShowcase({ onSelectProject }) {
         </div>
       </section>
 
-      {/* 2. Complete Project Vault (All 20 Projects) */}
+      {/* 2. Complete Project Vault */}
       <section id="projects" className="section vault-section">
         <div className="container">
           <div className="section-header">
             <div className="section-tag">
               <i className="fa-solid fa-folder-open"></i>
-              <span>All 20 Systems</span>
+              <span>All {projectsData.length} Systems</span>
             </div>
             <h2 className="section-title">
               The Complete Project Vault <span className="gradient-text">({projectsData.length})</span>
             </h2>
             <p className="section-subtitle">
-              Browse, filter, and inspect all 20 repositories and systems in your choice of visual Grid or compact Directory Table view.
+              Filter and explore all {projectsData.length} repositories, open-source utilities, and automated systems.
             </p>
           </div>
 
