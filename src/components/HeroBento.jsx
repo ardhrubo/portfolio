@@ -173,9 +173,9 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
                 <i className="fa-solid fa-terminal"></i>
                 <span>Interactive Playground</span>
               </div>
-              <h3 className="bento-lab-title">Test My Web Scraping & Automation Engine</h3>
+              <h3 className="bento-lab-title">Live Scraper & Automation Simulator</h3>
               <p className="bento-lab-desc">
-                Simulate real-time headless crawling, anti-bot evasion, and JSON extraction right on this page.
+                Test real-time headless crawling and anti-bot evasion right in your browser.
               </p>
               <a href="#playground" className="btn-lab-jump">
                 <span>Launch Simulator</span>
