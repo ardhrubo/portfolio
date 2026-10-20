@@ -189,6 +189,23 @@ export const automationScenarios = [
 // All 21 Complete Projects
 export const projectsData = [
   {
+    id: "brownsinterior",
+    title: "Brown's Interior",
+    subtitle: "Luxury Interior & 3D Architecture Platform",
+    url: "https://brownsinterior.com/",
+    category: "fullstack",
+    categoryLabel: "Full-Stack Web",
+    featured: true,
+    image: "https://api.microlink.io/?url=https%3A%2F%2Fbrownsinterior.com%2F&screenshot=true&meta=false&embed=screenshot.url",
+    badge: "Client Production",
+    desc: "Luxury interior design and 3D architecture platform built with React, Three.js, and Supabase.",
+    longDesc: "A digital showcase and client engagement platform built for Brown's Interior, featuring interactive 3D spatial walkthroughs, turnkey architectural service catalogs, Supabase backend integration, and local SEO optimization.",
+    tech: ["React 19", "Three.js", "React Three Fiber", "Supabase", "Framer Motion", "Vite"],
+    highlights: ["Interactive 3D spatial rendering with Three.js", "Supabase inquiry routing & backend CMS", "Turnkey architectural project showcase", "Cinematic Framer Motion animations"],
+    hasLiveDemo: true,
+    githubUrl: "https://github.com/ardhrubo/brownsinterior"
+  },
+  {
     id: "squicyuap",
     title: "Squicy UAP",
     subtitle: "E-Commerce & Food Ordering Platform",

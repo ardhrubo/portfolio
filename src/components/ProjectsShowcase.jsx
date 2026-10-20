@@ -10,6 +10,7 @@ export default function ProjectsShowcase({ onSelectProject }) {
   // Flagship projects (Top standout client/production works)
   const flagshipProjects = useMemo(() => {
     return [
+      projectsData.find(p => p.id === 'brownsinterior'),
       projectsData.find(p => p.id === 'squicyuap'),
       projectsData.find(p => p.id === 'horizontaxsolution'),
       projectsData.find(p => p.id === 'scrapeautomate'),
