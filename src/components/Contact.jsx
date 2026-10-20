@@ -120,39 +120,62 @@ export default function Contact({ onShowToast }) {
                   <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Full-Time & Select Contracts</span>
                 </div>
               </div>
-            </div>
 
-            {/* Socials Box */}
-            <div className="contact-card-box">
-              <h4 style={{ fontSize: '1rem', color: 'var(--text-primary)' }}>Professional Profiles</h4>
-              <div className="socials-row" style={{ marginTop: 0 }}>
-                <a
-                  href={personalInfo.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-pill"
-                >
-                  <i className="fa-brands fa-github"></i>
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href={personalInfo.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-pill"
-                >
-                  <i className="fa-brands fa-linkedin" style={{ color: '#0a66c2' }}></i>
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={personalInfo.socials.peerlist}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-pill"
-                >
-                  <i className="fa-solid fa-p" style={{ color: '#00aa45' }}></i>
-                  <span>Peerlist</span>
-                </a>
+              {/* Professional Profiles */}
+              <div className="contact-socials-group">
+                <span className="contact-socials-title">Professional Profiles & Code</span>
+                <div className="contact-socials-grid">
+                  <a
+                    href={personalInfo.socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-card"
+                    title="View GitHub Profile"
+                  >
+                    <div className="contact-social-card-icon github">
+                      <i className="fa-brands fa-github"></i>
+                    </div>
+                    <div className="contact-social-card-info">
+                      <span className="contact-social-card-name">GitHub</span>
+                      <span className="contact-social-card-handle">@ardhrubo</span>
+                    </div>
+                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                  </a>
+
+                  <a
+                    href={personalInfo.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-card"
+                    title="Connect on LinkedIn"
+                  >
+                    <div className="contact-social-card-icon linkedin">
+                      <i className="fa-brands fa-linkedin"></i>
+                    </div>
+                    <div className="contact-social-card-info">
+                      <span className="contact-social-card-name">LinkedIn</span>
+                      <span className="contact-social-card-handle">/in/ardhrubo</span>
+                    </div>
+                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                  </a>
+
+                  <a
+                    href={personalInfo.socials.peerlist}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-card"
+                    title="View Peerlist Profile"
+                  >
+                    <div className="contact-social-card-icon peerlist">
+                      <i className="fa-solid fa-p"></i>
+                    </div>
+                    <div className="contact-social-card-info">
+                      <span className="contact-social-card-name">Peerlist</span>
+                      <span className="contact-social-card-handle">@ardhrubo</span>
+                    </div>
+                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
