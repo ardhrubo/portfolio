@@ -29,7 +29,7 @@ export default function App() {
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
-    setToastMessage(`Switched to ${nextTheme === 'light' ? 'Greenish White' : 'Dark Forest'} mode`);
+    setToastMessage(`Switched to ${nextTheme === 'light' ? 'Light' : 'Dark'} mode`);
   };
 
   const handleShowToast = (msg) => {
