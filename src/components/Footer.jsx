@@ -1,5 +1,6 @@
 import React from 'react';
 import { personalInfo } from '../data/portfolioData';
+import Logo from './Logo';
 
 export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToHome }) {
   const scrollToTop = () => {
@@ -32,13 +33,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
               className="nav-brand"
               style={{ marginBottom: '8px' }}
             >
-              <div className="relative size-10 shrink-0">
-                <img
-                  src={personalInfo.avatar || '/dhrubo-profile.jpg'}
-                  alt={personalInfo.name}
-                  className="size-full rounded-xl object-cover border border-emerald-500/40 shadow-xs"
-                />
-              </div>
+              <Logo size={36} />
               <div className="brand-text">
                 <span className="brand-name">{personalInfo.name}</span>
                 <span className="brand-role">Software Engineer</span>

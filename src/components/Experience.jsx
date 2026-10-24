@@ -84,10 +84,7 @@ export default function Experience() {
 
             {filteredExperience.map((exp, index) => (
               <div key={index} className="timeline-item">
-                <div
-                  className="timeline-node"
-                  style={{ borderColor: exp.color, color: exp.color, boxShadow: `0 0 16px ${exp.color}55` }}
-                >
+                <div className="timeline-node">
                   <i className={exp.icon}></i>
                 </div>
 

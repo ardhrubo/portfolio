@@ -63,7 +63,7 @@ export default function ProjectModal({ project, onClose }) {
           {project.highlights && project.highlights.length > 0 && (
             <div className="modal-highlights-box">
               <div className="modal-highlights-title">
-                <i className="fa-solid fa-circle-check" style={{ color: '#10b981' }}></i>
+                <i className="fa-solid fa-circle-check" style={{ color: 'var(--accent-primary)' }}></i>
                 <span>Key Deliverables & Engineering Highlights</span>
               </div>
               <ul className="modal-highlights-list">

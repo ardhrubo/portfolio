@@ -1,10 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('portfolio-theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b0f19" />
+    <meta name="theme-color" content="#090a0f" />
     <title>Dhrubo | Full-Stack Engineer & Automation Specialist</title>
     <meta name="description" content="Portfolio of Dhrubo — Full-Stack Software Engineer & Computational Researcher with 50+ shipped projects. Expert in React, Node.js, Python, Puppeteer web automation, and scalable systems." />
     <meta name="keywords" content="Dhrubo, Full-Stack Developer, React, Node.js, Puppeteer, Web Automation, Python, Jagannath University, Software Engineer" />

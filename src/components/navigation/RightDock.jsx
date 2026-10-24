@@ -9,6 +9,7 @@ import {
   Radio,
 } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
+import CoolThemeSwitch from '../CoolThemeSwitch';
 
 function Tooltip({ children, label }) {
   return (
@@ -122,18 +123,14 @@ export default function RightDock({
 
       {/* 4. Theme Switcher */}
       <Tooltip label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
-        <button
-          id="right-dock-theme"
-          type="button"
-          onClick={onToggleTheme}
-          className="glass-item flex size-9 items-center justify-center rounded-xl cursor-pointer"
-        >
-          {isDark ? (
-            <Sun className="size-4" aria-hidden="true" />
-          ) : (
-            <Moon className="size-4" aria-hidden="true" />
-          )}
-        </button>
+        <div className="flex size-9 items-center justify-center">
+          <CoolThemeSwitch
+            id="right-dock-theme"
+            isDark={isDark}
+            onToggle={onToggleTheme}
+            size={6}
+          />
+        </div>
       </Tooltip>
 
       <div className="w-5 h-px bg-[var(--glass-border)] my-0.5" />

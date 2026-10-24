@@ -30,7 +30,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
     { name: 'About & Overview', href: '#hero', icon: 'fa-solid fa-user' },
     { name: 'Flagship Deliveries', href: '#projects', icon: 'fa-solid fa-star' },
     { name: 'Complete Project Vault', href: '#all-projects', icon: 'fa-solid fa-folder-open' },
-    { name: 'Live Automation Simulator', href: '#playground', icon: 'fa-solid fa-terminal' },
+    { name: '3D Motion Graphics & Simulation Lab', href: '#simulation-lab', icon: 'fa-solid fa-atom' },
     { name: 'Career & Research Timeline', href: '#experience', icon: 'fa-solid fa-briefcase' },
     { name: 'Skills & Arsenal', href: '#skills', icon: 'fa-solid fa-layer-group' },
     { name: 'Get in Touch', href: '#contact', icon: 'fa-solid fa-paper-plane' },

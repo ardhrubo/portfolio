@@ -2,11 +2,13 @@ import React from 'react';
 import { Search, Sparkles, Mail, Moon, Sun } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
 import { NAV_ITEMS } from './navConfig';
+import Logo from '../Logo';
+import CoolThemeSwitch from '../CoolThemeSwitch';
 
 const FOCUS =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]';
 
-const BADGES = { experience: '3+ yrs', projects: '50+', contact: 'Open' };
+const BADGES = { experience: '3+ yrs', projects: '50+', 'simulation-lab': '3D WebGL', contact: 'Open' };
 
 function Kbd({ children }) {
   return (
@@ -61,17 +63,7 @@ export default function Sidebar({
           onClick={onBrandClick}
           className={`group flex items-center gap-3.5 rounded-2xl p-2 -m-2 transition-colors hover:bg-[var(--glass-item)] cursor-pointer ${FOCUS}`}
         >
-          <div className="relative size-12 shrink-0">
-            <img
-              src={personalInfo.avatar || '/dhrubo-profile.jpg'}
-              alt={personalInfo.name}
-              className="size-full rounded-2xl object-cover ring-1 ring-[var(--glass-border-strong)]"
-            />
-            <span
-              className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-background bg-accent"
-              title="Online"
-            />
-          </div>
+          <Logo size={44} />
           <span className="flex min-w-0 flex-col">
             <span className="truncate font-heading text-lg font-bold tracking-tight text-foreground">
               {personalInfo.fullName || personalInfo.name}
@@ -85,8 +77,8 @@ export default function Sidebar({
         <div className="mt-4 flex items-center justify-between rounded-xl border border-[var(--glass-border)] bg-[var(--glass-item)] px-3 py-2 text-xs">
           <span className="inline-flex items-center gap-2 font-medium text-foreground">
             <span className="relative flex size-2" aria-hidden="true">
-              <span className="absolute inline-flex size-full rounded-full bg-accent opacity-60 motion-safe:animate-ping" />
-              <span className="relative inline-flex size-2 rounded-full bg-accent" />
+              <span className="absolute inline-flex size-full rounded-full bg-orange-400 opacity-75 motion-safe:animate-ping" />
+              <span className="relative inline-flex size-2 rounded-full bg-orange-500" />
             </span>
             Open for roles
           </span>
@@ -173,17 +165,22 @@ export default function Sidebar({
         </button>
 
         <div className="flex items-center gap-1.5 pt-1">
-          <button
+          <div
             id="sidebar-theme-btn"
-            type="button"
             onClick={onToggleTheme}
-            aria-label={`Switch to ${isLight ? 'dark' : 'light'} mode`}
-            title={`Switch to ${isLight ? 'dark' : 'light'} mode`}
-            className={`glass-item flex h-9 flex-1 items-center justify-center gap-2 rounded-xl text-xs font-medium cursor-pointer ${FOCUS}`}
+            className={`glass-item flex h-9 flex-1 items-center justify-between px-3 rounded-xl text-xs font-medium cursor-pointer ${FOCUS}`}
+            title={`Switch to ${isLight ? 'Dark' : 'Light'} mode`}
           >
-            <ThemeIcon className="size-4" aria-hidden="true" />
-            {isLight ? 'Dark' : 'Light'}
-          </button>
+            <span className="text-muted-foreground font-mono text-[0.6875rem] uppercase tracking-wider font-semibold">
+              {isLight ? 'Day Mode' : 'Night Mode'}
+            </span>
+            <CoolThemeSwitch
+              id="sidebar-cool-switch"
+              isDark={!isLight}
+              onToggle={onToggleTheme}
+              size={8}
+            />
+          </div>
           <a
             href={personalInfo.socials.github}
             target="_blank"

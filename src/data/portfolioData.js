@@ -8,7 +8,7 @@ export const personalInfo = {
   location: "Dhaka, Bangladesh",
   timezone: "GMT+6 (Worldwide Remote)",
   status: "Available for Full-time Roles & Contracts",
-  statusColor: "#059669", // Emerald green
+  statusColor: "#2563EB", // Royal blue
   email: "ardhrubo@gmail.com",
   socials: {
     github: "https://github.com/ardhrubo",
@@ -587,7 +587,7 @@ export const experienceData = [
     category: "engineering",
     location: "Worldwide Remote",
     icon: "fa-solid fa-briefcase",
-    color: "#10b981",
+    color: "#2563eb",
     description: "Delivering production-grade backend microservices, high-scale scrapers, and database architectures for global clients.",
     achievements: [
       "Architected scalable Node.js and Python backend services integrated with PostgreSQL and Supabase.",
@@ -708,7 +708,7 @@ export const certificationsData = [
     issuer: "Brain Station 23",
     badge: "Hackathon Participant",
     icon: "fa-solid fa-trophy",
-    color: "#10b981",
+    color: "#0284c7",
     description: "Hands-on hackathon focused on containerization, CI/CD automated deployment pipelines, and cloud resilience."
   },
   {

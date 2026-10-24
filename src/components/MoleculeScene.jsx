@@ -9,8 +9,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
  */
 
 const PALETTE = {
-  dark: { C: '#5b6170', N: '#22c55e', O: '#e4e4e7', H: '#a1a1aa', bond: '#6b7280', accent: '#22c55e' },
-  light: { C: '#3f3f46', N: '#15803d', O: '#d4d4d8', H: '#a1a1aa', bond: '#a1a1aa', accent: '#15803d' },
+  dark: { C: '#5b6170', N: '#66BB6A', O: '#e4e4e7', H: '#a1a1aa', bond: '#6b7280', accent: '#66BB6A' },
+  light: { C: '#71717a', N: '#66BB6A', O: '#f4f4f5', H: '#cbd5e1', bond: '#52525b', accent: '#66BB6A' },
 };
 const RADIUS = { C: 0.38, N: 0.38, O: 0.4, H: 0.22 };
 

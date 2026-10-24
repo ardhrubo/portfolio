@@ -9,28 +9,12 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import DrugDiscoveryConsole from './DrugDiscoveryConsole';
 
 const EASE = 'ease-[cubic-bezier(0.16,1,0.3,1)]';
 const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
-const CARD = `relative overflow-hidden rounded-2xl border border-border/80 bg-card/85 backdrop-blur-xl p-6 shadow-[var(--surface-highlight)] transition-all duration-300 ${EASE} hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.5),_inset_0_1px_0_0_rgba(255,255,255,0.15)]`;
+const CARD = `relative overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl p-6 shadow-[var(--surface-highlight)] transition-all duration-300 ${EASE} hover:border-[var(--glass-border-strong)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.5),_inset_0_1px_0_0_rgba(255,255,255,0.15)]`;
 const BTN = `glass-item inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-medium !text-foreground hover:-translate-y-px cursor-pointer ${FOCUS}`;
-
-const TERMINAL_LOG = [
-  { t: 'info', s: 'puppeteer › launching headless chromium (stealth)' },
-  { t: 'ok', s: 'stealth › webdriver flag masked · fingerprint spoofed' },
-  { t: 'info', s: 'crawler › rotating proxy pool [12/12 healthy]' },
-  { t: 'ok', s: 'crawler › 248 pages extracted · 0 captchas' },
-  { t: 'info', s: 'monte-carlo › seeding PRNG · n = 100,000 iterations' },
-  { t: 'warn', s: 'monte-carlo › σ variance 0.0213 → resampling tail' },
-  { t: 'ok', s: 'monte-carlo › converged · 95% CI [0.482, 0.517]' },
-  { t: 'ok', s: 'pipeline › results streamed to dashboard in 1.84s' },
-];
-
-const LOG_TONE = {
-  info: 'text-sky-400 dark:text-sky-400',
-  ok: 'text-emerald-500 dark:text-emerald-400 font-semibold',
-  warn: 'text-amber-500 dark:text-amber-400',
-};
 
 const ZONES = [
   { code: 'US', tz: 'America/New_York' },
@@ -100,8 +84,8 @@ const SOCIALS = [
 function Pulse() {
   return (
     <span className="relative flex size-2 shrink-0" aria-hidden="true">
-      <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
-      <span className="relative inline-flex size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+      <span className="absolute inline-flex size-full rounded-full bg-orange-400 opacity-75 motion-safe:animate-ping" />
+      <span className="relative inline-flex size-2 rounded-full bg-orange-500" />
     </span>
   );
 }
@@ -119,8 +103,6 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   const [copied, setCopied] = useState(false);
   const [localTime, setLocalTime] = useState('');
   const [zoneTimes, setZoneTimes] = useState([]);
-  const [logIndex, setLogIndex] = useState(0);
-  const [iterations, setIterations] = useState(0);
 
   useEffect(() => {
     const updateTime = () => {
@@ -144,18 +126,6 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const logTimer = setInterval(() => setLogIndex((i) => (i + 1) % TERMINAL_LOG.length), 1600);
-    const iterTimer = setInterval(
-      () => setIterations((n) => (n >= 100000 ? 0 : Math.min(100000, n + 1873))),
-      60
-    );
-    return () => {
-      clearInterval(logTimer);
-      clearInterval(iterTimer);
-    };
-  }, []);
-
   const handleCopy = (e) => {
     e.preventDefault();
     navigator.clipboard.writeText(personalInfo.email);
@@ -165,10 +135,6 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   };
 
   const [clockMain, clockPeriod] = (localTime || '--:--:-- --').split(' ');
-  const visibleLines = [0, 1, 2].map((o) => ({
-    ...TERMINAL_LOG[(logIndex + o) % TERMINAL_LOG.length],
-    key: logIndex + o,
-  }));
 
   return (
     <section id="hero" className="relative px-4 pt-8 pb-16 sm:px-6 lg:px-8 lg:pt-12 text-foreground">
@@ -183,7 +149,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
                 className="size-full rounded-2xl border-2 border-primary/30 object-cover shadow-sm"
               />
               <span
-                className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full border-2 border-background bg-emerald-500 dark:bg-emerald-400"
+                className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full border-2 border-background bg-orange-500"
                 title="Active & Available"
               />
             </div>
@@ -195,7 +161,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.05] tracking-tight text-foreground">
             Hi, I'm{' '}
-            <span className="bg-linear-to-r from-foreground from-10% to-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-orange-500 bg-clip-text text-transparent">
               {personalInfo.name}
             </span>
             .
@@ -203,7 +169,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
 
           <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
             Full-Stack Software Engineer &amp; Computational Researcher with{' '}
-            <strong className="font-semibold text-foreground underline decoration-primary/40 underline-offset-4">50+ shipped projects</strong>.
+            <strong className="font-semibold text-foreground underline decoration-orange-500/50 underline-offset-4">50+ shipped projects</strong>.
             I engineer scalable React/Next.js web applications, resilient backend microservices, and high-performance scientific simulations.
           </p>
 
@@ -211,10 +177,10 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             <a
               href="#experience"
               id="hero-cta-experience"
-              className={`glass-tint group inline-flex h-11 items-center gap-2.5 rounded-xl px-5 text-sm font-semibold hover:-translate-y-0.5 ${FOCUS}`}
+              className={`group inline-flex h-11 items-center gap-2.5 rounded-xl px-5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer ${FOCUS}`}
             >
               <span>View Experience</span>
-              <ArrowRight className={`size-4 text-accent transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
+              <ArrowRight className={`size-4 text-white/90 transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
             </a>
             <a href="#projects" id="hero-cta-projects" className={BTN}>
               Featured Projects
@@ -227,7 +193,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
               aria-label="Copy email"
               className={`${BTN} w-11 justify-center px-0 ${copied ? 'border-primary text-primary' : ''}`}
             >
-              {copied ? <Check className="size-4 text-emerald-400" aria-hidden="true" /> : <Mail className="size-4" aria-hidden="true" />}
+              {copied ? <Check className="size-4 text-blue-500 dark:text-blue-400" aria-hidden="true" /> : <Mail className="size-4" aria-hidden="true" />}
             </button>
             {/* Social links */}
             <div className="flex flex-wrap items-center gap-1 sm:ml-auto">
@@ -250,60 +216,9 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-          {/* Card 1: Live Simulator & Scientific Lab (7 cols) */}
-          <article className={`${CARD} lg:col-span-7`} id="hero-card-lab">
-            <div className="flex items-center justify-between">
-              <Eyebrow icon={FlaskConical}>Interactive Playground</Eyebrow>
-              <span className="text-[0.625rem] font-mono uppercase tracking-wider text-emerald-400/80 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-                Browser Native
-              </span>
-            </div>
-
-            <h2 className="mt-2.5 mb-1 font-heading text-xl font-bold tracking-tight text-foreground">
-              Live Simulator &amp; Scientific Lab
-            </h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Headless stealth crawling pipelines and Monte Carlo uncertainty simulations, running real-time in your browser.
-            </p>
-
-            {/* Authentic IDE Dark Terminal Window */}
-            <div className="mt-5 overflow-hidden rounded-xl border border-white/[0.09] bg-[#07090e]/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]" aria-label="Simulator log preview">
-              <div className="flex items-center gap-2 border-b border-white/[0.08] bg-white/[0.02] px-3.5 py-2.5">
-                <span className="size-2.5 rounded-full bg-[#ff5f56]" />
-                <span className="size-2.5 rounded-full bg-[#ffbd2e]" />
-                <span className="size-2.5 rounded-full bg-[#27c93f]" />
-                <span className="ml-2 font-mono text-[0.6875rem] text-slate-400">~/lab — sim.run</span>
-                <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[0.625rem] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                  <Pulse />
-                  LIVE RUNNER
-                </span>
-              </div>
-              <div className="h-[5.25rem] overflow-hidden px-4 py-3 font-mono text-xs leading-[1.45rem]" aria-live="off">
-                {visibleLines.map((line, i) => (
-                  <div key={line.key} className="flex gap-2.5 overflow-hidden whitespace-nowrap motion-safe:animate-line-in">
-                    <span className="text-emerald-500 font-bold">$</span>
-                    <span className={`truncate ${LOG_TONE[line.t]}`}>{line.s}</span>
-                    {i === 2 && <span className="text-emerald-400 motion-safe:animate-blink" aria-hidden="true">▋</span>}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-1">
-              <div className="font-mono text-xs tabular-nums text-muted-foreground flex items-center gap-1.5">
-                <span>iterations</span>
-                <b className="font-bold text-emerald-400 text-sm">{iterations.toLocaleString('en-US')}</b>
-                <span className="text-slate-500">/ 100,000</span>
-              </div>
-              <a
-                href="#playground"
-                id="hero-launch-sim"
-                className={`glass-tint group inline-flex h-9.5 items-center gap-2 rounded-xl px-4 text-xs font-semibold hover:-translate-y-0.5 ${FOCUS}`}
-              >
-                <span>Launch Simulator</span>
-                <ArrowRight className={`size-3.5 text-accent transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
-              </a>
-            </div>
+          {/* Card 1: Drug Discovery & Molecular Docking Simulation (7 cols) */}
+          <article className={`${CARD} lg:col-span-7 flex flex-col justify-between`} id="hero-card-lab">
+            <DrugDiscoveryConsole onShowToast={onCopyEmail} />
           </article>
 
           {/* Card 2: Dhaka GMT+6 • Worldwide Remote (5 cols) */}
@@ -314,7 +229,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
                 <span className="font-mono text-4xl font-black leading-none tracking-tight tabular-nums text-foreground sm:text-5xl">
                   {clockMain}
                 </span>
-                <span className="font-mono text-sm font-semibold text-emerald-500 dark:text-emerald-400 uppercase tracking-widest">{clockPeriod}</span>
+                <span className="font-mono text-sm font-semibold text-accent uppercase tracking-widest">{clockPeriod}</span>
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground mt-2">
                 High-bandwidth asynchronous collaboration across US, European, and APAC timezones.
@@ -335,7 +250,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
                       <span>{z.code}</span>
                       <span
                         className={`text-[0.5625rem] font-bold uppercase tracking-wider ${
-                          z.live ? 'text-emerald-400' : 'text-slate-500'
+                          z.live ? 'text-accent' : 'text-slate-500'
                         }`}
                       >
                         {z.live ? 'Overlap' : 'Async'}

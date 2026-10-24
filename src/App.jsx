@@ -4,7 +4,7 @@ import HeroBento from './components/HeroBento';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import AllProjectsView from './components/AllProjectsView';
 import Strategy from './components/Strategy';
-import AutomationPlayground from './components/AutomationPlayground';
+import InteractiveMotionLab from './components/InteractiveMotionLab';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Services from './components/Services';
@@ -113,7 +113,7 @@ export default function App() {
               />
               <Skills />
               <Strategy />
-              <AutomationPlayground
+              <InteractiveMotionLab
                 onShowToast={handleShowToast}
               />
               <Services />

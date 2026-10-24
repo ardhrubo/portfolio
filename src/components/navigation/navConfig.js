@@ -4,6 +4,7 @@ import {
   FolderKanban,
   Layers,
   Compass,
+  Atom,
   Mail,
 } from 'lucide-react';
 
@@ -13,6 +14,7 @@ export const NAV_ITEMS = [
   { id: 'projects', label: 'Projects', href: '#projects', icon: FolderKanban },
   { id: 'skills', label: 'Skills', href: '#skills', icon: Layers },
   { id: 'strategy', label: 'Approach', href: '#strategy', icon: Compass },
+  { id: 'simulation-lab', label: '3D Lab', href: '#simulation-lab', icon: Atom },
   { id: 'contact', label: 'Contact', href: '#contact', icon: Mail },
 ];
 
