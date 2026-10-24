@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * Premium Geometric Monogram Logo for Dhrubo (A. R. Dhrubo)
+ * High-precision vector architecture:
+ * - Dynamic dual-theme support using CSS variables (--bg-card, --accent-primary, etc.)
+ * - Seamlessly transitions from crisp porcelain in light mode to deep obsidian in dark mode
+ * - Scalable from 24px up to 128px with razor-sharp geometric alignment
+ */
 export default function Logo({ size = 36, className = '', showGlow = true }) {
   const uniqueId = React.useId().replace(/:/g, '');
 
@@ -9,119 +16,106 @@ export default function Logo({ size = 36, className = '', showGlow = true }) {
       viewBox="0 0 100 100"
       width={size}
       height={size}
-      className={`brand-logo-svg ${className}`}
+      className={`brand-logo-svg select-none ${className}`}
       style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
       role="img"
-      aria-label="Dhrubo Logo"
+      aria-label="Dhrubo — Full-Stack & Computational Researcher Logo"
     >
       <defs>
-        {/* Background Gradient */}
-        <linearGradient id={`bgGrad-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0f172a" />
-          <stop offset="100%" stopColor="#020617" />
-        </linearGradient>
-
-        {/* Outer Border Glow Gradient */}
-        <linearGradient id={`borderGrad-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#10b981" stopOpacity="0.85" />
-          <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.25" />
-        </linearGradient>
-
-        {/* Core D Monogram Gradient */}
-        <linearGradient id={`dGrad-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+        {/* Signature Emerald Gradient */}
+        <linearGradient id={`emeraldGrad-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#34d399" />
-          <stop offset="45%" stopColor="#10b981" />
-          <stop offset="85%" stopColor="#06b6d4" />
-          <stop offset="100%" stopColor="#3b82f6" />
+          <stop offset="50%" stopColor="#10b981" />
+          <stop offset="100%" stopColor="#059669" />
         </linearGradient>
 
-        {/* Terminal Prompt Gradient */}
-        <linearGradient id={`promptGrad-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#6ee7b7" />
+        {/* Electric Cyan Accent Gradient for code chevron */}
+        <linearGradient id={`cyanGrad-${uniqueId}`} x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#06b6d4" />
           <stop offset="100%" stopColor="#38bdf8" />
         </linearGradient>
 
-        {/* Glow Filter */}
+        {/* Ambient Glow */}
         {showGlow && (
-          <filter id={`softGlow-${uniqueId}`} x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3.2" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          <filter id={`logoGlow-${uniqueId}`} x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3.5" floodColor="#10b981" floodOpacity="0.3" />
           </filter>
         )}
-
-        {/* Center Radial Glow */}
-        <radialGradient id={`centerGlow-${uniqueId}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#10b981" stopOpacity="0.25" />
-          <stop offset="65%" stopColor="#06b6d4" stopOpacity="0.08" />
-          <stop offset="100%" stopColor="#0f172a" stopOpacity="0" />
-        </radialGradient>
       </defs>
 
-      {/* Squircle Base Canvas */}
-      <rect width="100" height="100" rx="26" fill={`url(#bgGrad-${uniqueId})`} />
-      <rect width="100" height="100" rx="26" fill={`url(#centerGlow-${uniqueId})`} />
+      {/* Outer Squircle Container with Theme-Aware Fill & Border */}
       <rect
-        x="1.5"
-        y="1.5"
-        width="97"
-        height="97"
-        rx="24.5"
-        fill="none"
-        stroke={`url(#borderGrad-${uniqueId})`}
-        strokeWidth="2.5"
+        x="2.5"
+        y="2.5"
+        width="95"
+        height="95"
+        rx="24"
+        style={{
+          fill: 'var(--bg-card, #ffffff)',
+          stroke: 'var(--border-subtle, rgba(16, 185, 129, 0.2))',
+          strokeWidth: '2.5px',
+          transition: 'fill 300ms ease, stroke 300ms ease',
+        }}
+        filter={showGlow ? `url(#logoGlow-${uniqueId})` : undefined}
       />
 
-      {/* Quantum Orbital Ring (Computational Modeling & Chemistry) */}
-      <ellipse
-        cx="53"
-        cy="50"
-        rx="26"
-        ry="11"
-        fill="none"
-        stroke="#06b6d4"
-        strokeOpacity="0.4"
-        strokeWidth="1.8"
-        strokeDasharray="4 3"
-        transform="rotate(-28 53 50)"
-      />
-      <circle cx="73" cy="38" r="2.4" fill="#38bdf8" />
-
-      {/* Monogram D Letterform */}
+      {/* Subtle Specular Top Reflection Rim */}
       <path
-        d="M 31 23 L 31 77"
-        stroke={`url(#dGrad-${uniqueId})`}
-        strokeWidth="9.5"
-        strokeLinecap="round"
-        filter={showGlow ? `url(#softGlow-${uniqueId})` : undefined}
-      />
-      <path
-        d="M 31 24.5 L 53 24.5 C 68.5 24.5 78.5 35 78.5 50 C 78.5 65 68.5 75.5 53 75.5 L 31 75.5"
+        d="M 27 5.5 H 73 C 86 5.5 94.5 14 94.5 27"
         fill="none"
-        stroke={`url(#dGrad-${uniqueId})`}
-        strokeWidth="9.5"
+        stroke="rgba(255, 255, 255, 0.35)"
+        strokeWidth="1.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        filter={showGlow ? `url(#softGlow-${uniqueId})` : undefined}
       />
 
-      {/* Terminal Code Prompt '> _' inside the D loop */}
+      {/* Precision Geometric Grid Underlay */}
       <path
-        d="M 43 43 L 50.5 50 L 43 57"
-        fill="none"
-        stroke={`url(#promptGrad-${uniqueId})`}
-        strokeWidth="3.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M 32 20 V 80 M 52 20 V 80 M 20 50 H 80"
+        stroke="var(--accent-primary, #10b981)"
+        strokeOpacity="0.08"
+        strokeWidth="1"
+        strokeDasharray="2 3"
       />
+
+      {/* --- MONOGRAM D LETTERFORM --- */}
+      {/* Vertical Spine */}
       <line
-        x1="55"
-        y1="57"
-        x2="63"
-        y2="57"
-        stroke="#38bdf8"
-        strokeWidth="3.8"
+        x1="32"
+        y1="25"
+        x2="32"
+        y2="75"
+        stroke={`url(#emeraldGrad-${uniqueId})`}
+        strokeWidth="9"
         strokeLinecap="round"
+      />
+
+      {/* Bold Geometric D Arc */}
+      <path
+        d="M 32 26.5 H 51.5 C 66.5 26.5 76.5 36.5 76.5 50 C 76.5 63.5 66.5 73.5 51.5 73.5 H 32"
+        fill="none"
+        stroke={`url(#emeraldGrad-${uniqueId})`}
+        strokeWidth="9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Embedded Terminal Code Chevron '>' */}
+      <path
+        d="M 43 43 L 51 50 L 43 57"
+        fill="none"
+        stroke={`url(#cyanGrad-${uniqueId})`}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Quantum Pulse Node (Scientific Computing) */}
+      <circle
+        cx="59"
+        cy="57"
+        r="3.2"
+        fill="#10b981"
+        style={{ filter: 'drop-shadow(0 0 4px #10b981)' }}
       />
     </svg>
   );

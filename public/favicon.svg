@@ -1,44 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
   <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="favBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#020617" />
-    </linearGradient>
-
-    <!-- Outer Border Glow Gradient -->
-    <linearGradient id="favBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#10b981" />
-      <stop offset="100%" stop-color="#06b6d4" />
-    </linearGradient>
-
-    <!-- Core D Monogram Gradient -->
-    <linearGradient id="favDGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="favEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#34d399" />
       <stop offset="50%" stop-color="#10b981" />
-      <stop offset="100%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#059669" />
     </linearGradient>
-
-    <!-- Terminal Prompt Gradient -->
-    <linearGradient id="favPromptGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#6ee7b7" />
+    <linearGradient id="favCyanGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
       <stop offset="100%" stop-color="#38bdf8" />
     </linearGradient>
   </defs>
 
-  <!-- Squircle Base Canvas -->
-  <rect width="100" height="100" rx="26" fill="url(#favBgGrad)" />
-  <rect x="2" y="2" width="96" height="96" rx="24" fill="none" stroke="url(#favBorderGrad)" stroke-width="3" />
-
-  <!-- Quantum Orbital Ring -->
-  <ellipse cx="53" cy="50" rx="26" ry="11" fill="none" stroke="#06b6d4" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="4 3" transform="rotate(-28 53 50)" />
-  <circle cx="73" cy="38" r="2.8" fill="#38bdf8" />
+  <!-- Modern Dark Squircle Canvas -->
+  <rect x="2" y="2" width="96" height="96" rx="24" fill="#0d1117" stroke="#10b981" stroke-opacity="0.3" stroke-width="2.5" />
 
   <!-- Monogram D Letterform -->
-  <path d="M 31 23 L 31 77" stroke="url(#favDGrad)" stroke-width="10.5" stroke-linecap="round" />
-  <path d="M 31 24.5 L 53 24.5 C 68.5 24.5 78.5 35 78.5 50 C 78.5 65 68.5 75.5 53 75.5 L 31 75.5" fill="none" stroke="url(#favDGrad)" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round" />
+  <line x1="32" y1="25" x2="32" y2="75" stroke="url(#favEmeraldGrad)" stroke-width="9" stroke-linecap="round" />
+  <path d="M 32 26.5 H 51.5 C 66.5 26.5 76.5 36.5 76.5 50 C 76.5 63.5 66.5 73.5 51.5 73.5 H 32" fill="none" stroke="url(#favEmeraldGrad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
 
-  <!-- Terminal Code Prompt '> _' inside the D loop -->
-  <path d="M 43 43 L 50.5 50 L 43 57" fill="none" stroke="url(#favPromptGrad)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
-  <line x1="55" y1="57" x2="63" y2="57" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
+  <!-- Code Chevron '>' -->
+  <path d="M 43 43 L 51 50 L 43 57" fill="none" stroke="url(#favCyanGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Quantum Pulse Node -->
+  <circle cx="59" cy="57" r="3.2" fill="#10b981" />
 </svg>

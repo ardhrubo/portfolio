@@ -29,6 +29,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
 
@@ -80,7 +81,7 @@ export default function App() {
         <div className="ambient-grid"></div>
       </div>
 
-      {/* Floating Island Navigation */}
+      {/* Desktop Sidebar + Mobile Top/Bottom Bars */}
       <Navbar
         currentTheme={theme}
         currentView={currentView}
@@ -91,9 +92,9 @@ export default function App() {
         onNavigateToHome={navigateToHome}
       />
 
-      {/* Main Content Area (Side-by-side with Desktop Sidebar) */}
-      <div className="app-content-wrapper">
-        <main>
+      {/* Main Content Area (balanced with left sidebar and right dock) */}
+      <div className="app-content-wrapper lg:ml-72 xl:mr-64 min-h-screen bg-background text-foreground pb-24 lg:pb-0">
+        <main id="main-content" className="min-w-0">
           {currentView === 'all-projects' ? (
             <AllProjectsView
               onBackToHome={() => navigateToHome('#hero')}
