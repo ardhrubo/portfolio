@@ -6,13 +6,14 @@ import {
   Search,
   FlaskConical,
   MapPin,
+  Sparkles,
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 const EASE = 'ease-[cubic-bezier(0.16,1,0.3,1)]';
 const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
-const CARD = `relative overflow-hidden rounded-2xl border border-border bg-card/80 backdrop-blur-xl p-6 shadow-sm transition-all duration-300 ${EASE} hover:border-primary/30 hover:shadow-md`;
-const BTN = `inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-card/70 px-4 text-sm font-medium text-foreground transition-all duration-300 ${EASE} hover:border-primary/40 hover:bg-primary/10 cursor-pointer ${FOCUS}`;
+const CARD = `relative overflow-hidden rounded-2xl border border-border/80 bg-card/85 backdrop-blur-xl p-6 shadow-[var(--surface-highlight)] transition-all duration-300 ${EASE} hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.5),_inset_0_1px_0_0_rgba(255,255,255,0.15)]`;
+const BTN = `glass-item inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-medium !text-foreground hover:-translate-y-px cursor-pointer ${FOCUS}`;
 
 const TERMINAL_LOG = [
   { t: 'info', s: 'puppeteer › launching headless chromium (stealth)' },
@@ -26,9 +27,9 @@ const TERMINAL_LOG = [
 ];
 
 const LOG_TONE = {
-  info: 'text-muted-foreground',
-  ok: 'text-primary',
-  warn: 'text-amber-500',
+  info: 'text-sky-400 dark:text-sky-400',
+  ok: 'text-emerald-500 dark:text-emerald-400 font-semibold',
+  warn: 'text-amber-500 dark:text-amber-400',
 };
 
 const ZONES = [
@@ -43,14 +44,6 @@ const METRICS = [
   { value: '100k+', label: 'Simulation Runs' },
   { value: '100%', label: 'Client Satisfaction' },
 ];
-
-function PeerlistIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M8 20V4h5.5a4.5 4.5 0 0 1 0 9H8" />
-    </svg>
-  );
-}
 
 function GithubIcon(props) {
   return (
@@ -88,6 +81,14 @@ function YoutubeIcon(props) {
   );
 }
 
+function PeerlistIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M8 20V4h5.5a4.5 4.5 0 0 1 0 9H8" />
+    </svg>
+  );
+}
+
 const SOCIALS = [
   { key: 'github', label: 'GitHub', icon: GithubIcon },
   { key: 'linkedin', label: 'LinkedIn', icon: LinkedinIcon },
@@ -98,16 +99,16 @@ const SOCIALS = [
 
 function Pulse() {
   return (
-    <span className="relative flex size-1.5 shrink-0" aria-hidden="true">
-      <span className="absolute inline-flex size-full rounded-full bg-primary opacity-70 motion-safe:animate-ping" />
-      <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+    <span className="relative flex size-2 shrink-0" aria-hidden="true">
+      <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
+      <span className="relative inline-flex size-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
     </span>
   );
 }
 
 function Eyebrow({ icon: Icon, children }) {
   return (
-    <span className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+    <span className="inline-flex items-center gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-muted-foreground">
       <Icon className="size-3.5 text-primary" aria-hidden="true" />
       {children}
     </span>
@@ -170,48 +171,50 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   }));
 
   return (
-    <section id="hero" className="relative px-4 pt-8 pb-16 sm:px-6 lg:px-10 lg:pt-14 text-foreground">
+    <section id="hero" className="relative px-4 pt-8 pb-16 sm:px-6 lg:px-8 lg:pt-12 text-foreground">
       <div className="mx-auto w-full max-w-5xl">
-        {/* Intro */}
+        {/* Intro Header */}
         <div className="mb-8 flex flex-col gap-5">
           <div className="flex items-center gap-3.5">
             <div className="relative size-12 shrink-0">
               <img
                 src={personalInfo.avatar || '/dhrubo-profile.jpg'}
                 alt={personalInfo.name}
-                className="size-full rounded-2xl border border-border object-cover"
+                className="size-full rounded-2xl border-2 border-primary/30 object-cover shadow-sm"
               />
               <span
-                className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-background bg-primary"
+                className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full border-2 border-background bg-emerald-500 dark:bg-emerald-400"
                 title="Active & Available"
               />
             </div>
-            <p className="text-sm font-medium text-muted-foreground">{personalInfo.role}</p>
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Portfolio &amp; Research</span>
+              <p className="text-sm font-medium text-muted-foreground">{personalInfo.role}</p>
+            </div>
           </div>
 
-          <h1 className="font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-foreground sm:text-5xl lg:text-[3.25rem]">
+          <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.05] tracking-tight text-foreground">
             Hi, I'm{' '}
-            <span className="bg-linear-to-br from-foreground to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-foreground from-10% to-accent bg-clip-text text-transparent">
               {personalInfo.name}
             </span>
             .
           </h1>
 
-          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
             Full-Stack Software Engineer &amp; Computational Researcher with{' '}
-            <strong className="font-semibold text-foreground">50+ shipped projects</strong>. I engineer scalable
-            React/Next.js web applications, resilient backend microservices, and high-performance scientific
-            simulations.
+            <strong className="font-semibold text-foreground underline decoration-primary/40 underline-offset-4">50+ shipped projects</strong>.
+            I engineer scalable React/Next.js web applications, resilient backend microservices, and high-performance scientific simulations.
           </p>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2.5 pt-1">
             <a
               href="#experience"
               id="hero-cta-experience"
-              className={`group inline-flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm transition-all duration-300 ${EASE} hover:-translate-y-px hover:shadow-[0_8px_24px_-8px_var(--color-primary)] ${FOCUS}`}
+              className={`glass-tint group inline-flex h-11 items-center gap-2.5 rounded-xl px-5 text-sm font-semibold hover:-translate-y-0.5 ${FOCUS}`}
             >
               <span>View Experience</span>
-              <ArrowRight className={`size-4 transition-transform duration-300 ${EASE} group-hover:translate-x-0.5`} aria-hidden="true" />
+              <ArrowRight className={`size-4 text-accent transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
             </a>
             <a href="#projects" id="hero-cta-projects" className={BTN}>
               Featured Projects
@@ -222,19 +225,12 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
               onClick={handleCopy}
               title="Copy email address"
               aria-label="Copy email"
-              className={`${BTN} w-10 justify-center px-0 ${copied ? 'border-primary/50 text-primary' : ''}`}
+              className={`${BTN} w-11 justify-center px-0 ${copied ? 'border-primary text-primary' : ''}`}
             >
-              {copied ? <Check className="size-4" aria-hidden="true" /> : <Mail className="size-4" aria-hidden="true" />}
+              {copied ? <Check className="size-4 text-emerald-400" aria-hidden="true" /> : <Mail className="size-4" aria-hidden="true" />}
             </button>
-            <button id="hero-cmd" type="button" onClick={onOpenCmd} className={BTN} title="Open Command Palette (⌘K)">
-              <Search className="size-4 text-muted-foreground" aria-hidden="true" />
-              <span>Quick Search</span>
-              <kbd className="rounded-md border border-border bg-background px-1.5 py-0.5 font-mono text-[0.6875rem] text-muted-foreground">
-                ⌘K
-              </kbd>
-            </button>
-
-            <div className="flex flex-wrap gap-1">
+            {/* Social links */}
+            <div className="flex flex-wrap items-center gap-1 sm:ml-auto">
               {SOCIALS.filter((s) => personalInfo.socials?.[s.key]).map(({ key, label, icon: Icon }) => (
                 <a
                   key={key}
@@ -243,9 +239,9 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
                   rel="noopener noreferrer"
                   title={label}
                   aria-label={label}
-                  className={`inline-flex size-9 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-300 hover:bg-primary/10 hover:text-primary ${FOCUS}`}
+                  className={`inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:-translate-y-0.5 ${FOCUS}`}
                 >
-                  <Icon className="size-4" aria-hidden="true" />
+                  <Icon className="size-4.5" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -253,116 +249,132 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-          {/* Card 1: Live Simulator & Scientific Lab */}
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+          {/* Card 1: Live Simulator & Scientific Lab (7 cols) */}
           <article className={`${CARD} lg:col-span-7`} id="hero-card-lab">
-            <Eyebrow icon={FlaskConical}>Interactive Playground</Eyebrow>
-            <h2 className="mt-2 mb-1 font-sans text-lg font-semibold tracking-tight text-foreground">
+            <div className="flex items-center justify-between">
+              <Eyebrow icon={FlaskConical}>Interactive Playground</Eyebrow>
+              <span className="text-[0.625rem] font-mono uppercase tracking-wider text-emerald-400/80 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+                Browser Native
+              </span>
+            </div>
+
+            <h2 className="mt-2.5 mb-1 font-heading text-xl font-bold tracking-tight text-foreground">
               Live Simulator &amp; Scientific Lab
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Headless stealth crawling pipelines and Monte Carlo uncertainty simulations, running in your browser.
+              Headless stealth crawling pipelines and Monte Carlo uncertainty simulations, running real-time in your browser.
             </p>
 
-            <div className="mt-5 overflow-hidden rounded-xl border border-border bg-background/80" aria-label="Simulator log preview">
-              <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
-                <i className="size-2 rounded-full bg-muted-foreground/30" />
-                <i className="size-2 rounded-full bg-muted-foreground/30" />
-                <i className="size-2 rounded-full bg-muted-foreground/30" />
-                <span className="ml-2 font-mono text-[0.6875rem] text-muted-foreground">~/lab — sim.run</span>
-                <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[0.625rem] font-semibold text-primary">
+            {/* Authentic IDE Dark Terminal Window */}
+            <div className="mt-5 overflow-hidden rounded-xl border border-white/[0.09] bg-[#07090e]/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]" aria-label="Simulator log preview">
+              <div className="flex items-center gap-2 border-b border-white/[0.08] bg-white/[0.02] px-3.5 py-2.5">
+                <span className="size-2.5 rounded-full bg-[#ff5f56]" />
+                <span className="size-2.5 rounded-full bg-[#ffbd2e]" />
+                <span className="size-2.5 rounded-full bg-[#27c93f]" />
+                <span className="ml-2 font-mono text-[0.6875rem] text-slate-400">~/lab — sim.run</span>
+                <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[0.625rem] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
                   <Pulse />
-                  LIVE
+                  LIVE RUNNER
                 </span>
               </div>
-              <div className="h-[4.875rem] overflow-hidden px-3.5 py-2.5 font-mono text-xs leading-[1.375rem]" aria-live="off">
+              <div className="h-[5.25rem] overflow-hidden px-4 py-3 font-mono text-xs leading-[1.45rem]" aria-live="off">
                 {visibleLines.map((line, i) => (
-                  <div key={line.key} className="flex gap-2 overflow-hidden whitespace-nowrap motion-safe:animate-line-in">
-                    <span className="text-muted-foreground/60">$</span>
+                  <div key={line.key} className="flex gap-2.5 overflow-hidden whitespace-nowrap motion-safe:animate-line-in">
+                    <span className="text-emerald-500 font-bold">$</span>
                     <span className={`truncate ${LOG_TONE[line.t]}`}>{line.s}</span>
-                    {i === 2 && <span className="text-primary motion-safe:animate-blink" aria-hidden="true">▋</span>}
+                    {i === 2 && <span className="text-emerald-400 motion-safe:animate-blink" aria-hidden="true">▋</span>}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-              <span className="font-mono text-xs tabular-nums text-muted-foreground">
-                iterations <b className="font-medium text-foreground">{iterations.toLocaleString('en-US')}</b> / 100,000
-              </span>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-1">
+              <div className="font-mono text-xs tabular-nums text-muted-foreground flex items-center gap-1.5">
+                <span>iterations</span>
+                <b className="font-bold text-emerald-400 text-sm">{iterations.toLocaleString('en-US')}</b>
+                <span className="text-slate-500">/ 100,000</span>
+              </div>
               <a
                 href="#playground"
                 id="hero-launch-sim"
-                className={`group inline-flex h-9 items-center gap-2 rounded-xl bg-primary px-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_24px_-6px_var(--color-primary)] transition-all duration-300 ${EASE} hover:-translate-y-px hover:shadow-[0_0_32px_-4px_var(--color-primary)] ${FOCUS}`}
+                className={`glass-tint group inline-flex h-9.5 items-center gap-2 rounded-xl px-4 text-xs font-semibold hover:-translate-y-0.5 ${FOCUS}`}
               >
                 <span>Launch Simulator</span>
-                <ArrowRight className={`size-3.5 transition-transform duration-300 ${EASE} group-hover:translate-x-0.5`} aria-hidden="true" />
+                <ArrowRight className={`size-3.5 text-accent transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
               </a>
             </div>
           </article>
 
-          {/* Card 2: Dhaka GMT+6 • Worldwide Remote */}
-          <article className={`${CARD} lg:col-span-5`} id="hero-card-remote">
-            <Eyebrow icon={MapPin}>Dhaka GMT+6 &bull; Worldwide Remote</Eyebrow>
-            <div className="mt-5 mb-1 flex items-baseline gap-2">
-              <span className="font-mono text-4xl font-semibold leading-none tracking-[-0.04em] tabular-nums text-foreground sm:text-5xl">
-                {clockMain}
-              </span>
-              <span className="font-mono text-sm text-muted-foreground">{clockPeriod}</span>
-            </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              High-bandwidth collaboration across US, European, and APAC timezones.
-            </p>
+          {/* Card 2: Dhaka GMT+6 • Worldwide Remote (5 cols) */}
+          <article className={`${CARD} lg:col-span-5 flex flex-col justify-between`} id="hero-card-remote">
+            <div>
+              <Eyebrow icon={MapPin}>Dhaka GMT+6 &bull; Worldwide Remote</Eyebrow>
+              <div className="mt-4 mb-1 flex items-baseline gap-2.5">
+                <span className="font-mono text-4xl font-black leading-none tracking-tight tabular-nums text-foreground sm:text-5xl">
+                  {clockMain}
+                </span>
+                <span className="font-mono text-sm font-semibold text-emerald-500 dark:text-emerald-400 uppercase tracking-widest">{clockPeriod}</span>
+              </div>
+              <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground mt-2">
+                High-bandwidth asynchronous collaboration across US, European, and APAC timezones.
+              </p>
 
-            <div className="mt-5 grid grid-cols-3 gap-2">
-              {zoneTimes.map((z) => (
-                <div
-                  key={z.code}
-                  className={`rounded-xl border px-2.5 py-2 transition-colors duration-300 ${
-                    z.live ? 'border-primary/30 bg-primary/10' : 'border-border bg-background/50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between text-[0.6875rem] font-semibold text-foreground">
-                    <span>{z.code}</span>
-                    <span
-                      className={`text-[0.5625rem] font-medium uppercase tracking-wider ${
-                        z.live ? 'text-primary' : 'text-muted-foreground'
-                      }`}
-                    >
-                      {z.live ? 'Overlap' : 'Async'}
-                    </span>
+              {/* Timezone Matrices */}
+              <div className="mt-5 grid grid-cols-3 gap-2">
+                {zoneTimes.map((z) => (
+                  <div
+                    key={z.code}
+                    className={`rounded-xl border p-2.5 transition-all duration-300 ${
+                      z.live
+                        ? 'border-[var(--tint-border)] bg-[var(--tint-bg)]'
+                        : 'border-[var(--glass-border)] bg-[var(--glass-item)]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-[0.6875rem] font-bold text-foreground">
+                      <span>{z.code}</span>
+                      <span
+                        className={`text-[0.5625rem] font-bold uppercase tracking-wider ${
+                          z.live ? 'text-emerald-400' : 'text-slate-500'
+                        }`}
+                      >
+                        {z.live ? 'Overlap' : 'Async'}
+                      </span>
+                    </div>
+                    <span className="mt-1 block font-mono text-xs font-semibold tabular-nums text-foreground/90">{z.time}</span>
                   </div>
-                  <span className="mt-0.5 block font-mono text-xs tabular-nums text-muted-foreground">{z.time}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            <div className="mt-4 flex items-center gap-2 border-t border-border pt-4 text-xs text-muted-foreground">
+            <div className="mt-4 flex items-center gap-2 border-t border-border/80 pt-3 text-xs text-muted-foreground">
               <Pulse />
               <span>
-                <b className="font-medium text-foreground">Async-ready</b> &middot; Open for roles &middot; replies &lt; 12h
+                <b className="font-bold text-foreground">Async-ready</b> &middot; Open for roles &middot; replies &lt; 12h
               </span>
             </div>
           </article>
 
-          {/* Card 3: Telemetry */}
+          {/* Card 3: Key Telemetry Strip (12 cols) */}
           <article
             className={`${CARD} p-0 lg:col-span-12`}
             id="hero-card-telemetry"
             aria-label="Key metrics"
           >
-            <div className="grid grid-cols-2 divide-border sm:grid-cols-4 sm:divide-x">
+            <div className="grid grid-cols-2 divide-border/80 sm:grid-cols-4 sm:divide-x">
               {METRICS.map((m, i) => (
                 <div
                   key={m.label}
-                  className={`border-border px-6 py-5 ${i % 2 === 0 ? 'border-r sm:border-r-0' : ''} ${
+                  className={`border-border/80 px-6 py-5 ${i % 2 === 0 ? 'border-r sm:border-r-0' : ''} ${
                     i < 2 ? 'border-b sm:border-b-0' : ''
                   }`}
                 >
-                  <span className="block font-mono text-3xl font-semibold tracking-tight tabular-nums text-foreground">
+                  <span className="block font-mono text-3xl sm:text-4xl font-black tracking-tight tabular-nums text-foreground">
                     {m.value}
                   </span>
-                  <span className="mt-1 block text-xs text-muted-foreground">{m.label}</span>
+                  <span className="mt-1 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {m.label}
+                  </span>
                 </div>
               ))}
             </div>

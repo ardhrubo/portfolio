@@ -1,7 +1,6 @@
 import React from 'react';
 import { Search } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
-import Logo from '../Logo';
 import ThemeToggle from './ThemeToggle';
 import StatusIndicator from './StatusIndicator';
 
@@ -17,7 +16,14 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
         onClick={onBrandClick}
         className="flex min-w-0 items-center gap-2.5 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
-        <Logo size={32} showGlow={true} />
+        <div className="relative size-8 shrink-0">
+          <img
+            src={personalInfo.avatar || '/dhrubo-profile.jpg'}
+            alt={personalInfo.name}
+            className="size-full rounded-xl object-cover border border-emerald-500/40 shadow-xs"
+          />
+          <span className="absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border border-background bg-emerald-500" />
+        </div>
         <span className="truncate text-sm font-semibold tracking-tight text-foreground">
           {personalInfo.name}
         </span>

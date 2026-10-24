@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Logo from './Logo';
 import { personalInfo, projectsData, experienceData, skillsData, educationData, certificationsData } from '../data/portfolioData';
 
 export default function AiChatModal({ isOpen, onClose, onSelectProject }) {

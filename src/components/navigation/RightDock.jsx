@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Search,
   Sparkles,
   Moon,
   Sun,
-  ArrowRight,
   Mail,
-  Globe,
-  Clock,
+  Send,
+  Radio,
 } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
+
+function Tooltip({ children, label }) {
+  return (
+    <div className="group relative flex items-center justify-center">
+      {children}
+      <div className="absolute right-full mr-3.5 hidden xl:flex items-center pointer-events-none opacity-0 -translate-x-1.5 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 z-50">
+        <div className="glass-panel rounded-lg px-2.5 py-1 text-[0.6875rem] font-medium text-foreground whitespace-nowrap">
+          {label}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function GithubIcon(props) {
   return (
@@ -55,146 +67,130 @@ function PeerlistIcon(props) {
   );
 }
 
-const SOCIAL_LINKS = [
-  { key: 'github', label: 'GitHub', icon: GithubIcon, href: personalInfo.socials.github },
-  { key: 'linkedin', label: 'LinkedIn', icon: LinkedinIcon, href: personalInfo.socials.linkedin },
-  { key: 'peerlist', label: 'Peerlist', icon: PeerlistIcon, href: personalInfo.socials.peerlist },
-  { key: 'facebook', label: 'Facebook', icon: FacebookIcon, href: personalInfo.socials.facebook },
-  { key: 'youtube', label: 'YouTube', icon: YoutubeIcon, href: personalInfo.socials.youtube },
-];
-
 export default function RightDock({
   currentTheme,
   localTime,
   onToggleTheme,
   onOpenCmd,
   onOpenChat,
-  onNavigateToHome,
 }) {
-  const isLight = currentTheme === 'light';
+  const isDark = currentTheme === 'dark';
 
   return (
     <aside
-      aria-label="Utilities & Actions Dock"
-      className="hidden xl:flex fixed right-6 top-6 z-40 w-60 flex-col gap-4 text-foreground"
+      aria-label="Floating Quick Actions Dock"
+      className="glass-panel hidden xl:flex fixed right-4 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-1.5 p-1.5 rounded-2xl"
     >
-      <div className="rounded-2xl border border-border bg-card/85 backdrop-blur-xl p-4 shadow-sm flex flex-col gap-4">
-        {/* Availability & Dhaka Live Time */}
-        <div className="flex flex-col gap-2 pb-3 border-b border-border">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full rounded-full bg-primary opacity-75 motion-safe:animate-ping" />
-                <span className="relative inline-flex size-2 rounded-full bg-primary" />
-              </span>
-              Available for Hire
-            </span>
-            <span className="text-[0.6875rem] font-mono text-muted-foreground flex items-center gap-1">
-              <Globe className="size-3" />
-              Worldwide
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between rounded-xl bg-background/60 px-3 py-2 border border-border/60">
-            <div className="flex items-center gap-2">
-              <Clock className="size-3.5 text-primary" />
-              <span className="font-mono text-xs font-semibold text-foreground">
-                {localTime || 'Dhaka GMT+6'}
-              </span>
-            </div>
-            <span className="text-[0.625rem] font-medium uppercase tracking-wider text-muted-foreground">
-              Dhaka
-            </span>
-          </div>
-        </div>
-
-        {/* Quick Tools */}
-        <div className="flex flex-col gap-1.5">
-          <span className="text-[0.6875rem] font-semibold uppercase tracking-wider text-muted-foreground px-1">
-            Quick Tools
+      {/* 1. Status Radar Orb */}
+      <Tooltip label={`Dhaka ${localTime || 'GMT+6'} · Available for Hire`}>
+        <div
+          id="right-dock-status"
+          className="relative flex size-9 items-center justify-center rounded-xl cursor-default"
+        >
+          <span className="relative flex size-2.5">
+            <span className="absolute inline-flex size-full rounded-full bg-accent opacity-60 motion-safe:animate-ping" />
+            <span className="relative inline-flex size-2.5 rounded-full bg-accent" />
           </span>
-
-          <button
-            id="right-dock-cmd"
-            type="button"
-            onClick={onOpenCmd}
-            className="flex h-9 w-full items-center justify-between rounded-xl border border-border bg-background/60 px-3 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:bg-primary/10 hover:text-foreground hover:border-primary/30 cursor-pointer"
-          >
-            <span className="flex items-center gap-2">
-              <Search className="size-3.5 text-primary" />
-              <span>Quick Search</span>
-            </span>
-            <kbd className="rounded border border-border bg-background px-1 py-0.5 font-mono text-[0.625rem]">⌘K</kbd>
-          </button>
-
-          <button
-            id="right-dock-ai"
-            type="button"
-            onClick={onOpenChat}
-            className="flex h-9 w-full items-center justify-between rounded-xl border border-border bg-background/60 px-3 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:bg-primary/10 hover:text-foreground hover:border-primary/30 cursor-pointer"
-          >
-            <span className="flex items-center gap-2">
-              <Sparkles className="size-3.5 text-primary" />
-              <span>Ask AI Copilot</span>
-            </span>
-            <kbd className="rounded border border-border bg-background px-1 py-0.5 font-mono text-[0.625rem]">⌘J</kbd>
-          </button>
-
-          <button
-            id="right-dock-theme"
-            type="button"
-            onClick={onToggleTheme}
-            className="flex h-9 w-full items-center justify-between rounded-xl border border-border bg-background/60 px-3 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:bg-primary/10 hover:text-foreground hover:border-primary/30 cursor-pointer"
-          >
-            <span className="flex items-center gap-2">
-              {isLight ? <Moon className="size-3.5 text-primary" /> : <Sun className="size-3.5 text-primary" />}
-              <span>{isLight ? 'Dark Mode' : 'Light Mode'}</span>
-            </span>
-            <span className="text-[0.625rem] text-muted-foreground font-mono">{isLight ? '☾' : '☼'}</span>
-          </button>
         </div>
+      </Tooltip>
 
-        {/* CTA & Socials */}
-        <div className="flex flex-col gap-3 pt-3 border-t border-border">
-          <a
-            href="#contact"
-            onClick={(e) => {
-              if (onNavigateToHome) {
-                e.preventDefault();
-                onNavigateToHome('#contact');
-              }
-            }}
-            className="group flex h-9 w-full items-center justify-center gap-2 rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer"
-          >
-            <span>Let's Talk</span>
-            <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </a>
+      <div className="w-5 h-px bg-[var(--glass-border)] my-0.5" />
 
-          <div className="flex items-center justify-between px-1">
-            {SOCIAL_LINKS.filter(s => s.href).map(({ key, label, icon: Icon, href }) => (
-              <a
-                key={key}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={label}
-                aria-label={label}
-                className="inline-flex size-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
-              >
-                <Icon className="size-3.5" />
-              </a>
-            ))}
-            <a
-              href={`mailto:${personalInfo.email}`}
-              title="Direct Email"
-              aria-label="Direct Email"
-              className="inline-flex size-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
-            >
-              <Mail className="size-3.5" />
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* 2. Ask AI Copilot */}
+      <Tooltip label="Ask AI Copilot (⌘J)">
+        <button
+          id="right-dock-ai"
+          type="button"
+          onClick={onOpenChat}
+          className="glass-item group flex size-9 items-center justify-center rounded-xl cursor-pointer"
+        >
+          <Sparkles className="size-4 text-accent transition-transform duration-300 group-hover:rotate-12" aria-hidden="true" />
+        </button>
+      </Tooltip>
+
+      {/* 3. Quick Search */}
+      <Tooltip label="Quick Search (⌘K)">
+        <button
+          id="right-dock-search"
+          type="button"
+          onClick={onOpenCmd}
+          className="glass-item flex size-9 items-center justify-center rounded-xl cursor-pointer"
+        >
+          <Search className="size-4" aria-hidden="true" />
+        </button>
+      </Tooltip>
+
+      {/* 4. Theme Switcher */}
+      <Tooltip label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+        <button
+          id="right-dock-theme"
+          type="button"
+          onClick={onToggleTheme}
+          className="glass-item flex size-9 items-center justify-center rounded-xl cursor-pointer"
+        >
+          {isDark ? (
+            <Sun className="size-4" aria-hidden="true" />
+          ) : (
+            <Moon className="size-4" aria-hidden="true" />
+          )}
+        </button>
+      </Tooltip>
+
+      <div className="w-5 h-px bg-[var(--glass-border)] my-0.5" />
+
+      {/* 5. Direct Contact CTA Button */}
+      <Tooltip label="Let's Talk & Collaborate">
+        <a
+          id="right-dock-talk"
+          href="#contact"
+          className="glass-tint group flex size-9 items-center justify-center rounded-xl cursor-pointer"
+        >
+          <Send className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+        </a>
+      </Tooltip>
+
+      {/* 6. Social Links Strip */}
+      <Tooltip label="GitHub Profile">
+        <a
+          href={personalInfo.socials.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:scale-110 cursor-pointer"
+        >
+          <GithubIcon className="size-3.5" aria-hidden="true" />
+        </a>
+      </Tooltip>
+
+      <Tooltip label="LinkedIn">
+        <a
+          href={personalInfo.socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:scale-110 cursor-pointer"
+        >
+          <LinkedinIcon className="size-3.5" aria-hidden="true" />
+        </a>
+      </Tooltip>
+
+      <Tooltip label="Peerlist">
+        <a
+          href={personalInfo.socials.peerlist}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:scale-110 cursor-pointer"
+        >
+          <PeerlistIcon className="size-3.5" aria-hidden="true" />
+        </a>
+      </Tooltip>
+
+      <Tooltip label="Direct Email">
+        <a
+          href={`mailto:${personalInfo.email}`}
+          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:scale-110 cursor-pointer"
+        >
+          <Mail className="size-3.5" aria-hidden="true" />
+        </a>
+      </Tooltip>
     </aside>
   );
 }

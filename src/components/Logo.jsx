@@ -115,7 +115,6 @@ export default function Logo({ size = 36, className = '', showGlow = true }) {
         cy="57"
         r="3.2"
         fill="#10b981"
-        style={{ filter: 'drop-shadow(0 0 4px #10b981)' }}
       />
     </svg>
   );

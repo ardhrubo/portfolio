@@ -17,7 +17,7 @@ import AiChatModal from './components/AiChatModal';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'light';
+    return localStorage.getItem('portfolio-theme') || 'dark';
   });
   const [currentView, setCurrentView] = useState(() => {
     return window.location.hash === '#all-projects' ? 'all-projects' : 'home';
@@ -92,9 +92,9 @@ export default function App() {
         onNavigateToHome={navigateToHome}
       />
 
-      {/* Main Content Area (balanced with left sidebar and right dock) */}
-      <div className="app-content-wrapper lg:ml-72 xl:mr-64 min-h-screen bg-background text-foreground pb-24 lg:pb-0">
-        <main id="main-content" className="min-w-0">
+      {/* Main Content Area (Side-by-side: left primary nav rail + right floating action dock) */}
+      <div className="app-content-wrapper lg:ml-88 xl:ml-92 2xl:ml-96 xl:mr-20 relative z-10 min-h-screen text-foreground pb-24 lg:pb-0 transition-all duration-300">
+        <main id="main-content" className="min-w-0 w-full max-w-6xl mx-auto px-4 sm:px-6">
           {currentView === 'all-projects' ? (
             <AllProjectsView
               onBackToHome={() => navigateToHome('#hero')}
