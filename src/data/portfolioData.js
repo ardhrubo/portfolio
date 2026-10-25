@@ -8,7 +8,7 @@ export const personalInfo = {
   location: "Dhaka, Bangladesh",
   timezone: "GMT+6 (Worldwide Remote)",
   status: "Available for Full-time Roles & Contracts",
-  statusColor: "#2563EB", // Royal blue
+  statusColor: "#22c55e", // Technical Emerald
   email: "ardhrubo@gmail.com",
   socials: {
     github: "https://github.com/ardhrubo",
@@ -469,7 +469,7 @@ export const skillsData = [
   {
     category: "Frontend Development",
     icon: "fa-brands fa-react",
-    color: "#059669",
+    color: "#22c55e",
     description: "Building responsive, accessible, and ultra-fast web user interfaces.",
     skills: [
       { name: "React.js", level: "Advanced", icon: "fa-brands fa-react" },
@@ -485,7 +485,7 @@ export const skillsData = [
   {
     category: "Backend & Systems",
     icon: "fa-solid fa-server",
-    color: "#0d9488",
+    color: "#10b981",
     description: "Architecting reliable REST APIs, database schemas, and microservices.",
     skills: [
       { name: "Node.js", level: "Advanced", icon: "fa-brands fa-node" },
@@ -497,24 +497,23 @@ export const skillsData = [
     ]
   },
   {
-    category: "Databases & DevOps",
+    category: "Databases & Cloud Storage",
     icon: "fa-solid fa-database",
-    color: "#0284c7",
-    description: "Configuring robust datastores, containers, and deployment workflows.",
+    color: "#34d399",
+    description: "Configuring high-availability relational datastores, caching layers, and BaaS.",
     skills: [
-      { name: "Supabase", level: "Advanced", icon: "fa-solid fa-bolt" },
-      { name: "MongoDB", level: "Advanced", icon: "fa-solid fa-leaf" },
-      { name: "PostgreSQL & SQL", level: "Proficient", icon: "fa-solid fa-database" },
-      { name: "Docker & Containers", level: "Proficient", icon: "fa-brands fa-docker" },
-      { name: "Linux (Ubuntu Server)", level: "Advanced", icon: "fa-brands fa-linux" },
-      { name: "Git & GitHub Actions", level: "Advanced", icon: "fa-brands fa-github" },
+      { name: "PostgreSQL & SQL", level: "Advanced", icon: "fa-solid fa-database" },
+      { name: "Supabase (Auth / DB / Edge)", level: "Advanced", icon: "fa-solid fa-bolt" },
+      { name: "MongoDB & NoSQL", level: "Advanced", icon: "fa-solid fa-leaf" },
+      { name: "Redis & In-Memory Cache", level: "Proficient", icon: "fa-solid fa-memory" },
+      { name: "Schema Design & Indexing", level: "Advanced", icon: "fa-solid fa-table-columns" },
       { name: "Postman & API Testing", level: "Advanced", icon: "fa-solid fa-vial" }
     ]
   },
   {
     category: "Web Automation & Scraping",
     icon: "fa-solid fa-robot",
-    color: "#16a34a",
+    color: "#22c55e",
     description: "Automating repetitive workflows, web crawling, and data extraction pipelines.",
     skills: [
       { name: "Puppeteer", level: "Expert", icon: "fa-solid fa-spider" },
@@ -522,21 +521,35 @@ export const skillsData = [
       { name: "High-Throughput Scraping", level: "Expert", icon: "fa-solid fa-file-export" },
       { name: "Headless Chrome Clusters", level: "Expert", icon: "fa-solid fa-window-restore" },
       { name: "Anti-Bot & Proxy Rotation", level: "Advanced", icon: "fa-solid fa-shield-halved" },
-      { name: "Chrome Extensions", level: "Proficient", icon: "fa-brands fa-chrome" },
-      { name: "SQA & Test Automation", level: "Proficient", icon: "fa-solid fa-gears" }
+      { name: "Chrome Extensions", level: "Proficient", icon: "fa-brands fa-chrome" }
     ]
   },
   {
     category: "Scientific & Computational Research",
     icon: "fa-solid fa-atom",
-    color: "#047857",
+    color: "#10b981",
     description: "Conducting data modeling, uncertainty analysis, and quantum chemistry computations.",
     skills: [
       { name: "Monte Carlo Simulations", level: "Advanced", icon: "fa-solid fa-chart-line" },
       { name: "Health Risk Assessment (HRA)", level: "Advanced", icon: "fa-solid fa-heart-pulse" },
       { name: "DFT Modeling (ORCA/Gaussian)", level: "Proficient", icon: "fa-solid fa-dna" },
-      { name: "NumPy & Pandas Data Analysis", level: "Advanced", icon: "fa-solid fa-chart-pie" },
-      { name: "Computational Chemistry", level: "Advanced", icon: "fa-solid fa-flask" }
+      { name: "NumPy & SciPy Data Analysis", level: "Advanced", icon: "fa-solid fa-chart-pie" },
+      { name: "Computational Chemistry", level: "Advanced", icon: "fa-solid fa-flask" },
+      { name: "Three.js & WebGL Visualization", level: "Proficient", icon: "fa-solid fa-cube" }
+    ]
+  },
+  {
+    category: "DevOps, Linux & AI Workflows",
+    icon: "fa-solid fa-terminal",
+    color: "#34d399",
+    description: "Automating container deployments, Linux HPC environments, and LLM agent pipelines.",
+    skills: [
+      { name: "Docker & Compose", level: "Proficient", icon: "fa-brands fa-docker" },
+      { name: "Linux (Ubuntu HPC & Server)", level: "Advanced", icon: "fa-brands fa-linux" },
+      { name: "Git & GitHub Actions CI/CD", level: "Advanced", icon: "fa-brands fa-github" },
+      { name: "Nginx & Caddy Reverse Proxy", level: "Proficient", icon: "fa-solid fa-server" },
+      { name: "LLM APIs & Prompt Engineering", level: "Advanced", icon: "fa-solid fa-brain" },
+      { name: "Automated E2E QA Suites", level: "Proficient", icon: "fa-solid fa-gears" }
     ]
   }
 ];
@@ -587,7 +600,7 @@ export const experienceData = [
     category: "engineering",
     location: "Worldwide Remote",
     icon: "fa-solid fa-briefcase",
-    color: "#2563eb",
+    color: "#22c55e",
     description: "Delivering production-grade backend microservices, high-scale scrapers, and database architectures for global clients.",
     achievements: [
       "Architected scalable Node.js and Python backend services integrated with PostgreSQL and Supabase.",
@@ -623,7 +636,7 @@ export const experienceData = [
     category: "engineering",
     location: "Worldwide Remote",
     icon: "fa-solid fa-server",
-    color: "#0284c7",
+    color: "#10b981",
     description: "Engineered custom server-side automation workflows, webhooks, and REST APIs for international business clients.",
     achievements: [
       "Developed modular REST APIs and webhook integrations connecting third-party platforms with client databases.",
@@ -641,7 +654,7 @@ export const experienceData = [
     category: "education",
     location: "Dhaka, Bangladesh",
     icon: "fa-solid fa-pen-nib",
-    color: "#6366f1",
+    color: "#34d399",
     description: "Authored in-depth chemistry learning content, conceptual guides, and scientific problem-solving articles.",
     achievements: [
       "Authored accessible educational content covering core chemistry topics in both English and Bangla.",
@@ -659,7 +672,7 @@ export const experienceData = [
     category: "education",
     location: "Dhaka, Bangladesh",
     icon: "fa-solid fa-chalkboard-user",
-    color: "#8b5cf6",
+    color: "#22c55e",
     description: "Instructed higher secondary science students in organic, inorganic, and physical chemistry foundations.",
     achievements: [
       "Delivered structured chemistry lectures covering reaction mechanisms, atomic models, and thermodynamics.",
@@ -708,7 +721,7 @@ export const certificationsData = [
     issuer: "Brain Station 23",
     badge: "Hackathon Participant",
     icon: "fa-solid fa-trophy",
-    color: "#0284c7",
+    color: "#22c55e",
     description: "Hands-on hackathon focused on containerization, CI/CD automated deployment pipelines, and cloud resilience."
   },
   {
@@ -716,7 +729,7 @@ export const certificationsData = [
     issuer: "AI Training & Literacy Initiative",
     badge: "Certified",
     icon: "fa-solid fa-brain",
-    color: "#6366f1",
+    color: "#10b981",
     description: "Comprehensive workshop covering modern LLM fundamentals, prompt engineering protocols, and intelligent workflows."
   },
   {
@@ -724,7 +737,7 @@ export const certificationsData = [
     issuer: "American Chemical Society",
     badge: "Student & Associate Member",
     icon: "fa-solid fa-award",
-    color: "#0284c7",
+    color: "#34d399",
     description: "Affiliated member engaged with global chemical sciences community, publications, and computational chemistry advancements."
   }
 ];
@@ -759,3 +772,95 @@ export const servicesData = [
     points: ["Monte Carlo Probabilistic Models", "Automated Data Processing Pipelines", "Linux HPC Cluster Automation"]
   }
 ];
+
+export const eventsData = [
+  {
+    id: "moodlemoot-2024",
+    title: "MoodleMoot Bangladesh 2024",
+    subtitle: "AI at Scale & EdTech Transformation Summit",
+    type: "Conference",
+    category: "conference",
+    organizer: "Brain Station 23 & Moodle",
+    location: "Dhaka, Bangladesh",
+    date: "2024",
+    image: "/events/moodlemoot-brainstation23.jpg",
+    hasRealPhoto: true,
+    badge: "Brain Station 23",
+    badgeColor: "#22c55e",
+    role: "Invited Attendee & Participant",
+    description: "Participated in keynote sessions and high-level tech forums on transforming education and enterprise learning using AI and scalable web infrastructure.",
+    keyTakeaways: [
+      "Explored scalable LMS architectures and AI-driven personalized learning pipelines",
+      "Networked with software engineers, cloud architects, and tech leaders from Brain Station 23",
+      "Discussed emerging AI tooling and modern full-stack integrations in workforce learning"
+    ],
+    tags: ["Brain Station 23", "AI at Scale", "Conference", "Dhaka", "EdTech"]
+  },
+  {
+    id: "devops-hackathon-2024",
+    title: "National DevOps Hackathon",
+    subtitle: "Automated CI/CD & Cloud Infrastructure Challenge",
+    type: "Hackathon",
+    category: "hackathon",
+    organizer: "Brain Station 23",
+    location: "Dhaka, Bangladesh",
+    date: "2024",
+    image: null,
+    hasRealPhoto: false,
+    badge: "Hackathon Competitor",
+    badgeColor: "#059669",
+    role: "DevOps & Backend Competitor",
+    description: "Competed in high-intensity engineering challenge architecting automated build pipelines, containerized microservices, and reliable cloud deployments.",
+    keyTakeaways: [
+      "Engineered multi-stage Docker build files and optimized container layer caching",
+      "Built automated test runners and automated deployment scripts under tight sprint deadlines",
+      "Demonstrated system resilience, rollback routines, and zero-downtime release pipelines"
+    ],
+    tags: ["DevOps", "Docker", "CI/CD", "Brain Station 23", "Hackathon"]
+  },
+  {
+    id: "ai-literacy-workshop-2024",
+    title: "AI Literacy & Prompt Engineering Workshop",
+    subtitle: "LLM Agentic Architectures & Production Integration",
+    type: "Workshop",
+    category: "workshop",
+    organizer: "AI Training & Literacy Initiative",
+    location: "Dhaka, Bangladesh",
+    date: "2024",
+    image: null,
+    hasRealPhoto: false,
+    badge: "Hands-on Workshop",
+    badgeColor: "#10b981",
+    role: "Certified Participant",
+    description: "Hands-on engineering workshop exploring real-world LLM APIs, autonomous prompt workflows, agent orchestration, and code intelligence tooling.",
+    keyTakeaways: [
+      "Implemented structured JSON prompt engineering and tool-calling paradigms",
+      "Analyzed latency, safety guardrails, and deterministic verification protocols",
+      "Applied prompt-driven automation to developer workflow acceleration"
+    ],
+    tags: ["AI / LLMs", "Prompt Engineering", "Agents", "Workshop"]
+  },
+  {
+    id: "acs-academic-symposium",
+    title: "American Chemical Society Academic Sessions",
+    subtitle: "Computational Chemistry & Molecular Modeling",
+    type: "Academic Summit",
+    category: "conference",
+    organizer: "American Chemical Society (ACS)",
+    location: "Academic / Online",
+    date: "2024 – 2025",
+    image: null,
+    hasRealPhoto: false,
+    badge: "ACS Member",
+    badgeColor: "#34d399",
+    role: "ACS Member & Researcher",
+    description: "Engaging with international chemical sciences symposia, computational chemistry advancements, and Monte Carlo stochastic modeling in health risk analysis.",
+    keyTakeaways: [
+      "Stayed updated on quantum mechanical DFT modeling techniques with ORCA and Gaussian",
+      "Networked with researchers focusing on stochastic uncertainty and toxicology modeling",
+      "Participated in scientific communication discussions bridging chemistry with software"
+    ],
+    tags: ["ACS", "Quantum Chemistry", "Monte Carlo", "Computational"]
+  }
+];
+

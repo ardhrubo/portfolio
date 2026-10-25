@@ -13,18 +13,18 @@ import {
   Maximize2
 } from 'lucide-react';
 
-// Electric Precision Azure & Cobalt Theme
+// Light Forest Green & Mint Jade Theme
 const THEME_COLORS = {
-  accent: 0x3b82f6,
-  accentSoft: 0x60a5fa,
-  accentDeep: 0x1d4ed8,
-  mintLight: 0xeff6ff,
+  accent: 0x4ade80,
+  accentSoft: 0x86efac,
+  accentDeep: 0x22c55e,
+  mintLight: 0xd1fae5,
   atomC: 0x52525b,      // Neutral zinc/graphite
-  atomHighlight: 0x3b82f6,
+  atomHighlight: 0x4ade80,
   bond: 0x3f3f46,       // Muted bond line
-  particle: 0x60a5fa,
+  particle: 0x34d399,
   surfaceWire: 0x71717a,
-  surfaceHighlight: 0x3b82f6,
+  surfaceHighlight: 0x4ade80,
 };
 
 // Generates exact C60 Fullerene vertices (truncated icosahedron)
@@ -468,8 +468,8 @@ export default function InteractiveMotionLab({ onShowToast }) {
   }, []);
 
   return (
-    <section id="simulation-lab" className="section py-16 text-foreground">
-      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <section id="simulation-lab" className="section text-foreground">
+      <div className="container">
         {/* Section Header */}
         <div className="section-header text-center max-w-3xl mx-auto mb-10">
           <div className="section-tag inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--glass-border)] bg-[var(--glass-item)] text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">
@@ -559,7 +559,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
             </div>
 
             {/* Bottom-Right Interactive Action Dock */}
-            <div className="absolute bottom-4 right-4 flex items-center gap-2 z-10">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-auto sm:right-4 flex flex-wrap items-center justify-end gap-2 z-10">
               <button
                 onClick={handlePulseExcitation}
                 className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md transition-all duration-200 cursor-pointer ${

@@ -9,11 +9,11 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
-import DrugDiscoveryConsole from './DrugDiscoveryConsole';
+import EngineeringPillars from './EngineeringPillars';
 
 const EASE = 'ease-[cubic-bezier(0.16,1,0.3,1)]';
 const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
-const CARD = `relative overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl p-6 shadow-[var(--surface-highlight)] transition-all duration-300 ${EASE} hover:border-[var(--glass-border-strong)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.5),_inset_0_1px_0_0_rgba(255,255,255,0.15)]`;
+const CARD = `glass-panel relative overflow-hidden rounded-2xl p-6 transition-all duration-300 ${EASE} hover:-translate-y-0.5`;
 const BTN = `glass-item inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-medium !text-foreground hover:-translate-y-px cursor-pointer ${FOCUS}`;
 
 const ZONES = [
@@ -84,8 +84,8 @@ const SOCIALS = [
 function Pulse() {
   return (
     <span className="relative flex size-2 shrink-0" aria-hidden="true">
-      <span className="absolute inline-flex size-full rounded-full bg-orange-400 opacity-75 motion-safe:animate-ping" />
-      <span className="relative inline-flex size-2 rounded-full bg-orange-500" />
+      <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
+      <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
     </span>
   );
 }
@@ -137,8 +137,8 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   const [clockMain, clockPeriod] = (localTime || '--:--:-- --').split(' ');
 
   return (
-    <section id="hero" className="relative px-4 pt-8 pb-16 sm:px-6 lg:px-8 lg:pt-12 text-foreground">
-      <div className="mx-auto w-full max-w-5xl">
+    <section id="hero" className="relative pt-6 pb-14 lg:pt-12 lg:pb-16 text-foreground">
+      <div className="container">
         {/* Intro Header */}
         <div className="mb-8 flex flex-col gap-5">
           <div className="flex items-center gap-3.5">
@@ -146,22 +146,30 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
               <img
                 src={personalInfo.avatar || '/dhrubo-profile.jpg'}
                 alt={personalInfo.name}
-                className="size-full rounded-2xl border-2 border-primary/30 object-cover shadow-sm"
+                className="size-full rounded-2xl border-2 border-primary/35 object-cover shadow-sm"
               />
               <span
-                className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full border-2 border-background bg-orange-500"
+                className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full border-2 border-background bg-emerald-500"
                 title="Active & Available"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Portfolio &amp; Research</span>
-              <p className="text-sm font-medium text-muted-foreground">{personalInfo.role}</p>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold tracking-tight text-foreground font-heading">
+                  {personalInfo.fullName || 'A. R. Dhrubo'}
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[0.625rem] font-mono font-semibold uppercase tracking-wider bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25 backdrop-blur-md">
+                  <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Available for Hire
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground">{personalInfo.role}</p>
             </div>
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.05] tracking-tight text-foreground">
             Hi, I'm{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-orange-500 bg-clip-text text-transparent">
+            <span className="gradient-text">
               {personalInfo.name}
             </span>
             .
@@ -169,7 +177,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
 
           <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
             Full-Stack Software Engineer &amp; Computational Researcher with{' '}
-            <strong className="font-semibold text-foreground underline decoration-orange-500/50 underline-offset-4">50+ shipped projects</strong>.
+            <strong className="font-semibold text-foreground underline decoration-primary/50 underline-offset-4">50+ shipped projects</strong>.
             I engineer scalable React/Next.js web applications, resilient backend microservices, and high-performance scientific simulations.
           </p>
 
@@ -177,12 +185,16 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             <a
               href="#experience"
               id="hero-cta-experience"
-              className={`group inline-flex h-11 items-center gap-2.5 rounded-xl px-5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer ${FOCUS}`}
+              className={`btn-liquid-glass group h-11 px-5 text-sm font-semibold tracking-wide ${FOCUS}`}
             >
               <span>View Experience</span>
-              <ArrowRight className={`size-4 text-white/90 transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
+              <ArrowRight className={`size-4 text-white/95 transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
             </a>
-            <a href="#projects" id="hero-cta-projects" className={BTN}>
+            <a
+              href="#projects"
+              id="hero-cta-projects"
+              className={`btn-liquid-frosted h-11 px-4 text-sm font-medium ${FOCUS}`}
+            >
               Featured Projects
             </a>
             <button
@@ -193,7 +205,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
               aria-label="Copy email"
               className={`${BTN} w-11 justify-center px-0 ${copied ? 'border-primary text-primary' : ''}`}
             >
-              {copied ? <Check className="size-4 text-blue-500 dark:text-blue-400" aria-hidden="true" /> : <Mail className="size-4" aria-hidden="true" />}
+              {copied ? <Check className="size-4 text-primary" aria-hidden="true" /> : <Mail className="size-4" aria-hidden="true" />}
             </button>
             {/* Social links */}
             <div className="flex flex-wrap items-center gap-1 sm:ml-auto">
@@ -215,15 +227,15 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-          {/* Card 1: Drug Discovery & Molecular Docking Simulation (7 cols) */}
-          <article className={`${CARD} lg:col-span-7 flex flex-col justify-between`} id="hero-card-lab">
-            <DrugDiscoveryConsole onShowToast={onCopyEmail} />
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
+          {/* Card 1: Core Engineering & System Architecture (7 cols) */}
+          <article className={`${CARD} xl:col-span-7 flex flex-col justify-between`} id="hero-card-pillars">
+            <EngineeringPillars />
           </article>
 
           {/* Card 2: Dhaka GMT+6 • Worldwide Remote (5 cols) */}
-          <article className={`${CARD} lg:col-span-5 flex flex-col justify-between`} id="hero-card-remote">
-            <div>
+          <article className={`${CARD} xl:col-span-5 flex flex-col justify-between`} id="hero-card-remote">
+            <div className="relative z-10">
               <Eyebrow icon={MapPin}>Dhaka GMT+6 &bull; Worldwide Remote</Eyebrow>
               <div className="mt-4 mb-1 flex items-baseline gap-2.5">
                 <span className="font-mono text-4xl font-black leading-none tracking-tight tabular-nums text-foreground sm:text-5xl">
@@ -272,7 +284,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
 
           {/* Card 3: Key Telemetry Strip (12 cols) */}
           <article
-            className={`${CARD} p-0 lg:col-span-12`}
+            className={`${CARD} p-0 xl:col-span-12`}
             id="hero-card-telemetry"
             aria-label="Key metrics"
           >

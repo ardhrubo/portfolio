@@ -5,7 +5,7 @@ export default function MobileBottomNav({ activeSection, onNavClick }) {
   return (
     <nav
       aria-label="Mobile sections"
-      className="lg:hidden fixed bottom-3 inset-x-3 z-40 mx-auto max-w-md rounded-2xl border border-border bg-card/90 backdrop-blur-xl shadow-lg px-4 py-2 flex items-center justify-around"
+      className="lg:hidden fixed bottom-3 inset-x-3 z-40 mx-auto max-w-md rounded-2xl glass-panel px-4 py-2 flex items-center justify-around"
       style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
     >
       {MOBILE_NAV_ITEMS.map((item) => {

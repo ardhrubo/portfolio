@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resume version="1.0" lastUpdated="2026-10-25">
+  <candidate>
+    <name>A. R. Dhrubo</name>
+    <preferredName>Dhrubo</preferredName>
+    <headline>Full-Stack Software Engineer &amp; Scientific Computing Researcher</headline>
+    <email>ardhrubo@gmail.com</email>
+    <location>Dhaka, Bangladesh</location>
+    <timezone>GMT+6 (Worldwide Remote)</timezone>
+    <status>Available for Full-time Roles &amp; Contracts</status>
+    <github>https://github.com/ardhrubo</github>
+    <linkedin>https://www.linkedin.com/in/ardhrubo/</linkedin>
+    <peerlist>https://peerlist.io/ardhrubo</peerlist>
+    <youtube>https://www.youtube.com/@randomdhrubo</youtube>
+  </candidate>
+
+  <summary>
+    Full-stack software engineer and computational researcher with 50+ shipped projects. Specializes in scalable React/Next.js client applications, resilient Node.js and Python backend microservices, high-concurrency Puppeteer automation clusters, and Monte Carlo stochastic modeling.
+  </summary>
+
+  <experienceList>
+    <experience role="Academic Researcher" company="Jagannath University, Dhaka" period="Mar 2026 – Present" duration="8 mos" type="Scientific Computing &amp; Research" category="research">
+      <description>Developing computational models and stochastic simulations for Probabilistic Health Risk Assessment (HRA) and molecular systems.</description>
+      <achievements>
+        <item>Developing Python-based Monte Carlo simulations (100k+ iterations) for Probabilistic Health Risk Assessment (HRA).</item>
+        <item>Utilizing ORCA and Gaussian on Linux (Ubuntu) HPC environments to perform DFT calculations for molecular modeling.</item>
+        <item>Quantifying uncertainty in environmental contaminants to move beyond single-point deterministic risk estimates.</item>
+      </achievements>
+      <technologies>Python, Monte Carlo, ORCA, Gaussian, Linux (Ubuntu), NumPy/SciPy, DFT</technologies>
+    </experience>
+
+    <experience role="Software Associate" company="Constant Research and Innovation Lab (CRILab)" period="Mar 2024 – Present" duration="2 yrs 8 mos" type="Scientific Software &amp; Lab" category="research">
+      <description>Architecting scientific data aggregation pipelines, computational chemistry utilities, and lab workflow tooling.</description>
+      <achievements>
+        <item>Automated scientific data aggregation and sanitization across heterogeneous laboratory experimental datasets.</item>
+        <item>Developed reusable Python software libraries and analysis modules for accelerated chemistry research workflows.</item>
+        <item>Collaborated with interdisciplinary researchers to turn lab raw data into structured computational models.</item>
+      </achievements>
+      <technologies>Python, Data Aggregation, Computational Chemistry, Linux, Git</technologies>
+    </experience>
+
+    <experience role="Back End Developer" company="Upwork" period="Oct 2024 – Present" duration="2 yrs 1 mo" type="Contract / Global Freelance" category="engineering">
+      <description>Delivering production-grade backend microservices, high-scale scrapers, and database architectures for global clients.</description>
+      <achievements>
+        <item>Architected scalable Node.js and Python backend services integrated with PostgreSQL and Supabase.</item>
+        <item>Built resilient Puppeteer web scraping pipelines and headless automation clusters with proxy rotation.</item>
+        <item>Achieved 100% on-time delivery with end-to-end API documentation, testing, and cloud deployments.</item>
+      </achievements>
+      <technologies>Node.js, Python, PostgreSQL, Supabase, Docker, REST APIs, Puppeteer</technologies>
+    </experience>
+
+    <experience role="Software Engineer" company="DataAutomators" period="Dec 2024 – Jun 2025" duration="7 mos" type="Full-Stack &amp; Automation" category="engineering">
+      <description>Full-stack engineer developing core features, fixing bottlenecks, and documenting high-concurrency systems for ScrapeAutomate.</description>
+      <achievements>
+        <item>Worked on ScrapeAutomate developing core crawling features and fixing system bottlenecks.</item>
+        <item>Responsible for developing scalable crawling features, technical documentation, and stability patches.</item>
+      </achievements>
+      <technologies>React, Node.js, Puppeteer, Docker, REST APIs, Microservices</technologies>
+    </experience>
+
+    <experience role="Back End Developer" company="PeoplePerHour" period="Mar 2024 – Apr 2025" duration="1 yr 2 mos" type="Contract / Backend" category="engineering">
+      <description>Engineered custom server-side automation workflows, webhooks, and REST APIs for international business clients.</description>
+      <technologies>Node.js, Express, REST APIs, PostgreSQL, Webhooks, Automation</technologies>
+    </experience>
+  </experienceList>
+
+  <educationList>
+    <education degree="Bachelor of Science (BS) in Chemistry" institution="Jagannath University, Dhaka" period="Mar 2022 – Jul 2027" status="In Progress">
+      <description>Concentrating on physical chemistry, computational modeling, and environmental risk assessment.</description>
+    </education>
+    <education degree="Higher Secondary Certificate (HSC) in Science" institution="Birshreshtha Munshi Abdur Rouf Public College (BMRPC)" period="Jul 2018 – Jan 2021" status="Completed">
+      <description>Rigorous scientific foundation covering chemistry, physics, mathematics, and biology.</description>
+    </education>
+  </educationList>
+
+  <certificationsList>
+    <certification title="DevOps Hackathon" issuer="Brain Station 23" badge="Hackathon Participant" date="2024" />
+    <certification title="AI Literacy Workshop" issuer="AI Training &amp; Literacy Initiative" badge="Certified" date="2024" />
+    <certification title="ACS Member" issuer="American Chemical Society" badge="Student &amp; Associate Member" date="2024 – 2025" />
+  </certificationsList>
+
+  <eventsList>
+    <event title="MoodleMoot Bangladesh 2024" subtitle="AI at Scale &amp; EdTech Transformation Summit" organizer="Brain Station 23 &amp; Moodle" date="2024" location="Dhaka, Bangladesh" type="Conference" />
+    <event title="National DevOps Hackathon" subtitle="Automated CI/CD &amp; Cloud Infrastructure Challenge" organizer="Brain Station 23" date="2024" location="Dhaka, Bangladesh" type="Hackathon" />
+  </eventsList>
+</resume>

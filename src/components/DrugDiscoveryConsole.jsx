@@ -131,7 +131,7 @@ export default function DrugDiscoveryConsole({ onShowToast }) {
             <FlaskConical className="size-3.5 text-accent" aria-hidden="true" />
             Computer-Aided Drug Design (CADD) &bull; Molecular Docking
           </span>
-          <span className="text-[0.625rem] font-mono uppercase tracking-wider font-semibold text-orange-600 dark:text-orange-400 bg-orange-500/10 border border-orange-500/30 px-2.5 py-0.5 rounded-full">
+          <span className="text-[0.625rem] font-mono uppercase tracking-wider font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
             AutoDock Vina Engine
           </span>
         </div>
@@ -211,7 +211,7 @@ export default function DrugDiscoveryConsole({ onShowToast }) {
           <div className="pt-2 border-t border-[var(--border-subtle)]">
             <div className="flex items-center justify-between text-[0.6875rem] font-mono text-muted-foreground mb-1.5">
               <span>Binding Pocket Key Residue Contacts</span>
-              <span className="text-orange-600 dark:text-orange-400 font-semibold">{current.interactions.length} Active H-Bonds / Contacts</span>
+              <span className="text-primary font-semibold">{current.interactions.length} Active H-Bonds / Contacts</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
               {current.interactions.map((inter, i) => (
@@ -237,13 +237,13 @@ export default function DrugDiscoveryConsole({ onShowToast }) {
           type="button"
           onClick={handleRunSimulation}
           disabled={isSimulating}
-          className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold font-mono transition-all duration-200 cursor-pointer ${
+          className={`h-9 px-4 text-xs font-semibold font-mono transition-all duration-200 cursor-pointer ${
             isSimulating
-              ? 'bg-orange-500/15 text-orange-600 dark:text-orange-400 border border-orange-500/40 animate-pulse'
-              : 'border border-[var(--glass-border)] bg-[var(--glass-item)] text-foreground hover:border-orange-500/30 hover:bg-orange-500/5 hover:text-orange-600 dark:hover:text-orange-400'
+              ? 'btn-liquid-amber'
+              : 'btn-liquid-frosted border-emerald-500/25 text-foreground hover:border-emerald-500/50'
           }`}
         >
-          <Play className={`size-3.5 ${isSimulating ? 'animate-spin text-orange-500' : 'text-orange-500'}`} />
+          <Play className={`size-3.5 ${isSimulating ? 'animate-spin text-white' : 'text-primary'}`} />
           <span>
             {isSimulating ? `Minimizing Conformation (Cycle ${simStep}/10)...` : 'Run Energy Minimization'}
           </span>
@@ -251,10 +251,10 @@ export default function DrugDiscoveryConsole({ onShowToast }) {
 
         <a
           href="#projects"
-          className="glass-tint inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold hover:-translate-y-0.5 transition-all"
+          className="btn-liquid-glass h-9 px-4 text-xs font-semibold"
         >
           <span>Inspect Research &amp; Simulations</span>
-          <ArrowRight className="size-3.5 text-accent" />
+          <ArrowRight className="size-3.5 text-white/90" />
         </a>
       </div>
     </div>

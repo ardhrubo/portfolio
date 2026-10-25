@@ -80,7 +80,7 @@ export default function RightDock({
   return (
     <aside
       aria-label="Floating Quick Actions Dock"
-      className="glass-panel hidden xl:flex fixed right-4 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-1.5 p-1.5 rounded-2xl"
+      className="sidebar-glass hidden lg:flex fixed right-4 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-1.5 p-2 rounded-2xl"
     >
       {/* 1. Status Radar Orb */}
       <Tooltip label={`Dhaka ${localTime || 'GMT+6'} · Available for Hire`}>

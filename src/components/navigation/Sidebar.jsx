@@ -53,7 +53,7 @@ export default function Sidebar({
   return (
     <aside
       aria-label="Primary Navigation"
-      className="glass-panel hidden lg:flex fixed left-4 top-4 bottom-4 z-40 w-80 xl:w-84 2xl:w-88 flex-col overflow-hidden rounded-3xl text-foreground"
+      className="sidebar-glass hidden lg:flex fixed left-4 top-4 bottom-4 z-40 w-72 xl:w-80 2xl:w-84 flex-col overflow-hidden rounded-3xl text-foreground"
     >
       {/* Profile header */}
       <div className="px-5 pt-5 pb-4">
@@ -74,11 +74,11 @@ export default function Sidebar({
           </span>
         </a>
 
-        <div className="mt-4 flex items-center justify-between rounded-xl border border-[var(--glass-border)] bg-[var(--glass-item)] px-3 py-2 text-xs">
+        <div className="mt-4 flex items-center justify-between rounded-xl border border-[var(--glass-border)] bg-[var(--glass-item)] px-3 py-2 text-xs backdrop-blur-md">
           <span className="inline-flex items-center gap-2 font-medium text-foreground">
             <span className="relative flex size-2" aria-hidden="true">
-              <span className="absolute inline-flex size-full rounded-full bg-orange-400 opacity-75 motion-safe:animate-ping" />
-              <span className="relative inline-flex size-2 rounded-full bg-orange-500" />
+              <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
             </span>
             Open for roles
           </span>
@@ -109,25 +109,25 @@ export default function Sidebar({
                   aria-current={isActive ? 'page' : undefined}
                   className={`group relative flex h-11 items-center gap-3 rounded-xl border px-3 text-sm font-medium transition-all duration-200 cursor-pointer ${FOCUS} ${
                     isActive
-                      ? 'border-[var(--glass-border-strong)] bg-[var(--glass-item-hover)] text-foreground shadow-[var(--glass-highlight)]'
+                      ? 'border-emerald-400/35 bg-emerald-500/12 text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] font-semibold'
                       : 'border-transparent text-muted-foreground hover:bg-[var(--glass-item)] hover:text-foreground'
                   }`}
                 >
                   <span
                     aria-hidden="true"
-                    className={`absolute -left-3 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-accent transition-opacity duration-200 ${
+                    className={`absolute -left-3 top-1/2 h-5 w-[3.5px] -translate-y-1/2 rounded-r-full bg-primary transition-opacity duration-200 ${
                       isActive ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
                   <Icon
                     className={`size-[1.15rem] shrink-0 transition-colors duration-200 ${
-                      isActive ? 'text-accent' : 'group-hover:text-foreground'
+                      isActive ? 'text-primary' : 'group-hover:text-foreground'
                     }`}
                     aria-hidden="true"
                   />
                   <span>{item.label}</span>
                   {badge && (
-                    <span className="ml-auto rounded-md border border-[var(--glass-border)] px-1.5 py-0.5 font-mono text-[0.625rem] text-muted-foreground">
+                    <span className="ml-auto rounded-md border border-[var(--glass-border)] bg-[var(--glass-item)] px-1.5 py-0.5 font-mono text-[0.625rem] text-muted-foreground">
                       {badge}
                     </span>
                   )}
@@ -157,10 +157,10 @@ export default function Sidebar({
           type="button"
           onClick={onOpenChat}
           title="Chat with Dhrubo (⌘J / Ctrl+J)"
-          className={`glass-tint flex h-10 w-full items-center gap-2.5 rounded-xl px-3 text-sm font-medium cursor-pointer ${FOCUS}`}
+          className={`sidebar-ai-glass-btn flex h-10 w-full items-center gap-2.5 rounded-xl px-3 text-sm font-medium cursor-pointer ${FOCUS}`}
         >
-          <Sparkles className="size-4 shrink-0 text-accent" aria-hidden="true" />
-          <span className="flex-1 text-left">Ask my AI assistant</span>
+          <Sparkles className="size-4 shrink-0 text-primary animate-pulse" aria-hidden="true" />
+          <span className="flex-1 text-left font-semibold text-primary">Ask my AI assistant</span>
           <Kbd>⌘J</Kbd>
         </button>
 

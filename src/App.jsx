@@ -49,9 +49,11 @@ export default function App() {
   }, [currentView]);
 
   const toggleTheme = () => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme);
-    setToastMessage(`Switched to ${nextTheme === 'light' ? 'Light' : 'Dark'} mode`);
+    setTheme((prev) => {
+      const nextTheme = prev === 'light' ? 'dark' : 'light';
+      setToastMessage(`Switched to ${nextTheme === 'light' ? 'Light' : 'Dark'} mode`);
+      return nextTheme;
+    });
   };
 
   const handleShowToast = (msg) => {
@@ -78,6 +80,8 @@ export default function App() {
       <div className="ambient-background" aria-hidden="true">
         <div className="ambient-blob-1"></div>
         <div className="ambient-blob-2"></div>
+        <div className="ambient-blob-3"></div>
+        <div className="sidebar-ambient-glow"></div>
         <div className="ambient-grid"></div>
       </div>
 
@@ -93,8 +97,8 @@ export default function App() {
       />
 
       {/* Main Content Area (Side-by-side: left primary nav rail + right floating action dock) */}
-      <div className="app-content-wrapper lg:ml-88 xl:ml-92 2xl:ml-96 xl:mr-20 relative z-10 min-h-screen text-foreground pb-24 lg:pb-0 transition-all duration-300">
-        <main id="main-content" className="min-w-0 w-full max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="app-content-wrapper lg:ml-80 xl:ml-88 2xl:ml-92 lg:mr-20 relative z-10 min-h-screen text-foreground pb-24 lg:pb-0 transition-all duration-300">
+        <main id="main-content" className="min-w-0 w-full max-w-6xl mx-auto">
           {currentView === 'all-projects' ? (
             <AllProjectsView
               onBackToHome={() => navigateToHome('#hero')}

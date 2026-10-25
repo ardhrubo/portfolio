@@ -4,7 +4,7 @@ import React from 'react';
  * CoolThemeSwitch — Animated Day/Night Theme Switcher
  * Inspired by Framer CoolThemeSwitch component.
  * Features animated sliding Sun/Moon, craters, drifting clouds, and starry night sky.
- * Pure React & CSS with zero external dependencies.
+ * Pure React & CSS with reliable accessible button switch.
  */
 export default function CoolThemeSwitch({
   isDark = false,
@@ -13,7 +13,7 @@ export default function CoolThemeSwitch({
   sunColor = '#FBBF24',
   moonColor = '#E2E8F0',
   containerLight = '#38BDF8',
-  containerNight = '#0F172A',
+  containerNight = '#0B0B0E',
   id = 'cool-theme-switch',
   className = '',
   style = {},
@@ -40,30 +40,26 @@ export default function CoolThemeSwitch({
     ...style,
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onToggle?.();
+  };
+
   return (
-    <label
-      htmlFor={id}
-      className={`relative inline-flex items-center cursor-pointer select-none ${className}`}
+    <button
+      id={id}
+      type="button"
+      role="switch"
+      aria-checked={isDark}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      onClick={handleClick}
+      className={`theme-switch-btn ${isDark ? 'theme-switch--dark' : 'theme-switch--light'} relative inline-flex items-center cursor-pointer select-none border-0 bg-transparent p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full ${className}`}
     >
-      <input
-        id={id}
-        type="checkbox"
-        checked={isDark}
-        onChange={onToggle}
-        className="theme-switch__checkbox sr-only"
-        role="switch"
-        aria-checked={isDark}
-      />
       <div
         className="theme-switch__container"
         style={cssVars}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            onToggle?.();
-          }
-        }}
       >
         <div className="theme-switch__circle-container">
           <div className="theme-switch__sun-moon-container">
@@ -91,6 +87,6 @@ export default function CoolThemeSwitch({
           </svg>
         </span>
       </div>
-    </label>
+    </button>
   );
 }

@@ -9,7 +9,7 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
   return (
     <header
       aria-label="Mobile header"
-      className="lg:hidden sticky top-0 z-40 w-full border-b border-border bg-card/80 backdrop-blur-xl px-4 py-3 flex items-center justify-between text-foreground"
+      className="lg:hidden sticky top-0 z-40 w-full sidebar-glass border-b border-[var(--glass-border)] px-4 py-3 flex items-center justify-between text-foreground"
     >
       <a
         id="mobile-brand"
