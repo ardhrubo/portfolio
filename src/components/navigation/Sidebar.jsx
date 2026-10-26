@@ -63,9 +63,22 @@ export default function Sidebar({
           onClick={onBrandClick}
           className={`group flex items-center gap-3.5 rounded-2xl p-2 -m-2 transition-colors hover:bg-[var(--glass-item)] cursor-pointer ${FOCUS}`}
         >
-          <Logo size={44} />
+          <div
+            className="relative size-11 shrink-0 rounded-2xl p-0.5 shadow-sm"
+            style={{ background: 'linear-gradient(135deg, #22c55e 0%, #e26334 100%)' }}
+          >
+            <img
+              src={personalInfo.avatar || '/dhrubo-profile.jpg'}
+              alt={personalInfo.name}
+              className="size-full rounded-[14px] object-cover"
+            />
+            <span
+              className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-background bg-emerald-400"
+              title="Available"
+            />
+          </div>
           <span className="flex min-w-0 flex-col">
-            <span className="truncate font-heading text-lg font-bold tracking-tight text-foreground">
+            <span className="truncate font-heading text-base font-extrabold tracking-tight text-foreground">
               {personalInfo.fullName || personalInfo.name}
             </span>
             <span className="truncate text-xs text-muted-foreground">
