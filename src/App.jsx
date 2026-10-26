@@ -120,7 +120,6 @@ export default function App() {
               <InteractiveMotionLab
                 onShowToast={handleShowToast}
               />
-              <Services />
               <Contact
                 onShowToast={handleShowToast}
               />

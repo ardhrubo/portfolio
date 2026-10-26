@@ -123,7 +123,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
     // 3. Projects queries
     if (lower.includes('project') || lower.includes('portfolio') || lower.includes('flagship') || lower.includes('build')) {
       if (lower.includes('brown') || lower.includes('interior')) {
-        const p = projectsData.find(item => item.id === 'browns-interior');
+        const p = projectsData.find(item => item.id === 'brownsinterior');
         return {
           text: `**Brown's Interior Architecture** is one of Dhrubo's flagship client platforms! It's a luxury interior design portal featuring real-time booking inquiries, an interactive filtered portfolio, dynamic project galleries, and sub-second page performance built with modern React.`,
           projectLink: p,
@@ -131,15 +131,15 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
         };
       }
       if (lower.includes('automation') || lower.includes('scraping') || lower.includes('bot') || lower.includes('crawler')) {
-        const p = projectsData.find(item => item.id === 'automated-book-publishing');
+        const p = projectsData.find(item => item.id === 'scrapeautomate');
         return {
-          text: `Dhrubo specializes in distributed web automation & scraping. Key builds include the **Automated Book Publishing Engine** (puppeteer crawling with headless clusters) and the **Dynamic Job Board Scraper** (anti-bot bypass, proxy rotation, and structured JSON export).`,
+          text: `Dhrubo specializes in distributed web automation & scraping. Key builds include **ScrapeAutomate** (enterprise Puppeteer crawling with headless clusters) and anti-bot bypass pipelines with structured JSON export.`,
           projectLink: p,
           suggestedQuestions: ["Tell me about his scientific research", "Is Dhrubo available for hire?"]
         };
       }
       return {
-        text: `Dhrubo has shipped **50+ projects** spanning full-stack web platforms, distributed automation crawlers, and scientific modeling tools. Top highlights include **Brown's Interior**, **ScrapeAutomate**, **ORCA Quantum DFT Pipeline**, and **Squicy UAP Food Platform**.`,
+        text: `Dhrubo has shipped **50+ projects** spanning full-stack web platforms, distributed automation crawlers, and scientific modeling tools. Top highlights include **Brown's Interior**, **ScrapeAutomate**, **Horizon Tax Solution**, and **Squicy UAP Food Platform**.`,
         projectLink: projectsData[0],
         suggestedQuestions: ["Tell me about Brown's Interior", "What is his work experience?", "How can I contact Dhrubo?"]
       };
@@ -147,7 +147,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
 
     // 4. Scientific computing / research / chemistry
     if (lower.includes('scientific') || lower.includes('compute') || lower.includes('simulation') || lower.includes('chemistry') || lower.includes('dft') || lower.includes('monte carlo') || lower.includes('orca') || lower.includes('gaussian')) {
-      const p = projectsData.find(item => item.id === 'quantum-chemistry-dft');
+      const p = projectsData.find(item => item.id === 'scrapeautomate');
       return {
         text: `Alongside full-stack engineering, Dhrubo is a **Scientific Computing Researcher** with a background in chemistry at Jagannath University and CRILab. He has executed over **100,000+ simulation runs** using **Monte Carlo stochastic uncertainty models**, quantum mechanical DFT calculations with **ORCA** and **Gaussian** on Linux HPC, and NumPy/SciPy automated analysis pipelines.`,
         projectLink: p,

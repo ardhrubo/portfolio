@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { projectsData, personalInfo } from '../data/portfolioData';
 
-export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast }) {
+export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects }) {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
                 className="cmd-item"
                 onClick={() => onClose(false)}
               >
-                <div className="cmd-item-icon"><i className="fa-brands fa-linkedin" style={{ color: '#0a66c2' }}></i></div>
+                <div className="cmd-item-icon"><i className="fa-brands fa-linkedin"></i></div>
                 <span>Open LinkedIn Profile</span>
                 <i className="fa-solid fa-arrow-up-right-from-square cmd-ext-icon"></i>
               </a>
