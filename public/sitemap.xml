@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Landing / Hero -->
   <url>
-    <loc>https://ardhrubo.github.io/portfolio/</loc>
+    <loc>https://ardhrubo.dev/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ardhrubo.dev/dhrubo-profile.jpg</image:loc>
+      <image:title>Dhrubo - Full-Stack Software Engineer &amp; Researcher</image:title>
+      <image:caption>A. R. Dhrubo Portrait Profile</image:caption>
+    </image:image>
   </url>
+
+  <!-- Career Experience & Academic Research Timeline -->
+  <url>
+    <loc>https://ardhrubo.dev/#experience</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ardhrubo.dev/events/moodlemoot-brainstation23.jpg</image:loc>
+      <image:title>MoodleMoot Bangladesh 2024 &amp; Brain Station 23 Summit</image:title>
+      <image:caption>Dhrubo attending MoodleMoot Bangladesh EdTech and AI Conference</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Featured Engineering Projects -->
+  <url>
+    <loc>https://ardhrubo.dev/#projects</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Complete 50+ Projects Vault -->
+  <url>
+    <loc>https://ardhrubo.dev/#all-projects</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Technical Skills & Architecture Pillars -->
+  <url>
+    <loc>https://ardhrubo.dev/#skills</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- In Silico Molecular Simulation Lab & Drug Discovery Console -->
+  <url>
+    <loc>https://ardhrubo.dev/#simulation-lab</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Services & Engineering Capabilities -->
+  <url>
+    <loc>https://ardhrubo.dev/#services</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact & Collaboration -->
+  <url>
+    <loc>https://ardhrubo.dev/#contact</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
 </urlset>

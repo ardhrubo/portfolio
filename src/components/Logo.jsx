@@ -2,18 +2,25 @@ import React from 'react';
 
 /**
  * Authentic Typographic Monogram Logo for Dhrubo.
- * Clean, human-crafted design: bold letter 'D' on a translucent light-forest-green crystal glass badge.
+ * Green monogram on a neutral glass surface shared by both themes.
  */
 export default function Logo({ size = 40, className = '' }) {
   return (
     <div
-      style={{ width: size, height: size }}
-      className={`relative flex items-center justify-center rounded-2xl bg-[#22c55e]/85 backdrop-blur-md shadow-[0_6px_18px_-4px_rgba(34,197,94,0.35),inset_0_1px_0_0_rgba(255,255,255,0.45)] border border-white/30 select-none shrink-0 ${className}`}
+      style={{
+        width: size,
+        height: size,
+        borderRadius: Math.round(size * 0.28),
+        background: 'var(--glass-item)',
+        border: '1px solid var(--border-medium)',
+        boxShadow: 'var(--glass-highlight)',
+      }}
+      className={`relative flex items-center justify-center backdrop-blur-md select-none shrink-0 ${className}`}
       aria-label="Dhrubo Logo"
     >
-      {/* Crisp White Typographic D */}
+      {/* Theme-matched green monogram */}
       <span
-        className="font-heading font-black text-white leading-none tracking-tighter"
+        className="font-heading font-black text-primary leading-none tracking-tighter"
         style={{ fontSize: Math.round(size * 0.56), transform: 'translateY(-0.5px)' }}
       >
         D
@@ -21,7 +28,7 @@ export default function Logo({ size = 40, className = '' }) {
 
       {/* Online indicator dot */}
       <span
-        className="absolute -bottom-0.5 -right-0.5 rounded-full border-2 border-background bg-emerald-400"
+        className="absolute -bottom-0.5 -right-0.5 rounded-full border-2 border-background bg-primary"
         style={{ width: Math.max(8, Math.round(size * 0.22)), height: Math.max(8, Math.round(size * 0.22)) }}
         title="Online"
       />

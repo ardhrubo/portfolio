@@ -1,11 +1,11 @@
 import React from 'react';
-import { Search } from 'lucide-react';
+import { Search, Menu } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
 import ThemeToggle from './ThemeToggle';
 import StatusIndicator from './StatusIndicator';
 import Logo from '../Logo';
 
-export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, onOpenCmd, onBrandClick }) {
+export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, onOpenCmd, onBrandClick, onOpenMenu }) {
   return (
     <header
       aria-label="Mobile header"
@@ -24,6 +24,7 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
       </a>
 
       <div className="flex items-center gap-2">
+        <button type="button" className="mobile-menu-trigger" onClick={onOpenMenu} aria-label="Open navigation menu"><Menu size={19} /></button>
         <StatusIndicator compact label="Available" title={`${personalInfo.status} · Dhaka ${localTime || 'GMT+6'}`} />
         <button
           id="mobile-cmd-btn"

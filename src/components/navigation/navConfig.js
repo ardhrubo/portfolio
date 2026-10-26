@@ -6,15 +6,17 @@ import {
   Compass,
   Atom,
   Mail,
+  Handshake,
 } from 'lucide-react';
 
 export const NAV_ITEMS = [
-  { id: 'hero', label: 'Home', href: '#hero', icon: Home },
-  { id: 'experience', label: 'Experience', href: '#experience', icon: Briefcase },
+  { id: 'hero', label: 'Overview', href: '#hero', icon: Home },
   { id: 'projects', label: 'Projects', href: '#projects', icon: FolderKanban },
-  { id: 'skills', label: 'Skills', href: '#skills', icon: Layers },
+  { id: 'experience', label: 'Experience', href: '#experience', icon: Briefcase },
+  { id: 'skills', label: 'Tech stack', href: '#skills', icon: Layers },
   { id: 'strategy', label: 'Approach', href: '#strategy', icon: Compass },
-  { id: 'simulation-lab', label: '3D Lab', href: '#simulation-lab', icon: Atom },
+  { id: 'simulation-lab', label: '3D playground', href: '#simulation-lab', icon: Atom },
+  { id: 'services', label: 'Services', href: '#services', icon: Handshake },
   { id: 'contact', label: 'Contact', href: '#contact', icon: Mail },
 ];
 

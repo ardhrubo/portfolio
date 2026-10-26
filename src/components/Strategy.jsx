@@ -12,10 +12,10 @@ export default function Strategy() {
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-compass-drafting"></i>
-            <span>Engineering Framework</span>
+            <span>04 / How I work</span>
           </div>
           <h2 className="section-title">
-            How I Build & <span className="gradient-text">Scale Systems</span>
+            A thoughtful <span className="gradient-text">approach.</span>
           </h2>
           <p className="section-subtitle">
             A battle-tested 4-step framework ensuring clean architecture, performance, and reliable releases.

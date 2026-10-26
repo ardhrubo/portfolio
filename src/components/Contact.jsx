@@ -64,10 +64,10 @@ export default function Contact({ onShowToast }) {
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-paper-plane"></i>
-            <span>Start a Conversation</span>
+            <span>07 / Get in touch</span>
           </div>
           <h2 className="section-title">
-            Let's Build Something <span className="gradient-text">Exceptional</span>
+            Good things start with <span className="gradient-text">a conversation.</span>
           </h2>
           <p className="section-subtitle">
             Have a project, role, or collaboration in mind? Pick a topic below to reach out directly.

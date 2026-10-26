@@ -25,10 +25,10 @@ export default function Experience() {
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-briefcase"></i>
-            <span>Career & Academic Journey</span>
+            <span>02 / The journey</span>
           </div>
           <h2 className="section-title">
-            Professional Experience & <span className="gradient-text">Research</span>
+            Experience & <span className="gradient-text">research.</span>
           </h2>
           <p className="section-subtitle">
             Verified timeline across production software engineering, distributed web scraping, computational chemistry, and higher education.
@@ -41,7 +41,7 @@ export default function Experience() {
               onClick={() => setActiveTab('experience')}
             >
               <i className="fa-solid fa-timeline"></i>
-              <span>Work & Research Timeline</span>
+              <span>Experience</span>
               <span className="exp-count-badge">{experienceData.length}</span>
             </button>
             <button
@@ -49,7 +49,7 @@ export default function Experience() {
               onClick={() => setActiveTab('education')}
             >
               <i className="fa-solid fa-graduation-cap"></i>
-              <span>Education & Credentials</span>
+              <span>Education</span>
               <span className="exp-count-badge">{educationData.length + certificationsData.length}</span>
             </button>
             <button
@@ -57,7 +57,7 @@ export default function Experience() {
               onClick={() => setActiveTab('events')}
             >
               <i className="fa-solid fa-trophy"></i>
-              <span>Conferences & Hackathons</span>
+              <span>Events</span>
               <span className="exp-count-badge">{eventsData.length}</span>
             </button>
           </div>
@@ -92,7 +92,7 @@ export default function Experience() {
             </div>
           )}
 
-          {/* Category Filter Pills (when Conferences & Hackathons tab is active) */}
+          {/* Category Filter Pills (when Events tab is active) */}
           {activeTab === 'events' && (
             <div className="exp-filter-pills">
               <button

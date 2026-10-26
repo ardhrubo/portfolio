@@ -1,5 +1,6 @@
-# Robots.txt for Dhrubo's Portfolio
+# Robots.txt for Dhrubo's Portfolio (ardhrubo.dev)
 User-agent: *
 Allow: /
 
-Sitemap: https://ardhrubo.github.io/portfolio/sitemap.xml
+Sitemap: https://ardhrubo.dev/sitemap.xml
+

@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 import { projectsData } from '../data/portfolioData';
 
 export default function ProjectDrawer({ project, onClose, onSelectProject }) {
+  const returnFocusRef = useRef(document.activeElement);
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      returnFocusRef.current?.focus();
     };
   }, [onClose]);
 
@@ -21,8 +17,10 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
   const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : null;
 
   return (
-    <div className="drawer-overlay" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="drawer-panel" onClick={(e) => e.stopPropagation()}>
+    <Dialog.Root open={true} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <Dialog.Portal>
+      <Dialog.Overlay className="drawer-overlay" />
+      <Dialog.Content className="drawer-panel">
         {/* Top Header / Controls */}
         <div className="drawer-topbar">
           <div className="drawer-nav-arrows">
@@ -77,10 +75,10 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
             <span className="drawer-badge-pill">{project.badge}</span>
           </div>
 
-          <h2 className="drawer-title">{project.title}</h2>
+          <Dialog.Title className="drawer-title">{project.title}</Dialog.Title>
           <div className="drawer-subtitle">{project.subtitle}</div>
 
-          <p className="drawer-description">{project.longDesc || project.desc}</p>
+          <Dialog.Description className="drawer-description">{project.longDesc || project.desc}</Dialog.Description>
 
           {/* Key Deliverables Highlights */}
           {project.highlights && project.highlights.length > 0 && (
@@ -139,7 +137,8 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
             )}
           </div>
         </div>
-      </div>
-    </div>
+      </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

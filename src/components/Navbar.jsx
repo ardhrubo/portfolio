@@ -4,6 +4,7 @@ import RightDock from './navigation/RightDock';
 import MobileTopBar from './navigation/MobileTopBar';
 import MobileBottomNav from './navigation/MobileBottomNav';
 import useActiveSection from './navigation/useActiveSection';
+import MobileMenu from './navigation/MobileMenu';
 
 function useDhakaTime() {
   const [time, setTime] = useState('');
@@ -32,8 +33,10 @@ export default function Navbar({
 }) {
   const activeSection = useActiveSection(currentView);
   const localTime = useDhakaTime();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (e, item) => {
+    setMobileMenuOpen(false);
     if (currentView === 'all-projects' || item.id === 'hero') {
       e.preventDefault();
       onNavigateToHome(item.href);
@@ -60,7 +63,8 @@ export default function Navbar({
         onOpenChat={onOpenChat}
         onNavigateToHome={onNavigateToHome}
       />
-      <MobileTopBar {...shared} />
+      <MobileTopBar {...shared} onOpenMenu={() => setMobileMenuOpen(true)} />
+      <MobileMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen} activeSection={activeSection} onNavClick={handleNavClick} />
       <MobileBottomNav activeSection={activeSection} onNavClick={handleNavClick} />
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { projectsData } from '../data/portfolioData';
+import Button from './ui/Button';
 
 export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProjects }) {
   const [imageErrors, setImageErrors] = useState({});
@@ -27,10 +28,10 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-star"></i>
-            <span>Spotlight Deliveries</span>
+            <span>01 / Selected projects</span>
           </div>
           <h2 className="section-title">
-            Featured Client & <span className="gradient-text">Production Works</span>
+            Selected <span className="gradient-text">work.</span>
           </h2>
           <p className="section-subtitle">
             Curated high-impact platforms engineered for global clients, real-time communities, and automated workflows.
@@ -71,24 +72,23 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
 
                 <div className="flagship-actions">
                   {project.url && (
-                    <a
+                    <Button asChild variant="secondary"><a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-flagship-primary"
                     >
                       <span>{project.hasLiveDemo ? 'Visit Live Application' : 'Open Link'}</span>
                       <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
+                    </a></Button>
                   )}
-                  <button
+                  <Button variant="ghost" size="small"
                     onClick={() => onSelectProject(project)}
-                    className="btn-flagship-inspect"
+                    className="project-details-button"
                     title="Inspect architecture & highlights"
                   >
                     <i className="fa-solid fa-circle-info"></i>
                     <span>Inspect</span>
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

@@ -97,7 +97,8 @@ export default function App() {
       />
 
       {/* Main Content Area (Side-by-side: left primary nav rail + right floating action dock) */}
-      <div className="app-content-wrapper lg:ml-80 xl:ml-88 2xl:ml-92 lg:mr-20 relative z-10 min-h-screen text-foreground pb-24 lg:pb-0 transition-all duration-300">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="app-content-wrapper relative z-10 min-h-screen text-foreground">
         <main id="main-content" className="min-w-0 w-full max-w-6xl mx-auto">
           {currentView === 'all-projects' ? (
             <AllProjectsView
@@ -110,11 +111,11 @@ export default function App() {
                 onCopyEmail={handleShowToast}
                 onOpenCmd={() => setIsCmdOpen(true)}
               />
-              <Experience />
               <ProjectsShowcase
                 onSelectProject={(project) => setSelectedProject(project)}
                 onNavigateToAllProjects={navigateToAllProjects}
               />
+              <Experience />
               <Skills />
               <Strategy />
               <InteractiveMotionLab

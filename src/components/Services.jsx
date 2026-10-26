@@ -9,10 +9,10 @@ export default function Services() {
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-handshake"></i>
-            <span>Solutions & Value</span>
+            <span>06 / What I can help with</span>
           </div>
           <h2 className="section-title">
-            How I Can <span className="gradient-text">Help Your Team</span>
+            Let’s build <span className="gradient-text">something great.</span>
           </h2>
           <p className="section-subtitle">
             Specialized engineering services tailored for scalability, performance, and reliability.

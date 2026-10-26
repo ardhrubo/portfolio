@@ -9,10 +9,10 @@ export default function Skills() {
         <div className="section-header">
           <div className="section-tag">
             <i className="fa-solid fa-layer-group"></i>
-            <span>Technical Capabilities</span>
+            <span>03 / Technical stack</span>
           </div>
           <h2 className="section-title">
-            Skills & <span className="gradient-text">Engineering Arsenal</span>
+            The tools behind <span className="gradient-text">the work.</span>
           </h2>
           <p className="section-subtitle">
             Core technologies, frameworks, and methodologies used across production systems.
@@ -27,9 +27,9 @@ export default function Skills() {
                 <div
                   className="skill-cat-icon"
                   style={{
-                    background: `${cat.color}15`,
-                    color: cat.color,
-                    border: `1px solid ${cat.color}35`,
+                    background: 'var(--tint-bg)',
+                    color: 'var(--primary)',
+                    border: '1px solid var(--tint-border)',
                   }}
                 >
                   <i className={cat.icon}></i>
