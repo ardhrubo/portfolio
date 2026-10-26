@@ -1,4 +1,9 @@
 /* Shared primitives and the overview/navigation components. */
+.ambient-background { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.ambient-background .ambient-blob-1, .ambient-background .ambient-blob-2 { position: absolute; width: 800px; height: 800px; border-radius: 50%; }
+.ambient-background .ambient-grid { position: absolute; inset: 0; }
+.portfolio-app { position: relative; isolation: isolate; }
+.drawer-panel { position: fixed; inset: 0 0 0 auto; z-index: 2501; height: 100dvh; }
 .ui-button {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 44px; padding: 11px 18px; border: 1px solid transparent;
@@ -14,7 +19,7 @@
 .ui-button--small { min-height: 36px; padding: 8px 12px; font-size: 12px; }
 .ui-button:disabled { opacity: .5; cursor: not-allowed; }
 .ui-button svg { flex-shrink: 0; }
-.ui-card { min-width: 0; border: 1px solid var(--border); border-radius: 22px; background: var(--glass-bg); box-shadow: var(--glass-highlight), var(--glass-shadow); }
+.ui-card { min-width: 0; border: 1px solid var(--glass-border); border-radius: 22px; background: var(--glass-bg); box-shadow: var(--glass-highlight), var(--glass-shadow); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
 .status-dot { display: inline-block; width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--primary); }
 .desktop-sidebar, .right-dock { display: none; }
 .sidebar-brand { display: flex; align-items: center; gap: 10px; }

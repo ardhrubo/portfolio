@@ -15,7 +15,7 @@ export default function Services() {
             Let’s build <span className="gradient-text">something great.</span>
           </h2>
           <p className="section-subtitle">
-            Specialized engineering services tailored for scalability, performance, and reliability.
+            Web applications, browser automation, and scientific software. Bring a product idea, a repetitive workflow, or a research problem.
           </p>
         </div>
 

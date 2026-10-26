@@ -18,7 +18,7 @@ export default function Strategy() {
             A thoughtful <span className="gradient-text">approach.</span>
           </h2>
           <p className="section-subtitle">
-            A battle-tested 4-step framework ensuring clean architecture, performance, and reliable releases.
+            Understand the problem, design the system, build it carefully, and test it in the conditions it will actually face.
           </p>
         </div>
 

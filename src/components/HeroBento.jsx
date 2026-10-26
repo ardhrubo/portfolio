@@ -42,15 +42,15 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
           <span><span className="topbar-slash">/</span> Portfolio <span className="topbar-divider">/</span> Overview</span>
           <Button variant="ghost" size="small" onClick={onOpenCmd} aria-label="Search portfolio"><Search size={15} /><span>Quick search</span><kbd>⌘ K</kbd></Button>
         </div>
-        <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> OPEN TO WHAT’S NEXT</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh · Worldwide remote</span></div>
+        <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> AVAILABLE FOR ROLES & COLLABORATIONS</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh · Working worldwide</span></div>
         <div className="overview-grid">
           <Card as="article" className="overview-main">
             <span className="eyebrow">SOFTWARE ENGINEERING & RESEARCH</span>
-            <h1>Built with purpose.<br />Engineered <span>to last.</span></h1>
-            <p className="overview-description">I’m Dhrubo. I turn complex ideas into reliable web experiences, thoughtful automation, and scientific software.</p>
+            <h1>Web experiences.<br /><span>Scientific precision.</span></h1>
+            <p className="overview-description">I’m Dhrubo, a full-stack engineer and computational researcher. I build web platforms, automate data workflows, and model complex systems.</p>
             <div className="overview-actions">
-              <Button asChild><a href="#projects">Explore my work <ArrowUpRight size={17} /></a></Button>
-              <Button asChild variant="secondary"><a href="#contact">Let’s talk <ArrowRight size={16} /></a></Button>
+              <Button asChild><a href="#projects">View selected work <ArrowUpRight size={17} /></a></Button>
+              <Button asChild variant="secondary"><a href="#contact">Start a conversation <ArrowRight size={16} /></a></Button>
             </div>
             <div className="overview-capabilities">
               {capabilities.map(({icon: Icon, label, detail}) => <div key={label}><Icon size={17} aria-hidden="true" /><div><strong>{label}</strong><span>{detail}</span></div></div>)}

@@ -34,7 +34,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
             Selected <span className="gradient-text">work.</span>
           </h2>
           <p className="section-subtitle">
-            Curated high-impact platforms engineered for global clients, real-time communities, and automated workflows.
+            Client websites, community platforms, and automation tools. Explore the live work or open a project to see the architecture and technical details.
           </p>
         </div>
 

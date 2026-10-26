@@ -15,7 +15,7 @@ export default function Skills() {
             The tools behind <span className="gradient-text">the work.</span>
           </h2>
           <p className="section-subtitle">
-            Core technologies, frameworks, and methodologies used across production systems.
+            The languages, frameworks, and research tools I use to build, automate, and investigate.
           </p>
         </div>
 

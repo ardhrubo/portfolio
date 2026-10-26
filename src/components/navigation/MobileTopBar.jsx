@@ -25,7 +25,7 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
 
       <div className="flex items-center gap-2">
         <button type="button" className="mobile-menu-trigger" onClick={onOpenMenu} aria-label="Open navigation menu"><Menu size={19} /></button>
-        <StatusIndicator compact label="Available" title={`${personalInfo.status} · Dhaka ${localTime || 'GMT+6'}`} />
+        <span className="mobile-header-status"><StatusIndicator compact label="Available" title={`${personalInfo.status} · Dhaka ${localTime || 'GMT+6'}`} /></span>
         <button
           id="mobile-cmd-btn"
           type="button"

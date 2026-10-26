@@ -5,10 +5,11 @@ import { projectsData } from '../data/portfolioData';
 export default function ProjectDrawer({ project, onClose, onSelectProject }) {
   const returnFocusRef = useRef(document.activeElement);
   useEffect(() => {
+    const returnFocus = returnFocusRef.current;
     return () => {
-      returnFocusRef.current?.focus();
+      returnFocus?.focus();
     };
-  }, [onClose]);
+  }, []);
 
   if (!project) return null;
 
