@@ -8,7 +8,7 @@ export default function Logo({ size = 40, className = '' }) {
   return (
     <div
       style={{ width: size, height: size }}
-      className={`relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#22c55e]/90 to-[#4ade80]/80 backdrop-blur-md shadow-[0_6px_18px_-4px_rgba(34,197,94,0.35),inset_0_1px_0_0_rgba(255,255,255,0.45)] border border-white/30 select-none shrink-0 ${className}`}
+      className={`relative flex items-center justify-center rounded-2xl bg-[#22c55e]/85 backdrop-blur-md shadow-[0_6px_18px_-4px_rgba(34,197,94,0.35),inset_0_1px_0_0_rgba(255,255,255,0.45)] border border-white/30 select-none shrink-0 ${className}`}
       aria-label="Dhrubo Logo"
     >
       {/* Crisp White Typographic D */}

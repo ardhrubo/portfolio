@@ -175,10 +175,10 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                   </div>
 
                   <h3 className="vault-card-title">{project.title}</h3>
-                  <p className="vault-card-desc line-clamp-2">{project.desc}</p>
+                  <p className="vault-card-desc">{project.desc}</p>
 
                   <div className="vault-card-tech">
-                    {project.tech.slice(0, 4).map((t, idx) => (
+                    {project.tech.map((t, idx) => (
                       <span key={idx} className="vault-tech-pill">{t}</span>
                     ))}
                   </div>

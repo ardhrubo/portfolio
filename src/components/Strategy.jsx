@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { engineeringStrategy } from '../data/portfolioData';
 
 export default function Strategy() {
+  const [activeStep, setActiveStep] = useState(0);
+  const current = engineeringStrategy[activeStep];
+
   return (
     <section id="strategy" className="section strategy-section">
       <div className="container">
@@ -12,47 +15,59 @@ export default function Strategy() {
             <span>Engineering Framework</span>
           </div>
           <h2 className="section-title">
-            How I Build &amp; <span className="gradient-text">Scale Systems</span>
+            How I Build & <span className="gradient-text">Scale Systems</span>
           </h2>
           <p className="section-subtitle">
-            Four-stage execution pipeline from system design to zero-downtime deployment.
+            A battle-tested 4-step framework ensuring clean architecture, performance, and reliable releases.
           </p>
         </div>
 
-        {/* Clean 4-Card Glass Pipeline Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Strategy Steps Nav */}
+        <div className="strategy-nav-grid">
           {engineeringStrategy.map((item, index) => (
-            <div
+            <button
               key={index}
-              className="glass-panel rounded-2xl p-5 flex flex-col justify-between gap-4 border border-[var(--glass-border)] bg-[var(--glass-bg)] hover:border-[var(--tint-border)] transition-all duration-300"
+              onClick={() => setActiveStep(index)}
+              className={`strategy-nav-item ${activeStep === index ? 'active' : ''}`}
             >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-[var(--tint-bg)] text-[var(--tint-text)] border border-[var(--tint-border)]">
-                    Phase {item.step}
-                  </span>
-                  <span className="text-[0.68rem] font-mono uppercase tracking-wider text-muted-foreground">
-                    {item.badge}
-                  </span>
-                </div>
-
-                <h3 className="text-base font-bold text-foreground tracking-tight mb-2">
-                  {item.phase}
-                </h3>
-
-                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                  {item.description}
-                </p>
+              <div className="strategy-nav-step">{item.step}</div>
+              <div className="strategy-nav-text">
+                <span className="strategy-nav-phase">{item.phase}</span>
+                <span className="strategy-nav-badge">{item.badge}</span>
               </div>
-
-              <div className="pt-3 border-t border-[var(--glass-border)] flex items-center justify-between gap-2">
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-accent">
-                  <i className="fa-solid fa-chart-line text-[0.7rem]"></i>
-                  <span>{item.metric}</span>
-                </div>
-              </div>
-            </div>
+            </button>
           ))}
+        </div>
+
+        {/* Active Strategy Card */}
+        <div className="strategy-active-card">
+          <div className="strategy-card-header">
+            <div>
+              <div className="strategy-step-pill">Phase {current.step} &bull; {current.badge}</div>
+              <h3 className="strategy-card-title">{current.title}</h3>
+            </div>
+            <div className="strategy-metric-badge">
+              <i className="fa-solid fa-chart-line"></i>
+              <span>{current.metric}</span>
+            </div>
+          </div>
+
+          <p className="strategy-card-desc">{current.description}</p>
+
+          <div className="strategy-deliverables-box">
+            <h4 className="strategy-deliverables-title">
+              <i className="fa-solid fa-circle-check"></i>
+              <span>Key Deliverables</span>
+            </h4>
+            <div className="strategy-deliverables-grid">
+              {current.deliverables.map((item, idx) => (
+                <div key={idx} className="strategy-deliverable-item">
+                  <i className="fa-solid fa-circle-check"></i>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

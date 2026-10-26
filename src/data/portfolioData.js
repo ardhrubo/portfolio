@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Dhrubo",
-  fullName: "A. R. Dhrubo",
+  fullName: "Abdur Rahman Dhrubo",
   avatar: "/dhrubo-profile.jpg",
   role: "Full-Stack Software Engineer & Scientific Computing Researcher",
   tagline: "Architecting high-performance full-stack web platforms and scientific computing simulations (Monte Carlo & quantum DFT modeling).",

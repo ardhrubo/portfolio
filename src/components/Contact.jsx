@@ -70,7 +70,7 @@ export default function Contact({ onShowToast }) {
             Let's Build Something <span className="gradient-text">Exceptional</span>
           </h2>
           <p className="section-subtitle">
-            Reach out directly for full-time engineering roles, web systems, or research collaborations.
+            Have a project, role, or collaboration in mind? Pick a topic below to reach out directly.
           </p>
         </div>
 
@@ -88,6 +88,9 @@ export default function Contact({ onShowToast }) {
                   <span className="contact-author-title">Full-Stack Engineer & Researcher</span>
                 </div>
               </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginTop: '14px' }}>
+                Feel free to email me directly or connect on LinkedIn. I am based in Dhaka, Bangladesh (GMT+6) and work with international teams worldwide.
+              </p>
 
               {/* Email Link with Copy feedback */}
               <div onClick={handleCopyEmail} className="contact-item-link" title="Click to copy email">

@@ -110,15 +110,17 @@ export default function App() {
                 onCopyEmail={handleShowToast}
                 onOpenCmd={() => setIsCmdOpen(true)}
               />
+              <Experience />
               <ProjectsShowcase
                 onSelectProject={(project) => setSelectedProject(project)}
                 onNavigateToAllProjects={navigateToAllProjects}
               />
-              <Experience />
               <Skills />
+              <Strategy />
               <InteractiveMotionLab
                 onShowToast={handleShowToast}
               />
+              <Services />
               <Contact
                 onShowToast={handleShowToast}
               />

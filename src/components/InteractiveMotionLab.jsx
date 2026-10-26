@@ -8,9 +8,7 @@ import {
   Sparkles,
   RotateCcw,
   Zap,
-  Gauge,
   Sliders,
-  Maximize2
 } from 'lucide-react';
 
 // Light Forest Green & Mint Jade Theme
@@ -471,16 +469,17 @@ export default function InteractiveMotionLab({ onShowToast }) {
     <section id="simulation-lab" className="section text-foreground">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header">
-          <div className="section-tag">
-            <Atom className="size-3.5 text-primary" />
+        <div className="section-header text-center max-w-3xl mx-auto mb-10">
+          <div className="section-tag inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--glass-border)] bg-[var(--glass-item)] text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">
+            <Atom className="size-3.5 text-accent" />
             <span>Interactive WebGL 2.0 Motion Graphics</span>
           </div>
-          <h2 className="section-title">
+          <h2 className="section-title text-3xl sm:text-4xl font-heading font-extrabold tracking-tight">
             Scientific Motion Graphics &amp; <span className="gradient-text">3D Simulation Lab</span>
           </h2>
-          <p className="section-subtitle">
-            Interactive GPU simulations of C₆₀ fullerene cages, Monte Carlo fields, and quantum surfaces.
+          <p className="section-subtitle mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            Real-time GPU-accelerated motion graphics modeling molecular buckyball geometry,
+            stochastic Monte Carlo kinetic flow, and quantum potential surfaces.
           </p>
         </div>
 

@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowRight,
   Check,
   Mail,
   MapPin,
-  Sparkles,
   Code2,
-  Atom,
   Terminal,
+  Atom,
+  Layers,
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
+const EASE = 'ease-[cubic-bezier(0.16,1,0.3,1)]';
 const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
+const CARD = `glass-panel relative overflow-hidden rounded-2xl p-6 transition-all duration-300 ${EASE} hover:-translate-y-0.5`;
+const BTN = `glass-item inline-flex h-10 items-center gap-2 rounded-xl px-4 text-sm font-medium !text-foreground hover:-translate-y-px cursor-pointer ${FOCUS}`;
+
+const ZONES = [
+  { code: 'US', tz: 'America/New_York' },
+  { code: 'EU', tz: 'Europe/Berlin' },
+  { code: 'APAC', tz: 'Asia/Singapore' },
+];
+
+const METRICS = [
+  { value: '50+', label: 'Shipped Projects' },
+  { value: '3+', label: 'Years Experience' },
+  { value: '100k+', label: 'Simulation Runs' },
+  { value: '100%', label: 'Client Satisfaction' },
+];
 
 function GithubIcon(props) {
   return (
@@ -61,206 +77,284 @@ const SOCIALS = [
   { key: 'github', label: 'GitHub', icon: GithubIcon },
   { key: 'linkedin', label: 'LinkedIn', icon: LinkedinIcon },
   { key: 'peerlist', label: 'Peerlist', icon: PeerlistIcon },
-  { key: 'youtube', label: 'YouTube', icon: YoutubeIcon },
-  { key: 'facebook', label: 'Facebook', icon: FacebookIcon },
+  { key: 'facebook', label: 'Backbencher Chemist on Facebook', icon: FacebookIcon },
+  { key: 'youtube', label: 'YouTube (@randomdhrubo)', icon: YoutubeIcon },
 ];
+
+function Pulse() {
+  return (
+    <span className="relative flex size-2 shrink-0" aria-hidden="true">
+      <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
+      <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+    </span>
+  );
+}
+
+function Eyebrow({ icon: Icon, children }) {
+  return (
+    <span className="inline-flex items-center gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-muted-foreground">
+      <Icon className="size-3.5 text-primary" aria-hidden="true" />
+      {children}
+    </span>
+  );
+}
 
 export default function HeroBento({ onCopyEmail }) {
   const [copied, setCopied] = useState(false);
+  const [localTime, setLocalTime] = useState('');
+  const [zoneTimes, setZoneTimes] = useState([]);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      setLocalTime(new Intl.DateTimeFormat('en-US', options).format(now));
+
+      setZoneTimes(
+        ZONES.map((z) => {
+          const hour = Number(
+            new Intl.DateTimeFormat('en-US', { timeZone: z.tz, hour: 'numeric', hour12: false }).format(now)
+          ) % 24;
+          const time = new Intl.DateTimeFormat('en-US', { timeZone: z.tz, hour: '2-digit', minute: '2-digit', hour12: false }).format(now);
+          return { ...z, time, live: hour >= 8 && hour < 20 };
+        })
+      );
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleCopy = (e) => {
     e.preventDefault();
     navigator.clipboard.writeText(personalInfo.email);
     setCopied(true);
-    if (onCopyEmail) onCopyEmail('Email copied: ' + personalInfo.email);
+    if (onCopyEmail) onCopyEmail('Email copied to clipboard: ' + personalInfo.email);
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const [clockMain, clockPeriod] = (localTime || '--:--:-- --').split(' ');
+
   return (
-    <section id="hero" className="relative pt-6 pb-8 lg:pt-10 lg:pb-10 text-foreground">
+    <section id="hero" className="relative pt-6 pb-14 lg:pt-12 lg:pb-16 text-foreground">
       <div className="container">
-        {/* Main Personal Showcase Glass Card */}
-        <div className="glass-panel relative overflow-hidden rounded-3xl p-6 sm:p-8 lg:p-10 border border-[var(--glass-border)]">
-          {/* Dual Ambient Glow: Forest Green + Profile Pic Terracotta (#e26334) */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-24 -left-24 size-72 rounded-full blur-3xl opacity-35"
-            style={{ background: 'radial-gradient(circle, #22c55e 0%, transparent 70%)' }}
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-24 -right-16 size-80 rounded-full blur-3xl opacity-30"
-            style={{ background: 'radial-gradient(circle, #e26334 0%, #22c55e 65%, transparent 100%)' }}
-          />
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            {/* Left Column: Bold Name, Identity & Actions (7 cols) */}
-            <div className="lg:col-span-7 flex flex-col items-start">
-              {/* Status & Location Pill */}
-              <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--tint-bg)] border border-[var(--tint-border)] mb-5">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-                </span>
-                <span className="text-xs font-semibold text-[var(--tint-text)]">
-                  Available for Roles &amp; Projects
-                </span>
-                <span className="text-muted-foreground text-xs">&bull;</span>
-                <span className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground">
-                  <MapPin className="size-3 text-[#e26334]" />
-                  Dhaka, BD
-                </span>
-              </div>
-
-              {/* Greeting + Big Bold Name */}
-              <p className="font-mono text-xs sm:text-sm uppercase tracking-widest text-primary font-semibold mb-1.5">
-                Hi, I&apos;m
-              </p>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] font-black leading-[1.05] tracking-tight text-foreground">
-                Alifur Rahman{' '}
+        {/* Top Identity Header */}
+        <div className="mb-8 flex flex-col gap-5">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="relative size-16 sm:size-20 shrink-0 rounded-2xl border border-[var(--glass-border-strong)] bg-[var(--glass-item)] p-1 shadow-md backdrop-blur-xl">
+                <img
+                  src={personalInfo.avatar || '/dhrubo-profile.jpg'}
+                  alt={personalInfo.fullName}
+                  className="size-full rounded-xl object-cover"
+                />
                 <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: 'linear-gradient(135deg, #4ade80 0%, #22c55e 55%, #e26334 100%)',
-                  }}
-                >
-                  Dhrubo
-                </span>
-              </h1>
-
-              {/* Authentic Role Tags */}
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-semibold bg-[var(--glass-item)] border border-[var(--glass-border)] text-foreground">
-                  <Code2 className="size-3.5 text-primary" />
-                  Full-Stack Engineer
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-semibold bg-[var(--glass-item)] border border-[var(--glass-border)] text-foreground">
-                  <Terminal className="size-3.5 text-[#e26334]" />
-                  Web Automation &amp; Scraping
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-semibold bg-[var(--glass-item)] border border-[var(--glass-border)] text-foreground">
-                  <Atom className="size-3.5 text-primary" />
-                  Computational Chemistry
-                </span>
+                  className="absolute -right-0.5 -bottom-0.5 size-3.5 rounded-full border-2 border-background bg-emerald-500"
+                  title="Available for Hire"
+                />
               </div>
 
-              {/* Crisp, Human Bio */}
-              <p className="mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-muted-foreground">
-                I build fast <strong className="text-foreground font-semibold">React &amp; Next.js</strong> web products, high-concurrency <strong className="text-foreground font-semibold">Puppeteer</strong> scraping engines, and <strong className="text-foreground font-semibold">Python</strong> scientific simulations.
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[0.65rem] font-mono font-semibold uppercase tracking-wider bg-[var(--tint-bg)] text-[var(--tint-text)] border border-[var(--tint-border)] backdrop-blur-md">
+                    <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Available for Hire
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">@ardhrubo</span>
+                </div>
+
+                <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.08] tracking-tight text-foreground">
+                  {personalInfo.fullName || 'Abdur Rahman Dhrubo'}
+                </h1>
+
+                <p className="text-sm sm:text-base font-medium text-primary">
+                  {personalInfo.role}
+                </p>
+              </div>
+            </div>
+
+            {/* Social Glass Buttons */}
+            <div className="flex flex-wrap items-center gap-1.5">
+              {SOCIALS.filter((s) => personalInfo.socials?.[s.key]).map(({ key, label, icon: Icon }) => (
+                <a
+                  key={key}
+                  href={personalInfo.socials[key]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={label}
+                  aria-label={label}
+                  className={`glass-item inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-all duration-200 hover:text-primary hover:-translate-y-0.5 ${FOCUS}`}
+                >
+                  <Icon className="size-4.5" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Glass Bento Grid */}
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-12">
+          {/* Card 1: Engineering Focus & Primary Actions (7 cols) */}
+          <article className={`${CARD} xl:col-span-7 flex flex-col justify-between gap-6`} id="hero-card-focus">
+            <div className="flex flex-col gap-4">
+              <Eyebrow icon={Layers}>Engineering &amp; Research Focus</Eyebrow>
+
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold leading-snug tracking-tight text-foreground">
+                Scalable Web Systems, Distributed Automation &amp;{' '}
+                <span className="text-primary">Scientific Computing</span>
+              </h2>
+
+              <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                Engineering production <strong className="font-semibold text-foreground">React &amp; Next.js</strong> platforms, resilient <strong className="font-semibold text-foreground">Node.js &amp; Python</strong> backend services, high-concurrency <strong className="font-semibold text-foreground">Puppeteer</strong> scraping clusters, and stochastic <strong className="font-semibold text-foreground">Monte Carlo / DFT</strong> simulations.
               </p>
 
-              {/* Primary CTA & Social Bar */}
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <a
-                  href="#projects"
-                  id="hero-cta-projects"
-                  className={`btn-liquid-glass group h-11 px-5 text-sm font-semibold ${FOCUS}`}
-                >
-                  <span>Explore My Work</span>
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </a>
+              {/* 3 Glass Capability Tiles */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-item)] p-3 backdrop-blur-md">
+                  <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <Code2 className="size-3.5 text-primary shrink-0" />
+                    <span>Full-Stack Web</span>
+                  </div>
+                  <p className="mt-1 font-mono text-[0.6875rem] text-muted-foreground">
+                    React 19 &middot; Next.js &middot; Node
+                  </p>
+                </div>
 
-                <button
-                  id="hero-copy-email"
-                  type="button"
-                  onClick={handleCopy}
-                  className={`btn-liquid-frosted h-11 px-4 text-sm font-semibold ${FOCUS}`}
-                >
-                  {copied ? (
-                    <>
-                      <Check className="size-4 text-primary" />
-                      <span>Copied Email!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Mail className="size-4 text-[#e26334]" />
-                      <span>Copy Email</span>
-                    </>
-                  )}
-                </button>
+                <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-item)] p-3 backdrop-blur-md">
+                  <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <Terminal className="size-3.5 text-primary shrink-0" />
+                    <span>Web Automation</span>
+                  </div>
+                  <p className="mt-1 font-mono text-[0.6875rem] text-muted-foreground">
+                    Puppeteer &middot; Headless Pools
+                  </p>
+                </div>
 
-                <div className="flex items-center gap-1.5 pl-1">
-                  {SOCIALS.filter((s) => personalInfo.socials?.[s.key]).map(({ key, label, icon: Icon }) => (
-                    <a
-                      key={key}
-                      href={personalInfo.socials[key]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={label}
-                      aria-label={label}
-                      className={`glass-item inline-flex size-10 items-center justify-center rounded-xl text-muted-foreground transition-all duration-200 hover:text-primary hover:-translate-y-0.5 ${FOCUS}`}
-                    >
-                      <Icon className="size-4" aria-hidden="true" />
-                    </a>
-                  ))}
+                <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-item)] p-3 backdrop-blur-md">
+                  <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <Atom className="size-3.5 text-primary shrink-0" />
+                    <span>Scientific Lab</span>
+                  </div>
+                  <p className="mt-1 font-mono text-[0.6875rem] text-muted-foreground">
+                    Python &middot; DFT &middot; Monte Carlo
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Featured Profile Portrait Harmonized with #e26334 & Forest Green (5 cols) */}
-            <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
-              <div className="relative group">
-                {/* Outer Glass Frame blending Forest Green (#22c55e) + Profile Terracotta (#e26334) */}
-                <div
-                  className="relative rounded-3xl p-2.5 border transition-transform duration-300 group-hover:-translate-y-1"
-                  style={{
-                    background: 'linear-gradient(145deg, rgba(34, 197, 94, 0.24) 0%, rgba(226, 99, 52, 0.28) 100%)',
-                    borderColor: 'rgba(74, 222, 128, 0.45)',
-                    boxShadow: '0 20px 44px -12px rgba(226, 99, 52, 0.25), 0 12px 32px -8px rgba(34, 197, 94, 0.25)',
-                  }}
-                >
-                  <div className="relative w-56 h-56 sm:w-64 sm:h-64 overflow-hidden rounded-2xl border-2 border-white/25">
-                    <img
-                      src={personalInfo.avatar || '/dhrubo-profile.jpg'}
-                      alt={personalInfo.fullName}
-                      className="size-full object-cover"
-                    />
-                  </div>
+            {/* Action Bar */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-4 border-t border-[var(--glass-border)]">
+              <a
+                href="#experience"
+                id="hero-cta-experience"
+                className={`btn-liquid-glass group h-10 px-4 text-xs sm:text-sm font-semibold tracking-wide ${FOCUS}`}
+              >
+                <span>View Experience</span>
+                <ArrowRight className={`size-4 text-white/95 transition-transform duration-200 ${EASE} group-hover:translate-x-1`} aria-hidden="true" />
+              </a>
+              <a
+                href="#projects"
+                id="hero-cta-projects"
+                className={`btn-liquid-frosted h-10 px-4 text-xs sm:text-sm font-medium ${FOCUS}`}
+              >
+                Featured Projects
+              </a>
+              <button
+                id="hero-copy-email"
+                type="button"
+                onClick={handleCopy}
+                title="Copy email address"
+                aria-label="Copy email"
+                className={`${BTN} h-10 px-3.5 text-xs sm:text-sm ${copied ? 'border-primary text-primary' : ''}`}
+              >
+                {copied ? (
+                  <>
+                    <Check className="size-4 text-primary" aria-hidden="true" />
+                    <span>Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Mail className="size-4 text-primary" aria-hidden="true" />
+                    <span>Copy Email</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </article>
 
-                  {/* Floating Handle Badge at Bottom of Portrait */}
-                  <div className="mt-2.5 flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-background/85 backdrop-blur-md border border-[var(--glass-border)]">
-                    <div className="flex items-center gap-2">
+          {/* Card 2: Dhaka GMT+6 • Worldwide Remote (5 cols) */}
+          <article className={`${CARD} xl:col-span-5 flex flex-col justify-between`} id="hero-card-remote">
+            <div className="relative z-10">
+              <Eyebrow icon={MapPin}>Dhaka GMT+6 &bull; Worldwide Remote</Eyebrow>
+              <div className="mt-4 mb-1 flex items-baseline gap-2.5">
+                <span className="font-mono text-4xl font-black leading-none tracking-tight tabular-nums text-foreground sm:text-5xl">
+                  {clockMain}
+                </span>
+                <span className="font-mono text-sm font-semibold text-accent uppercase tracking-widest">{clockPeriod}</span>
+              </div>
+              <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground mt-2">
+                High-bandwidth asynchronous collaboration across US, European, and APAC timezones.
+              </p>
+
+              {/* Timezone Matrices */}
+              <div className="mt-5 grid grid-cols-3 gap-2">
+                {zoneTimes.map((z) => (
+                  <div
+                    key={z.code}
+                    className={`rounded-xl border p-2.5 transition-all duration-300 ${
+                      z.live
+                        ? 'border-[var(--tint-border)] bg-[var(--tint-bg)]'
+                        : 'border-[var(--glass-border)] bg-[var(--glass-item)]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-[0.6875rem] font-bold text-foreground">
+                      <span>{z.code}</span>
                       <span
-                        className="size-2.5 rounded-full"
-                        style={{ background: 'linear-gradient(135deg, #22c55e, #e26334)' }}
-                      />
-                      <span className="font-mono text-xs font-bold text-foreground">@ardhrubo</span>
+                        className={`text-[0.5625rem] font-bold uppercase tracking-wider ${
+                          z.live ? 'text-accent' : 'text-slate-500'
+                        }`}
+                      >
+                        {z.live ? 'Overlap' : 'Async'}
+                      </span>
                     </div>
-                    <span className="text-[0.68rem] font-mono text-muted-foreground">
-                      B.Sc. Chemistry &bull; SWE
-                    </span>
+                    <span className="mt-1 block font-mono text-xs font-semibold tabular-nums text-foreground/90">{z.time}</span>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4 flex items-center gap-2 border-t border-[var(--glass-border)] pt-3 text-xs text-muted-foreground">
+              <Pulse />
+              <span>
+                <b className="font-bold text-foreground">Async-ready</b> &middot; Open for roles &middot; replies &lt; 12h
+              </span>
+            </div>
+          </article>
+
+          {/* Card 3: Key Telemetry Strip (12 cols) */}
+          <article
+            className={`${CARD} p-0 xl:col-span-12`}
+            id="hero-card-telemetry"
+            aria-label="Key metrics"
+          >
+            <div className="grid grid-cols-2 divide-[var(--glass-border)] sm:grid-cols-4 sm:divide-x">
+              {METRICS.map((m, i) => (
+                <div
+                  key={m.label}
+                  className={`border-[var(--glass-border)] px-6 py-5 ${i % 2 === 0 ? 'border-r sm:border-r-0' : ''} ${
+                    i < 2 ? 'border-b sm:border-b-0' : ''
+                  }`}
+                >
+                  <span className="block font-mono text-3xl sm:text-4xl font-black tracking-tight tabular-nums text-foreground">
+                    {m.value}
+                  </span>
+                  <span className="mt-1 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {m.label}
+                  </span>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
-
-          {/* Clean 3-Pill Highlight Strip */}
-          <div className="relative z-10 mt-8 pt-6 border-t border-[var(--glass-border)] grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[var(--glass-item)] border border-[var(--glass-border)]">
-              <span className="font-mono text-2xl font-black text-primary">50+</span>
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-foreground">Shipped Projects</span>
-                <span className="text-[0.68rem] text-muted-foreground">Web Apps, Scrapers &amp; Extensions</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[var(--glass-item)] border border-[var(--glass-border)]">
-              <span className="font-mono text-2xl font-black text-[#e26334]">3+ Yrs</span>
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-foreground">Production Experience</span>
-                <span className="text-[0.68rem] text-muted-foreground">Full-Stack &amp; Automation Systems</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[var(--glass-item)] border border-[var(--glass-border)]">
-              <span className="font-mono text-2xl font-black text-primary">B.Sc.</span>
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-foreground">Chemistry &amp; Research</span>
-                <span className="text-[0.68rem] text-muted-foreground">DFT, QSAR &amp; Monte Carlo Modeling</span>
-              </div>
-            </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
