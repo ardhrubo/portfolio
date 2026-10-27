@@ -44,6 +44,18 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
         </div>
         <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> AVAILABLE FOR ROLES & COLLABORATIONS</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh · Working worldwide</span></div>
         <div className="overview-grid">
+          <Card as="article" className="overview-profile">
+            <div className="profile-topline"><span className="eyebrow">THE PERSON BEHIND THE CODE</span><ArrowUpRight size={16} aria-hidden="true" /></div>
+            <div className="profile-identity"><div className="profile-photo"><img src={personalInfo.avatar} alt={personalInfo.fullName} /><span className="status-dot" /></div><span className="profile-handle">@ardhrubo</span></div>
+            <h2>Abdur Rahman<br />Dhrubo<span>.</span></h2>
+            <p className="profile-role">Full-stack engineer.<br />Computational researcher.</p>
+            <div className="profile-socials">
+              <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a></Button>
+              <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a></Button>
+              <Button variant="secondary" size="icon" onClick={copyEmail} aria-label={copied ? 'Email copied' : 'Copy email'}>{copied ? <Check size={17} /> : <Mail size={17} />}</Button>
+            </div>
+            <div className="profile-local-time"><span><MapPin size={13} /> LOCAL TIME / GMT+6</span><time>{time || 'Dhaka'}</time></div>
+          </Card>
           <Card as="article" className="overview-main">
             <span className="eyebrow">SOFTWARE ENGINEERING & RESEARCH</span>
             <h1>Web experiences.<br /><span>Scientific precision.</span></h1>
@@ -56,18 +68,6 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
               {capabilities.map(({icon: Icon, label, detail}) => <div key={label}><Icon size={17} aria-hidden="true" /><div><strong>{label}</strong><span>{detail}</span></div></div>)}
             </div>
             <span className="hero-corner-mark" aria-hidden="true">+</span>
-          </Card>
-          <Card as="article" className="overview-profile">
-            <div className="profile-topline"><span className="eyebrow">THE PERSON BEHIND THE CODE</span><ArrowUpRight size={16} aria-hidden="true" /></div>
-            <div className="profile-identity"><div className="profile-photo"><img src={personalInfo.avatar} alt={personalInfo.fullName} /><span className="status-dot" /></div><span className="profile-handle">@ardhrubo</span></div>
-            <h2>Abdur Rahman<br />Dhrubo<span>.</span></h2>
-            <p className="profile-role">Full-stack engineer.<br />Computational researcher.</p>
-            <div className="profile-socials">
-              <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a></Button>
-              <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a></Button>
-              <Button variant="secondary" size="icon" onClick={copyEmail} aria-label={copied ? 'Email copied' : 'Copy email'}>{copied ? <Check size={17} /> : <Mail size={17} />}</Button>
-            </div>
-            <div className="profile-local-time"><span><MapPin size={13} /> LOCAL TIME / GMT+6</span><time>{time || 'Dhaka'}</time></div>
           </Card>
         </div>
         <div className="overview-metrics" aria-label="Career highlights">

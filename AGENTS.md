@@ -5,6 +5,7 @@
 - Avoid running intrusive or unsandboxed commands that prompt for user permission unless specifically requested by the user.
 
 ## Design & UI System
+- **Glass UI**: Preserve a distinctive glass appearance with translucent surfaces, background blur, fine edge highlights, and tactile iPhone-inspired buttons. Use a sliding moon/sun toggle for the theme control. Keep mobile controls and content comfortably responsive.
 - **Two-Sided Layout**: Maintain the balanced dual-rail layout on desktop (`Sidebar` on the left, `RightDock` on the right, content centered between them).
 - **Color Consistency**:
   - **Light Mode**: Editorial off-white canvas (`#fdfdfc`), crisp borders (`#e4e4e7`), and Forest Green accent (`#15803d`).

@@ -31,7 +31,7 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
           type="button"
           onClick={onOpenCmd}
           aria-label="Open quick search"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background/60 text-muted-foreground transition-colors duration-200 hover:bg-primary/10 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer"
+          className="mobile-search-trigger inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background/60 text-muted-foreground transition-colors duration-200 hover:bg-primary/10 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer"
         >
           <Search className="size-4" aria-hidden="true" />
         </button>

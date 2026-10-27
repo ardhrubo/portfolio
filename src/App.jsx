@@ -28,6 +28,16 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState(null);
 
   useEffect(() => {
+    if (currentView !== 'home') return;
+    const target = window.location.hash.slice(1);
+    if (!target) return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(target)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [currentView]);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.classList.toggle('dark', theme === 'dark');
     localStorage.setItem('portfolio-theme', theme);
