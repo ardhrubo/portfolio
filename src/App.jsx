@@ -59,11 +59,7 @@ export default function App() {
   }, [currentView]);
 
   const toggleTheme = () => {
-    setTheme((prev) => {
-      const nextTheme = prev === 'light' ? 'dark' : 'light';
-      setToastMessage(`Switched to ${nextTheme === 'light' ? 'Light' : 'Dark'} mode`);
-      return nextTheme;
-    });
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
   const handleShowToast = (msg) => {

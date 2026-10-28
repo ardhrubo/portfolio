@@ -10,7 +10,6 @@ export default function ThemeToggle({ currentTheme, onToggleTheme, id, showLabel
         id={id}
         isDark={isDark}
         onToggle={onToggleTheme}
-        size={showLabel ? 9 : 8}
       />
       {showLabel && (
         <span className="text-xs font-medium text-muted-foreground">

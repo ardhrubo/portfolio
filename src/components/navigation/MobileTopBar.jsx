@@ -2,14 +2,13 @@ import React from 'react';
 import { Search, Menu } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
 import ThemeToggle from './ThemeToggle';
-import StatusIndicator from './StatusIndicator';
 import Logo from '../Logo';
 
-export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, onOpenCmd, onBrandClick, onOpenMenu }) {
+export default function MobileTopBar({ currentTheme, onToggleTheme, onOpenCmd, onBrandClick, onOpenMenu }) {
   return (
     <header
       aria-label="Mobile header"
-      className="lg:hidden sticky top-0 z-40 w-full sidebar-glass border-b border-[var(--glass-border)] px-4 py-3 flex items-center justify-between text-foreground"
+      className="mobile-topbar lg:hidden sticky top-0 z-40 w-full sidebar-glass border-b border-[var(--glass-border)] text-foreground"
     >
       <a
         id="mobile-brand"
@@ -23,9 +22,11 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
         </span>
       </a>
 
-      <div className="flex items-center gap-2">
-        <button type="button" className="mobile-menu-trigger" onClick={onOpenMenu} aria-label="Open navigation menu"><Menu size={19} /></button>
-        <span className="mobile-header-status"><StatusIndicator compact label="Available" title={`${personalInfo.status} · Dhaka ${localTime || 'GMT+6'}`} /></span>
+      <div className="mobile-theme-slot">
+        <ThemeToggle id="mobile-theme-btn" currentTheme={currentTheme} onToggleTheme={onToggleTheme} />
+      </div>
+
+      <div className="mobile-header-actions">
         <button
           id="mobile-cmd-btn"
           type="button"
@@ -35,7 +36,7 @@ export default function MobileTopBar({ currentTheme, localTime, onToggleTheme, o
         >
           <Search className="size-4" aria-hidden="true" />
         </button>
-        <ThemeToggle id="mobile-theme-btn" currentTheme={currentTheme} onToggleTheme={onToggleTheme} />
+        <button type="button" className="mobile-menu-trigger" onClick={onOpenMenu} aria-label="Open navigation menu"><Menu size={19} aria-hidden="true" /></button>
       </div>
     </header>
   );

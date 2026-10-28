@@ -26,11 +26,6 @@ export default function Skills() {
               <div className="skill-cat-header">
                 <div
                   className="skill-cat-icon"
-                  style={{
-                    background: 'var(--tint-bg)',
-                    color: 'var(--primary)',
-                    border: '1px solid var(--tint-border)',
-                  }}
                 >
                   <i className={cat.icon}></i>
                 </div>
