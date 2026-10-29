@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, ArrowRight, Check, Mail, MapPin, Code2, Workflow, Atom, Search } from 'lucide-react';
+import { ArrowUpRight, Check, Mail, MapPin, Code2, Workflow, Atom, Search } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Button from './ui/Button';
@@ -39,10 +39,10 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
     <section id="hero" className="overview-section">
       <div className="container">
         <div className="page-topbar">
-          <span><span className="topbar-slash">/</span> Portfolio <span className="topbar-divider">/</span> Overview</span>
+          <span>Dhrubo’s studio <span className="topbar-divider">/</span> Engineering & curiosity</span>
           <Button variant="ghost" size="small" onClick={onOpenCmd} aria-label="Search portfolio"><Search size={15} /><span>Quick search</span><kbd>⌘ K</kbd></Button>
         </div>
-        <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> AVAILABLE FOR ROLES & COLLABORATIONS</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh · Working worldwide</span></div>
+        <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> OPEN TO SELECT OPPORTUNITIES</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh</span></div>
         <div className="overview-grid">
           <Card as="article" className="overview-profile">
             <div className="profile-topline"><span className="eyebrow">THE PERSON BEHIND THE CODE</span><ArrowUpRight size={16} aria-hidden="true" /></div>
@@ -57,17 +57,17 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             <div className="profile-local-time"><span><MapPin size={13} /> LOCAL TIME / GMT+6</span><time>{time || 'Dhaka'}</time></div>
           </Card>
           <Card as="article" className="overview-main">
-            <span className="eyebrow">SOFTWARE ENGINEERING & RESEARCH</span>
-            <h1>Web experiences.<br /><span>Scientific precision.</span></h1>
+            <span className="eyebrow">HELLO, I’M DHRUBO</span>
+            <h1>A curious mind.<br /><span>A builder at heart.</span></h1>
             <p className="overview-description">I’m Dhrubo, a full-stack engineer and computational researcher. I build web platforms, automate data workflows, and model complex systems.</p>
             <div className="overview-actions">
-              <Button asChild><a href="#projects">View selected work <ArrowUpRight size={17} /></a></Button>
-              <Button asChild variant="secondary"><a href="#contact">Start a conversation <ArrowRight size={16} /></a></Button>
+              <Button asChild className="studio-action"><a href="#projects"><span className="action-icon action-icon--mint"><ArrowUpRight size={18} aria-hidden="true" /></span>View selected work</a></Button>
+              <Button asChild variant="secondary" className="studio-action"><a href="#contact"><span className="action-icon action-icon--peach"><Mail size={18} aria-hidden="true" /></span>Start a conversation</a></Button>
             </div>
             <div className="overview-capabilities">
               {capabilities.map(({icon: Icon, label, detail}) => <div key={label}><Icon size={17} aria-hidden="true" /><div><strong>{label}</strong><span>{detail}</span></div></div>)}
             </div>
-            <span className="hero-corner-mark" aria-hidden="true">+</span>
+            <div className="studio-note"><span className="status-dot" /> Between code, experiments, and possibility.</div>
           </Card>
         </div>
         <div className="overview-metrics" aria-label="Career highlights">

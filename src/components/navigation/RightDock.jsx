@@ -12,7 +12,7 @@ function Tool({ label, children }) {
 export default function RightDock({ currentTheme, onToggleTheme, onOpenCmd, onOpenChat, onNavigateToHome }) {
   return <Tooltip.Provider delayDuration={200}><aside aria-label="Quick actions" className="right-dock">
     <Tool label="Search portfolio"><Button id="right-dock-search" variant="ghost" size="icon" onClick={onOpenCmd} aria-label="Search portfolio"><Search size={18} /></Button></Tool>
-    <Tool label="Ask my assistant"><Button id="right-dock-ai" variant="ghost" size="icon" onClick={onOpenChat} aria-label="Ask my assistant"><Sparkles size={18} /></Button></Tool>
+    <Tool label="Portfolio guide"><Button id="right-dock-ai" variant="ghost" size="icon" onClick={onOpenChat} aria-label="Open portfolio guide"><Sparkles size={18} /></Button></Tool>
     <span className="dock-divider" />
     <Tool label="GitHub profile"><Button asChild variant="ghost" size="icon"><a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub profile"><Github size={18} /></a></Button></Tool>
     <Tool label="Get in touch"><Button id="right-dock-talk" variant="ghost" size="icon" onClick={() => onNavigateToHome('#contact')} aria-label="Get in touch"><Mail size={18} /></Button></Tool>

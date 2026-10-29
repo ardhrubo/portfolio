@@ -61,9 +61,9 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
             <span>Back to Home</span>
           </button>
           <div className="all-projects-breadcrumbs">
-            <span onClick={onBackToHome} className="breadcrumb-link">Home</span>
+            <button onClick={onBackToHome} className="breadcrumb-link">Home</button>
             <span className="breadcrumb-sep">/</span>
-            <span className="breadcrumb-active">Project Vault</span>
+            <span className="breadcrumb-active">All projects</span>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
             <span>Engineering Archive</span>
           </div>
           <h1 className="section-title">
-            The Complete Project Vault <span className="gradient-text">Archive</span>
+            All <span className="gradient-text">projects.</span>
           </h1>
           <p className="section-subtitle">
             Explore production web applications, automated crawling pipelines, Chrome privacy extensions, and open-source developer tooling.
@@ -90,6 +90,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
+                aria-pressed={activeCategory === cat.id}
                 className={`vault-filter-chip ${activeCategory === cat.id ? 'active' : ''}`}
               >
                 <span>{cat.label}</span>
@@ -104,12 +105,13 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
               <i className="fa-solid fa-magnifying-glass"></i>
               <input
                 type="text"
+                aria-label="Search all projects"
                 placeholder="Search projects by name, category, or stack..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="btn-clear-search">
+                <button onClick={() => setSearchQuery('')} className="btn-clear-search" aria-label="Clear search">
                   <i className="fa-solid fa-xmark"></i>
                 </button>
               )}
@@ -122,6 +124,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                 className={`view-toggle-btn ${viewMode === 'grid' ? 'active' : ''}`}
                 title="Grid visual view"
                 aria-label="Grid view"
+                aria-pressed={viewMode === 'grid'}
               >
                 <i className="fa-solid fa-grip"></i>
               </button>
@@ -130,6 +133,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                 className={`view-toggle-btn ${viewMode === 'table' ? 'active' : ''}`}
                 title="Table compact list view"
                 aria-label="Table view"
+                aria-pressed={viewMode === 'table'}
               >
                 <i className="fa-solid fa-list"></i>
               </button>
@@ -189,7 +193,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                       className="btn-vault-inspect"
                     >
                       <i className="fa-solid fa-circle-info"></i>
-                      <span>Inspect Details</span>
+                      <span>View project</span>
                     </button>
 
                     {project.url && (
@@ -256,6 +260,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                           onSelectProject(project);
                         }}
                         className="btn-table-inspect"
+                        aria-label={`View project: ${project.title}`}
                       >
                         <i className="fa-solid fa-arrow-right"></i>
                       </button>

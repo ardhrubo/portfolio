@@ -64,7 +64,7 @@ export default function Navbar({
         onNavigateToHome={onNavigateToHome}
       />
       <MobileTopBar {...shared} onOpenMenu={() => setMobileMenuOpen(true)} />
-      <MobileMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen} activeSection={activeSection} onNavClick={handleNavClick} />
+      <MobileMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen} activeSection={activeSection} onNavClick={handleNavClick} onOpenGuide={() => { setMobileMenuOpen(false); onOpenChat(); }} />
       <MobileBottomNav activeSection={activeSection} onNavClick={handleNavClick} />
     </>
   );

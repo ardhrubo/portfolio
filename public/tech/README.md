@@ -1,0 +1,1 @@
+Technology brand artwork from [Devicon](https://github.com/devicons/devicon), downloaded 2026-10-29. See LICENSE.txt for the collection license. Brand names and logos remain trademarks of their respective owners. Original SVG geometry and colors are preserved.

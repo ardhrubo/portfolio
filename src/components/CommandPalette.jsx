@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { projectsData, personalInfo } from '../data/portfolioData';
+import AccessibleDialog from './ui/AccessibleDialog';
 
-export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects }) {
+export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects, onNavigateToHome }) {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
     { name: 'Get in Touch', href: '#contact', icon: 'fa-solid fa-paper-plane' },
   ];
 
-  const handleAction = (type, val) => {
+  const handleAction = async (type, val) => {
     if (type === 'project') {
       onSelectProject(val);
       onClose(false);
@@ -44,30 +45,39 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
       if (val === '#all-projects' && onNavigateToAllProjects) {
         onNavigateToAllProjects();
       } else {
-        window.location.href = val;
+        onNavigateToHome(val);
       }
       onClose(false);
     } else if (type === 'copy') {
-      navigator.clipboard.writeText(personalInfo.email);
-      if (onShowToast) onShowToast('Email copied to clipboard!');
+      try { await navigator.clipboard.writeText(personalInfo.email); onShowToast?.('Email copied.'); }
+      catch { onShowToast?.(`Email me at ${personalInfo.email}`); }
       onClose(false);
     }
   };
 
   return (
-    <div className="cmd-backdrop" onClick={() => onClose(false)} role="dialog" aria-modal="true">
-      <div className="cmd-modal" onClick={e => e.stopPropagation()}>
+    <AccessibleDialog title="Search portfolio" description="Find projects and navigate sections. Use arrow keys and Enter to select." onClose={() => onClose(false)} overlayClass="cmd-backdrop" className="cmd-modal" onKeyDown={event => {
+      const items = [...event.currentTarget.querySelectorAll('.cmd-item')];
+      if (!items.length) return;
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') { event.preventDefault(); items[0].click(); }
+      if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return;
+      event.preventDefault();
+      const index = items.indexOf(document.activeElement);
+      const next = index < 0 ? (event.key === 'ArrowDown' ? 0 : items.length - 1) : (index + (event.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      items[next].focus(); items[next].scrollIntoView({ block: 'nearest' });
+    }}>
         <div className="cmd-input-wrapper">
           <i className="fa-solid fa-magnifying-glass cmd-search-icon"></i>
           <input
             type="text"
+            aria-label="Search projects and technologies"
             className="cmd-input"
             placeholder="Type a project, technology, or command (e.g. 'React', 'Puppeteer', 'Contact')..."
             autoFocus
             value={query}
             onChange={e => setQuery(e.target.value)}
           />
-          <span className="cmd-esc-badge" onClick={() => onClose(false)}>ESC</span>
+          <button className="cmd-esc-badge" onClick={() => onClose(false)} aria-label="Close search">ESC</button>
         </div>
 
         <div className="cmd-results">
@@ -75,11 +85,11 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
           {query === '' && (
             <div className="cmd-group">
               <span className="cmd-group-title">Quick Actions</span>
-              <div className="cmd-item" onClick={() => handleAction('copy')}>
+              <button className="cmd-item" onClick={() => handleAction('copy')}>
                 <div className="cmd-item-icon"><i className="fa-regular fa-copy"></i></div>
                 <span>Copy Email Address (<code>{personalInfo.email}</code>)</span>
                 <span className="cmd-shortcut">Enter</span>
-              </div>
+              </button>
               <a
                 href={personalInfo.socials.github}
                 target="_blank"
@@ -110,10 +120,10 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
             <div className="cmd-group">
               <span className="cmd-group-title">Jump to Section</span>
               {sections.map((sec, i) => (
-                <div key={i} className="cmd-item" onClick={() => handleAction('link', sec.href)}>
+                <button key={i} className="cmd-item" onClick={() => handleAction('link', sec.href)}>
                   <div className="cmd-item-icon"><i className={sec.icon}></i></div>
                   <span>{sec.name}</span>
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -127,14 +137,14 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
               <div className="cmd-empty">No projects found matching "{query}"</div>
             ) : (
               filteredProjects.slice(0, 8).map(p => (
-                <div key={p.id} className="cmd-item" onClick={() => handleAction('project', p)}>
+                <button key={p.id} className="cmd-item" onClick={() => handleAction('project', p)}>
                   <div className="cmd-item-icon"><i className="fa-solid fa-folder-closed"></i></div>
                   <div className="cmd-item-text">
                     <span className="cmd-item-name">{p.title}</span>
                     <span className="cmd-item-sub">{p.categoryLabel} &bull; {p.tech.slice(0, 3).join(', ')}</span>
                   </div>
                   <span className="cmd-badge">{p.badge}</span>
-                </div>
+                </button>
               ))
             )}
           </div>
@@ -145,7 +155,6 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
           <span>Open with <kbd>Enter</kbd></span>
           <span>Close with <kbd>Esc</kbd></span>
         </div>
-      </div>
-    </div>
+    </AccessibleDialog>
   );
 }

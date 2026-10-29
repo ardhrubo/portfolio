@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { BriefcaseBusiness, GraduationCap, Sparkles } from 'lucide-react';
 import { experienceData, educationData, certificationsData, eventsData } from '../data/portfolioData';
+import AccessibleDialog from './ui/AccessibleDialog';
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('experience'); // 'experience' | 'education' | 'events'
@@ -24,14 +26,14 @@ export default function Experience() {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <i className="fa-solid fa-briefcase"></i>
-            <span>02 / The journey</span>
+            <BriefcaseBusiness size={16} aria-hidden="true" />
+            <span>02 / EXPERIENCE & RESEARCH</span>
           </div>
           <h2 className="section-title">
-            Experience & <span className="gradient-text">research.</span>
+            The work behind <span className="gradient-text">the work.</span>
           </h2>
           <p className="section-subtitle">
-            Verified timeline across production software engineering, distributed web scraping, computational chemistry, and higher education.
+            A path through product engineering, scientific research, and sharing what I’ve learned.
           </p>
 
           {/* Primary View Switcher: Experience vs Education vs Conferences */}
@@ -39,24 +41,27 @@ export default function Experience() {
             <button
               className={`exp-tab-btn ${activeTab === 'experience' ? 'active' : ''}`}
               onClick={() => setActiveTab('experience')}
+              aria-pressed={activeTab === 'experience'}
             >
-              <i className="fa-solid fa-timeline"></i>
+              <BriefcaseBusiness size={17} aria-hidden="true" />
               <span>Experience</span>
               <span className="exp-count-badge">{experienceData.length}</span>
             </button>
             <button
               className={`exp-tab-btn ${activeTab === 'education' ? 'active' : ''}`}
               onClick={() => setActiveTab('education')}
+              aria-pressed={activeTab === 'education'}
             >
-              <i className="fa-solid fa-graduation-cap"></i>
+              <GraduationCap size={17} aria-hidden="true" />
               <span>Education</span>
               <span className="exp-count-badge">{educationData.length + certificationsData.length}</span>
             </button>
             <button
               className={`exp-tab-btn ${activeTab === 'events' ? 'active' : ''}`}
               onClick={() => setActiveTab('events')}
+              aria-pressed={activeTab === 'events'}
             >
-              <i className="fa-solid fa-trophy"></i>
+              <Sparkles size={17} aria-hidden="true" />
               <span>Events</span>
               <span className="exp-count-badge">{eventsData.length}</span>
             </button>
@@ -68,24 +73,28 @@ export default function Experience() {
               <button
                 className={`exp-filter-pill ${filterCategory === 'all' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('all')}
+                aria-pressed={filterCategory === 'all'}
               >
                 All Positions ({experienceData.length})
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'engineering' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('engineering')}
+                aria-pressed={filterCategory === 'engineering'}
               >
                 <i className="fa-solid fa-laptop-code"></i> Engineering & Dev (3)
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'research' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('research')}
+                aria-pressed={filterCategory === 'research'}
               >
                 <i className="fa-solid fa-atom"></i> Scientific Research (2)
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'education' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('education')}
+                aria-pressed={filterCategory === 'education'}
               >
                 <i className="fa-solid fa-book-open"></i> Teaching & Writing (2)
               </button>
@@ -129,7 +138,7 @@ export default function Experience() {
             <div className="timeline-line"></div>
 
             {filteredExperience.map((exp, index) => (
-              <div key={index} className="timeline-item">
+                <div key={`${exp.company}-${exp.role}`} className={`timeline-item timeline-item--${exp.category}`}>
                 <div className="timeline-node">
                   <i className={exp.icon}></i>
                 </div>
@@ -159,7 +168,7 @@ export default function Experience() {
 
                   <p className="timeline-desc">{exp.description}</p>
 
-                  <ul className="timeline-achievements">
+                  <details className="experience-details"><summary>Contributions & technologies</summary><ul className="timeline-achievements">
                     {exp.achievements.map((item, idx) => (
                       <li key={idx} className="timeline-achievement-item">
                         <i className="fa-solid fa-circle-check"></i>
@@ -175,6 +184,7 @@ export default function Experience() {
                       </span>
                     ))}
                   </div>
+                  </details>
                 </div>
               </div>
             ))}
@@ -220,7 +230,7 @@ export default function Experience() {
             </div>
 
             {/* Certifications & Memberships */}
-            <div className="cert-block">
+            <details className="cert-block"><summary>Certifications & affiliations ({certificationsData.length})</summary>
               <h3 className="edu-block-title">
                 <i className="fa-solid fa-award"></i>
                 <span>Certifications & Scientific Affiliations</span>
@@ -240,7 +250,7 @@ export default function Experience() {
                   </div>
                 ))}
               </div>
-            </div>
+            </details>
           </div>
         )}
 
@@ -259,6 +269,9 @@ export default function Experience() {
                       className="event-card-media"
                       onClick={() => setLightboxImage(event)}
                       title="Click to view full photo"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={eventKey => { if (eventKey.key === 'Enter' || eventKey.key === ' ') { eventKey.preventDefault(); setLightboxImage(event); } }}
                     >
                       <img
                         src={event.image}
@@ -370,16 +383,7 @@ export default function Experience() {
 
         {/* Lightbox Modal */}
         {lightboxImage && (
-          <div
-            className="event-lightbox-overlay"
-            onClick={() => setLightboxImage(null)}
-            role="dialog"
-            aria-modal="true"
-          >
-            <div
-              className="event-lightbox-container"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <AccessibleDialog title={lightboxImage.title} description="Event photo preview" overlayClass="event-lightbox-overlay" className="event-lightbox-container" onClose={() => setLightboxImage(null)}>
               <button
                 className="event-lightbox-close"
                 onClick={() => setLightboxImage(null)}
@@ -413,8 +417,7 @@ export default function Experience() {
                   <span><i className="fa-solid fa-user-check"></i> {lightboxImage.role}</span>
                 </div>
               </div>
-            </div>
-          </div>
+          </AccessibleDialog>
         )}
       </div>
     </section>

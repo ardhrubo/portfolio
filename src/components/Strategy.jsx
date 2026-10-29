@@ -28,6 +28,7 @@ export default function Strategy() {
             <button
               key={index}
               onClick={() => setActiveStep(index)}
+              aria-pressed={activeStep === index}
               className={`strategy-nav-item ${activeStep === index ? 'active' : ''}`}
             >
               <div className="strategy-nav-step">{item.step}</div>

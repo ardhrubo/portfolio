@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import ScienceStudies from './ScienceStudies';
 import {
   Atom,
   Flame,
@@ -9,6 +10,8 @@ import {
   RotateCcw,
   Zap,
   Sliders,
+  Pause,
+  Play,
 } from 'lucide-react';
 
 // Light Forest Green & Mint Jade Theme
@@ -73,10 +76,12 @@ function generateC60Vertices() {
 export default function InteractiveMotionLab({ onShowToast }) {
   const containerRef = useRef(null);
   const [activeMode, setActiveMode] = useState('fullerene'); // 'fullerene' | 'montecarlo' | 'wave'
+  const [study, setStudy] = useState('3d');
   const [simSpeed, setSimSpeed] = useState(1);
   const [fps, setFps] = useState(60);
   const [nodeCount, setNodeCount] = useState(60);
   const [isExcited, setIsExcited] = useState(false);
+  const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   const sceneStateRef = useRef({
     activeMode: 'fullerene',
@@ -93,13 +98,21 @@ export default function InteractiveMotionLab({ onShowToast }) {
   useEffect(() => {
     sceneStateRef.current.activeMode = activeMode;
     sceneStateRef.current.simSpeed = simSpeed;
-  }, [activeMode, simSpeed]);
+    sceneStateRef.current.paused = paused;
+  }, [activeMode, simSpeed, paused]);
+
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const change = () => { if (preference.matches) setPaused(true); };
+    preference.addEventListener('change', change);
+    return () => preference.removeEventListener('change', change);
+  }, []);
 
   const handlePulseExcitation = () => {
     sceneStateRef.current.shockwave = 1.0;
     setIsExcited(true);
     setTimeout(() => setIsExcited(false), 800);
-    if (onShowToast) onShowToast('Injected quantum excitation impulse into 3D field');
+    if (onShowToast) onShowToast('Added a visual pulse to the study');
   };
 
   const handleResetCamera = () => {
@@ -171,15 +184,15 @@ export default function InteractiveMotionLab({ onShowToast }) {
     const sphereGeo = new THREE.SphereGeometry(0.2, 16, 16);
     const atomMat = new THREE.MeshStandardMaterial({
       color: THEME_COLORS.atomC,
-      roughness: 0.25,
-      metalness: 0.8
+      roughness: 0.32,
+      metalness: 0.25
     });
     const atomAccentMat = new THREE.MeshStandardMaterial({
       color: THEME_COLORS.atomHighlight,
       roughness: 0.2,
-      metalness: 0.6,
+      metalness: 0.25,
       emissive: THEME_COLORS.accentDeep,
-      emissiveIntensity: 0.3
+      emissiveIntensity: 0.15
     });
 
     c60Verts.forEach((pos, idx) => {
@@ -327,6 +340,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
       if (!container) return;
       const w = container.clientWidth;
       const h = container.clientHeight;
+      if (!w || !h) return;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
@@ -337,12 +351,18 @@ export default function InteractiveMotionLab({ onShowToast }) {
     // Animation Loop
     let animId;
     let clock = new THREE.Clock();
+    let inView = false;
+    const visibilityObserver = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; });
+    visibilityObserver.observe(container);
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
 
-      const delta = clock.getDelta();
-      const elapsedTime = clock.getElapsedTime();
+      const frameDelta = Math.min(clock.getDelta(), .05);
+      if (!inView || document.hidden) return;
+      const delta = sceneStateRef.current.paused ? 0 : frameDelta;
+      sceneStateRef.current.elapsed = (sceneStateRef.current.elapsed || 0) + delta;
+      const elapsedTime = sceneStateRef.current.elapsed;
       const speed = sceneStateRef.current.simSpeed;
       const mode = sceneStateRef.current.activeMode;
 
@@ -405,7 +425,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
 
           px += (-py * 0.8 + (mx - px) * force) * delta * 60;
           py += (px * 0.8 + (my - py) * force) * delta * 60;
-          pz += Math.sin(elapsedTime * 2 + px) * 0.01 * speed;
+          pz += Math.sin(elapsedTime * 2 + px) * 0.6 * speed * delta;
 
           // Radial clamp
           const r = Math.sqrt(px * px + py * py + pz * pz);
@@ -455,9 +475,18 @@ export default function InteractiveMotionLab({ onShowToast }) {
     return () => {
       cancelAnimationFrame(animId);
       resizeObserver.disconnect();
+      visibilityObserver.disconnect();
       container.removeEventListener('pointermove', handlePointerMove);
       container.removeEventListener('click', handleCanvasClick);
       controls.dispose();
+      const geometries = new Set();
+      const materials = new Set();
+      scene.traverse(object => {
+        if (object.geometry) geometries.add(object.geometry);
+        if (object.material) (Array.isArray(object.material) ? object.material : [object.material]).forEach(material => materials.add(material));
+      });
+      geometries.forEach(geometry => geometry.dispose());
+      materials.forEach(material => material.dispose());
       renderer.dispose();
       if (renderer.domElement.parentNode) {
         renderer.domElement.parentNode.removeChild(renderer.domElement);
@@ -472,19 +501,22 @@ export default function InteractiveMotionLab({ onShowToast }) {
         <div className="section-header text-center max-w-3xl mx-auto mb-10">
           <div className="section-tag inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--glass-border)] bg-[var(--glass-item)] text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">
             <Atom className="size-3.5 text-accent" />
-            <span>Interactive WebGL 2.0 Motion Graphics</span>
+            <span>A little room for curiosity</span>
           </div>
           <h2 className="section-title text-3xl sm:text-4xl font-heading font-extrabold tracking-tight">
-            Scientific Motion Graphics &amp; <span className="gradient-text">3D Simulation Lab</span>
+            Science, <span className="gradient-text">in motion.</span>
           </h2>
           <p className="section-subtitle mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Real-time GPU-accelerated motion graphics modeling molecular buckyball geometry,
-            stochastic Monte Carlo kinetic flow, and quantum potential surfaces.
+            Explore molecular structures, flowing particles, and wave surfaces.
+            Choose an experiment, turn it around, and see what changes.
           </p>
         </div>
 
-        {/* 3D Showcase Card Container */}
-        <div className="glass-panel relative rounded-3xl overflow-hidden border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[var(--surface-highlight)]">
+        <div className="study-tabs" role="group" aria-label="Choose science study">
+          {[['3d', '3D explorations'], ['waves', 'Wave interference'], ['crystal', 'Crystal lattice']].map(([id, label]) => <button key={id} type="button" aria-pressed={study === id} onClick={() => setStudy(id)}>{label}</button>)}
+        </div>
+        <p className="study-caption">Illustrative models for exploring patterns and geometry; not research calculations.</p>
+        <div hidden={study !== '3d'} className="glass-panel relative rounded-3xl overflow-hidden border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[var(--surface-highlight)]">
           {/* Top Control Bar */}
           <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4 border-b border-[var(--glass-border)] bg-[var(--glass-item)]">
             {/* Mode Switchers */}
@@ -510,7 +542,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 }`}
               >
                 <Flame className="size-3.5 text-accent" />
-                <span>Monte Carlo Kinetic Field</span>
+                <span>Particle flow</span>
               </button>
 
               <button
@@ -522,7 +554,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 }`}
               >
                 <Waves className="size-3.5 text-accent" />
-                <span>Quantum Potential Surface</span>
+                <span>Wave surface</span>
               </button>
             </div>
 
@@ -540,7 +572,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
           </div>
 
           {/* Interactive 3D Canvas Viewport */}
-          <div className="relative w-full h-[420px] sm:h-[480px] lg:h-[520px] bg-zinc-950 dark:bg-black/50 cursor-grab active:cursor-grabbing select-none border-y border-[var(--glass-border)]">
+          <div className="lab-viewport relative w-full h-[420px] sm:h-[480px] lg:h-[520px] cursor-grab active:cursor-grabbing select-none border-y border-[var(--glass-border)]">
             <div ref={containerRef} className="size-full" />
 
             {/* Floating Instructional Pill */}
@@ -551,13 +583,14 @@ export default function InteractiveMotionLab({ onShowToast }) {
               </span>
               {activeMode === 'montecarlo' && (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-[var(--glass-border)] bg-background/70 backdrop-blur-md text-[0.7rem] font-mono text-muted-foreground">
-                  Mouse pointer exerts magnetic Lorentz attraction
+                  Move the pointer to influence particle flow
                 </span>
               )}
             </div>
 
             {/* Bottom-Right Interactive Action Dock */}
             <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-auto sm:right-4 flex flex-wrap items-center justify-end gap-2 z-10">
+              <button type="button" className="lab-pause" onClick={() => setPaused(value => !value)}>{paused ? <Play size={16} /> : <Pause size={16} />}{paused ? 'Play' : 'Pause'}</button>
               <button
                 onClick={handlePulseExcitation}
                 className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md transition-all duration-200 cursor-pointer ${
@@ -565,7 +598,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                     ? 'bg-accent text-background shadow-md'
                     : 'border border-[var(--glass-border)] bg-background/80 text-foreground hover:bg-background hover:border-[var(--glass-border-strong)]'
                 }`}
-                title="Inject quantum perturbation shockwave"
+                title="Add a visual pulse"
               >
                 <Zap className="size-3.5 text-accent" />
                 <span>Pulse Excitation</span>
@@ -591,6 +624,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 onClick={handleResetCamera}
                 className="p-2 rounded-xl border border-[var(--glass-border)] bg-background/80 backdrop-blur-md text-muted-foreground hover:text-foreground hover:bg-background transition-colors cursor-pointer"
                 title="Reset Camera View"
+                aria-label="Reset camera view"
               >
                 <RotateCcw className="size-4" />
               </button>
@@ -603,16 +637,17 @@ export default function InteractiveMotionLab({ onShowToast }) {
               <span className="size-2 rounded-full bg-accent" />
               <strong className="text-foreground font-semibold">
                 {activeMode === 'fullerene' && 'C₆₀ Truncated Icosahedral Fullerene Cage'}
-                {activeMode === 'montecarlo' && 'Nonlinear Lorenz Attractor Velocity Field (Stochastic Dynamics)'}
-                {activeMode === 'wave' && 'Hartree-Fock Wavepacket Harmonic Dispersion (DFT Hamiltonian)'}
+                {activeMode === 'montecarlo' && 'Illustrative particle flow with pointer attraction'}
+                {activeMode === 'wave' && 'Animated harmonic wave surface'}
               </strong>
             </div>
 
             <span className="font-mono text-muted-foreground/80">
-              Three.js r186 &bull; WebGL Double-Buffered &bull; Procedural Math
+              Interactive studies in form &amp; motion
             </span>
           </div>
         </div>
+        {study !== '3d' && <ScienceStudies key={study} initialMode={study} />}
       </div>
     </section>
   );

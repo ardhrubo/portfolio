@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * Authentic Typographic Monogram Logo for Dhrubo.
- * Green monogram on a translucent glass tile shared by both themes.
+ * White monogram on a green glass tile shared by both themes.
  */
 export default function Logo({ size = 40, className = '' }) {
   return (
@@ -15,7 +15,7 @@ export default function Logo({ size = 40, className = '' }) {
       className={`brand-glass-logo relative flex items-center justify-center backdrop-blur-md select-none shrink-0 ${className}`}
       aria-label="Dhrubo Logo"
     >
-      {/* Theme-matched green monogram */}
+      {/* High-contrast white monogram */}
       <span
         className="brand-glass-letter font-heading font-black leading-none tracking-tighter"
         style={{ fontSize: Math.round(size * 0.56), transform: 'translateY(-0.5px)' }}

@@ -20,9 +20,10 @@ export default function Contact({ onShowToast }) {
     { label: 'General Inquiry', text: 'Hi Dhrubo, I wanted to connect and discuss...' },
   ];
 
-  const handleCopyEmail = (e) => {
+  const handleCopyEmail = async (e) => {
     e.preventDefault();
-    navigator.clipboard.writeText(personalInfo.email);
+    try { await navigator.clipboard.writeText(personalInfo.email); }
+    catch { onShowToast?.(`Email me at ${personalInfo.email}`); return; }
     setCopiedEmail(true);
     if (onShowToast) onShowToast('Email address copied: ' + personalInfo.email);
     setTimeout(() => setCopiedEmail(false), 2500);
@@ -93,7 +94,7 @@ export default function Contact({ onShowToast }) {
               </p>
 
               {/* Email Link with Copy feedback */}
-              <div onClick={handleCopyEmail} className="contact-item-link" title="Click to copy email">
+              <button type="button" onClick={handleCopyEmail} className="contact-item-link" title="Copy email address">
                 <div className="contact-icon-pill">
                   <i className="fa-solid fa-envelope"></i>
                 </div>
@@ -104,7 +105,7 @@ export default function Contact({ onShowToast }) {
                 <div className="contact-value-copy">
                   <i className={`fa-solid ${copiedEmail ? 'fa-check' : 'fa-copy'}`}></i>
                 </div>
-              </div>
+              </button>
 
               {/* Location */}
               <div className="contact-item-link" style={{ cursor: 'default' }}>
@@ -225,8 +226,8 @@ export default function Contact({ onShowToast }) {
 
           {/* Right Column: Interactive Quick-Inquiry Composer */}
           <div className="contact-form-box">
-            <h3 className="form-title">Send a Direct Message</h3>
-            <p className="form-subtitle">Select a topic below to auto-populate your inquiry template.</p>
+            <h3 className="form-title">Start a conversation</h3>
+            <p className="form-subtitle">Prepare a draft to send from your email app, or copy my address to contact me directly.</p>
 
             {/* Quick Topic Chips */}
             <div className="contact-topic-chips">
@@ -234,6 +235,7 @@ export default function Contact({ onShowToast }) {
                 <button
                   key={i}
                   type="button"
+                  aria-pressed={formData.projectType === preset.label}
                   onClick={() => handlePresetClick(preset)}
                   className={`topic-chip ${formData.projectType === preset.label ? 'active' : ''}`}
                 >
@@ -245,7 +247,7 @@ export default function Contact({ onShowToast }) {
             {submitted && (
               <div className="form-status-msg success" style={{ marginBottom: '16px' }}>
                 <i className="fa-solid fa-circle-check"></i>
-                <span>Your default email client has been launched with your drafted message!</span>
+                <span>Your draft is ready. If your email app did not open, copy my address and send your message directly.</span>
               </div>
             )}
 

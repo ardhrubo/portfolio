@@ -1,16 +1,41 @@
-# React + Vite
+# Dhrubo’s portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React 19 and Vite portfolio for Abdur Rahman Dhrubo, featuring software projects, engineering experience, scientific computing, services, and contact options. Responsive light and dark themes, glass surfaces, desktop dual rails, and an interactive science lab shape the experience.
 
-Currently, two official plugins are available:
+## Get started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requires Node.js 22+ and npm.
 
-## React Compiler
+```sh
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Vite prints the local URL. Other commands:
 
-## Expanding the Oxlint configuration
+```sh
+npm run build    # Create dist/
+npm run preview  # Serve the production build locally
+npm run lint     # Run Oxlint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Project map
+
+- `src/App.jsx` owns theme, current view, overlays, and page-level navigation state.
+- `src/components/` contains page sections and interactions.
+- `src/components/navigation/` contains desktop/mobile navigation and its shared navigation map.
+- `src/components/ui/` contains shared controls, cards, brand icons, and accessible dialog behavior.
+- `src/data/portfolioData.js` is the source for biography, projects, skills, experience, education, services, and events.
+- `src/styles/` contains tokens and component/art-direction CSS; `src/index.css` has base and legacy styles.
+- `public/` contains static imagery. `public/tech/` holds local Devicon SVGs with attribution and license.
+- [Architecture and UI guide](docs/ARCHITECTURE.md) documents design, interactions, routing, and the change workflow.
+
+## Important behavior
+
+- Theme preference is stored as `portfolio-theme`; `index.html` applies it before React starts.
+- `#all-projects` opens the project archive. Other section hashes navigate the home view.
+- Search: `Ctrl/Cmd+K`. Portfolio guide: `Ctrl/Cmd+J`.
+- The Three.js lab loads near the viewport rather than in the initial page bundle.
+- Contact prepares a `mailto:` draft; there is no form backend.
+
+Read [AGENTS.md](AGENTS.md) before UI work. It is the current design authority. The generated [design-system master](design-system/portfolio/MASTER.md) predates the current palette; the architecture guide explains precedence.

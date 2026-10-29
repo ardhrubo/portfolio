@@ -1,5 +1,5 @@
 import {
-  Home,
+  UserRound,
   Briefcase,
   FolderKanban,
   Layers,
@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 export const NAV_ITEMS = [
-  { id: 'hero', label: 'Overview', href: '#hero', icon: Home },
+  { id: 'hero', label: 'Overview', href: '#hero', icon: UserRound },
   { id: 'projects', label: 'Projects', href: '#projects', icon: FolderKanban },
   { id: 'experience', label: 'Experience', href: '#experience', icon: Briefcase },
   { id: 'skills', label: 'Tech stack', href: '#skills', icon: Layers },

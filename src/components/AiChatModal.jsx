@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { personalInfo, projectsData } from '../data/portfolioData';
+import AccessibleDialog from './ui/AccessibleDialog';
 
 export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
   const [messages, setMessages] = useState([
     {
       id: 'welcome',
       sender: 'ai',
-      text: `Hi there! 👋 I'm **Dhrubo's AI Assistant**. Ask me anything about his work experience, flagship projects, scientific simulations, or availability!`,
+      text: `Welcome to Dhrubo’s portfolio guide. Choose a question or ask about his projects, experience, research, or availability. Replies come from prepared portfolio information.`,
       suggestedQuestions: [
         "What is Dhrubo's work experience?",
         "What are his flagship projects?",
@@ -37,10 +38,6 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
         onClose(false);
-      }
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'j') {
-        e.preventDefault();
-        onClose(prev => !prev);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -219,8 +216,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
   };
 
   return (
-    <div className="ai-chat-backdrop" onClick={() => onClose(false)} role="dialog" aria-modal="true">
-      <div className="ai-chat-window" onClick={e => e.stopPropagation()}>
+    <AccessibleDialog title="Portfolio guide" description="Prepared answers about Dhrubo’s work, research, and availability." onClose={() => onClose(false)} overlayClass="ai-chat-backdrop" className="ai-chat-window">
         {/* Header */}
         <div className="ai-chat-header">
           <div className="ai-chat-header-brand">
@@ -230,10 +226,10 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
             </div>
             <div className="ai-chat-header-meta">
               <div className="ai-chat-header-title">
-                <span>Chat with Dhrubo</span>
-                <span className="ai-badge-chip">ONLINE</span>
+                <span>Portfolio guide</span>
+                <span className="ai-badge-chip">EXPLORE</span>
               </div>
-              <span className="ai-chat-header-sub">Interactive AI Copilot &bull; 50+ projects & research</span>
+              <span className="ai-chat-header-sub">Prepared answers · Projects & research</span>
             </div>
           </div>
 
@@ -258,7 +254,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
         </div>
 
         {/* Message Stream */}
-        <div className="ai-chat-messages">
+        <div className="ai-chat-messages" role="log" aria-label="Conversation" aria-live="polite">
           {messages.map((msg) => (
             <div key={msg.id} className={`ai-message-row ${msg.sender}`}>
               {msg.sender === 'ai' && (
@@ -267,16 +263,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
                 </div>
               )}
               <div className="ai-msg-bubble">
-                <div
-                  className="ai-msg-text"
-                  dangerouslySetInnerHTML={{
-                    __html: msg.text
-                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                      .replace(/• /g, '&bull; ')
-                      .replace(/\n\n/g, '<br/><br/>')
-                      .replace(/\n/g, '<br/>')
-                  }}
-                />
+                <div className="ai-msg-text" style={{ whiteSpace: 'pre-wrap' }}>{msg.text.split(/(\*\*.*?\*\*)/g).map((part, index) => part.startsWith('**') && part.endsWith('**') ? <strong key={index}>{part.slice(2, -2)}</strong> : part)}</div>
 
                 {/* Project interactive preview link */}
                 {msg.projectLink && (
@@ -288,6 +275,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
                     }}
                     role="button"
                     tabIndex={0}
+                    onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onSelectProject?.(msg.projectLink); onClose(false); } }}
                   >
                     <div className="ai-msg-proj-icon">
                       <i className={msg.projectLink.icon || 'fa-solid fa-folder'}></i>
@@ -359,6 +347,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
           <input
             ref={inputRef}
             type="text"
+            aria-label="Ask the portfolio guide"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about projects, tech stack, or hire..."
@@ -379,7 +368,6 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
         <div className="ai-chat-footer">
           <span>Press <kbd>Esc</kbd> to close &bull; <kbd>⌘J</kbd> to toggle</span>
         </div>
-      </div>
-    </div>
+    </AccessibleDialog>
   );
 }
