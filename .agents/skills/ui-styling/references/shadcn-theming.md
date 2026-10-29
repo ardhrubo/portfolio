@@ -1,4 +1,4 @@
-# shadcn/ui Theming & Customization
+![1793257869989](image/shadcn-theming/1793257869989.png)# shadcn/ui Theming & Customization
 
 Theme configuration, CSS variables, dark mode, and component customization.
 

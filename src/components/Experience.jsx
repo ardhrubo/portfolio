@@ -1,7 +1,55 @@
 import React, { useState } from 'react';
-import { BriefcaseBusiness, GraduationCap, Sparkles } from 'lucide-react';
+import {
+  BriefcaseBusiness,
+  GraduationCap,
+  Sparkles,
+  Laptop,
+  Atom,
+  BookOpen,
+  Mic,
+  GitFork,
+  Brain,
+  MapPin,
+  CheckCircle2,
+  Award,
+  Calendar,
+  Maximize2,
+  Camera,
+  Image,
+  Building2,
+  UserCheck,
+  Images,
+  Zap,
+  ShieldCheck,
+  X,
+  Trophy,
+  School,
+  FlaskConical,
+  Server,
+  PenTool,
+} from 'lucide-react';
 import { experienceData, educationData, certificationsData, eventsData } from '../data/portfolioData';
 import AccessibleDialog from './ui/AccessibleDialog';
+
+const ROLE_ICONS = {
+  'fa-solid fa-atom': Atom,
+  'fa-solid fa-flask-vial': FlaskConical,
+  'fa-solid fa-briefcase': BriefcaseBusiness,
+  'fa-solid fa-laptop-code': Laptop,
+  'fa-solid fa-server': Server,
+  'fa-solid fa-pen-nib': PenTool,
+  'fa-solid fa-chalkboard-user': BookOpen,
+  'fa-solid fa-graduation-cap': GraduationCap,
+  'fa-solid fa-school': School,
+  'fa-solid fa-trophy': Trophy,
+  'fa-solid fa-brain': Brain,
+  'fa-solid fa-award': Award,
+};
+
+function renderDataIcon(iconName, size = 18) {
+  const IconComponent = ROLE_ICONS[iconName] || BriefcaseBusiness;
+  return <IconComponent size={size} aria-hidden="true" />;
+}
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('experience'); // 'experience' | 'education' | 'events'
@@ -26,8 +74,8 @@ export default function Experience() {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <BriefcaseBusiness size={16} aria-hidden="true" />
-            <span>02 / EXPERIENCE & RESEARCH</span>
+            <BriefcaseBusiness size={15} aria-hidden="true" />
+            <span>02 / Experience & research</span>
           </div>
           <h2 className="section-title">
             The work behind <span className="gradient-text">the work.</span>
@@ -82,21 +130,21 @@ export default function Experience() {
                 onClick={() => setFilterCategory('engineering')}
                 aria-pressed={filterCategory === 'engineering'}
               >
-                <i className="fa-solid fa-laptop-code"></i> Engineering & Dev (3)
+                <Laptop size={14} aria-hidden="true" /> Engineering & Dev (3)
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'research' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('research')}
                 aria-pressed={filterCategory === 'research'}
               >
-                <i className="fa-solid fa-atom"></i> Scientific Research (2)
+                <Atom size={14} aria-hidden="true" /> Scientific Research (2)
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'education' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('education')}
                 aria-pressed={filterCategory === 'education'}
               >
-                <i className="fa-solid fa-book-open"></i> Teaching & Writing (2)
+                <BookOpen size={14} aria-hidden="true" /> Teaching & Writing (2)
               </button>
             </div>
           )}
@@ -107,26 +155,30 @@ export default function Experience() {
               <button
                 className={`exp-filter-pill ${eventCategory === 'all' ? 'active' : ''}`}
                 onClick={() => setEventCategory('all')}
+                aria-pressed={eventCategory === 'all'}
               >
                 All Events ({eventsData.length})
               </button>
               <button
                 className={`exp-filter-pill ${eventCategory === 'conference' ? 'active' : ''}`}
                 onClick={() => setEventCategory('conference')}
+                aria-pressed={eventCategory === 'conference'}
               >
-                <i className="fa-solid fa-microphone-lines"></i> Conferences ({eventsData.filter(e => e.category === 'conference').length})
+                <Mic size={14} aria-hidden="true" /> Conferences ({eventsData.filter(e => e.category === 'conference').length})
               </button>
               <button
                 className={`exp-filter-pill ${eventCategory === 'hackathon' ? 'active' : ''}`}
                 onClick={() => setEventCategory('hackathon')}
+                aria-pressed={eventCategory === 'hackathon'}
               >
-                <i className="fa-solid fa-code-fork"></i> Hackathons ({eventsData.filter(e => e.category === 'hackathon').length})
+                <GitFork size={14} aria-hidden="true" /> Hackathons ({eventsData.filter(e => e.category === 'hackathon').length})
               </button>
               <button
                 className={`exp-filter-pill ${eventCategory === 'workshop' ? 'active' : ''}`}
                 onClick={() => setEventCategory('workshop')}
+                aria-pressed={eventCategory === 'workshop'}
               >
-                <i className="fa-solid fa-brain"></i> Workshops ({eventsData.filter(e => e.category === 'workshop').length})
+                <Brain size={14} aria-hidden="true" /> Workshops ({eventsData.filter(e => e.category === 'workshop').length})
               </button>
             </div>
           )}
@@ -137,10 +189,10 @@ export default function Experience() {
           <div className="timeline-container">
             <div className="timeline-line"></div>
 
-            {filteredExperience.map((exp, index) => (
-                <div key={`${exp.company}-${exp.role}`} className={`timeline-item timeline-item--${exp.category}`}>
+            {filteredExperience.map((exp) => (
+              <div key={`${exp.company}-${exp.role}`} className={`timeline-item timeline-item--${exp.category}`}>
                 <div className="timeline-node">
-                  <i className={exp.icon}></i>
+                  {renderDataIcon(exp.icon, 18)}
                 </div>
 
                 <div className="timeline-card">
@@ -151,7 +203,7 @@ export default function Experience() {
                         <span className="timeline-company">{exp.company}</span>
                         {exp.location && (
                           <span className="timeline-location">
-                            <i className="fa-solid fa-location-dot"></i> {exp.location}
+                            <MapPin size={13} aria-hidden="true" /> {exp.location}
                           </span>
                         )}
                       </div>
@@ -171,7 +223,7 @@ export default function Experience() {
                   <details className="experience-details"><summary>Contributions & technologies</summary><ul className="timeline-achievements">
                     {exp.achievements.map((item, idx) => (
                       <li key={idx} className="timeline-achievement-item">
-                        <i className="fa-solid fa-circle-check"></i>
+                        <CheckCircle2 size={14} aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -197,29 +249,29 @@ export default function Experience() {
             {/* Academic Education */}
             <div className="edu-block">
               <h3 className="edu-block-title">
-                <i className="fa-solid fa-graduation-cap"></i>
+                <GraduationCap size={20} aria-hidden="true" />
                 <span>Academic Degrees & Education</span>
               </h3>
               <div className="edu-grid">
                 {educationData.map((edu, idx) => (
-                  <div key={idx} className="edu-card">
+                  <div key={idx} className={`edu-card edu-card--${idx % 2 === 0 ? 'mint' : 'teal'}`}>
                     <div className="edu-card-top">
-                      <div className="edu-icon-badge" style={{ borderColor: edu.color, color: edu.color }}>
-                        <i className={edu.icon}></i>
+                      <div className="edu-icon-badge">
+                        {renderDataIcon(edu.icon, 20)}
                       </div>
                       <span className="edu-status-tag">{edu.status}</span>
                     </div>
                     <h4 className="edu-degree">{edu.degree}</h4>
                     <div className="edu-institution">{edu.institution}</div>
                     <div className="edu-meta">
-                      <span><i className="fa-solid fa-calendar"></i> {edu.period}</span>
-                      <span><i className="fa-solid fa-location-dot"></i> {edu.location}</span>
+                      <span><Calendar size={13} aria-hidden="true" /> {edu.period}</span>
+                      <span><MapPin size={13} aria-hidden="true" /> {edu.location}</span>
                     </div>
                     <p className="edu-desc">{edu.description}</p>
                     <ul className="edu-highlights">
                       {edu.highlights.map((h, hIdx) => (
                         <li key={hIdx}>
-                          <i className="fa-solid fa-circle-check"></i>
+                          <CheckCircle2 size={14} aria-hidden="true" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -232,15 +284,15 @@ export default function Experience() {
             {/* Certifications & Memberships */}
             <details className="cert-block"><summary>Certifications & affiliations ({certificationsData.length})</summary>
               <h3 className="edu-block-title">
-                <i className="fa-solid fa-award"></i>
+                <Award size={20} aria-hidden="true" />
                 <span>Certifications & Scientific Affiliations</span>
               </h3>
               <div className="cert-grid">
                 {certificationsData.map((cert, idx) => (
-                  <div key={idx} className="cert-card">
+                  <div key={idx} className={`cert-card cert-card--${['mint', 'violet', 'blue'][idx % 3]}`}>
                     <div className="cert-card-header">
-                      <div className="cert-icon-box" style={{ color: cert.color }}>
-                        <i className={cert.icon}></i>
+                      <div className="cert-icon-box">
+                        {renderDataIcon(cert.icon, 20)}
                       </div>
                       <span className="cert-badge">{cert.badge}</span>
                     </div>
@@ -261,7 +313,7 @@ export default function Experience() {
               {filteredEvents.map((event) => (
                 <div
                   key={event.id}
-                  className={`event-card ${event.hasRealPhoto ? 'event-card--featured' : ''}`}
+                  className={`event-card event-card--${event.category} ${event.hasRealPhoto ? 'event-card--featured' : ''}`}
                 >
                   {/* Event Media / Photo */}
                   {event.hasRealPhoto && event.image ? (
@@ -281,26 +333,26 @@ export default function Experience() {
                       />
                       <div className="event-card-media-overlay">
                         <span className="event-view-photo-btn">
-                          <i className="fa-solid fa-expand"></i> View Full Photo
+                          <Maximize2 size={13} aria-hidden="true" /> View Full Photo
                         </span>
                       </div>
                       <div className="event-photo-indicator">
-                        <i className="fa-solid fa-camera"></i> Live Event Photo
+                        <Camera size={13} aria-hidden="true" /> Live Event Photo
                       </div>
                     </div>
                   ) : (
                     <div className="event-card-placeholder-banner">
                       <div className="event-placeholder-icon">
-                        <i className={
-                          event.category === 'hackathon'
-                            ? 'fa-solid fa-code-fork'
-                            : event.category === 'workshop'
-                            ? 'fa-solid fa-brain'
-                            : 'fa-solid fa-award'
-                        }></i>
+                        {event.category === 'hackathon' ? (
+                          <GitFork size={20} aria-hidden="true" />
+                        ) : event.category === 'workshop' ? (
+                          <Brain size={20} aria-hidden="true" />
+                        ) : (
+                          <Award size={20} aria-hidden="true" />
+                        )}
                       </div>
                       <span className="event-ready-tag">
-                        <i className="fa-solid fa-image"></i> Photo Slot Ready
+                        <Image size={13} aria-hidden="true" /> Photo Slot Ready
                       </span>
                     </div>
                   )}
@@ -308,14 +360,11 @@ export default function Experience() {
                   {/* Event Content */}
                   <div className="event-card-body">
                     <div className="event-card-meta-top">
-                      <span
-                        className="event-type-badge"
-                        style={{ borderColor: event.badgeColor, color: event.badgeColor }}
-                      >
+                      <span className="event-type-badge">
                         {event.badge}
                       </span>
                       <span className="event-date-pill">
-                        <i className="fa-solid fa-calendar-day"></i> {event.date}
+                        <Calendar size={13} aria-hidden="true" /> {event.date}
                       </span>
                     </div>
 
@@ -324,15 +373,15 @@ export default function Experience() {
 
                     <div className="event-meta-row">
                       <span className="event-organizer">
-                        <i className="fa-solid fa-building"></i> {event.organizer}
+                        <Building2 size={13} aria-hidden="true" /> {event.organizer}
                       </span>
                       <span className="event-location">
-                        <i className="fa-solid fa-location-dot"></i> {event.location}
+                        <MapPin size={13} aria-hidden="true" /> {event.location}
                       </span>
                     </div>
 
                     <div className="event-role-pill">
-                      <i className="fa-solid fa-user-check"></i> {event.role}
+                      <UserCheck size={13} aria-hidden="true" /> {event.role}
                     </div>
 
                     <p className="event-description">{event.description}</p>
@@ -341,7 +390,7 @@ export default function Experience() {
                       <ul className="event-takeaways">
                         {event.keyTakeaways.map((point, pIdx) => (
                           <li key={pIdx}>
-                            <i className="fa-solid fa-circle-check"></i>
+                            <CheckCircle2 size={14} aria-hidden="true" />
                             <span>{point}</span>
                           </li>
                         ))}
@@ -362,7 +411,7 @@ export default function Experience() {
               {/* Upload slot callout card */}
               <div className="event-upload-callout-card">
                 <div className="event-upload-icon-circle">
-                  <i className="fa-solid fa-images"></i>
+                  <Images size={22} aria-hidden="true" />
                 </div>
                 <h4 className="event-upload-title">More Hackathons &amp; Summits</h4>
                 <p className="event-upload-desc">
@@ -370,10 +419,10 @@ export default function Experience() {
                 </p>
                 <div className="event-upload-badges">
                   <span className="event-upload-pill">
-                    <i className="fa-solid fa-bolt"></i> Instant Photo Integration
+                    <Zap size={13} aria-hidden="true" /> Instant Photo Integration
                   </span>
                   <span className="event-upload-pill">
-                    <i className="fa-solid fa-shield-heart"></i> Verified Event Credentials
+                    <ShieldCheck size={13} aria-hidden="true" /> Verified Event Credentials
                   </span>
                 </div>
               </div>
@@ -389,7 +438,7 @@ export default function Experience() {
                 onClick={() => setLightboxImage(null)}
                 aria-label="Close photo preview"
               >
-                <i className="fa-solid fa-xmark"></i>
+                <X size={18} aria-hidden="true" />
               </button>
 
               <div className="event-lightbox-img-wrapper">
@@ -402,19 +451,19 @@ export default function Experience() {
 
               <div className="event-lightbox-caption">
                 <div className="event-lightbox-header">
-                  <span className="event-type-badge" style={{ borderColor: lightboxImage.badgeColor, color: lightboxImage.badgeColor }}>
+                  <span className="event-type-badge">
                     {lightboxImage.badge}
                   </span>
                   <span className="event-date-pill">
-                    <i className="fa-solid fa-calendar-day"></i> {lightboxImage.date}
+                    <Calendar size={13} aria-hidden="true" /> {lightboxImage.date}
                   </span>
                 </div>
                 <h3 className="event-lightbox-title">{lightboxImage.title}</h3>
                 <p className="event-lightbox-subtitle">{lightboxImage.subtitle}</p>
                 <div className="event-lightbox-meta">
-                  <span><i className="fa-solid fa-building"></i> {lightboxImage.organizer}</span>
-                  <span><i className="fa-solid fa-location-dot"></i> {lightboxImage.location}</span>
-                  <span><i className="fa-solid fa-user-check"></i> {lightboxImage.role}</span>
+                  <span><Building2 size={14} aria-hidden="true" /> {lightboxImage.organizer}</span>
+                  <span><MapPin size={14} aria-hidden="true" /> {lightboxImage.location}</span>
+                  <span><UserCheck size={14} aria-hidden="true" /> {lightboxImage.role}</span>
                 </div>
               </div>
           </AccessibleDialog>

@@ -18,7 +18,7 @@ export default function Sidebar({ currentTheme, activeSection, onToggleTheme, on
       })}</ul></nav>
       <div className="sidebar-tools">
         <Button id="sidebar-cmd-btn" variant="ghost" onClick={onOpenCmd}><Search size={16} /><span>Search anything</span><kbd>⌘ K</kbd></Button>
-        <Button id="sidebar-ai-btn" variant="ghost" onClick={onOpenChat}><Sparkles size={16} /><span>Ask my assistant</span><ArrowUpRight size={14} /></Button>
+        <Button id="sidebar-ai-btn" variant="ghost" onClick={onOpenChat}><Sparkles size={16} /><span>Portfolio guide</span><ArrowUpRight size={14} /></Button>
       </div>
       <div className="sidebar-availability"><span className="status-dot" /><span>Available for opportunities</span></div>
       <div className="sidebar-footer"><div className="sidebar-socials"><a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a><a href={personalInfo.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a></div><CoolThemeSwitch id="sidebar-cool-switch" isDark={currentTheme === 'dark'} onToggle={onToggleTheme} /></div>

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { projectsData } from '../data/portfolioData';
 import Button from './ui/Button';
-import { ArrowUpRight, ArrowRight, FolderOpen } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, FolderOpen, FolderKanban, Layers } from 'lucide-react';
 
 export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProjects }) {
   const [imageErrors, setImageErrors] = useState({});
@@ -28,7 +28,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <i className="fa-solid fa-star"></i>
+            <FolderKanban size={15} aria-hidden="true" />
             <span>01 / Selected projects</span>
           </div>
           <h2 className="section-title">
@@ -53,7 +53,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
                   />
                 ) : (
                   <div className="flagship-fallback">
-                    <i className="fa-solid fa-layer-group"></i>
+                    <Layers size={24} aria-hidden="true" />
                     <span>{project.title}</span>
                   </div>
                 )}
@@ -109,14 +109,14 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
               Browse web applications, automation tools, and research projects by technology or category.
             </p>
           </div>
-          <button
+          <Button
             onClick={onNavigateToAllProjects}
             className="btn-explore-vault-cta"
             title="Browse all projects"
           >
             <span>All projects</span>
             <ArrowRight size={17} aria-hidden="true" />
-          </button>
+          </Button>
         </div>
       </div>
     </section>
