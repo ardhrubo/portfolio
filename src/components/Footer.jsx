@@ -38,7 +38,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
               <Logo size={36} />
               <div className="brand-text">
                 <span className="brand-name">{personalInfo.name}</span>
-                <span className="brand-role">Software Engineer</span>
+                <span className="brand-role">{personalInfo.headline}</span>
               </div>
             </a>
             <p className="footer-tagline">

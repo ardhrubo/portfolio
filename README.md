@@ -32,13 +32,16 @@ npm run lint     # Run Oxlint
 
 ## Important behavior
 
+- Selected projects use framed interface previews and glass technology badges with local logos. “Explore the build” opens the project drawer with full details; technologies without an exact local logo retain their label.
+
 - Theme preference is stored as `portfolio-theme`; `index.html` applies it before React starts.
 - One visible theme switch: right utility dock on desktop, top bar on mobile. Experience uses a quiet timeline with expandable contributions and separate education/events views.
 - `#all-projects` opens the project archive. Other section hashes navigate the home view.
 - Search: `Ctrl/Cmd+K`. Portfolio guide: `Ctrl/Cmd+J`.
 - The Three.js lab loads near the viewport rather than in the initial page bundle.
 - The lazy science lab uses a decorative SVG flask reaction with reduced-motion support; archive and guide use text loading states. Loading never adds an artificial delay.
-- Public branding uses AR Dhrubo. The hero leads with software development; Experience opens on Engineering, with research accessible through filters.
+- Public branding uses AR Dhrubo — Product Builder, with software engineering as the foundation. The hero uses local technology logos in glass tiles; Experience opens on Engineering, with research accessible through filters.
+- Contact combines a direct-email profile and email draft composer in one glass panel. Extra social links expand under “Elsewhere online”; the form never sends a message itself.
 - Primary actions use deep emerald; supporting actions use glass, with section accents shared with navigation.
 - Contact prepares a `mailto:` draft; there is no form backend.
 

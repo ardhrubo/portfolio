@@ -2,6 +2,10 @@ import React, { useState, useMemo } from 'react';
 import { projectsData } from '../data/portfolioData';
 import Button from './ui/Button';
 import { ArrowUpRight, ArrowRight, FolderOpen, FolderKanban, Layers } from 'lucide-react';
+import '../styles/projects.css';
+
+// Exact matches only: unavailable marks and methods keep their text labels.
+const stackLogos = { React: 'react', 'React 19': 'react', 'Next.js': 'nextjs', 'Node.js': 'nodejs', 'Three.js': 'threejs', Supabase: 'supabase', Vite: 'vitejs', Puppeteer: 'puppeteer', 'Headless Chrome': 'chrome', Express: 'express', JavaScript: 'javascript', 'Modern CSS': 'css3' };
 
 export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProjects }) {
   const [imageErrors, setImageErrors] = useState({});
@@ -32,10 +36,10 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
             <span>01 / Selected projects</span>
           </div>
           <h2 className="section-title">
-            Selected <span className="gradient-text">work.</span>
+            Ideas turned into products
           </h2>
           <p className="section-subtitle">
-            Client websites, community platforms, and automation tools. Explore the live work or open a project to see the architecture and technical details.
+            A selection of platforms, tools, and digital experiences I’ve built. Explore the product, then look under the hood.
           </p>
         </div>
 
@@ -44,10 +48,12 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
           {flagshipProjects.map((project, index) => (
             <article key={project.id} className={`flagship-card ${index === 0 ? 'flagship-card--lead' : ''}`}>
               <div className="flagship-media">
+                <div className="project-preview-bar"><span className="project-preview-dots" aria-hidden="true"><i /><i /><i /></span><span>{project.title}</span><span className="project-preview-index">{String(index + 1).padStart(2, '0')}</span></div>
+                <div className="project-preview-screen">
                 {!imageErrors[project.id] && project.image ? (
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} interface preview`}
                     loading="lazy"
                     onError={() => handleImageError(project.id)}
                   />
@@ -57,19 +63,18 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
                     <span>{project.title}</span>
                   </div>
                 )}
-                <span className="flagship-badge">{project.badge}</span>
+                </div>
               </div>
 
               <div className="flagship-body">
-                <div className="flagship-category">{project.categoryLabel}</div>
-                {index === 0 && <span className="featured-work-label">FEATURED BUILD</span>}
+                <div className="project-card-meta"><span>{index === 0 ? 'Featured product' : project.categoryLabel}</span><span>{project.badge}</span></div>
                 <h3 className="flagship-title">{project.title}</h3>
+                <p className="project-subtitle">{project.subtitle}</p>
                 <p className="flagship-desc">{project.desc}</p>
-                {index === 0 && <details className="featured-story"><summary>Inside the build</summary><div className="featured-story-content"><p>{project.longDesc}</p><h4>What went into the build</h4><ul>{project.highlights.slice(0, 3).map(highlight => <li key={highlight}>{highlight}</li>)}</ul></div></details>}
 
-                <div className="flagship-tech-row">
+                <div className="flagship-tech-row" aria-label="Built with">
                   {project.tech.map((t, i) => (
-                    <span key={i} className="flagship-tech-pill">{t}</span>
+                    <span key={i} className={`project-stack-badge ${stackLogos[t] ? 'project-stack-badge--logo' : ''}`}>{stackLogos[t] && <span className={`project-stack-mark project-stack-mark--${stackLogos[t]}`}><img src={`/tech/${stackLogos[t]}.svg`} alt="" width="20" height="20" /></span>}{t}</span>
                   ))}
                 </div>
 
@@ -89,7 +94,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
                     className="project-details-button"
                     aria-label={`View project: ${project.title}`}
                   >
-                    <span>View project</span><ArrowRight size={16} aria-hidden="true" />
+                    <span>Explore the build</span><ArrowRight size={16} aria-hidden="true" />
                   </Button>
                 </div>
               </div>

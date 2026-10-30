@@ -1,0 +1,38 @@
+.contact-studio .section-header { max-width: 720px; }
+.contact-studio-shell { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); overflow: hidden; border: 1px solid var(--glass-border); border-radius: 28px; background: linear-gradient(125deg, color-mix(in srgb, var(--color-social) 8%, transparent), transparent 42%, color-mix(in srgb, var(--color-assistant) 6%, transparent)), var(--glass-bg); box-shadow: var(--glass-highlight), var(--glass-shadow); backdrop-filter: blur(28px) saturate(130%); -webkit-backdrop-filter: blur(28px) saturate(130%); }
+.contact-studio-profile, .contact-studio-form { min-width: 0; padding: clamp(24px, 3vw, 40px); }
+.contact-studio-profile { display: flex; flex-direction: column; border-right: 1px solid var(--glass-border); }
+.contact-studio-person { display: flex; gap: 16px; align-items: center; }
+.contact-studio-person img { object-fit: cover; border-radius: 20px; border: 1px solid var(--glass-border); }
+.contact-studio-person h3 { font-size: 18px; letter-spacing: -.03em; }
+.contact-studio-person p { color: var(--text-muted); font-size: 12px; margin-top: 4px; }
+.contact-studio-invite { margin-top: 36px; font-size: clamp(23px, 2.3vw, 30px); line-height: 1.4; letter-spacing: -.035em; }
+.contact-studio-availability { color: var(--text-secondary); font-size: 12px; line-height: 1.8; margin: 14px 0 28px; }
+.contact-studio-email { position: relative; padding: 20px 44px 20px 0; border-block: 1px solid var(--border); overflow-wrap: anywhere; }
+.contact-studio-email > span { display: block; color: var(--text-muted); font-size: 11px; margin-bottom: 8px; }
+.contact-studio-email > a { font-size: clamp(14px, 1.5vw, 18px); font-weight: 600; }
+.contact-studio-email button { position: absolute; right: -8px; top: 27px; display: grid; place-items: center; width: 44px; height: 44px; color: var(--color-social); border-radius: 12px; }
+.contact-studio-location { display: flex; gap: 10px; color: var(--text-secondary); font-size: 12px; margin: 24px 0; }
+.contact-studio-location svg { color: var(--color-social); flex-shrink: 0; }
+.contact-studio-location small { display: block; color: var(--text-muted); margin-top: 5px; }
+.contact-studio-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: auto; }
+.contact-studio-links a, .contact-studio-more a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; font-size: 12px; }
+.contact-studio-links a:nth-child(2) > svg:first-child { color: var(--color-social); }
+.contact-studio-more { margin-top: 8px; color: var(--text-muted); font-size: 12px; }
+.contact-studio-more summary { cursor: pointer; min-height: 44px; padding-block: 13px; }
+.contact-studio-more > div { display: flex; flex-wrap: wrap; gap: 16px; }
+.contact-studio-form { display: flex; flex-direction: column; gap: 24px; }
+.contact-studio-kicker { color: var(--color-assistant); font: 9px var(--font-mono); letter-spacing: .12em; }
+.contact-studio-form h3 { font-size: 25px; letter-spacing: -.03em; margin-top: 8px; }
+.contact-studio-form label { display: flex; flex-direction: column; gap: 9px; color: var(--text-secondary); font-size: 12px; font-weight: 500; }
+.contact-studio-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.contact-studio-form :is(input, select, textarea) { width: 100%; min-width: 0; min-height: 48px; padding: 13px 14px; background: var(--glass-item); color: var(--foreground); border: 1px solid var(--border-medium); border-radius: 12px; font: 14px var(--font-sans); }
+.contact-studio-form select option { background: var(--card); color: var(--foreground); }
+.contact-studio-form textarea { resize: vertical; line-height: 1.7; }
+.contact-studio-form ::placeholder { color: var(--text-muted); opacity: 1; }
+.contact-studio :is(input, select, textarea, a, button, summary):focus-visible { outline: 2px solid var(--color-social); outline-offset: 4px; }
+.contact-studio-send { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
+.contact-studio-send p { color: var(--text-muted); font-size: 11px; line-height: 1.7; }
+.contact-studio-feedback { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+@media (max-width: 900px) { .contact-studio-shell { grid-template-columns: minmax(0, 1fr); } .contact-studio-profile { border-right: 0; border-bottom: 1px solid var(--glass-border); } .contact-studio-invite { margin-top: 24px; } }
+@media (max-width: 480px) { .contact-studio-fields { grid-template-columns: minmax(0, 1fr); } .contact-studio-form :is(input, select, textarea) { font-size: 16px; } .contact-studio-shell { border-radius: 22px; } }

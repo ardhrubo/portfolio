@@ -58,7 +58,7 @@ The archive is a separate hash-addressable view. The project drawer, search, and
 
 ### Projects
 
-Project records include stable `id`, `title`, `subtitle`, `category`, `categoryLabel`, `badge`, `featured`, `image`, `desc`, `longDesc`, `tech`, `highlights`, `url`, `githubUrl`, and `hasLiveDemo` fields. Put images in `public/projects/` and reference them with root-relative paths. `ProjectsShowcase.jsx` currently chooses selected work by explicit project IDs; change that list to change which projects appear there. The first selected project gets the lead case-study presentation. Its additional description and highlights are available through the native “Inside the build” disclosure, keeping the lead card compact. Only publish numerical outcomes when they are documented.
+Project records include stable `id`, `title`, `subtitle`, `category`, `categoryLabel`, `badge`, `featured`, `image`, `desc`, `longDesc`, `tech`, `highlights`, `url`, `githubUrl`, and `hasLiveDemo` fields. Put images in `public/projects/` and reference them with root-relative paths. `ProjectsShowcase.jsx` chooses selected work by explicit project IDs; update that list when selections change. `projects.css` owns framed previews and glass stack badges. Exact technology names map to local brand SVGs; unavailable marks keep text. The first card spans the grid; “Explore the build” opens the drawer for descriptions and highlights. Only publish documented numerical outcomes.
 
 ### Technical stack
 
@@ -106,7 +106,8 @@ Profile/project images and icons are static files under `public/`. Technology ma
 - `experience.css` owns the scoped Experience timeline, neutral glass cards, filters, and education/event refinements. Contributions remain expandable; filter counts derive from data.
 
 - `ReactionLoader.jsx` and its adjacent CSS provide the decorative violet flask only for the science lab fallback. Archive and guide use text loading states. The lab's offscreen placeholder is static; animation runs only after loading is requested. Reduced motion disables waves and bubbles.
-- `personalInfo.name` is the public display name, AR Dhrubo. `headline`, `heroIntro`, and `heroCapabilities` provide software-focused hero content. Experience defaults to Engineering; research and teaching remain available through filters.
+- `personalInfo.name` is the public display name, AR Dhrubo. `headline` and `heroIntro` position him as a Product Builder with a software engineering foundation. `heroTechnologies` maps labels to unchanged local Devicon SVGs, rendered as glass links to Skills. Experience defaults to Engineering; research and teaching remain available through filters.
+- `contact.css` owns the Contact glass panel, profile, and native form controls. Topics select the email subject without replacing visitor text. The form prepares a mailto draft; extra social profiles use native disclosure. Clipboard feedback clears with a cleanup-safe timer.
 - Action gradients live in `theme.css`. `studio.css` applies deep emerald primary actions, neutral headings, and section icon tiles that reuse navigation accents. Supporting archive actions use glass.
 
 - `studio.css` is a later art-direction layer, not a full consolidation of the older stylesheets.

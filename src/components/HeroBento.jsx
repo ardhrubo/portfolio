@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, Mail, MapPin, Code2, Workflow, Server, Search } from 'lucide-react';
+import { ArrowUpRight, Check, Mail, MapPin, Search } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Button from './ui/Button';
 import Card from './ui/Card';
 
-const capabilityIcons = [Code2, Workflow, Server];
-const capabilities = personalInfo.heroCapabilities.map((item, index) => ({ ...item, icon: capabilityIcons[index] }));
 
 export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   const [copied, setCopied] = useState(false);
@@ -36,7 +34,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
     <section id="hero" className="overview-section">
       <div className="container">
         <div className="page-topbar">
-          <span>{personalInfo.name} <span className="topbar-divider">/</span> Software development</span>
+          <span>{personalInfo.name} <span className="topbar-divider">/</span> Products & engineering</span>
           <Button variant="ghost" size="small" onClick={onOpenCmd} aria-label="Search portfolio"><Search size={15} /><span>Quick search</span><kbd>⌘ K</kbd></Button>
         </div>
         <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> OPEN TO SELECT OPPORTUNITIES</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh</span></div>
@@ -61,8 +59,9 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
               <Button asChild className="studio-action"><a href="#projects"><span className="action-icon action-icon--mint"><ArrowUpRight size={18} aria-hidden="true" /></span>View selected work</a></Button>
               <Button asChild variant="secondary" className="studio-action"><a href="#contact"><span className="action-icon action-icon--peach"><Mail size={18} aria-hidden="true" /></span>Start a conversation</a></Button>
             </div>
-            <div className="overview-capabilities">
-              {capabilities.map(({icon: Icon, label, detail}) => <div key={label}><Icon size={17} aria-hidden="true" /><div><strong>{label}</strong><span>{detail}</span></div></div>)}
+            <div className="hero-technologies" aria-label="Technologies I build with">
+              <span className="hero-technologies-label">TOOLS I BUILD WITH</span>
+              <div>{personalInfo.heroTechnologies.map(tech => <a key={tech.logo} href="#skills" className="hero-tech-tile"><span className={`hero-tech-mark hero-tech-mark--${tech.logo}`}><img src={`/tech/${tech.logo}.svg`} alt="" width="28" height="28" /></span><span>{tech.name}</span></a>)}</div>
             </div>
             <div className="studio-note">Web applications · APIs · Automation</div>
           </Card>

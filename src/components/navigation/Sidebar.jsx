@@ -8,7 +8,7 @@ import Button from '../ui/Button';
 export default function Sidebar({ activeSection, onOpenCmd, onOpenChat, onNavClick, onBrandClick }) {
   return (
     <aside aria-label="Primary navigation" className="desktop-sidebar">
-      <a id="sidebar-brand" href="#hero" onClick={onBrandClick} className="sidebar-brand"><Logo size={38} /><span><strong>{personalInfo.name}</strong><small>Software developer</small></span></a>
+      <a id="sidebar-brand" href="#hero" onClick={onBrandClick} className="sidebar-brand"><Logo size={38} /><span><strong>{personalInfo.name}</strong><small>{personalInfo.headline}</small></span></a>
       <div className="sidebar-divider" />
       <p className="sidebar-section-label">WORKSPACE</p>
       <nav aria-label="Sections"><ul>{NAV_ITEMS.map(item => {

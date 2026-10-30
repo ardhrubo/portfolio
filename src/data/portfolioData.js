@@ -1,7 +1,15 @@
 export const personalInfo = {
   name: "AR Dhrubo",
-  headline: "Full-stack software developer",
-  heroIntro: "I build web applications, backend systems, and automation tools—from the interface people use to the services and data behind it.",
+  headline: "Product Builder",
+  heroIntro: "I turn ideas into useful digital products—bringing together thoughtful interfaces, reliable engineering, and automation to solve real problems.",
+  heroTechnologies: [
+    { name: 'React', logo: 'react' },
+    { name: 'Next.js', logo: 'nextjs' },
+    { name: 'Node.js', logo: 'nodejs' },
+    { name: 'Python', logo: 'python' },
+    { name: 'PostgreSQL', logo: 'postgresql' },
+    { name: 'Puppeteer', logo: 'puppeteer' },
+  ],
   heroCapabilities: [
     { label: 'Full-stack development', detail: 'React / Next.js / Node.js' },
     { label: 'Workflow automation', detail: 'Python / Puppeteer / Data pipelines' },
