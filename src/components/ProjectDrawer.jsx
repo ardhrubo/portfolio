@@ -1,5 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import {
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Layers,
+  CheckCircle2,
+  ArrowRight,
+  ArrowUpRight,
+} from 'lucide-react';
+import { Github } from './ui/BrandIcons';
+import Button from './ui/Button';
 import { projectsData } from '../data/portfolioData';
 
 export default function ProjectDrawer({ project, onClose, onSelectProject }) {
@@ -30,8 +41,9 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
               disabled={!prevProject}
               className="drawer-arrow-btn"
               title={prevProject ? `Previous: ${prevProject.title}` : 'No previous project'}
+              aria-label="Previous project"
             >
-              <i className="fa-solid fa-chevron-left"></i>
+              <ChevronLeft size={18} aria-hidden="true" />
             </button>
             <span className="drawer-index-indicator">
               {currentIndex + 1} / {projectsData.length}
@@ -41,13 +53,14 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
               disabled={!nextProject}
               className="drawer-arrow-btn"
               title={nextProject ? `Next: ${nextProject.title}` : 'No next project'}
+              aria-label="Next project"
             >
-              <i className="fa-solid fa-chevron-right"></i>
+              <ChevronRight size={18} aria-hidden="true" />
             </button>
           </div>
 
           <button onClick={onClose} className="drawer-close-btn" aria-label="Close drawer">
-            <i className="fa-solid fa-xmark"></i>
+            <X size={18} aria-hidden="true" />
           </button>
         </div>
 
@@ -63,7 +76,7 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
             />
           ) : (
             <div className="drawer-media-fallback">
-              <i className="fa-solid fa-layer-group"></i>
+              <Layers size={28} aria-hidden="true" />
               <span>{project.title}</span>
             </div>
           )}
@@ -85,13 +98,13 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
           {project.highlights && project.highlights.length > 0 && (
             <div className="drawer-highlights-card">
               <div className="drawer-highlights-header">
-                <i className="fa-solid fa-circle-check" style={{ color: 'var(--accent-primary)' }}></i>
-                <span>Engineering Deliverables & Highlights</span>
+                <CheckCircle2 size={16} aria-hidden="true" />
+                <span>Engineering Deliverables &amp; Highlights</span>
               </div>
               <ul className="drawer-highlights-list">
                 {project.highlights.map((h, i) => (
                   <li key={i} className="drawer-highlight-item">
-                    <i className="fa-solid fa-arrow-right"></i>
+                    <ArrowRight size={14} aria-hidden="true" />
                     <span>{h}</span>
                   </li>
                 ))}
@@ -101,7 +114,7 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
 
           {/* Tech Stack */}
           <div className="drawer-tech-section">
-            <span className="drawer-section-label">Technologies & Frameworks</span>
+            <span className="drawer-section-label">Technologies &amp; Frameworks</span>
             <div className="drawer-tech-tags">
               {project.tech.map((t, idx) => (
                 <span key={idx} className="drawer-tech-tag">{t}</span>
@@ -112,29 +125,37 @@ export default function ProjectDrawer({ project, onClose, onSelectProject }) {
           {/* Action CTAs */}
           <div className="drawer-action-row">
             {project.url && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
+              <Button
+                asChild
+                variant="primary"
                 style={{ flex: 1, justifyContent: 'center' }}
               >
-                <span>{project.hasLiveDemo ? 'Launch Live Application' : 'Open Link'}</span>
-                <i className="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>{project.hasLiveDemo ? 'Launch Live Application' : 'Open Link'}</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              </Button>
             )}
 
             {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
+              <Button
+                asChild
+                variant="secondary"
                 style={{ flex: 1, justifyContent: 'center' }}
               >
-                <i className="fa-brands fa-github"></i>
-                <span>View Source Code</span>
-              </a>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github size={17} />
+                  <span>View Source Code</span>
+                </a>
+              </Button>
             )}
           </div>
         </div>

@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, Mail, MapPin, Code2, Workflow, Atom, Search } from 'lucide-react';
+import { ArrowUpRight, Check, Mail, MapPin, Code2, Workflow, Server, Search } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Button from './ui/Button';
 import Card from './ui/Card';
 
-const capabilities = [
-  { icon: Code2, label: 'Full-stack development', detail: 'React / Next.js / Node.js' },
-  { icon: Workflow, label: 'Intelligent automation', detail: 'Python / Puppeteer / Data' },
-  { icon: Atom, label: 'Scientific computing', detail: 'Simulation / Monte Carlo / DFT' },
-];
+const capabilityIcons = [Code2, Workflow, Server];
+const capabilities = personalInfo.heroCapabilities.map((item, index) => ({ ...item, icon: capabilityIcons[index] }));
 
 export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   const [copied, setCopied] = useState(false);
@@ -39,7 +36,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
     <section id="hero" className="overview-section">
       <div className="container">
         <div className="page-topbar">
-          <span>Dhrubo’s studio <span className="topbar-divider">/</span> Engineering & curiosity</span>
+          <span>{personalInfo.name} <span className="topbar-divider">/</span> Software development</span>
           <Button variant="ghost" size="small" onClick={onOpenCmd} aria-label="Search portfolio"><Search size={15} /><span>Quick search</span><kbd>⌘ K</kbd></Button>
         </div>
         <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> OPEN TO SELECT OPPORTUNITIES</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh</span></div>
@@ -47,8 +44,8 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
           <Card as="article" className="overview-profile">
             <div className="profile-topline"><span className="eyebrow">THE PERSON BEHIND THE CODE</span><ArrowUpRight size={16} aria-hidden="true" /></div>
             <div className="profile-identity"><div className="profile-photo"><img src={personalInfo.avatar} alt={personalInfo.fullName} /><span className="status-dot" /></div><span className="profile-handle">@ardhrubo</span></div>
-            <h2>Abdur Rahman<br />Dhrubo<span>.</span></h2>
-            <p className="profile-role">Full-stack engineer.<br />Computational researcher.</p>
+            <h2>{personalInfo.name}</h2>
+            <p className="profile-role">{personalInfo.headline}</p>
             <div className="profile-socials">
               <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a></Button>
               <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a></Button>
@@ -57,9 +54,9 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             <div className="profile-local-time"><span><MapPin size={13} /> LOCAL TIME / GMT+6</span><time>{time || 'Dhaka'}</time></div>
           </Card>
           <Card as="article" className="overview-main">
-            <span className="eyebrow">HELLO, I’M DHRUBO</span>
-            <h1>A curious mind.<br /><span>A builder at heart.</span></h1>
-            <p className="overview-description">I’m Dhrubo, a full-stack engineer and computational researcher. I build web platforms, automate data workflows, and model complex systems.</p>
+            <span className="eyebrow">HELLO, I’M {personalInfo.name.toUpperCase()}</span>
+            <h1>{personalInfo.headline}</h1>
+            <p className="overview-description">{personalInfo.heroIntro}</p>
             <div className="overview-actions">
               <Button asChild className="studio-action"><a href="#projects"><span className="action-icon action-icon--mint"><ArrowUpRight size={18} aria-hidden="true" /></span>View selected work</a></Button>
               <Button asChild variant="secondary" className="studio-action"><a href="#contact"><span className="action-icon action-icon--peach"><Mail size={18} aria-hidden="true" /></span>Start a conversation</a></Button>
@@ -67,7 +64,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
             <div className="overview-capabilities">
               {capabilities.map(({icon: Icon, label, detail}) => <div key={label}><Icon size={17} aria-hidden="true" /><div><strong>{label}</strong><span>{detail}</span></div></div>)}
             </div>
-            <div className="studio-note"><span className="status-dot" /> Between code, experiments, and possibility.</div>
+            <div className="studio-note">Web applications · APIs · Automation</div>
           </Card>
         </div>
         <div className="overview-metrics" aria-label="Career highlights">

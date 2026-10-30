@@ -1,4 +1,16 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import {
+  ArrowLeft,
+  FolderOpen,
+  Search,
+  X,
+  LayoutGrid,
+  List,
+  ArrowUpRight,
+  ArrowRight,
+  Code2,
+} from 'lucide-react';
+import Button from './ui/Button';
 import { projectsData } from '../data/portfolioData';
 
 export default function AllProjectsView({ onBackToHome, onSelectProject }) {
@@ -57,7 +69,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
       <div className="all-projects-topbar">
         <div className="container">
           <button onClick={onBackToHome} className="btn-back-home">
-            <i className="fa-solid fa-arrow-left"></i>
+            <ArrowLeft size={16} aria-hidden="true" />
             <span>Back to Home</span>
           </button>
           <div className="all-projects-breadcrumbs">
@@ -72,7 +84,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
         {/* Header */}
         <div className="section-header" style={{ marginBottom: '32px' }}>
           <div className="section-tag">
-            <i className="fa-solid fa-folder-open"></i>
+            <FolderOpen size={15} aria-hidden="true" />
             <span>Engineering Archive</span>
           </div>
           <h1 className="section-title">
@@ -102,7 +114,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
           <div className="vault-search-and-view">
             {/* Search Box */}
             <div className="vault-search-box">
-              <i className="fa-solid fa-magnifying-glass"></i>
+              <Search size={16} className="text-muted-foreground" aria-hidden="true" />
               <input
                 type="text"
                 aria-label="Search all projects"
@@ -112,7 +124,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
               />
               {searchQuery && (
                 <button onClick={() => setSearchQuery('')} className="btn-clear-search" aria-label="Clear search">
-                  <i className="fa-solid fa-xmark"></i>
+                  <X size={14} aria-hidden="true" />
                 </button>
               )}
             </div>
@@ -126,7 +138,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                 aria-label="Grid view"
                 aria-pressed={viewMode === 'grid'}
               >
-                <i className="fa-solid fa-grip"></i>
+                <LayoutGrid size={16} aria-hidden="true" />
               </button>
               <button
                 onClick={() => setViewMode('table')}
@@ -135,7 +147,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                 aria-label="Table view"
                 aria-pressed={viewMode === 'table'}
               >
-                <i className="fa-solid fa-list"></i>
+                <List size={16} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -166,7 +178,7 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                     />
                   ) : (
                     <div className="vault-card-fallback">
-                      <i className="fa-solid fa-code"></i>
+                      <Code2 size={24} aria-hidden="true" />
                       <span>{project.title}</span>
                     </div>
                   )}
@@ -175,39 +187,43 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
 
                 <div className="vault-card-content">
                   <div className="vault-card-meta">
-                    <span className="vault-category-tag">{project.categoryLabel}</span>
+                    <span className="vault-category">{project.categoryLabel}</span>
                   </div>
 
                   <h3 className="vault-card-title">{project.title}</h3>
                   <p className="vault-card-desc">{project.desc}</p>
 
-                  <div className="vault-card-tech">
+                  <div className="vault-tech-list">
                     {project.tech.map((t, idx) => (
                       <span key={idx} className="vault-tech-pill">{t}</span>
                     ))}
                   </div>
 
-                  <div className="vault-card-footer">
-                    <button
-                      onClick={() => onSelectProject(project)}
-                      className="btn-vault-inspect"
-                    >
-                      <i className="fa-solid fa-circle-info"></i>
-                      <span>View project</span>
-                    </button>
-
+                  <div className="vault-card-actions">
                     {project.url && (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-vault-visit"
-                        title={project.hasLiveDemo ? 'Visit live website' : 'Open project source'}
-                      >
-                        <span>{project.hasLiveDemo ? 'Live Demo' : 'Source'}</span>
-                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                      </a>
+                      <Button asChild variant="secondary" size="small">
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={project.hasLiveDemo ? 'Visit live website' : 'Open project source'}
+                        >
+                          <span>{project.hasLiveDemo ? 'Visit website' : 'Open link'}</span>
+                          <ArrowUpRight size={15} aria-hidden="true" />
+                        </a>
+                      </Button>
                     )}
+
+                    <Button
+                      variant="ghost"
+                      size="small"
+                      onClick={() => onSelectProject(project)}
+                      className="project-details-button"
+                      aria-label={`View project: ${project.title}`}
+                    >
+                      <span>View project</span>
+                      <ArrowRight size={15} aria-hidden="true" />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -234,24 +250,24 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                     <td className="table-col-title">
                       <div className="table-title-group">
                         <span className="table-title-text">{project.title}</span>
-                        <span className="table-sub-text">{project.subtitle}</span>
+                        <span className="table-subtitle-text">{project.subtitle}</span>
                       </div>
                     </td>
                     <td>
-                      <span className="table-category-badge">{project.categoryLabel}</span>
+                      <span className="table-cat-badge">{project.categoryLabel}</span>
                     </td>
                     <td>
-                      <div className="table-tech-pills">
+                      <div className="table-tech-chips">
                         {project.tech.slice(0, 3).map((t, idx) => (
-                          <span key={idx} className="table-pill">{t}</span>
+                          <span key={idx} className="table-tech-chip">{t}</span>
                         ))}
                         {project.tech.length > 3 && (
-                          <span className="table-pill more">+{project.tech.length - 3}</span>
+                          <span className="table-tech-chip more">+{project.tech.length - 3}</span>
                         )}
                       </div>
                     </td>
                     <td>
-                      <span className="table-badge">{project.badge}</span>
+                      <span className="table-badge-pill">{project.badge}</span>
                     </td>
                     <td className="table-col-action">
                       <button
@@ -259,10 +275,10 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
                           e.stopPropagation();
                           onSelectProject(project);
                         }}
-                        className="btn-table-inspect"
+                        className="btn-table-action inspect"
                         aria-label={`View project: ${project.title}`}
                       >
-                        <i className="fa-solid fa-arrow-right"></i>
+                        <ArrowRight size={16} aria-hidden="true" />
                       </button>
                     </td>
                   </tr>
@@ -275,12 +291,12 @@ export default function AllProjectsView({ onBackToHome, onSelectProject }) {
         {/* Empty Search State */}
         {filteredProjects.length === 0 && (
           <div className="vault-empty-state">
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <Search size={32} className="text-muted-foreground" aria-hidden="true" />
             <h3>No matching projects found</h3>
             <p>Try searching with a different technology or clear your search query.</p>
-            <button onClick={() => { setSearchQuery(''); setActiveCategory('all'); }} className="btn-reset-filters">
+            <Button onClick={() => { setSearchQuery(''); setActiveCategory('all'); }} variant="primary" className="btn-reset-filters">
               Reset Filters
-            </button>
+            </Button>
           </div>
         )}
       </div>

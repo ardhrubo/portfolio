@@ -1,4 +1,6 @@
 import React from 'react';
+import { Mail, ArrowUp, Globe } from 'lucide-react';
+import { Github, Linkedin, Facebook, Youtube } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Logo from './Logo';
 
@@ -52,7 +54,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 title="GitHub Profile"
                 aria-label="GitHub Profile"
               >
-                <i className="fa-brands fa-github"></i>
+                <Github size={17} />
               </a>
               <a
                 href={personalInfo.socials.linkedin}
@@ -62,7 +64,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 title="LinkedIn Profile"
                 aria-label="LinkedIn Profile"
               >
-                <i className="fa-brands fa-linkedin"></i>
+                <Linkedin size={17} />
               </a>
               <a
                 href={personalInfo.socials.peerlist}
@@ -72,7 +74,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 title="Peerlist Profile"
                 aria-label="Peerlist Profile"
               >
-                <i className="fa-solid fa-p"></i>
+                <Globe size={16} />
               </a>
               <a
                 href={personalInfo.socials.facebook}
@@ -82,7 +84,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 title="Backbencher Chemist Facebook Channel"
                 aria-label="Backbencher Chemist Facebook Channel"
               >
-                <i className="fa-brands fa-facebook"></i>
+                <Facebook size={16} />
               </a>
               <a
                 href={personalInfo.socials.youtube}
@@ -92,7 +94,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 title="YouTube Channel (@randomdhrubo)"
                 aria-label="YouTube Channel"
               >
-                <i className="fa-brands fa-youtube"></i>
+                <Youtube size={16} />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
@@ -100,28 +102,31 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
                 title="Send Email"
                 aria-label="Send Email"
               >
-                <i className="fa-solid fa-envelope"></i>
+                <Mail size={16} />
               </a>
             </div>
           </div>
 
           <div className="footer-nav">
-            <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="footer-nav-link">About</a>
-            <a href="#experience" onClick={(e) => handleLinkClick(e, '#experience')} className="footer-nav-link">Experience</a>
+            <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="footer-nav-link">Overview</a>
             <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="footer-nav-link">Projects</a>
-            <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="footer-nav-link">Skills</a>
+            <a href="#experience" onClick={(e) => handleLinkClick(e, '#experience')} className="footer-nav-link">Experience</a>
+            <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="footer-nav-link">Tech stack</a>
+            <a href="#strategy" onClick={(e) => handleLinkClick(e, '#strategy')} className="footer-nav-link">Approach</a>
+            <a href="#simulation-lab" onClick={(e) => handleLinkClick(e, '#simulation-lab')} className="footer-nav-link">3D playground</a>
+            <a href="#services" onClick={(e) => handleLinkClick(e, '#services')} className="footer-nav-link">Services</a>
             <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="footer-nav-link">Contact</a>
           </div>
         </div>
 
         <div className="footer-bottom">
           <div>
-            &copy; {new Date().getFullYear()} {personalInfo.fullName}. All rights reserved. Crafted with React, Vite & Modern CSS.
+            &copy; {new Date().getFullYear()} {personalInfo.fullName}. All rights reserved. Crafted with React, Vite &amp; Modern CSS.
           </div>
 
           <button onClick={scrollToTop} className="btn-scroll-top" aria-label="Scroll to top of page">
             <span>Back to top</span>
-            <i className="fa-solid fa-arrow-up"></i>
+            <ArrowUp size={14} aria-hidden="true" />
           </button>
         </div>
       </div>

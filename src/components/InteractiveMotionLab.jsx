@@ -498,15 +498,15 @@ export default function InteractiveMotionLab({ onShowToast }) {
     <section id="simulation-lab" className="section text-foreground">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header text-center max-w-3xl mx-auto mb-10">
-          <div className="section-tag inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--glass-border)] bg-[var(--glass-item)] text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">
-            <Atom className="size-3.5 text-accent" />
-            <span>A little room for curiosity</span>
+        <div className="section-header">
+          <div className="section-tag">
+            <Atom size={15} aria-hidden="true" />
+            <span>05 / 3D playground</span>
           </div>
-          <h2 className="section-title text-3xl sm:text-4xl font-heading font-extrabold tracking-tight">
+          <h2 className="section-title">
             Science, <span className="gradient-text">in motion.</span>
           </h2>
-          <p className="section-subtitle mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="section-subtitle">
             Explore molecular structures, flowing particles, and wave surfaces.
             Choose an experiment, turn it around, and see what changes.
           </p>

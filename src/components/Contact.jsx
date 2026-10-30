@@ -1,4 +1,16 @@
 import React, { useState } from 'react';
+import {
+  Mail,
+  Copy,
+  Check,
+  MapPin,
+  CheckCircle2,
+  ArrowUpRight,
+  Send,
+  Globe,
+} from 'lucide-react';
+import { Github, Linkedin, Facebook, Youtube } from './ui/BrandIcons';
+import Button from './ui/Button';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Contact({ onShowToast }) {
@@ -64,7 +76,7 @@ export default function Contact({ onShowToast }) {
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <i className="fa-solid fa-paper-plane"></i>
+            <Mail size={15} aria-hidden="true" />
             <span>07 / Get in touch</span>
           </div>
           <h2 className="section-title">
@@ -89,45 +101,45 @@ export default function Contact({ onShowToast }) {
                   <span className="contact-author-title">Full-Stack Engineer & Researcher</span>
                 </div>
               </div>
-              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginTop: '14px' }}>
+              <p className="contact-card-intro">
                 Feel free to email me directly or connect on LinkedIn. I am based in Dhaka, Bangladesh (GMT+6) and work with international teams worldwide.
               </p>
 
               {/* Email Link with Copy feedback */}
               <button type="button" onClick={handleCopyEmail} className="contact-item-link" title="Copy email address">
                 <div className="contact-icon-pill">
-                  <i className="fa-solid fa-envelope"></i>
+                  <Mail size={18} aria-hidden="true" />
                 </div>
                 <div className="contact-details">
                   <span className="contact-label">Email Address (Click to copy)</span>
                   <span className="contact-value">{personalInfo.email}</span>
                 </div>
                 <div className="contact-value-copy">
-                  <i className={`fa-solid ${copiedEmail ? 'fa-check' : 'fa-copy'}`}></i>
+                  {copiedEmail ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
                 </div>
               </button>
 
               {/* Location */}
-              <div className="contact-item-link" style={{ cursor: 'default' }}>
+              <div className="contact-item-link contact-item-link--static">
                 <div className="contact-icon-pill">
-                  <i className="fa-solid fa-location-dot"></i>
+                  <MapPin size={18} aria-hidden="true" />
                 </div>
                 <div className="contact-details">
                   <span className="contact-label">Location & Timezone</span>
                   <span className="contact-value">{personalInfo.location}</span>
-                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{personalInfo.timezone}</span>
+                  <span className="contact-subdetail">{personalInfo.timezone}</span>
                 </div>
               </div>
 
               {/* Availability Status */}
-              <div className="contact-item-link" style={{ cursor: 'default' }}>
-                <div className="contact-icon-pill" style={{ color: 'var(--accent-primary)', background: 'var(--accent-light)' }}>
-                  <i className="fa-solid fa-circle-check"></i>
+              <div className="contact-item-link contact-item-link--static">
+                <div className="contact-icon-pill contact-icon-pill--status">
+                  <CheckCircle2 size={18} aria-hidden="true" />
                 </div>
                 <div className="contact-details">
                   <span className="contact-label">Current Status</span>
-                  <span className="contact-value" style={{ color: 'var(--accent-primary)' }}>Open for Opportunities</span>
-                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Full-Time & Select Contracts</span>
+                  <span className="contact-value contact-value--open">Open for Opportunities</span>
+                  <span className="contact-subdetail">Full-Time & Select Contracts</span>
                 </div>
               </div>
 
@@ -143,13 +155,13 @@ export default function Contact({ onShowToast }) {
                     title="View GitHub Profile"
                   >
                     <div className="contact-social-card-icon github">
-                      <i className="fa-brands fa-github"></i>
+                      <Github size={17} />
                     </div>
                     <div className="contact-social-card-info">
                       <span className="contact-social-card-name">GitHub</span>
                       <span className="contact-social-card-handle">@ardhrubo</span>
                     </div>
-                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                    <ArrowUpRight size={14} className="contact-social-card-arrow" aria-hidden="true" />
                   </a>
 
                   <a
@@ -160,13 +172,13 @@ export default function Contact({ onShowToast }) {
                     title="Connect on LinkedIn"
                   >
                     <div className="contact-social-card-icon linkedin">
-                      <i className="fa-brands fa-linkedin"></i>
+                      <Linkedin size={17} />
                     </div>
                     <div className="contact-social-card-info">
                       <span className="contact-social-card-name">LinkedIn</span>
                       <span className="contact-social-card-handle">/in/ardhrubo</span>
                     </div>
-                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                    <ArrowUpRight size={14} className="contact-social-card-arrow" aria-hidden="true" />
                   </a>
 
                   <a
@@ -177,13 +189,13 @@ export default function Contact({ onShowToast }) {
                     title="View Peerlist Profile"
                   >
                     <div className="contact-social-card-icon peerlist">
-                      <i className="fa-solid fa-p"></i>
+                      <Globe size={16} />
                     </div>
                     <div className="contact-social-card-info">
                       <span className="contact-social-card-name">Peerlist</span>
                       <span className="contact-social-card-handle">@ardhrubo</span>
                     </div>
-                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                    <ArrowUpRight size={14} className="contact-social-card-arrow" aria-hidden="true" />
                   </a>
 
                   <a
@@ -194,13 +206,13 @@ export default function Contact({ onShowToast }) {
                     title="Follow Backbencher Chemist Channel"
                   >
                     <div className="contact-social-card-icon facebook">
-                      <i className="fa-brands fa-facebook-f"></i>
+                      <Facebook size={16} />
                     </div>
                     <div className="contact-social-card-info">
                       <span className="contact-social-card-name">Facebook Channel</span>
                       <span className="contact-social-card-handle">@backbencherchemist</span>
                     </div>
-                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                    <ArrowUpRight size={14} className="contact-social-card-arrow" aria-hidden="true" />
                   </a>
 
                   <a
@@ -211,13 +223,13 @@ export default function Contact({ onShowToast }) {
                     title="Watch on YouTube"
                   >
                     <div className="contact-social-card-icon youtube">
-                      <i className="fa-brands fa-youtube"></i>
+                      <Youtube size={16} />
                     </div>
                     <div className="contact-social-card-info">
                       <span className="contact-social-card-name">YouTube Channel</span>
                       <span className="contact-social-card-handle">@randomdhrubo</span>
                     </div>
-                    <i className="fa-solid fa-arrow-up-right-from-square contact-social-card-arrow"></i>
+                    <ArrowUpRight size={14} className="contact-social-card-arrow" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -245,8 +257,8 @@ export default function Contact({ onShowToast }) {
             </div>
 
             {submitted && (
-              <div className="form-status-msg success" style={{ marginBottom: '16px' }}>
-                <i className="fa-solid fa-circle-check"></i>
+              <div className="form-status-msg success">
+                <CheckCircle2 size={16} aria-hidden="true" />
                 <span>Your draft is ready. If your email app did not open, copy my address and send your message directly.</span>
               </div>
             )}
@@ -301,10 +313,10 @@ export default function Contact({ onShowToast }) {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn-submit">
+              <Button type="submit" variant="primary" className="btn-submit">
                 <span>Launch Email Client</span>
-                <i className="fa-solid fa-paper-plane"></i>
-              </button>
+                <Send size={16} aria-hidden="true" />
+              </Button>
             </form>
           </div>
         </div>

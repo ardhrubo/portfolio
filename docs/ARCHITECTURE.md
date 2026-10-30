@@ -102,6 +102,13 @@ Profile/project images and icons are static files under `public/`. Technology ma
 
 ## Maintenance notes
 
+- Theme switching is offered once per viewport: right dock on desktop, mobile top bar below 1024px. The left sidebar has no theme switch.
+- `experience.css` owns the scoped Experience timeline, neutral glass cards, filters, and education/event refinements. Contributions remain expandable; filter counts derive from data.
+
+- `ReactionLoader.jsx` and its adjacent CSS provide the decorative violet flask only for the science lab fallback. Archive and guide use text loading states. The lab's offscreen placeholder is static; animation runs only after loading is requested. Reduced motion disables waves and bubbles.
+- `personalInfo.name` is the public display name, AR Dhrubo. `headline`, `heroIntro`, and `heroCapabilities` provide software-focused hero content. Experience defaults to Engineering; research and teaching remain available through filters.
+- Action gradients live in `theme.css`. `studio.css` applies deep emerald primary actions, neutral headings, and section icon tiles that reuse navigation accents. Supporting archive actions use glass.
+
 - `studio.css` is a later art-direction layer, not a full consolidation of the older stylesheets.
 - The generated design-system master file is stale; `AGENTS.md` and `theme.css` are authoritative.
 - `Skills.jsx` and `skillsData` currently rely on matching array order.

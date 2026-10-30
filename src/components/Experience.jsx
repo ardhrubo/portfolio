@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import { experienceData, educationData, certificationsData, eventsData } from '../data/portfolioData';
 import AccessibleDialog from './ui/AccessibleDialog';
+import '../styles/experience.css';
 
 const ROLE_ICONS = {
   'fa-solid fa-atom': Atom,
@@ -53,7 +54,7 @@ function renderDataIcon(iconName, size = 18) {
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('experience'); // 'experience' | 'education' | 'events'
-  const [filterCategory, setFilterCategory] = useState('all'); // 'all' | 'engineering' | 'research' | 'education'
+  const [filterCategory, setFilterCategory] = useState('engineering'); // 'all' | 'engineering' | 'research' | 'education'
   const [eventCategory, setEventCategory] = useState('all'); // 'all' | 'conference' | 'hackathon' | 'workshop'
   const [lightboxImage, setLightboxImage] = useState(null);
 
@@ -130,21 +131,21 @@ export default function Experience() {
                 onClick={() => setFilterCategory('engineering')}
                 aria-pressed={filterCategory === 'engineering'}
               >
-                <Laptop size={14} aria-hidden="true" /> Engineering & Dev (3)
+                <Laptop size={14} aria-hidden="true" /> Engineering ({experienceData.filter(item => item.category === 'engineering').length})
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'research' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('research')}
                 aria-pressed={filterCategory === 'research'}
               >
-                <Atom size={14} aria-hidden="true" /> Scientific Research (2)
+                <Atom size={14} aria-hidden="true" /> Research ({experienceData.filter(item => item.category === 'research').length})
               </button>
               <button
                 className={`exp-filter-pill ${filterCategory === 'education' ? 'active' : ''}`}
                 onClick={() => setFilterCategory('education')}
                 aria-pressed={filterCategory === 'education'}
               >
-                <BookOpen size={14} aria-hidden="true" /> Teaching & Writing (2)
+                <BookOpen size={14} aria-hidden="true" /> Teaching & Writing ({experienceData.filter(item => item.category === 'education').length})
               </button>
             </div>
           )}

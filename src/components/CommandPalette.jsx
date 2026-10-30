@@ -1,4 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Search,
+  Copy,
+  ArrowUpRight,
+  Folder,
+  UserRound,
+  FolderKanban,
+  Briefcase,
+  Layers,
+  Compass,
+  Atom,
+  Handshake,
+  Mail,
+} from 'lucide-react';
+import { Github, Linkedin } from './ui/BrandIcons';
 import { projectsData, personalInfo } from '../data/portfolioData';
 import AccessibleDialog from './ui/AccessibleDialog';
 
@@ -28,13 +43,15 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
   );
 
   const sections = [
-    { name: 'About & Overview', href: '#hero', icon: 'fa-solid fa-user' },
-    { name: 'Flagship Deliveries', href: '#projects', icon: 'fa-solid fa-star' },
-    { name: 'Complete Project Vault', href: '#all-projects', icon: 'fa-solid fa-folder-open' },
-    { name: '3D Motion Graphics & Simulation Lab', href: '#simulation-lab', icon: 'fa-solid fa-atom' },
-    { name: 'Career & Research Timeline', href: '#experience', icon: 'fa-solid fa-briefcase' },
-    { name: 'Skills & Arsenal', href: '#skills', icon: 'fa-solid fa-layer-group' },
-    { name: 'Get in Touch', href: '#contact', icon: 'fa-solid fa-paper-plane' },
+    { name: 'Overview', href: '#hero', Icon: UserRound },
+    { name: 'Projects Showcase', href: '#projects', Icon: FolderKanban },
+    { name: 'All Projects Archive', href: '#all-projects', Icon: Folder },
+    { name: 'Experience & Research', href: '#experience', Icon: Briefcase },
+    { name: 'Technical Stack', href: '#skills', Icon: Layers },
+    { name: 'Engineering Approach', href: '#strategy', Icon: Compass },
+    { name: '3D Simulation Lab', href: '#simulation-lab', Icon: Atom },
+    { name: 'Services', href: '#services', Icon: Handshake },
+    { name: 'Get in Touch', href: '#contact', Icon: Mail },
   ];
 
   const handleAction = async (type, val) => {
@@ -67,7 +84,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
       items[next].focus(); items[next].scrollIntoView({ block: 'nearest' });
     }}>
         <div className="cmd-input-wrapper">
-          <i className="fa-solid fa-magnifying-glass cmd-search-icon"></i>
+          <Search size={18} className="cmd-search-icon" aria-hidden="true" />
           <input
             type="text"
             aria-label="Search projects and technologies"
@@ -86,7 +103,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
             <div className="cmd-group">
               <span className="cmd-group-title">Quick Actions</span>
               <button className="cmd-item" onClick={() => handleAction('copy')}>
-                <div className="cmd-item-icon"><i className="fa-regular fa-copy"></i></div>
+                <div className="cmd-item-icon"><Copy size={16} aria-hidden="true" /></div>
                 <span>Copy Email Address (<code>{personalInfo.email}</code>)</span>
                 <span className="cmd-shortcut">Enter</span>
               </button>
@@ -97,9 +114,9 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
                 className="cmd-item"
                 onClick={() => onClose(false)}
               >
-                <div className="cmd-item-icon"><i className="fa-brands fa-github"></i></div>
+                <div className="cmd-item-icon"><Github size={16} /></div>
                 <span>Open GitHub Profile (@ardhrubo)</span>
-                <i className="fa-solid fa-arrow-up-right-from-square cmd-ext-icon"></i>
+                <ArrowUpRight size={14} className="cmd-ext-icon" aria-hidden="true" />
               </a>
               <a
                 href={personalInfo.socials.linkedin}
@@ -108,9 +125,9 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
                 className="cmd-item"
                 onClick={() => onClose(false)}
               >
-                <div className="cmd-item-icon"><i className="fa-brands fa-linkedin"></i></div>
+                <div className="cmd-item-icon"><Linkedin size={16} /></div>
                 <span>Open LinkedIn Profile</span>
-                <i className="fa-solid fa-arrow-up-right-from-square cmd-ext-icon"></i>
+                <ArrowUpRight size={14} className="cmd-ext-icon" aria-hidden="true" />
               </a>
             </div>
           )}
@@ -119,12 +136,15 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
           {query === '' && (
             <div className="cmd-group">
               <span className="cmd-group-title">Jump to Section</span>
-              {sections.map((sec, i) => (
-                <button key={i} className="cmd-item" onClick={() => handleAction('link', sec.href)}>
-                  <div className="cmd-item-icon"><i className={sec.icon}></i></div>
-                  <span>{sec.name}</span>
-                </button>
-              ))}
+              {sections.map((sec, i) => {
+                const IconComponent = sec.Icon;
+                return (
+                  <button key={i} className="cmd-item" onClick={() => handleAction('link', sec.href)}>
+                    <div className="cmd-item-icon"><IconComponent size={16} aria-hidden="true" /></div>
+                    <span>{sec.name}</span>
+                  </button>
+                );
+              })}
             </div>
           )}
 
@@ -138,7 +158,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
             ) : (
               filteredProjects.slice(0, 8).map(p => (
                 <button key={p.id} className="cmd-item" onClick={() => handleAction('project', p)}>
-                  <div className="cmd-item-icon"><i className="fa-solid fa-folder-closed"></i></div>
+                  <div className="cmd-item-icon"><Folder size={16} aria-hidden="true" /></div>
                   <div className="cmd-item-text">
                     <span className="cmd-item-name">{p.title}</span>
                     <span className="cmd-item-sub">{p.categoryLabel} &bull; {p.tech.slice(0, 3).join(', ')}</span>

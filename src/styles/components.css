@@ -245,6 +245,11 @@
 .right-dock .theme-control.moon-toggle { min-width: 0; width: 52px; }
 .right-dock .moon-toggle-thumb[data-state='checked'] { transform: translateX(18px); }
 .moon-toggle { flex-shrink: 0; }
+.moon-toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+.moon-toggle .moon-toggle-thumb { color: var(--foreground); background: var(--card); }
+.moon-toggle[data-state='checked']::before { background: color-mix(in srgb, var(--color-assistant) 12%, var(--glass-item)); }
+.moon-toggle[data-state='unchecked']::before { background: color-mix(in srgb, var(--color-contact) 9%, var(--glass-item)); }
+@media (prefers-reduced-motion: reduce) { .moon-toggle-thumb, .moon-toggle-stars { transition: none; } }
 /* Color belongs to the glyphs; the surrounding glass stays neutral. */
 :is(#sidebar-ai-btn, #right-dock-ai) { --tool-color: var(--color-assistant); }
 :is(.profile-socials, .sidebar-socials, .right-dock) a[href*='linkedin.com'] { --tool-color: var(--color-social); }

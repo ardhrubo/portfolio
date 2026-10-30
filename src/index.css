@@ -124,7 +124,7 @@
 }
 
 .gradient-text {
-  color: var(--accent-primary) !important;
+  color: var(--foreground) !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: currentColor !important;
@@ -133,7 +133,7 @@
 
 [data-theme='light'] .gradient-text,
 :root:not(.dark):not([data-theme='dark']) .gradient-text {
-  color: var(--accent-dark) !important;
+  color: var(--foreground) !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   -webkit-text-fill-color: currentColor !important;

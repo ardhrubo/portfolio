@@ -14,3 +14,19 @@ export function Linkedin({ size = 24, ...props }) {
     </svg>
   );
 }
+
+export function Facebook({ size = 24, ...props }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
+      <path d="M13.5 21v-8.2h2.75l.41-3.2H13.5V7.56c0-.93.26-1.56 1.59-1.56h1.69V3.14c-.29-.04-1.29-.14-2.46-.14-2.44 0-4.11 1.49-4.11 4.23V9.6H7.45v3.2h2.76V21h3.29Z" />
+    </svg>
+  );
+}
+
+export function Youtube({ size = 24, ...props }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
+      <path d="M23.5 6.2a3 3 0 0 0-2.11-2.12C19.53 3.57 12 3.57 12 3.57s-7.53 0-9.39.51A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.12c1.86.51 9.39.51 9.39.51s7.53 0 9.39-.51a3 3 0 0 0 2.11-2.12A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.55 15.58V8.42L15.82 12l-6.27 3.58Z" />
+    </svg>
+  );
+}

@@ -1,0 +1,43 @@
+/* Experience owns its quiet editorial layout; ID scope resolves legacy rules. */
+#experience .section-header { max-width: none; margin-bottom: 32px; }
+#experience .section-subtitle { max-width: 58ch; }
+#experience .exp-tab-switcher { flex-direction: row; flex-wrap: wrap; width: fit-content; gap: 4px; padding: 5px; border-radius: 16px; box-shadow: var(--glass-highlight); }
+#experience .exp-tab-btn { width: auto; flex: 1 1 auto; justify-content: center; color: var(--text-secondary); font-size: 12px; min-height: 44px; }
+#experience .exp-tab-btn.active { color: var(--foreground); background: var(--glass-item-hover); border-color: var(--border-medium); box-shadow: inset 0 -2px 0 var(--nav-experience); }
+#experience .exp-tab-btn svg { color: var(--nav-experience); }
+#experience .exp-count-badge, #experience .exp-tab-btn.active .exp-count-badge { background: transparent; color: var(--text-muted); }
+#experience .exp-filter-pills { gap: 4px 12px; margin: 14px 0 0; }
+#experience .exp-filter-pill { border: 0; border-radius: 0; padding: 8px 0; min-height: 44px; color: var(--text-muted); background: transparent; font-size: 11px; box-shadow: none; }
+#experience .exp-filter-pill.active { color: var(--foreground); background: transparent; box-shadow: inset 0 -1px 0 var(--foreground); }
+#experience .timeline-container { display: flex; flex-direction: column; gap: 0; max-width: none; margin: 0; padding: 0; }
+#experience .timeline-item { position: relative; padding: 0 0 24px 54px; margin: 0; }
+#experience .timeline-item::before { content: ''; position: absolute; left: 18px; top: 40px; bottom: 0; width: 1px; background: var(--border-medium); }
+#experience .timeline-item:last-child::before { display: none; }
+#experience .timeline-node { top: 22px; left: 0; width: 38px; height: 38px; color: var(--nav-experience); background: var(--glass-bg); border: 1px solid var(--border-medium); box-shadow: var(--glass-highlight); transform: none; }
+#experience .timeline-card { padding: 26px 28px; height: auto; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--glass-highlight); }
+#experience .timeline-card:hover { transform: none; border-color: var(--border-medium); }
+#experience .timeline-header { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: start; justify-content: space-between; }
+#experience .timeline-role-title { font-size: clamp(18px, 2vw, 23px); line-height: 1.4; font-weight: 650; letter-spacing: -.025em; }
+#experience .timeline-company { color: var(--foreground); font-size: 13px; font-weight: 500; }
+#experience .timeline-company-row { margin-top: 8px; gap: 8px 16px; }
+#experience .timeline-location { color: var(--text-muted); }
+#experience .timeline-badges { margin: 0; gap: 4px 12px; justify-content: flex-start; max-width: 270px; }
+#experience :is(.timeline-period-pill, .timeline-duration-pill, .timeline-type-pill) { border: 0; background: transparent; border-radius: 0; padding: 0; color: var(--text-muted); font-size: 11px; line-height: 1.8; }
+#experience .timeline-period-pill { flex-basis: 100%; color: var(--foreground); font-family: var(--font-mono); }
+#experience .timeline-desc { max-width: 78ch; margin: 20px 0 16px; color: var(--text-secondary); line-height: 1.8; }
+#experience .experience-details { border-color: var(--border); }
+#experience .experience-details summary { color: var(--text-secondary); font-size: 12px; }
+#experience .timeline-achievement-item svg { flex-shrink: 0; color: var(--nav-experience); margin-top: 3px; }
+#experience .tech-tag-pill { color: var(--text-secondary); background: var(--glass-item); border-color: var(--border); }
+#experience :is(.edu-card, .cert-card, .event-card) { background: var(--glass-bg); border-color: var(--glass-border); box-shadow: var(--glass-highlight); border-radius: 20px; }
+#experience :is(.edu-institution, .cert-issuer, .edu-degree, .cert-title) { color: var(--foreground); }
+#experience :is(.edu-icon-badge, .cert-icon-box, .edu-status-tag, .cert-badge) { color: var(--nav-experience); background: var(--glass-item); }
+@media (max-width: 639px) {
+  #experience .exp-tab-switcher { width: 100%; }
+  #experience .exp-tab-btn { padding-inline: 8px; gap: 6px; }
+  #experience .exp-count-badge { display: none; }
+  #experience .timeline-item { padding-left: 0; padding-bottom: 16px; }
+  #experience .timeline-item::before, #experience .timeline-node { display: none; }
+  #experience .timeline-card { padding: 22px 20px; }
+  #experience .timeline-badges { max-width: none; }
+}

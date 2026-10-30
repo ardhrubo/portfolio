@@ -1,0 +1,9 @@
+.reaction-loader { display: grid; justify-items: center; gap: 8px; padding: 28px 16px; color: var(--color-assistant); text-align: center; }
+.reaction-loader > span { color: var(--foreground); font-size: 14px; font-weight: 600; }
+.reaction-loader > small { color: var(--text-muted); font: 10px var(--font-mono); letter-spacing: .06em; }
+.reaction-liquid { animation: reaction-swirl 2.8s ease-in-out infinite alternate; }
+.reaction-liquid--back { animation-direction: alternate-reverse; animation-duration: 3.6s; }
+.reaction-bubble { animation: reaction-rise 2.4s ease-out infinite; }
+@keyframes reaction-swirl { to { transform: translateX(-45px) translateY(3px); } }
+@keyframes reaction-rise { from { transform: translateY(0); opacity: 0; } 25% { opacity: .7; } to { transform: translateY(-42px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .reaction-liquid, .reaction-bubble { animation: none; } }

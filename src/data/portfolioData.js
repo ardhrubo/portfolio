@@ -1,5 +1,12 @@
 export const personalInfo = {
-  name: "Dhrubo",
+  name: "AR Dhrubo",
+  headline: "Full-stack software developer",
+  heroIntro: "I build web applications, backend systems, and automation tools—from the interface people use to the services and data behind it.",
+  heroCapabilities: [
+    { label: 'Full-stack development', detail: 'React / Next.js / Node.js' },
+    { label: 'Workflow automation', detail: 'Python / Puppeteer / Data pipelines' },
+    { label: 'Backend engineering', detail: 'REST APIs / PostgreSQL / Integrations' },
+  ],
   fullName: "Abdur Rahman Dhrubo",
   avatar: "/dhrubo-profile.jpg",
   role: "Full-Stack Software Engineer & Scientific Computing Researcher",

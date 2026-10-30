@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Code2, Workflow, ServerCog, FlaskConical } from 'lucide-react';
+import { ArrowUpRight, Code2, Workflow, ServerCog, FlaskConical, Handshake } from 'lucide-react';
 import { servicesData } from '../data/portfolioData';
 
 const serviceIcons = [Code2, Workflow, ServerCog, FlaskConical];
@@ -12,7 +12,8 @@ export default function Services() {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <span>06 / WORKING TOGETHER</span>
+            <Handshake size={15} aria-hidden="true" />
+            <span>06 / Working together</span>
           </div>
           <h2 className="section-title">
             What can I help<br /><span className="gradient-text">you bring to life?</span>

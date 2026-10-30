@@ -110,6 +110,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
             </p>
           </div>
           <Button
+            variant="secondary"
             onClick={onNavigateToAllProjects}
             className="btn-explore-vault-cta"
             title="Browse all projects"

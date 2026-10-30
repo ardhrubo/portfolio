@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Compass, TrendingUp, CheckCircle2 } from 'lucide-react';
 import { engineeringStrategy } from '../data/portfolioData';
 
 export default function Strategy() {
@@ -11,7 +12,7 @@ export default function Strategy() {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <i className="fa-solid fa-compass-drafting"></i>
+            <Compass size={15} aria-hidden="true" />
             <span>04 / How I work</span>
           </div>
           <h2 className="section-title">
@@ -48,7 +49,7 @@ export default function Strategy() {
               <h3 className="strategy-card-title">{current.title}</h3>
             </div>
             <div className="strategy-metric-badge">
-              <i className="fa-solid fa-chart-line"></i>
+              <TrendingUp size={16} aria-hidden="true" />
               <span>{current.metric}</span>
             </div>
           </div>
@@ -57,13 +58,13 @@ export default function Strategy() {
 
           <div className="strategy-deliverables-box">
             <h4 className="strategy-deliverables-title">
-              <i className="fa-solid fa-circle-check"></i>
+              <CheckCircle2 size={16} aria-hidden="true" />
               <span>Key Deliverables</span>
             </h4>
             <div className="strategy-deliverables-grid">
               {current.deliverables.map((item, idx) => (
                 <div key={idx} className="strategy-deliverable-item">
-                  <i className="fa-solid fa-circle-check"></i>
+                  <CheckCircle2 size={15} aria-hidden="true" />
                   <span>{item}</span>
                 </div>
               ))}
