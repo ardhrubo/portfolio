@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ProjectDrawer from './components/ProjectDrawer';
 import CommandPalette from './components/CommandPalette';
 import Toast from './components/Toast';
+import CustomCursor from './components/ui/CustomCursor';
 const AiChatModal = lazy(() => import('./components/AiChatModal'));
 
 export default function App() {
@@ -176,6 +177,8 @@ export default function App() {
         message={toastMessage}
         onClose={() => setToastMessage(null)}
       />
+
+      <CustomCursor />
 
       {/* Interactive AI Assistant Modal */}
       {isChatOpen && <Suspense fallback={<p role="status" className="dialog-loading">Opening portfolio guide…</p>}><AiChatModal

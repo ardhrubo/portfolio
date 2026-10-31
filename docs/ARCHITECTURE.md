@@ -36,7 +36,7 @@ flowchart TD
 
 ### Home page order
 
-1. `HeroBento` — introduction, portrait, location/availability, calls to action, capabilities, local time, and metrics.
+1. `HeroBento` — single glass stage: availability/location pill, headline, intro, calls to action, technology links, portrait with name chip and socials; metrics below.
 2. `ProjectsShowcase` — featured case study, supporting cards, and archive link.
 3. `Experience` — work, education, credentials, events, and photo preview.
 4. `Skills` — logo-led technology gallery and expandable details.
@@ -88,7 +88,7 @@ These are illustrative visualizations, not scientific solvers. Label what the vi
 
 ## Assets and dependencies
 
-Profile/project images and icons are static files under `public/`. Technology marks are local SVGs under `public/tech/`. `index.html` links Google Fonts and Font Awesome; React components also use Lucide. Runtime/build dependencies are listed in `package.json`: React 19, Vite 8, Tailwind 4, Radix primitives, Lucide, Three.js, and Oxlint. This is a client-rendered Vite site with no application backend.
+Profile/project images and icons are static files under `public/`. Technology marks are local SVGs under `public/tech/`. `index.html` links Font Awesome; fonts are self-hosted via `src/styles/fonts.css`; React components use Lucide. Runtime/build dependencies are listed in `package.json`: React 19, Vite 8, Tailwind 4, Radix primitives, Lucide, Three.js, and Oxlint. This is a client-rendered Vite site with no application backend.
 
 ## Change workflow
 
@@ -102,10 +102,10 @@ Profile/project images and icons are static files under `public/`. Technology ma
 
 ## Maintenance notes
 
-- `ReactionScene.jsx` supplies the illustrative SVG mixing scene in the hero and Approach. Mix changes its color; Pause stops animation. CSS animation pauses offscreen and in background tabs, and reduced motion renders a static scene. Observers and preference/visibility listeners clean up on unmount; SVG IDs are unique per instance.
+- `ReactionScene.jsx` supplies the illustrative SVG mixing scene in Approach (it is no longer in the hero). Mix changes its color; Pause stops animation. CSS animation pauses offscreen and in background tabs, and reduced motion renders a static scene. Observers and preference/visibility listeners clean up on unmount; SVG IDs are unique per instance.
 - `typography.css` aligns section headings and reading widths. `theme.css` declares Space Grotesk headings, DM Sans body text, JetBrains Mono labels, and shared 1320px section width. `fonts.css` loads locally hosted files from `public/fonts/`, with licenses alongside them. Mobile hero places the introduction before the portrait.
 
-- `hero.css` owns the portrait-led hero, decorative browser/code/lab workbench, compact technology links, and quieter metrics. Hero headline and intro copy live in `personalInfo`. The center column supports up to 1400px between the desktop rails.
+- `hero.css` owns all hero styling (typography included; `typography.css` no longer overrides it). `.hero-shell` is a CSS container: at ≥720px container width the stage splits into copy + a 4:5 portrait with an overlaid glass name chip; narrower, the portrait becomes a compact profile row after the copy. Ambient color blobs sit behind the glass. Hero headline and intro copy live in `personalInfo`. The center column supports up to 1400px between the desktop rails.
 - `Logo.jsx` renders the custom connected-D SVG monogram using theme colors; `logo.css` owns its glass tile. `public/brand/dhrubo-mark.svg` is the standalone dark mark and favicon. Existing social-preview and Apple touch images remain separate assets.
 
 - `sidebar.css` owns the spacious, vertically centered desktop glass rail, with viewport-limited scrolling on short screens. Its shared width scales from 260–304px in `studio.css`, reserving matching content space. Search, guide, GitHub, contact, and theme utilities remain in the right dock; other social links remain in the profile/contact sections.

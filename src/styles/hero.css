@@ -1,39 +1,153 @@
-/* The hero owns its composition instead of inheriting the legacy bento layout. */
+/* Hero: one glass stage — copy on the left, framed portrait on the right.
+   Layout responds to the space between the desktop rails via a container query. */
 
-#hero.hero-redesign { padding-top: 32px; }
-.hero-heading-line { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:24px; }
-.hero-heading-line > span:last-child { display:flex; align-items:center; gap:6px; color:var(--text-muted); font-size:11px; }
-.hero-composition { display:grid; grid-template-columns:minmax(240px,.8fr) minmax(0,1.3fr); gap:24px; align-items:stretch; }
-.hero-portrait-panel, .hero-story-panel { min-width:0; border:1px solid var(--glass-border); border-radius:28px; box-shadow:inset 0 1px 0 var(--liquid-rim),inset 0 -1px 0 var(--liquid-lower-edge),var(--glass-shadow); background:color-mix(in srgb,var(--glass-bg) 65%,transparent); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
-.hero-portrait-panel { padding:18px; display:flex; flex-direction:column; background:linear-gradient(145deg,var(--ambient-coral),transparent 65%),var(--glass-bg); }
-.hero-portrait-frame { position:relative; overflow:hidden; flex:1; min-height:300px; border-radius:19px; background:var(--bg-secondary); }
-.hero-portrait-frame img { position:absolute; width:100%; height:100%; object-fit:cover; object-position:center 28%; }
-.portrait-sticker { position:absolute; left:16px; bottom:18px; display:flex; gap:8px; align-items:center; font:9px var(--font-mono); letter-spacing:.06em; padding:12px; border:1px solid var(--liquid-rim); border-radius:12px; background:var(--bg-glass); backdrop-filter:blur(16px); color:var(--foreground); transform:rotate(-4deg); box-shadow:var(--shadow-sm); }
-.portrait-sticker svg { color:var(--color-assistant); }
-.portrait-corner { position:absolute; width:22px; height:22px; border-color:var(--liquid-rim); border-style:solid; pointer-events:none; }
-.portrait-corner--one { top:14px; left:14px; border-width:2px 0 0 2px; }
-.portrait-corner--two { top:14px; right:14px; border-width:2px 2px 0 0; }
-.hero-person { display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; padding:22px 5px 6px; }
-.hero-person h2 { font-size:23px; letter-spacing:-.015em; }
-.hero-person p { font-size:12px; color:var(--text-secondary); margin-top:5px; }
-.hero-socials { display:flex; gap:5px; }
-.hero-socials a,.hero-socials button { width:44px; height:44px; display:grid; place-items:center; border-radius:13px; border:1px solid var(--glass-border); background:var(--glass-item); box-shadow:inset 0 1px 0 var(--liquid-edge); color:var(--text-secondary); }
-.hero-socials a:nth-child(2) { color:var(--color-social); }
-.hero-socials button { color:var(--color-contact); }
-.hero-story-panel { padding:clamp(26px,3vw,44px); padding-bottom:18px; overflow:hidden; background:linear-gradient(135deg,var(--ambient-teal),transparent 60%),color-mix(in srgb,var(--glass-bg) 65%,transparent); }
-.hero-story-panel > .eyebrow { font-size:9px; }
-.hero-story-panel h1 { font-size:clamp(34px,3.4vw,58px); line-height:1.12; letter-spacing:-.055em; font-weight:600; margin:24px 0 20px; }
-.hero-story-panel h1 em { display:block; font-style:normal; color:var(--primary); }
-.hero-story-intro { color:var(--text-secondary); max-width:43ch; font-size:15px; line-height:1.8; }
-.hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:20px; margin-top:26px; }
-.hero-contact-link { display:flex; align-items:center; gap:8px; min-height:44px; font-size:13px; color:var(--foreground); }
-.hero-tools { display:flex; align-items:center; flex-wrap:wrap; gap:16px; padding:18px 0; margin-top:12px; border-bottom:1px solid var(--border); }
-.hero-tools > span { font:9px var(--font-mono); color:var(--text-muted); letter-spacing:.1em; }
-.hero-tools > div { display:flex; flex-wrap:wrap; gap:8px 18px; }
-.hero-tools a { display:flex; align-items:center; min-height:44px; gap:8px; color:var(--text-secondary); font-size:11px; }
-.hero-tools img { object-fit:contain; }
-.hero-tools img[src*="nextjs"] { border-radius:50%; background:white; }
-#hero :is(a,button):focus-visible { outline:2px solid var(--ring); outline-offset:4px; }
-@media (min-width:1600px) { .hero-composition { grid-template-columns:minmax(320px,.85fr) minmax(0,1.2fr); } }
-@media (max-width:1199px) and (min-width:1024px) { .hero-composition { grid-template-columns:minmax(0,1fr); } .hero-portrait-panel { display:grid; grid-template-columns:200px 1fr; gap:24px; } .hero-portrait-frame { min-height:240px; } .hero-person { align-content:center; } }
-@media (max-width:700px) { .hero-composition { grid-template-columns:minmax(0,1fr); gap:16px; } .hero-portrait-frame { min-height:320px; flex:none; } .hero-heading-line > span:last-child { display:none; } .hero-story-panel { padding:26px 22px 16px; } .hero-person { padding-top:18px; } .hero-story-panel h1 { font-size:clamp(32px,8vw,44px); } }
+#hero.hero-redesign { padding-top: clamp(16px, 3vw, 40px); }
+
+.hero-shell { position: relative; isolation: isolate; container: hero / inline-size; }
+
+/* Soft ambient color behind the glass so the blur has something to reveal. */
+.hero-shell::before,
+.hero-shell::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; filter: blur(64px); pointer-events: none; }
+.hero-shell::before { width: 44%; aspect-ratio: 1; left: -6%; top: -14%; background: radial-gradient(circle, color-mix(in srgb, var(--primary) 26%, transparent), transparent 70%); }
+.hero-shell::after { width: 34%; aspect-ratio: 1; right: 0; bottom: -16%; background: radial-gradient(circle, color-mix(in srgb, var(--color-contact) 22%, transparent), transparent 70%); }
+
+.hero-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+  padding: clamp(22px, 5cqi, 60px);
+  border: 1px solid var(--glass-border);
+  border-radius: 32px;
+  background: linear-gradient(140deg, var(--ambient-teal), transparent 55%), color-mix(in srgb, var(--glass-bg) 72%, transparent);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: inset 0 1px 0 var(--liquid-rim), inset 0 -1px 0 var(--liquid-lower-edge), var(--glass-shadow);
+}
+
+/* ---------- Copy ---------- */
+.hero-copy { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
+
+.hero-status {
+  display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+  min-height: 34px; margin: 0; padding: 7px 14px 7px 12px;
+  border: 1px solid var(--glass-border); border-radius: 999px;
+  background: var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge);
+  color: var(--text-secondary); font: 500 10.5px/1.2 var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+}
+#hero .status-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent); }
+.hero-status-sep { width: 1px; height: 12px; background: var(--border-medium); }
+.hero-status-place { display: inline-flex; align-items: center; gap: 5px; color: var(--text-muted); }
+
+#hero .hero-copy h1 {
+  margin: 28px 0 20px;
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: clamp(32px, 9.5cqi, 52px); line-height: 1.04; letter-spacing: -.04em;
+  color: var(--foreground); text-wrap: balance;
+}
+#hero .hero-copy h1 > span,
+#hero .hero-copy h1 > em { display: block; }
+#hero .hero-copy h1 > em { font-style: normal; color: var(--primary); }
+
+#hero .hero-story-intro { max-width: 46ch; margin: 0; color: var(--text-secondary); font-size: clamp(15px, 1.7cqi, 17.5px); line-height: 1.7; }
+
+#hero .hero-actions { margin-top: 30px; gap: 12px; }
+
+/* Technology links */
+#hero .hero-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; width: 100%; margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--border); }
+.hero-tools > span { font: 500 10px var(--font-mono); letter-spacing: .12em; color: var(--text-muted); }
+#hero .hero-tools > div { display: flex; flex-wrap: wrap; gap: 4px; }
+#hero .hero-tools a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px 0 9px; border: 1px solid transparent; border-radius: 12px; color: var(--text-secondary); font-size: 12.5px; }
+#hero .hero-tools a:hover { border-color: var(--glass-border); background: var(--glass-item); color: var(--foreground); }
+.hero-tools img { width: 20px; height: 20px; object-fit: contain; }
+.hero-tools img[src*="nextjs"] { border-radius: 50%; background: white; }
+
+/* ---------- Portrait ----------
+   Narrow: a compact glass profile row (photo beside name + socials), shown first.
+   Wide: a large framed photo with the name chip overlaid (see container query). */
+.hero-portrait {
+  order: -1;
+  position: relative; min-width: 0; width: 100%;
+  display: grid; grid-template-columns: clamp(84px, 24cqi, 132px) minmax(0, 1fr);
+  grid-template-areas: "photo name" "photo socials";
+  column-gap: 16px; row-gap: 10px; align-items: center;
+  padding: 12px; border: 1px solid var(--glass-border); border-radius: 24px;
+  background: var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge);
+}
+
+.hero-portrait-frame {
+  grid-area: photo; position: relative; overflow: hidden; aspect-ratio: 1;
+  border: 1px solid var(--glass-border); border-radius: 18px; background: var(--bg-secondary);
+  box-shadow: inset 0 1px 0 var(--liquid-rim), var(--shadow-sm);
+}
+.hero-portrait-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+
+.hero-sticker {
+  position: absolute; z-index: 1; top: 14px; right: 14px;
+  display: none; align-items: center; gap: 7px; padding: 8px 11px;
+  border: 1px solid var(--liquid-rim); border-radius: 12px;
+  background: var(--bg-glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  color: var(--foreground); font: 500 9.5px var(--font-mono); letter-spacing: .08em;
+  box-shadow: var(--shadow-sm); transform: rotate(3deg);
+}
+.hero-sticker svg { color: var(--color-assistant); }
+
+.hero-name-chip { grid-area: name; align-self: end; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.hero-name-chip strong { display: block; font-family: var(--font-heading); font-size: 18px; font-weight: 600; letter-spacing: -.01em; color: var(--foreground); }
+.hero-name-chip strong + span { display: block; margin-top: 2px; font-size: 12px; color: var(--text-secondary); }
+
+.hero-socials { grid-area: socials; align-self: start; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hero-socials > span { display: none; font: 500 10px var(--font-mono); letter-spacing: .12em; color: var(--text-muted); }
+.hero-socials > div { display: flex; gap: 8px; }
+.hero-socials a,
+.hero-socials button {
+  display: grid; place-items: center; width: 44px; height: 44px;
+  border: 1px solid var(--glass-border); border-radius: 14px;
+  background: var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge);
+  color: var(--text-secondary); cursor: pointer;
+}
+.hero-socials a:hover,
+.hero-socials button:hover { background: var(--glass-item-hover); }
+.hero-socials .hero-socials-linkedin { color: var(--color-social); }
+.hero-socials button { color: var(--color-contact); }
+
+#hero :is(a, button):focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+
+/* ---------- Two columns once the centre column is wide enough ---------- */
+@container hero (min-width: 720px) {
+  .hero-stage { grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); align-items: center; gap: clamp(32px, 5cqi, 64px); }
+  #hero .hero-copy h1 { font-size: clamp(40px, 5.6cqi, 66px); }
+
+  .hero-portrait { order: 0; display: block; max-width: 420px; justify-self: end; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .hero-portrait-frame { aspect-ratio: 4 / 5; border-radius: 26px; box-shadow: inset 0 1px 0 var(--liquid-rim), var(--shadow-lg); }
+  /* Gentle shade at the base keeps the overlaid name chip legible. */
+  .hero-portrait-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, .3)); pointer-events: none; }
+  .hero-sticker { display: inline-flex; }
+
+  /* Overlay sits over the photo's base: socials row (44px) + its 14px gap + 12px inset. */
+  .hero-name-chip {
+    position: absolute; z-index: 1; left: 12px; right: 12px; bottom: calc(44px + 14px + 12px);
+    gap: 12px; padding: 12px 16px;
+    border: 1px solid var(--liquid-rim); border-radius: 18px;
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%);
+    box-shadow: inset 0 1px 0 var(--liquid-edge), var(--shadow-md);
+  }
+  .hero-socials { margin-top: 14px; padding: 0 4px; }
+  .hero-socials > span { display: inline; }
+}
+
+@media (max-width: 480px) {
+  .hero-stage { border-radius: 26px; }
+  #hero .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-status-sep { display: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #hero .hero-tools a,
+  .hero-socials a,
+  .hero-socials button { transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; }
+  .hero-socials a:hover,
+  .hero-socials button:hover { transform: translateY(-1px); }
+  .hero-portrait-frame img { transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .hero-portrait:hover .hero-portrait-frame img { transform: scale(1.025); }
+}
