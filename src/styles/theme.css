@@ -77,10 +77,10 @@
   --shadow-md: 0 12px 28px -12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.12);
   --shadow-glow: 0 0 24px -12px var(--border-glow);
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --container-max: 1200px;
+  --container-max: 1320px;
   --header-height: 70px;
   --ui-radius-xs: 6px;
   --ui-radius-sm: 10px;

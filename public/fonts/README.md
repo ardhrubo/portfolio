@@ -1,0 +1,1 @@
+DM Sans, Space Grotesk, and JetBrains Mono from Google Fonts, used under the accompanying SIL Open Font Licenses. Files are unmodified downloads from fonts.gstatic.com. Local hosting avoids runtime font-provider requests.

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Compass, CheckCircle2 } from 'lucide-react';
 import { engineeringStrategy } from '../data/portfolioData';
 import '../styles/strategy.css';
+import ReactionScene from './ui/ReactionScene';
 
 export default function Strategy() {
   const [activeStep, setActiveStep] = useState(0);
@@ -61,13 +62,7 @@ export default function Strategy() {
             </div>
             </details>
           </div>
-          <div className={`strategy-illustration strategy-illustration--${activeStep}`} aria-hidden="true">
-            <span className="strategy-lab-grid" />
-            <span className="strategy-lab-tube strategy-lab-tube--one"><span /></span><span className="strategy-lab-tube strategy-lab-tube--two"><span /></span>
-            <span className="strategy-lab-flask"><span className="strategy-lab-liquid" /><span className="strategy-lab-bubble strategy-lab-bubble--one" /><span className="strategy-lab-bubble strategy-lab-bubble--two" /></span>
-            <span className="strategy-lab-neck" /><span className="strategy-lab-rim" /><span className="strategy-lab-base" />
-            <span className="strategy-art-number">{current.step}</span>
-          </div>
+          <ReactionScene phase={activeStep} />
         </div>
       </div>
     </section>

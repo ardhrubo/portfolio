@@ -32,6 +32,8 @@ npm run lint     # Run Oxlint
 
 ## Important behavior
 
+- The hero and Approach include an illustrative mixing animation with Mix and Pause controls, offscreen pausing, and reduced-motion support. Space Grotesk headings and DM Sans body text use shared section alignment. Hero tools stay grouped beside their label and metrics use glass tiles.
+
 - The hero pairs a large portrait with a decorative product-building workbench. A custom connected-D SVG mark appears in navigation and the browser tab; the full-resolution mark is in `public/brand/`.
 
 - Desktop navigation uses a spacious centered glass section rail (260–304px) and a separate utility dock. Services use translucent visual cards with short summaries and direct contact links.

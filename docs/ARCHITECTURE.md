@@ -102,6 +102,9 @@ Profile/project images and icons are static files under `public/`. Technology ma
 
 ## Maintenance notes
 
+- `ReactionScene.jsx` supplies the illustrative SVG mixing scene in the hero and Approach. Mix changes its color; Pause stops animation. CSS animation pauses offscreen and in background tabs, and reduced motion renders a static scene. Observers and preference/visibility listeners clean up on unmount; SVG IDs are unique per instance.
+- `typography.css` aligns section headings and reading widths. `theme.css` declares Space Grotesk headings, DM Sans body text, JetBrains Mono labels, and shared 1320px section width. `fonts.css` loads locally hosted files from `public/fonts/`, with licenses alongside them. Mobile hero places the introduction before the portrait.
+
 - `hero.css` owns the portrait-led hero, decorative browser/code/lab workbench, compact technology links, and quieter metrics. Hero headline and intro copy live in `personalInfo`. The center column supports up to 1400px between the desktop rails.
 - `Logo.jsx` renders the custom connected-D SVG monogram using theme colors; `logo.css` owns its glass tile. `public/brand/dhrubo-mark.svg` is the standalone dark mark and favicon. Existing social-preview and Apple touch images remain separate assets.
 
