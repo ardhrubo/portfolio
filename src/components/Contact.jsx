@@ -24,11 +24,11 @@ export default function Contact({ onShowToast }) {
     setPrepared(true);
   };
   return <section id="contact" className="section contact-studio"><div className="container">
-    <div className="section-header"><div className="section-tag"><Mail size={15} aria-hidden="true" /><span>07 / Let’s build</span></div><h2 className="section-title">Have something in mind?</h2><p className="section-subtitle">A product idea, a team to join, or a problem worth solving. Let’s talk.</p></div>
+    <div className="section-header"><div className="section-tag"><Mail size={15} aria-hidden="true" /><span>07 / Let’s build</span></div><h2 className="section-title">Let’s make something.</h2><p className="section-subtitle">Have an idea? Let’s talk.</p></div>
     <div className="contact-studio-shell">
       <aside className="contact-studio-profile" aria-label="Contact details">
-        <div className="contact-studio-person"><img src={personalInfo.avatar} alt="" width="64" height="64" /><div><h3>{personalInfo.name}</h3><p>{personalInfo.headline}</p></div></div>
-        <p className="contact-studio-invite">From the first idea<br />to something people use.</p>
+        <div className="contact-portrait-art"><span className="contact-orbit contact-orbit--outer" aria-hidden="true" /><span className="contact-orbit contact-orbit--inner" aria-hidden="true" /><span className="contact-orbit-node" aria-hidden="true" /><img src={personalInfo.avatar} alt="" width="112" height="112" /><span className="contact-art-icon" aria-hidden="true"><Mail size={19} /></span></div>
+        <div className="contact-studio-person"><div><h3>{personalInfo.name}</h3><p>{personalInfo.headline}</p></div></div>
         <p className="contact-studio-availability">{personalInfo.status}</p>
         <div className="contact-studio-email"><span>Email me directly</span><a href={'mailto:' + personalInfo.email}>{personalInfo.email}</a><button type="button" onClick={copyEmail} aria-label={copied ? 'Email copied' : 'Copy email address'}>{copied ? <Check size={17} /> : <Copy size={17} />}</button></div>
         <p className="contact-studio-location"><MapPin size={16} aria-hidden="true" /><span>{personalInfo.location}<small>{personalInfo.timezone}</small></span></p>
@@ -40,7 +40,7 @@ export default function Contact({ onShowToast }) {
         <label>What brings you here?<select name="topic" value={form.topic} onChange={change}>{topics.map(topic => <option key={topic}>{topic}</option>)}</select></label>
         <div className="contact-studio-fields"><label>Your name<input name="name" autoComplete="name" required placeholder="Alex Morgan" value={form.name} onChange={change} /></label><label>Email address<input name="email" type="email" autoComplete="email" required placeholder="alex@company.com" value={form.email} onChange={change} /></label></div>
         <label>A little about your idea<textarea name="message" required rows={5} placeholder="What are you building, and how could I help?" value={form.message} onChange={change} /></label>
-        <div className="contact-studio-send"><Button type="submit">Prepare email <ArrowUpRight size={17} aria-hidden="true" /></Button><p>Opens a draft in your email app.<br />You review it before sending.</p></div>
+        <div className="contact-studio-send"><Button type="submit">Prepare email <ArrowUpRight size={17} aria-hidden="true" /></Button><p>Opens a draft in your email app.</p></div>
         {prepared && <p className="contact-studio-feedback" role="status">Draft prepared. If your email app didn’t open, use the email address beside this form.</p>}
       </form>
     </div>

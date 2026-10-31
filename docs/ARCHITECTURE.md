@@ -102,6 +102,10 @@ Profile/project images and icons are static files under `public/`. Technology ma
 
 ## Maintenance notes
 
+- `sidebar.css` owns the spacious, vertically centered desktop glass rail, with viewport-limited scrolling on short screens. Its shared width scales from 260–304px in `studio.css`, reserving matching content space. Search, guide, GitHub, contact, and theme utilities remain in the right dock; other social links remain in the profile/contact sections.
+- `services.css` owns decorative glass service illustrations and reduced-motion-aware hover effects. Cards render `servicesData.shortTitle` and `summary`, with a contact link; detailed service data stays in the content model.
+- Showcase stack rows display only exact local logos, with image alternatives and hover/focus labels. Technologies lacking local marks remain in the project drawer’s full stack.
+
 - Theme switching is offered once per viewport: right dock on desktop, mobile top bar below 1024px. The left sidebar has no theme switch.
 - `experience.css` owns the scoped Experience timeline, neutral glass cards, filters, and education/event refinements. Contributions remain expandable; filter counts derive from data.
 

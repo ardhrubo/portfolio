@@ -36,3 +36,19 @@
 .contact-studio-feedback { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
 @media (max-width: 900px) { .contact-studio-shell { grid-template-columns: minmax(0, 1fr); } .contact-studio-profile { border-right: 0; border-bottom: 1px solid var(--glass-border); } .contact-studio-invite { margin-top: 24px; } }
 @media (max-width: 480px) { .contact-studio-fields { grid-template-columns: minmax(0, 1fr); } .contact-studio-form :is(input, select, textarea) { font-size: 16px; } .contact-studio-shell { border-radius: 22px; } }
+
+/* A portrait illustration adds personality while keeping the form readable. */
+.contact-studio-shell { background: linear-gradient(135deg, color-mix(in srgb, var(--color-social) 10%, transparent), transparent 42%, color-mix(in srgb, var(--color-assistant) 8%, transparent)), color-mix(in srgb, var(--glass-bg) 68%, transparent); box-shadow: inset 0 1px 0 var(--liquid-rim), inset 0 -1px 0 var(--liquid-lower-edge), var(--glass-shadow); }
+.contact-studio-profile { position: relative; }
+.contact-portrait-art { position: relative; height: 180px; display: grid; place-items: center; overflow: hidden; margin: -8px -8px 18px; border-radius: 22px; background: radial-gradient(ellipse at center, color-mix(in srgb, var(--color-social) 15%, transparent), transparent 70%); }
+.contact-portrait-art img { position: relative; z-index: 1; width: 112px; height: 112px; object-fit: cover; border-radius: 34px; border: 2px solid var(--liquid-rim); box-shadow: 0 14px 32px -14px var(--liquid-shadow), 0 0 0 6px var(--glass-item); }
+.contact-orbit { position: absolute; width: 155px; height: 155px; border: 1px solid color-mix(in srgb, var(--color-social) 30%, transparent); border-radius: 50%; }
+.contact-orbit--outer { width: 240px; height: 240px; border-style: dashed; opacity: .55; }
+.contact-orbit-node { position: absolute; width: 10px; height: 10px; border: 2px solid var(--color-social); background: var(--background); border-radius: 50%; transform: translate(-103px, 35px); }
+.contact-art-icon { position: absolute; z-index: 2; display: grid; place-items: center; width: 42px; height: 42px; transform: translate(64px, 50px); border: 1px solid var(--glass-border); border-radius: 14px; background: var(--bg-glass-heavy); color: var(--color-social); box-shadow: var(--glass-highlight), var(--glass-shadow); }
+.contact-studio-person h3 { font-size: 21px; letter-spacing: 0; }
+.contact-studio-availability { margin: 14px 0 20px; }
+.contact-studio-email { border-block: 0; border-radius: 16px; padding: 17px 48px 17px 16px; background: var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge); }
+.contact-studio-email button { right: 5px; top: 15px; }
+.contact-studio-form :is(input, select, textarea) { background: linear-gradient(145deg, var(--liquid-reflection), transparent 55%), var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge); }
+@media (max-width: 900px) { .contact-portrait-art { max-width: 360px; width: 100%; align-self: center; } }

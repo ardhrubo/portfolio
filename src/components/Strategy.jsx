@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Compass, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Compass, CheckCircle2 } from 'lucide-react';
 import { engineeringStrategy } from '../data/portfolioData';
+import '../styles/strategy.css';
 
 export default function Strategy() {
   const [activeStep, setActiveStep] = useState(0);
@@ -19,7 +20,7 @@ export default function Strategy() {
             A thoughtful <span className="gradient-text">approach.</span>
           </h2>
           <p className="section-subtitle">
-            Understand the problem, design the system, build it carefully, and test it in the conditions it will actually face.
+            From first idea to the final detail.
           </p>
         </div>
 
@@ -34,8 +35,7 @@ export default function Strategy() {
             >
               <div className="strategy-nav-step">{item.step}</div>
               <div className="strategy-nav-text">
-                <span className="strategy-nav-phase">{item.phase}</span>
-                <span className="strategy-nav-badge">{item.badge}</span>
+                <span className="strategy-nav-phase">{item.shortPhase}</span>
               </div>
             </button>
           ))}
@@ -43,24 +43,14 @@ export default function Strategy() {
 
         {/* Active Strategy Card */}
         <div className="strategy-active-card">
-          <div className="strategy-card-header">
-            <div>
-              <div className="strategy-step-pill">Phase {current.step} &bull; {current.badge}</div>
-              <h3 className="strategy-card-title">{current.title}</h3>
-            </div>
-            <div className="strategy-metric-badge">
-              <TrendingUp size={16} aria-hidden="true" />
-              <span>{current.metric}</span>
-            </div>
-          </div>
-
-          <p className="strategy-card-desc">{current.description}</p>
-
-          <div className="strategy-deliverables-box">
-            <h4 className="strategy-deliverables-title">
-              <CheckCircle2 size={16} aria-hidden="true" />
-              <span>Key Deliverables</span>
-            </h4>
+          <div className="strategy-story">
+            <div className="strategy-card-header"><div>
+              <div className="strategy-step-pill">{current.step} / {current.badge}</div>
+              <h3 className="strategy-card-title">{current.phase}</h3>
+            </div></div>
+            <p className="strategy-card-desc">{current.summary}</p>
+            <details className="strategy-deliverables-box">
+              <summary>Explore the details</summary>
             <div className="strategy-deliverables-grid">
               {current.deliverables.map((item, idx) => (
                 <div key={idx} className="strategy-deliverable-item">
@@ -69,6 +59,14 @@ export default function Strategy() {
                 </div>
               ))}
             </div>
+            </details>
+          </div>
+          <div className={`strategy-illustration strategy-illustration--${activeStep}`} aria-hidden="true">
+            <span className="strategy-lab-grid" />
+            <span className="strategy-lab-tube strategy-lab-tube--one"><span /></span><span className="strategy-lab-tube strategy-lab-tube--two"><span /></span>
+            <span className="strategy-lab-flask"><span className="strategy-lab-liquid" /><span className="strategy-lab-bubble strategy-lab-bubble--one" /><span className="strategy-lab-bubble strategy-lab-bubble--two" /></span>
+            <span className="strategy-lab-neck" /><span className="strategy-lab-rim" /><span className="strategy-lab-base" />
+            <span className="strategy-art-number">{current.step}</span>
           </div>
         </div>
       </div>

@@ -45,6 +45,8 @@ export const engineeringStrategy = [
   {
     step: "01",
     phase: "Architecture & Design",
+    shortPhase: "Design",
+    summary: "Map the problem. Build a foundation that can grow.",
     badge: "Foundation",
     title: "Designing for Scale Before Code",
     description: "Mapping typed schemas, REST contracts, and anti-bot threat models before implementation to ensure long-term stability.",
@@ -59,6 +61,8 @@ export const engineeringStrategy = [
   {
     step: "02",
     phase: "Full-Stack Web Build",
+    shortPhase: "Build",
+    summary: "Turn the plan into a fast, thoughtful experience.",
     badge: "Frontend",
     title: "Clean, Ultra-Fast Web Delivery",
     description: "Developing modern SPAs and SSR portals with React and Next.js, prioritizing sub-second loads and responsive mobile UX.",
@@ -73,6 +77,8 @@ export const engineeringStrategy = [
   {
     step: "03",
     phase: "Automation & Crawling",
+    shortPhase: "Automate",
+    summary: "Connect the pieces and let the repetitive work flow.",
     badge: "Automation",
     title: "High-Concurrency Web Scraping",
     description: "Deploying distributed Puppeteer crawlers that bypass anti-bot hurdles and extract clean structured data seamlessly.",
@@ -87,6 +93,8 @@ export const engineeringStrategy = [
   {
     step: "04",
     phase: "Scientific QA & Verification",
+    shortPhase: "Verify",
+    summary: "Test the details and make the result dependable.",
     badge: "Verification",
     title: "Empirical Testing & Validation",
     description: "Validating edge cases, concurrency spikes, and user journeys with automated test suites and stress testing.",
@@ -761,6 +769,8 @@ export const servicesData = [
   {
     icon: "fa-solid fa-code",
     title: "Full-Stack Web Development",
+    shortTitle: "Web experiences",
+    summary: "Thoughtful websites and apps, built to feel fast.",
     subtitle: "Fast, responsive & conversion-driven",
     description: "Building modern Single Page Applications and SSR portals with React and Next.js, focused on crisp UX and top Web Vitals.",
     points: ["Modular React & Next.js Architecture", "Sub-Second Page Load Speeds", "Mobile-First Responsive Design"]
@@ -768,6 +778,8 @@ export const servicesData = [
   {
     icon: "fa-solid fa-robot",
     title: "Web Scraping & Automation",
+    shortTitle: "Smart automation",
+    summary: "Less repetitive work. More useful data.",
     subtitle: "High-scale data extraction without blocks",
     description: "Developing robust Puppeteer scrapers and bots that bypass anti-bot challenges and extract structured data reliably.",
     points: ["Puppeteer & Headless Chrome Clusters", "Anti-Bot Bypass & Proxy Pools", "Automated JSON / CSV Export Pipelines"]
@@ -775,6 +787,8 @@ export const servicesData = [
   {
     icon: "fa-solid fa-server",
     title: "Backend & RESTful APIs",
+    shortTitle: "APIs & infrastructure",
+    summary: "Reliable foundations for your next product.",
     subtitle: "Secure, maintainable & documented",
     description: "Architecting microservices and RESTful APIs using Node.js and Express, complete with database modeling and Swagger docs.",
     points: ["RESTful API Architecture & Swagger", "JWT Auth & Role-Based Security", "Containerized Docker Deployments"]
@@ -782,6 +796,8 @@ export const servicesData = [
   {
     icon: "fa-solid fa-atom",
     title: "Scientific & Data Modeling",
+    shortTitle: "Science & simulation",
+    summary: "Turn complex questions into models you can explore.",
     subtitle: "Uncertainty simulation & data pipelines",
     description: "Translating complex mathematical and scientific methodologies into high-performance Python code and simulations.",
     points: ["Monte Carlo Probabilistic Models", "Automated Data Processing Pipelines", "Linux HPC Cluster Automation"]

@@ -507,22 +507,22 @@ export default function InteractiveMotionLab({ onShowToast }) {
             Science, <span className="gradient-text">in motion.</span>
           </h2>
           <p className="section-subtitle">
-            Explore molecular structures, flowing particles, and wave surfaces.
-            Choose an experiment, turn it around, and see what changes.
+            Explore ideas in motion.
           </p>
         </div>
 
         <div className="study-tabs" role="group" aria-label="Choose science study">
-          {[['3d', '3D explorations'], ['waves', 'Wave interference'], ['crystal', 'Crystal lattice']].map(([id, label]) => <button key={id} type="button" aria-pressed={study === id} onClick={() => setStudy(id)}>{label}</button>)}
+          {[[ '3d', '3D', Atom], ['waves', 'Waves', Waves], ['crystal', 'Crystal', Sparkles]].map(([id, label, Icon]) => <button key={id} type="button" aria-pressed={study === id} onClick={() => setStudy(id)}><Icon size={18} aria-hidden="true" />{label}</button>)}
         </div>
-        <p className="study-caption">Illustrative models for exploring patterns and geometry; not research calculations.</p>
-        <div hidden={study !== '3d'} className="glass-panel relative rounded-3xl overflow-hidden border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[var(--surface-highlight)]">
+        <p className="study-caption">Illustrative models, not research calculations.</p>
+        <div hidden={study !== '3d'} className="lab-shell glass-panel relative rounded-3xl overflow-hidden border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[var(--surface-highlight)]">
           {/* Top Control Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4 border-b border-[var(--glass-border)] bg-[var(--glass-item)]">
+          <div className="lab-toolbar flex flex-wrap items-center justify-between gap-3 px-5 py-4 border-b border-[var(--glass-border)] bg-[var(--glass-item)]">
             {/* Mode Switchers */}
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={() => setActiveMode('fullerene')}
+                aria-pressed={activeMode === 'fullerene'}
                 className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                   activeMode === 'fullerene'
                     ? 'bg-[var(--tint-bg)] text-[var(--tint-text)] border border-[var(--tint-border)] shadow-xs'
@@ -530,11 +530,12 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 }`}
               >
                 <Atom className="size-3.5 text-accent" />
-                <span>C₆₀ Fullerene Cage</span>
+                <span>Fullerene</span>
               </button>
 
               <button
                 onClick={() => setActiveMode('montecarlo')}
+                aria-pressed={activeMode === 'montecarlo'}
                 className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                   activeMode === 'montecarlo'
                     ? 'bg-[var(--tint-bg)] text-[var(--tint-text)] border border-[var(--tint-border)] shadow-xs'
@@ -542,11 +543,12 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 }`}
               >
                 <Flame className="size-3.5 text-accent" />
-                <span>Particle flow</span>
+                <span>Particles</span>
               </button>
 
               <button
                 onClick={() => setActiveMode('wave')}
+                aria-pressed={activeMode === 'wave'}
                 className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                   activeMode === 'wave'
                     ? 'bg-[var(--tint-bg)] text-[var(--tint-text)] border border-[var(--tint-border)] shadow-xs'
@@ -554,12 +556,12 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 }`}
               >
                 <Waves className="size-3.5 text-accent" />
-                <span>Wave surface</span>
+                <span>Surface</span>
               </button>
             </div>
 
             {/* Diagnostics HUD */}
-            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+            <details className="lab-diagnostics text-xs font-mono text-muted-foreground"><summary>Details</summary><div className="flex items-center gap-2">
               <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-item)]">
                 <span className="size-2 rounded-full bg-accent animate-pulse" />
                 {fps} FPS
@@ -568,7 +570,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 <Sliders className="size-3 text-muted-foreground" />
                 {nodeCount.toLocaleString()} Nodes
               </span>
-            </div>
+            </div></details>
           </div>
 
           {/* Interactive 3D Canvas Viewport */}
@@ -579,13 +581,8 @@ export default function InteractiveMotionLab({ onShowToast }) {
             <div className="absolute top-4 left-4 pointer-events-none flex flex-col gap-1.5">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-[var(--glass-border)] bg-background/70 backdrop-blur-md text-[0.7rem] font-mono text-muted-foreground">
                 <Sparkles className="size-3 text-accent" />
-                Drag to orbit 360° &bull; Scroll to zoom
+                Drag to explore
               </span>
-              {activeMode === 'montecarlo' && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-[var(--glass-border)] bg-background/70 backdrop-blur-md text-[0.7rem] font-mono text-muted-foreground">
-                  Move the pointer to influence particle flow
-                </span>
-              )}
             </div>
 
             {/* Bottom-Right Interactive Action Dock */}
@@ -601,7 +598,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                 title="Add a visual pulse"
               >
                 <Zap className="size-3.5 text-accent" />
-                <span>Pulse Excitation</span>
+                <span>Pulse</span>
               </button>
 
               <div className="inline-flex items-center rounded-xl border border-[var(--glass-border)] bg-background/80 backdrop-blur-md p-1">
@@ -609,6 +606,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
                   <button
                     key={spd}
                     onClick={() => setSimSpeed(spd)}
+                    aria-pressed={simSpeed === spd}
                     className={`px-2 py-1 text-[0.6875rem] font-mono rounded-lg transition-colors cursor-pointer ${
                       simSpeed === spd
                         ? 'bg-foreground text-background font-bold'
@@ -636,15 +634,12 @@ export default function InteractiveMotionLab({ onShowToast }) {
             <div className="flex items-center gap-2 font-mono text-muted-foreground">
               <span className="size-2 rounded-full bg-accent" />
               <strong className="text-foreground font-semibold">
-                {activeMode === 'fullerene' && 'C₆₀ Truncated Icosahedral Fullerene Cage'}
-                {activeMode === 'montecarlo' && 'Illustrative particle flow with pointer attraction'}
-                {activeMode === 'wave' && 'Animated harmonic wave surface'}
+                {activeMode === 'fullerene' && 'C₆₀ fullerene'}
+                {activeMode === 'montecarlo' && 'Particle flow'}
+                {activeMode === 'wave' && 'Wave surface'}
               </strong>
             </div>
 
-            <span className="font-mono text-muted-foreground/80">
-              Interactive studies in form &amp; motion
-            </span>
           </div>
         </div>
         {study !== '3d' && <ScienceStudies key={study} initialMode={study} />}

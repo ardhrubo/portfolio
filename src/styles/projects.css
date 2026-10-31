@@ -19,9 +19,12 @@
 .project-subtitle { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
 #projects .flagship-desc { font-size: 13px; line-height: 1.8; color: var(--text-muted); }
 #projects .flagship-tech-row { gap: 8px; padding: 14px 0 18px; margin: 0; align-items: center; }
-.project-stack-badge { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; padding: 5px 8px; border-radius: 10px; color: var(--text-muted); font-size: 10px; }
-.project-stack-badge--logo { min-height: 38px; border: 1px solid var(--glass-border); background: linear-gradient(145deg, var(--liquid-sheen), transparent 65%), var(--glass-item); color: var(--text-secondary); box-shadow: var(--glass-highlight), 0 2px 0 var(--border); }
-.project-stack-mark { display: grid; place-items: center; width: 24px; height: 24px; }
+.project-stack-logo { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; }
+.project-stack-logo:focus-visible { outline: 2px solid var(--color-social); outline-offset: 2px; }
+.project-stack-logo:hover { background: var(--glass-item); }
+.project-stack-tooltip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); padding: 7px 9px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--foreground); white-space: nowrap; font-size: 11px; visibility: hidden; z-index: 2; pointer-events: none; }
+.project-stack-logo:hover .project-stack-tooltip, .project-stack-logo:focus-visible .project-stack-tooltip { visibility: visible; }
+.project-stack-mark { display: grid; place-items: center; width: 34px; height: 34px; }
 .project-stack-mark img { object-fit: contain; }
 .project-stack-mark--threejs, .project-stack-mark--express, .project-stack-mark--nextjs { background: #fff; border-radius: 6px; }
 #projects .flagship-actions { flex-wrap: wrap; gap: 10px; padding-top: 16px; }

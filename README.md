@@ -32,7 +32,9 @@ npm run lint     # Run Oxlint
 
 ## Important behavior
 
-- Selected projects use framed interface previews and glass technology badges with local logos. “Explore the build” opens the project drawer with full details; technologies without an exact local logo retain their label.
+- Desktop navigation uses a spacious centered glass section rail (260–304px) and a separate utility dock. Services use translucent visual cards with short summaries and direct contact links.
+
+- Selected projects use framed previews and logo-only stack rows with accessible names and hover/focus labels. “Explore the build” opens the full stack and details, including technologies without local logos.
 
 - Theme preference is stored as `portfolio-theme`; `index.html` applies it before React starts.
 - One visible theme switch: right utility dock on desktop, top bar on mobile. Experience uses a quiet timeline with expandable contributions and separate education/events views.

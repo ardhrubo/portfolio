@@ -57,7 +57,7 @@ export default function ScienceStudies({ initialMode = 'waves' }) {
   }));
 
   return <div ref={root} className="science-studies">
-    <div className="study-heading"><div><span className="eyebrow">TRY SOMETHING NEW</span><h3>Small experiments. Visible ideas.</h3></div><span className="study-caption">Illustrative models</span></div>
+    <div className="study-heading"><h3>{mode === 'waves' ? 'Wave interference' : 'Crystal lattice'}</h3><span className="study-caption">Illustrative model</span></div>
     <div className="study-tabs" role="group" aria-label="Choose an experiment">
       <button type="button" aria-pressed={mode === 'waves'} onClick={() => setMode('waves')}><Waves size={18} /> Wave interference</button>
       <button type="button" aria-pressed={mode === 'crystal'} onClick={() => setMode('crystal')}><Gem size={18} /> Crystal lattice</button>
@@ -79,7 +79,7 @@ export default function ScienceStudies({ initialMode = 'waves' }) {
       </div>
       <div className="study-controls">
         <h4>{mode === 'waves' ? 'When waves meet' : 'Order, from every angle'}</h4>
-        <p>{mode === 'waves' ? 'Two equal waves add together. Move the phase to see them reinforce or cancel one another.' : 'A simple cubic arrangement of 27 sites. Turn the lattice and change its spacing to explore the repeating structure.'}</p>
+        <p>{mode === 'waves' ? 'Adjust the waves and watch them combine.' : 'Turn the lattice and explore its structure.'}</p>
         {mode === 'waves' ? <>
           <label>Frequency <output>{settings.frequency.toFixed(1)} cycles</output><input type="range" min="1" max="5" step="0.1" value={settings.frequency} onChange={update('frequency')} /></label>
           <label>Phase difference <output>{Math.round(settings.phase * 180 / Math.PI)}°</output><input type="range" min="0" max={Math.PI * 2} step="0.01" value={settings.phase} onChange={update('phase')} /></label>

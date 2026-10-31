@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, Mail, MapPin, Search } from 'lucide-react';
+import { ArrowUpRight, Check, Mail, MapPin, Search, Layers3, Clock3, Atom, HeartHandshake } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Button from './ui/Button';
 import Card from './ui/Card';
+import '../styles/metrics.css';
 
+const metricIcons = [Layers3, Clock3, Atom, HeartHandshake];
 
 export default function HeroBento({ onCopyEmail, onOpenCmd }) {
   const [copied, setCopied] = useState(false);
@@ -67,7 +69,7 @@ export default function HeroBento({ onCopyEmail, onOpenCmd }) {
           </Card>
         </div>
         <div className="overview-metrics" aria-label="Career highlights">
-          {personalInfo.stats.map(stat => <div key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></div>)}
+          {personalInfo.stats.map((stat, index) => { const Icon = metricIcons[index]; return <div key={stat.label} className="metric-card"><span className="metric-icon"><Icon size={20} aria-hidden="true" /></span><div className="metric-copy"><strong>{stat.value}</strong><span>{stat.label}</span></div><span className="metric-index" aria-hidden="true">0{index + 1}</span></div>; })}
         </div>
       </div>
     </section>

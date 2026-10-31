@@ -73,8 +73,11 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
                 <p className="flagship-desc">{project.desc}</p>
 
                 <div className="flagship-tech-row" aria-label="Built with">
-                  {project.tech.map((t, i) => (
-                    <span key={i} className={`project-stack-badge ${stackLogos[t] ? 'project-stack-badge--logo' : ''}`}>{stackLogos[t] && <span className={`project-stack-mark project-stack-mark--${stackLogos[t]}`}><img src={`/tech/${stackLogos[t]}.svg`} alt="" width="20" height="20" /></span>}{t}</span>
+                  {project.tech.filter(t => stackLogos[t]).map((t) => (
+                    <span key={t} className="project-stack-logo" tabIndex={0}>
+                      <span className={`project-stack-mark project-stack-mark--${stackLogos[t]}`}><img src={`/tech/${stackLogos[t]}.svg`} alt={t} width="28" height="28" /></span>
+                      <span className="project-stack-tooltip" aria-hidden="true">{t}</span>
+                    </span>
                   ))}
                 </div>
 

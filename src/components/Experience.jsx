@@ -82,7 +82,7 @@ export default function Experience() {
             The work behind <span className="gradient-text">the work.</span>
           </h2>
           <p className="section-subtitle">
-            A path through product engineering, scientific research, and sharing what I’ve learned.
+            Building, researching, and sharing along the way.
           </p>
 
           {/* Primary View Switcher: Experience vs Education vs Conferences */}
@@ -219,9 +219,9 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <p className="timeline-desc">{exp.description}</p>
+                  <div className="experience-preview-tech" aria-label="Selected technologies">{exp.tech.slice(0, 3).map(tech => <span key={tech}>{tech}</span>)}</div>
 
-                  <details className="experience-details"><summary>Contributions & technologies</summary><ul className="timeline-achievements">
+                  <details className="experience-details"><summary>Explore this role</summary><p className="timeline-desc">{exp.description}</p><ul className="timeline-achievements">
                     {exp.achievements.map((item, idx) => (
                       <li key={idx} className="timeline-achievement-item">
                         <CheckCircle2 size={14} aria-hidden="true" />

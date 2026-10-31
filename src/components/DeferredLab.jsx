@@ -1,6 +1,7 @@
 import { Component, lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Atom } from 'lucide-react';
 import ReactionLoader from './ui/ReactionLoader';
+import '../styles/lab.css';
 const MotionLab = lazy(() => import('./InteractiveMotionLab'));
 class LabBoundary extends Component {
   state = { failed: false };

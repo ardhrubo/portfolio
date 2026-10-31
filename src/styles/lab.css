@@ -1,0 +1,33 @@
+/* Layered glass surrounds the deliberately dark canvas so the model stays legible. */
+#simulation-lab .section-header { max-width: 680px; margin-bottom: 28px; }
+#simulation-lab .study-tabs { gap: 10px; margin: 0 0 18px; }
+#simulation-lab .study-tabs button,
+#simulation-lab .lab-toolbar button,
+#simulation-lab .study-actions button {
+  min-height: 46px; padding: 10px 16px; border: 1px solid var(--glass-border); border-radius: 15px;
+  background: linear-gradient(145deg, var(--liquid-reflection), transparent 65%), color-mix(in srgb, var(--glass-bg) 72%, transparent);
+  color: var(--text-secondary); box-shadow: inset 0 1px 0 var(--liquid-rim), inset 0 -1px 0 var(--liquid-lower-edge), 0 5px 12px -10px var(--liquid-shadow);
+  backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+#simulation-lab .study-tabs button[aria-pressed='true'],
+#simulation-lab .lab-toolbar button[aria-pressed='true'] { color: var(--tint-text); border-color: var(--tint-border); background: linear-gradient(145deg, var(--liquid-reflection), transparent 70%), var(--tint-bg); font-weight: 700; }
+#simulation-lab button:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+#simulation-lab .study-caption { font-size: 12px; line-height: 1.6; }
+#simulation-lab .lab-shell, #simulation-lab .science-studies { border: 1px solid var(--glass-border); border-radius: 28px; background: linear-gradient(140deg, var(--liquid-reflection), transparent 35%), color-mix(in srgb, var(--glass-bg) 75%, transparent); box-shadow: inset 0 1px 0 var(--liquid-rim), inset 0 -1px 0 var(--liquid-lower-edge), var(--glass-shadow); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); }
+#simulation-lab .lab-toolbar { padding: 18px 20px; background: transparent; }
+#simulation-lab .lab-viewport { border-inline: 0; background: radial-gradient(ellipse at 48% 42%, #263e43 0%, #162438 38%, #101525 100%); }
+#simulation-lab .lab-viewport::before { content: ''; position: absolute; inset: 4% 14%; pointer-events: none; border-radius: 50%; border: 1px solid rgba(134, 239, 172, .12); box-shadow: 0 0 0 35px rgba(134, 239, 172, .025), 0 0 0 90px rgba(134, 239, 172, .018), inset 0 0 80px rgba(74, 222, 128, .06); }
+#simulation-lab .lab-diagnostics { position: relative; }
+#simulation-lab .lab-diagnostics summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; padding: 0 12px; border: 1px solid var(--glass-border); border-radius: 12px; }
+#simulation-lab .lab-diagnostics[open] > div { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; padding: 10px; border: 1px solid var(--glass-border); border-radius: 12px; background: var(--bg-glass-heavy); box-shadow: var(--glass-shadow); white-space: nowrap; }
+#simulation-lab .lab-diagnostics summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+#simulation-lab .lab-viewport button { min-height: 44px; }
+#simulation-lab .lab-viewport button:focus-visible { outline-color: #b8f5cf; }
+#simulation-lab .study-visual { background: var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge); }
+@media (max-width: 639px) {
+  #simulation-lab .study-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #simulation-lab .study-tabs button { min-width: 0; padding-inline: 9px; }
+  #simulation-lab .lab-toolbar { padding: 14px; }
+  #simulation-lab .lab-toolbar button { padding-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { #simulation-lab button { transition: none; } }

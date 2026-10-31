@@ -242,7 +242,7 @@ nav[aria-label='Mobile sections'] a svg { color: var(--nav-icon-color); }
   --glass-highlight: inset 0 1px 0 rgba(255,255,255,.10);
   --glass-shadow: 0 20px 48px -24px rgba(0,0,0,.5);
 }
-.portfolio-app { --sidebar-width: 228px; --rail-gap: 28px; }
+.portfolio-app { --sidebar-width: clamp(260px, 20vw, 304px); --rail-gap: 28px; }
 .portfolio-app .ambient-background .ambient-grid,
 .ambient-background::before, .ambient-background::after { display: none; }
 /* A quiet etched grid adds texture to the obsidian canvas. */
