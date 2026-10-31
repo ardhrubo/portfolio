@@ -1,77 +1,51 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, Mail, MapPin, Search, Layers3, Clock3, Atom, HeartHandshake } from 'lucide-react';
+import { ArrowUpRight, Check, Mail, MapPin, Code2, FlaskConical, Layers3, Clock3, Atom, HeartHandshake } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Button from './ui/Button';
-import Card from './ui/Card';
 import '../styles/metrics.css';
+import '../styles/hero.css';
 
 const metricIcons = [Layers3, Clock3, Atom, HeartHandshake];
-
-export default function HeroBento({ onCopyEmail, onOpenCmd }) {
+function Workbench() {
+  return <div className="hero-workbench" aria-hidden="true">
+    <div className="workbench-caption"><span>THE BUILD BENCH</span><span>01 / IN THE MAKING</span></div>
+    <div className="bench-window">
+      <div className="bench-window-bar"><i /><i /><i /><span>idea → interface</span></div>
+      <div className="bench-window-body"><div className="bench-mini-nav" /><div className="bench-mini-title" /><div className="bench-mini-line" /><div className="bench-mini-cards"><i /><i /><i /></div></div>
+    </div>
+    <div className="bench-code"><Code2 size={20} /><span /><span /><span /></div>
+    <div className="bench-flask"><FlaskConical size={44} strokeWidth={1.2} /><i /></div>
+    <svg className="bench-connections" viewBox="0 0 500 190" preserveAspectRatio="none"><path d="M110 130H65V60H180M300 85h95v55h45" /><circle cx="65" cy="60" r="4" /><circle cx="395" cy="140" r="4" /></svg>
+  </div>;
+}
+export default function HeroBento({ onCopyEmail }) {
   const [copied, setCopied] = useState(false);
-  const [time, setTime] = useState('');
-  useEffect(() => {
-    const formatter = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', hour12: true });
-    const tick = () => setTime(formatter.format(new Date()));
-    tick();
-    const interval = setInterval(tick, 30000);
-    return () => clearInterval(interval);
-  }, []);
-  useEffect(() => {
-    if (!copied) return;
-    const timer = setTimeout(() => setCopied(false), 2500);
-    return () => clearTimeout(timer);
-  }, [copied]);
+  useEffect(() => { if (!copied) return; const timer = setTimeout(() => setCopied(false), 2500); return () => clearTimeout(timer); }, [copied]);
   const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(personalInfo.email);
-      setCopied(true);
-      onCopyEmail?.('Email copied: ' + personalInfo.email);
-    } catch {
-      onCopyEmail?.('Email me at ' + personalInfo.email);
-    }
+    try { await navigator.clipboard.writeText(personalInfo.email); setCopied(true); onCopyEmail?.('Email copied: ' + personalInfo.email); }
+    catch { onCopyEmail?.('Email me at ' + personalInfo.email); }
   };
-  return (
-    <section id="hero" className="overview-section">
-      <div className="container">
-        <div className="page-topbar">
-          <span>{personalInfo.name} <span className="topbar-divider">/</span> Products & engineering</span>
-          <Button variant="ghost" size="small" onClick={onOpenCmd} aria-label="Search portfolio"><Search size={15} /><span>Quick search</span><kbd>⌘ K</kbd></Button>
-        </div>
-        <div className="overview-intro"><span className="eyebrow"><span className="status-dot" /> OPEN TO SELECT OPPORTUNITIES</span><span className="overview-location"><MapPin size={13} /> Dhaka, Bangladesh</span></div>
-        <div className="overview-grid">
-          <Card as="article" className="overview-profile">
-            <div className="profile-topline"><span className="eyebrow">THE PERSON BEHIND THE CODE</span><ArrowUpRight size={16} aria-hidden="true" /></div>
-            <div className="profile-identity"><div className="profile-photo"><img src={personalInfo.avatar} alt={personalInfo.fullName} /><span className="status-dot" /></div><span className="profile-handle">@ardhrubo</span></div>
-            <h2>{personalInfo.name}</h2>
-            <p className="profile-role">{personalInfo.headline}</p>
-            <div className="profile-socials">
-              <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a></Button>
-              <Button asChild variant="secondary" size="icon"><a href={personalInfo.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a></Button>
-              <Button variant="secondary" size="icon" onClick={copyEmail} aria-label={copied ? 'Email copied' : 'Copy email'}>{copied ? <Check size={17} /> : <Mail size={17} />}</Button>
-            </div>
-            <div className="profile-local-time"><span><MapPin size={13} /> LOCAL TIME / GMT+6</span><time>{time || 'Dhaka'}</time></div>
-          </Card>
-          <Card as="article" className="overview-main">
-            <span className="eyebrow">HELLO, I’M {personalInfo.name.toUpperCase()}</span>
-            <h1>{personalInfo.headline}</h1>
-            <p className="overview-description">{personalInfo.heroIntro}</p>
-            <div className="overview-actions">
-              <Button asChild className="studio-action"><a href="#projects"><span className="action-icon action-icon--mint"><ArrowUpRight size={18} aria-hidden="true" /></span>View selected work</a></Button>
-              <Button asChild variant="secondary" className="studio-action"><a href="#contact"><span className="action-icon action-icon--peach"><Mail size={18} aria-hidden="true" /></span>Start a conversation</a></Button>
-            </div>
-            <div className="hero-technologies" aria-label="Technologies I build with">
-              <span className="hero-technologies-label">TOOLS I BUILD WITH</span>
-              <div>{personalInfo.heroTechnologies.map(tech => <a key={tech.logo} href="#skills" className="hero-tech-tile"><span className={`hero-tech-mark hero-tech-mark--${tech.logo}`}><img src={`/tech/${tech.logo}.svg`} alt="" width="28" height="28" /></span><span>{tech.name}</span></a>)}</div>
-            </div>
-            <div className="studio-note">Web applications · APIs · Automation</div>
-          </Card>
-        </div>
-        <div className="overview-metrics" aria-label="Career highlights">
-          {personalInfo.stats.map((stat, index) => { const Icon = metricIcons[index]; return <div key={stat.label} className="metric-card"><span className="metric-icon"><Icon size={20} aria-hidden="true" /></span><div className="metric-copy"><strong>{stat.value}</strong><span>{stat.label}</span></div><span className="metric-index" aria-hidden="true">0{index + 1}</span></div>; })}
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="hero" className="overview-section hero-redesign"><div className="container">
+    <div className="hero-heading-line"><span className="eyebrow"><span className="status-dot" /> OPEN TO OPPORTUNITIES</span><span><MapPin size={13} aria-hidden="true" />{personalInfo.location}</span></div>
+    <div className="hero-composition">
+      <article className="hero-portrait-panel">
+        <div className="hero-portrait-frame"><img src={personalInfo.avatar} alt={personalInfo.fullName} width="400" height="480" fetchPriority="high" /><span className="portrait-corner portrait-corner--one" /><span className="portrait-corner portrait-corner--two" /><span className="portrait-sticker"><FlaskConical size={18} aria-hidden="true" /> CODE + CURIOSITY</span></div>
+        <div className="hero-person"><div><h2>{personalInfo.name}</h2><p>{personalInfo.headline}</p></div><div className="hero-socials">
+          <a href={personalInfo.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={18} /></a>
+          <a href={personalInfo.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
+          <button onClick={copyEmail} aria-label={copied ? 'Email copied' : 'Copy email'}>{copied ? <Check size={18} /> : <Mail size={18} />}</button>
+        </div></div>
+      </article>
+      <article className="hero-story-panel">
+        <span className="eyebrow">SOFTWARE ENGINEERING × SCIENTIFIC CURIOSITY</span>
+        <h1>{personalInfo.heroHeadline}<em>{personalInfo.heroHeadlineAccent}</em></h1>
+        <p className="hero-story-intro">{personalInfo.heroIntro}</p>
+        <div className="hero-actions"><Button asChild><a href="#projects">Explore my work <ArrowUpRight size={18} aria-hidden="true" /></a></Button><a className="hero-contact-link" href="#contact">Let’s talk <ArrowUpRight size={17} aria-hidden="true" /></a></div>
+        <Workbench />
+      </article>
+    </div>
+    <div className="hero-tools"><span>BUILT WITH</span><div>{personalInfo.heroTechnologies.map(tech => <a key={tech.logo} href="#skills" aria-label={`${tech.name} — explore my tech stack`} title={tech.name}><img src={`/tech/${tech.logo}.svg`} alt="" width="25" height="25" /><span>{tech.name}</span></a>)}</div></div>
+    <div className="overview-metrics" aria-label="Career highlights">{personalInfo.stats.map((stat, i) => { const Icon = metricIcons[i]; return <div key={stat.label} className="metric-card"><span className="metric-icon"><Icon size={18} aria-hidden="true" /></span><div className="metric-copy"><strong>{stat.value}</strong><span>{stat.label}</span></div></div>; })}</div>
+  </div></section>;
 }

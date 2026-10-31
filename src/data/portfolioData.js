@@ -1,7 +1,9 @@
 export const personalInfo = {
   name: "AR Dhrubo",
   headline: "Product Builder",
-  heroIntro: "I turn ideas into useful digital products—bringing together thoughtful interfaces, reliable engineering, and automation to solve real problems.",
+  heroHeadline: "A little curiosity.",
+  heroHeadlineAccent: "Something useful.",
+  heroIntro: "I build thoughtful web experiences and the systems behind them—with an engineer’s precision and a researcher’s curiosity.",
   heroTechnologies: [
     { name: 'React', logo: 'react' },
     { name: 'Next.js', logo: 'nextjs' },

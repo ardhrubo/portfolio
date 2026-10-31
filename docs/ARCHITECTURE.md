@@ -102,6 +102,9 @@ Profile/project images and icons are static files under `public/`. Technology ma
 
 ## Maintenance notes
 
+- `hero.css` owns the portrait-led hero, decorative browser/code/lab workbench, compact technology links, and quieter metrics. Hero headline and intro copy live in `personalInfo`. The center column supports up to 1400px between the desktop rails.
+- `Logo.jsx` renders the custom connected-D SVG monogram using theme colors; `logo.css` owns its glass tile. `public/brand/dhrubo-mark.svg` is the standalone dark mark and favicon. Existing social-preview and Apple touch images remain separate assets.
+
 - `sidebar.css` owns the spacious, vertically centered desktop glass rail, with viewport-limited scrolling on short screens. Its shared width scales from 260–304px in `studio.css`, reserving matching content space. Search, guide, GitHub, contact, and theme utilities remain in the right dock; other social links remain in the profile/contact sections.
 - `services.css` owns decorative glass service illustrations and reduced-motion-aware hover effects. Cards render `servicesData.shortTitle` and `summary`, with a contact link; detailed service data stays in the content model.
 - Showcase stack rows display only exact local logos, with image alternatives and hover/focus labels. Technologies lacking local marks remain in the project drawer’s full stack.
