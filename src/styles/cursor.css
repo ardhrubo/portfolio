@@ -12,17 +12,23 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 .custom-cursor-dot { position: fixed; top: 0; left: 0; will-change: transform; }
 
 .custom-cursor-dot > span {
-  position: absolute; display: block; width: 44px; height: 52px; margin: -48px 0 0 -31px;
-  filter: drop-shadow(0 3px 5px rgba(47, 161, 208, .32));
-  transform: rotate(18deg); transform-origin: 50% 40%; transition: transform .2s ease;
+  position: absolute; display: block; width: 44px; height: 52px; margin: -49px 0 0 -22px;
+  filter: drop-shadow(0 3px 6px rgba(47, 161, 208, .35));
+  transform: rotate(28deg); transform-origin: 22px 49px; transition: transform .2s cubic-bezier(.2, .8, .2, 1);
 }
 .custom-cursor-dot svg { width: 44px; height: 52px; overflow: visible; }
 .pipette-bulb, .pipette-shaft { fill: url(#pipette-glass); stroke: #93eaff; stroke-width: 1.5; stroke-linejoin: round; }
 .pipette-fluid { fill: url(#pipette-fluid); stroke: #dcfff6; stroke-width: .65; stroke-linejoin: round; }
 .pipette-glint { fill: none; stroke: rgba(255,255,255,.96); stroke-width: 1.35; stroke-linecap: round; }
 .pipette-collar { fill: none; stroke: #f1ffff; stroke-width: 1.5; stroke-linecap: round; }
-.custom-cursor[data-state="hover"] .custom-cursor-dot > span { filter: drop-shadow(0 3px 6px rgba(47, 161, 208, .48)); }
-.custom-cursor[data-pressed="true"] .custom-cursor-dot > span { filter: drop-shadow(0 1px 2px rgba(47, 161, 208, .4)); }
+.custom-cursor[data-state="hover"] .custom-cursor-dot > span {
+  filter: drop-shadow(0 4px 8px rgba(47, 161, 208, .55));
+  transform: rotate(34deg) scale(1.08);
+}
+.custom-cursor[data-pressed="true"] .custom-cursor-dot > span {
+  filter: drop-shadow(0 2px 3px rgba(47, 161, 208, .4));
+  transform: rotate(24deg) scale(.94);
+}
 .custom-cursor[data-action="absorb"] .pipette-fluid { animation: pipette-absorb .6s ease-in-out; transform-box: fill-box; transform-origin: center bottom; }
 .custom-cursor[data-action="squeeze"] .pipette-fluid { animation: pipette-squeeze .6s cubic-bezier(.2,.7,.3,1); transform-box: fill-box; transform-origin: center top; }
 .custom-cursor[data-action="squeeze"] .pipette-bulb { animation: pipette-bulb-squeeze .6s cubic-bezier(.2,.7,.3,1); transform-box: fill-box; transform-origin: center; }

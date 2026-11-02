@@ -113,8 +113,8 @@
 .reaction-lab-page [data-mood='calm'] .rl-mark::before { content: '✓'; color: var(--primary); }
 .reaction-lab-page [data-mood='singed'] .rl-mark::before { content: '✶'; color: #f97316; }
 .reaction-lab-page :is([data-mood='curious'], [data-mood='confused'], [data-mood='shocked'], [data-mood='worried'], [data-mood='bored'], [data-mood='calm'], [data-mood='singed']) .rl-mark { opacity: 1; }
-.reaction-lab-page [data-mood='curious'] .rl-face-frame { rotate: -3deg; }
-.reaction-lab-page [data-mood='confused'] .rl-face-frame { rotate: 4deg; }
+.reaction-lab-page [data-mood='curious'] .rl-face-frame { rotate: 3deg; }
+.reaction-lab-page [data-mood='confused'] .rl-face-frame { rotate: 5deg; }
 
 /* ---------- Panel ---------- */
 .reaction-lab-page .rl-mixbar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
