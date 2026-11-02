@@ -15,6 +15,7 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const root = document.documentElement;
+    let actionTimer;
 
     const setVisible = (value) => {
       if (wrap.current) {
@@ -39,19 +40,36 @@ export default function CustomCursor() {
     const leave = (event) => { if (!event.relatedTarget) setVisible(false); };
     const down = () => { if (wrap.current) wrap.current.dataset.pressed = 'true'; };
     const up = () => { if (wrap.current) wrap.current.dataset.pressed = 'false'; };
+    const animateAction = (action) => {
+      if (!wrap.current) return;
+      window.clearTimeout(actionTimer);
+      wrap.current.dataset.action = action;
+      actionTimer = window.setTimeout(() => {
+        if (wrap.current) delete wrap.current.dataset.action;
+      }, 620);
+    };
+    const absorb = () => animateAction('absorb');
+    const squeeze = () => animateAction('squeeze');
 
     window.addEventListener('mousemove', move, { passive: true });
     window.addEventListener('pointerdown', down, { passive: true });
     window.addEventListener('pointerup', up, { passive: true });
+    document.addEventListener('copy', absorb);
+    document.addEventListener('paste', squeeze);
+    document.addEventListener('drop', squeeze);
     window.addEventListener('blur', hide);
     document.addEventListener('mouseleave', hide);
     document.addEventListener('mouseout', leave);
 
     return () => {
       hide();
+      window.clearTimeout(actionTimer);
       window.removeEventListener('mousemove', move);
       window.removeEventListener('pointerdown', down);
       window.removeEventListener('pointerup', up);
+      document.removeEventListener('copy', absorb);
+      document.removeEventListener('paste', squeeze);
+      document.removeEventListener('drop', squeeze);
       window.removeEventListener('blur', hide);
       document.removeEventListener('mouseleave', hide);
       document.removeEventListener('mouseout', leave);
