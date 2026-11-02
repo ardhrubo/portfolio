@@ -59,7 +59,7 @@ export default function HeroBento({ onCopyEmail }) {
                 <span>BUILT WITH</span>
                 <div>
                   {personalInfo.heroTechnologies.map(tech => (
-                    <a key={tech.logo} href="#skills" aria-label={`${tech.name}: explore my tech stack`} title={tech.name}>
+                    <a key={tech.logo} href="#projects" aria-label={`${tech.name}: explore my projects`} title={tech.name}>
                       <img src={`/tech/${tech.logo}.svg`} alt="" width="20" height="20" loading="lazy" />
                       <span>{tech.name}</span>
                     </a>

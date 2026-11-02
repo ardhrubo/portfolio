@@ -111,7 +111,6 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
             <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="footer-nav-link">Overview</a>
             <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="footer-nav-link">Projects</a>
             <a href="#experience" onClick={(e) => handleLinkClick(e, '#experience')} className="footer-nav-link">Experience</a>
-            <a href="#skills" onClick={(e) => handleLinkClick(e, '#skills')} className="footer-nav-link">Tech stack</a>
             <a href="#strategy" onClick={(e) => handleLinkClick(e, '#strategy')} className="footer-nav-link">Approach</a>
             <a href="#simulation-lab" onClick={(e) => handleLinkClick(e, '#simulation-lab')} className="footer-nav-link">3D playground</a>
             <a href="#services" onClick={(e) => handleLinkClick(e, '#services')} className="footer-nav-link">Services</a>

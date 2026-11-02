@@ -14,7 +14,7 @@ export default function Services() {
         <div className="section-header">
           <div className="section-tag">
             <Handshake size={15} aria-hidden="true" />
-            <span>06 / Working together</span>
+            <span>Working together</span>
           </div>
           <h2 className="section-title">
             Let’s build <span className="gradient-text">what’s next.</span>

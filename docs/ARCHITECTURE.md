@@ -39,10 +39,9 @@ flowchart TD
 1. `HeroBento` — single glass stage: availability/location pill, headline, intro, calls to action, technology links, portrait with name chip and socials; metrics below.
 2. `ProjectsShowcase` — featured case study, supporting cards, and archive link.
 3. `Experience` — work, education, credentials, events, and photo preview.
-4. `Skills` — logo-led technology gallery and expandable details.
-5. `Strategy` — selectable engineering approach.
-6. `DeferredLab` — placeholder, then interactive science lab.
-7. `Services`, `Contact`, and `Footer`.
+4. `Strategy` — four scroll-revealed process cards.
+5. `DeferredLab` — placeholder, then interactive science lab.
+6. `Services`, `Contact`, and `Footer`.
 
 The archive is a separate hash-addressable view. The project drawer, search, and guide are dialogs; toast is transient feedback.
 
@@ -102,11 +101,11 @@ Profile/project images and icons are static files under `public/`. Technology ma
 
 ## Maintenance notes
 
-- `ReactionScene.jsx` supplies the illustrative SVG mixing scene in Approach (it is no longer in the hero). Mix changes its color; Pause stops animation. CSS animation pauses offscreen and in background tabs, and reduced motion renders a static scene. Observers and preference/visibility listeners clean up on unmount; SVG IDs are unique per instance.
+- `WorkflowScene.jsx` supplies four decorative workflow illustrations in Approach: blueprint, page assembly, branching automation, and verification checklist. All four steps appear in document order. An IntersectionObserver starts each finite illustration on entry; a frame-throttled scroll listener highlights the card nearest the viewport center. Buttons scroll directly to a step; reduced motion uses instant scrolling. The observer, scroll/resize listeners, and pending frame clean up on unmount. CSS entrance animations finish within 1.2 seconds, hover adds shallow depth, and reduced motion keeps artwork static. There are no animation timers or observers. A container query stacks the card when its content space is narrow. The former `ReactionScene.jsx` mixing illustration is no longer mounted.
 - `typography.css` aligns section headings and reading widths. `theme.css` declares Space Grotesk headings, DM Sans body text, JetBrains Mono labels, and shared 1320px section width. `fonts.css` loads locally hosted files from `public/fonts/`, with licenses alongside them. Mobile hero places the introduction before the portrait.
 
 - `hero.css` owns all hero styling (typography included; `typography.css` no longer overrides it). `.hero-shell` is a CSS container: at ≥720px container width the stage splits into copy + a 4:5 portrait with an overlaid glass name chip; narrower, the portrait becomes a compact profile row after the copy. Ambient color blobs sit behind the glass. Hero headline and intro copy live in `personalInfo`. The center column supports up to 1400px between the desktop rails.
-- `Logo.jsx` renders the custom connected-D SVG monogram using theme colors; `logo.css` owns its glass tile. `public/brand/dhrubo-mark.svg` is the standalone dark mark and favicon. Existing social-preview and Apple touch images remain separate assets.
+- `Logo.jsx` renders a custom angular D with an emerald-to-teal face, offset extrusion, and fine edge highlights using theme colors; `logo.css` owns its glass tile and gradient colors. SVG gradient IDs are unique per instance. `public/brand/dhrubo-mark.svg` is the matching standalone dark mark and favicon. Existing social-preview and Apple touch images remain separate assets.
 
 - `sidebar.css` owns the spacious, vertically centered desktop glass rail, with viewport-limited scrolling on short screens. Its shared width scales from 260–304px in `studio.css`, reserving matching content space. Search, guide, GitHub, contact, and theme utilities remain in the right dock; other social links remain in the profile/contact sections.
 - `services.css` owns decorative glass service illustrations and reduced-motion-aware hover effects. Cards render `servicesData.shortTitle` and `summary`, with a contact link; detailed service data stays in the content model.
@@ -124,3 +123,11 @@ Profile/project images and icons are static files under `public/`. Technology ma
 - The generated design-system master file is stale; `AGENTS.md` and `theme.css` are authoritative.
 - `Skills.jsx` and `skillsData` currently rely on matching array order.
 - Never run `git push` unless the user directly instructs it.
+
+- Hero technology links use always-visible glass tiles with neutral, readable labels and original local brand artwork. The portrait name chip omits the decorative status dot; availability remains in the hero status pill.
+
+Section introductions are centered and use names without numeric prefixes. Approach illustrations sit directly in the shared glass panel without a separate frame, caption bar, or counter.
+
+The standalone Skills gallery is no longer mounted or linked in navigation/search/footer. Its source and data remain available for reuse. Hero technology links lead to Projects; legacy `#skills` bookmarks resolve to Projects.
+
+Approach uses scroll-revealed cards below 768px and a single selectable panel on larger screens (hover, keyboard focus, or click). Project selection is limited to Brown’s Interior, Squicy UAP, and ScrapeAutomate in compact equal cards; remaining projects are available through All projects.

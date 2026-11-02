@@ -501,7 +501,7 @@ export default function InteractiveMotionLab({ onShowToast }) {
         <div className="section-header">
           <div className="section-tag">
             <Atom size={15} aria-hidden="true" />
-            <span>05 / 3D playground</span>
+            <span>3D playground</span>
           </div>
           <h2 className="section-title">
             Science, <span className="gradient-text">in motion.</span>

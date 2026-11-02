@@ -42,8 +42,84 @@
 #strategy .strategy-deliverables-box summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 5px; }
 #strategy .strategy-deliverables-grid { grid-template-columns: 1fr; margin-top: 10px; }
 
-@media (max-width:700px) {
+#strategy > .container { container: strategy / inline-size; }
+@container strategy (max-width:620px) {
   #strategy .strategy-active-card { grid-template-columns:minmax(0,1fr); }
-  #strategy .strategy-story { grid-column:1; grid-row:2; }
-  #strategy .reaction-scene { grid-column:1; grid-row:1; }
+  #strategy .strategy-story { grid-column:1; grid-row:1; }
+  #strategy .workflow-scene { grid-column:1; grid-row:2; }
 }
+
+/* Each step builds a small visual story. Motion finishes; nothing loops. */
+#strategy .workflow-scene {
+  min-width: 0; width: 100%; padding: 18px 0;
+  border: 0; color: var(--primary);
+  background: radial-gradient(ellipse at center, var(--tint-bg), transparent 70%);
+  box-shadow: none;
+}
+#strategy .workflow-caption, #strategy .workflow-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 18px; color: var(--text-secondary); font: 10px/1.4 var(--font-mono); }
+#strategy .workflow-caption { text-transform: uppercase; letter-spacing: .08em; }
+#strategy .workflow-caption-dots { color: var(--primary); letter-spacing: .3em; }
+#strategy .workflow-footer { border-top: 1px solid var(--border); font-size: 9px; }
+#strategy .workflow-stage { position: relative; height: 222px; margin: 0 12px; perspective: 700px; }
+#strategy :is(.workflow-blueprint, .workflow-build, .workflow-pipeline, .workflow-verify) { position: relative; width: 100%; max-width: 320px; height: 200px; margin: auto; top: 10px; }
+#strategy .workflow-connectors { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; stroke: var(--primary); stroke-width: 1.5; }
+#strategy .workflow-connectors path { stroke-dasharray: 5 5; opacity: .55; }
+#strategy .workflow-node { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; width: 30%; height: 64px; border: 1px solid var(--tint-border); border-radius: 14px; background: var(--bg-glass); box-shadow: inset 0 1px 0 var(--liquid-rim), var(--shadow-md); font-size: 10px; color: var(--text-secondary); }
+#strategy .workflow-node > svg { width: 20px; height: 20px; color: var(--primary); }
+#strategy .workflow-node--root { left: 35%; top: 10px; }
+#strategy .workflow-node--left { left: 5%; bottom: 4px; }
+#strategy .workflow-node--right { right: 5%; bottom: 4px; }
+#strategy .workflow-node--left > svg { color: var(--color-social); }
+#strategy .workflow-node--right > svg { color: var(--color-assistant); }
+#strategy .workflow-pointer { position: absolute; left: 65%; top: 70px; fill: var(--primary); stroke: var(--background); filter: drop-shadow(0 2px 4px var(--liquid-shadow)); }
+#strategy .workflow-code { position: absolute; left: 4%; top: 18px; width: 57%; height: 140px; padding: 18px; border: 1px solid var(--tint-border); border-radius: 13px; background: var(--bg-glass); transform: rotate(-8deg); box-shadow: var(--shadow-md); }
+#strategy .workflow-code i { display: block; height: 4px; width: 75%; margin-top: 11px; border-radius: 4px; background: var(--tint-border); }
+#strategy .workflow-code i:nth-of-type(2n) { width: 48%; margin-left: 12px; background: color-mix(in srgb, var(--color-assistant) 40%, transparent); }
+#strategy .workflow-browser { position: absolute; right: 3%; top: 38px; width: 62%; height: 142px; border: 1px solid var(--glass-border-strong); border-radius: 12px; background: var(--bg-glass); backdrop-filter: blur(12px); transform: rotate(4deg); box-shadow: inset 0 1px 0 var(--liquid-rim), var(--shadow-lg); }
+#strategy .workflow-browser-bar { display: flex; gap: 4px; padding: 10px; border-bottom: 1px solid var(--border); }
+#strategy .workflow-browser-bar i { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); }
+#strategy .workflow-browser-content { padding: 12px; }
+#strategy .workflow-browser-content > span { display: block; width: 22px; height: 5px; background: var(--primary); border-radius: 4px; }
+#strategy .workflow-browser-content strong, #strategy .workflow-browser-content > i { display: block; height: 5px; width: 76%; background: var(--text-secondary); border-radius: 3px; margin-top: 8px; }
+#strategy .workflow-browser-content > i { height: 3px; width: 88%; background: var(--border-medium); margin-top: 5px; }
+#strategy .workflow-browser-content > div { display: flex; gap: 7px; margin-top: 12px; }
+#strategy .workflow-browser-content b { width: 30%; height: 26px; border-radius: 5px; background: var(--tint-bg); border: 1px solid var(--tint-border); }
+#strategy .workflow-chip { position: absolute; bottom: 0; left: 5%; display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--tint-border); border-radius: 10px; background: var(--bg-glass); font: 9px var(--font-mono); box-shadow: var(--shadow-sm); }
+#strategy .workflow-input { left: 2%; top: 68px; width: 25%; }
+#strategy .workflow-engine { left: 38%; top: 68px; width: 27%; border-color: var(--primary); }
+#strategy .workflow-output { position: absolute; right: 7%; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; border: 1px solid var(--tint-border); background: var(--bg-glass); box-shadow: var(--shadow-sm); }
+#strategy .workflow-output--top { top: 27px; }
+#strategy .workflow-output--middle { top: 82px; color: var(--color-assistant); }
+#strategy .workflow-output--bottom { top: 137px; }
+#strategy .workflow-packet { fill: var(--primary); stroke: var(--background); }
+#strategy .workflow-checks { position: absolute; top: 25px; left: 4%; width: 76%; padding: 8px 16px; border: 1px solid var(--glass-border); border-radius: 16px; background: var(--bg-glass); box-shadow: var(--shadow-md); transform: rotate(-4deg); }
+#strategy .workflow-checks > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 42px; font-size: 11px; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+#strategy .workflow-checks > div:last-child { border: 0; }
+#strategy .workflow-checks svg { color: var(--primary); }
+#strategy .workflow-seal { position: absolute; bottom: 18px; right: 3%; display: grid; place-items: center; width: 74px; height: 82px; border: 1px solid var(--tint-border); border-radius: 22px; background: var(--bg-glass); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 var(--liquid-rim), var(--shadow-lg); transform: rotate(8deg); }
+@media (prefers-reduced-motion: no-preference) {
+  #strategy .workflow-stage > div { animation: workflow-arrive 550ms cubic-bezier(.2,.8,.2,1) both; }
+  #strategy .workflow-node, #strategy .workflow-browser, #strategy .workflow-code, #strategy .workflow-seal { transition: translate 350ms ease; }
+  #strategy .workflow-scene:hover :is(.workflow-node--root, .workflow-browser, .workflow-seal) { translate: 0 -6px; }
+  #strategy .workflow-scene:hover :is(.workflow-node--left, .workflow-node--right, .workflow-code) { translate: 0 4px; }
+  #strategy .workflow-connectors path { animation: workflow-draw 850ms ease-out both; }
+  #strategy .workflow-pointer { animation: workflow-point 1100ms ease-out both; }
+  #strategy .workflow-packet { animation: workflow-flow 1200ms ease-in-out both; }
+  #strategy .workflow-checks svg { animation: workflow-arrive 450ms ease both; animation-delay: calc(var(--item) * 160ms + 150ms); }
+}
+@keyframes workflow-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+@keyframes workflow-draw { from { stroke-dashoffset: 50; opacity: 0; } to { stroke-dashoffset: 0; opacity: .55; } }
+@keyframes workflow-point { from { translate: 25px 35px; opacity: 0; } to { translate: 0 0; opacity: 1; } }
+@keyframes workflow-flow { from { translate: 0 0; opacity: 0; } 15%, 80% { opacity: 1; } to { translate: 190px 0; opacity: 0; } }
+
+#strategy .strategy-nav-item { justify-content: center; text-align: center; }
+
+#strategy .strategy-scroll-steps { display: grid; gap: 28px; }
+#strategy .strategy-scroll-steps .strategy-active-card { scroll-margin-block: 100px; }
+@media (prefers-reduced-motion: no-preference) {
+  #strategy .strategy-active-card:not(.is-visible) .workflow-stage *,
+  #strategy .strategy-active-card:not(.is-visible) .workflow-stage > div { animation-play-state: paused; }
+}
+
+#strategy .strategy-active-card[hidden] { display: none; }
+@media (max-width: 767px) { #strategy .strategy-nav-grid { display: none; } #strategy .strategy-scroll-steps { gap: 18px; } #strategy .strategy-active-card { padding: 22px; } }

@@ -6,7 +6,6 @@ const AllProjectsView = lazy(() => import('./components/AllProjectsView'));
 import Strategy from './components/Strategy';
 import DeferredLab from './components/DeferredLab';
 import Experience from './components/Experience';
-import Skills from './components/Skills';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -39,7 +38,7 @@ export default function App() {
 
   useEffect(() => {
     if (currentView !== 'home') return;
-    const target = window.location.hash.slice(1);
+    const target = window.location.hash === '#skills' ? 'projects' : window.location.hash.slice(1);
     if (!target) return;
     const frame = requestAnimationFrame(() => {
       document.getElementById(target)?.scrollIntoView({ behavior: 'instant', block: 'start' });
@@ -56,6 +55,7 @@ export default function App() {
   // Listen to hash changes for deep linking between Home and All Projects view
   useEffect(() => {
     const handleHashChange = () => {
+      if (window.location.hash === '#skills') { window.location.replace('#projects'); return; }
       if (window.location.hash === '#all-projects') {
         setCurrentView('all-projects');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -132,7 +132,6 @@ export default function App() {
                 onNavigateToAllProjects={navigateToAllProjects}
               />
               <Experience />
-              <Skills />
               <Strategy />
               <DeferredLab
                 onShowToast={handleShowToast}

@@ -15,7 +15,7 @@ export default function Skills() {
   return <section id="skills" className="section stack-section">
     <div className="container">
       <div className="section-header stack-heading">
-        <div className="section-tag"><Layers size={15} aria-hidden="true" /><span>03 / Technical stack</span></div>
+        <div className="section-tag"><Layers size={15} aria-hidden="true" /><span>Technical stack</span></div>
         <h2 className="section-title">Good tools.<br /><span className="gradient-text">Thoughtful execution.</span></h2>
         <p className="section-subtitle">The technologies I use to bring interfaces, systems, and scientific ideas to life.</p>
       </div>
@@ -24,7 +24,7 @@ export default function Skills() {
         {groups.map((group, index) => {
           const project = projectsData.find(item => item.id === group.project);
           return <article className={'stack-glass stack-glass--' + group.tone} key={group.label}>
-            <header className="stack-card-heading"><span className="stack-category">{group.label}</span><span className="stack-index" aria-hidden="true">0{index + 1}</span></header>
+            <header className="stack-card-heading"><span className="stack-category">{group.label}</span></header>
             <h3>{group.title}</h3><p className="stack-description">{group.description}</p>
             <ul className="stack-tools" aria-label={group.label + ' technologies'}>
               {group.tools.map(([name, asset]) => <li className="stack-tool" key={asset}>

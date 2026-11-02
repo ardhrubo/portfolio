@@ -52,6 +52,23 @@ function renderDataIcon(iconName, size = 18) {
   return <IconComponent size={size} aria-hidden="true" />;
 }
 
+const experienceLogos = {
+  'Node.js': 'nodejs', Python: 'python', PostgreSQL: 'postgresql', Supabase: 'supabase',
+  Docker: 'docker', Puppeteer: 'puppeteer', React: 'react', 'React.js': 'react',
+  'Next.js': 'nextjs', JavaScript: 'javascript', TypeScript: 'typescript',
+  Git: 'git', 'Linux (Ubuntu)': 'ubuntu', HTML5: 'html5', CSS3: 'css3',
+  Express: 'express', 'Express.js': 'express', MongoDB: 'mongodb', Redis: 'redis',
+  'Tailwind CSS': 'tailwindcss', Playwright: 'playwright', NumPy: 'numpy',
+};
+
+function ExperienceBadge({ name }) {
+  const logo = experienceLogos[name];
+  return <span className="experience-tech-badge">
+    {logo && <img src={`/tech/${logo}.svg`} alt="" width="20" height="20" loading="lazy" />}
+    {name}
+  </span>;
+}
+
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('experience'); // 'experience' | 'education' | 'events'
   const [filterCategory, setFilterCategory] = useState('engineering'); // 'all' | 'engineering' | 'research' | 'education'
@@ -76,7 +93,7 @@ export default function Experience() {
         <div className="section-header">
           <div className="section-tag">
             <BriefcaseBusiness size={15} aria-hidden="true" />
-            <span>02 / Experience & research</span>
+            <span>Experience & research</span>
           </div>
           <h2 className="section-title">
             The work behind <span className="gradient-text">the work.</span>
@@ -219,7 +236,7 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <div className="experience-preview-tech" aria-label="Selected technologies">{exp.tech.slice(0, 3).map(tech => <span key={tech}>{tech}</span>)}</div>
+                  <div className="experience-preview-tech" aria-label="Selected technologies">{exp.tech.slice(0, 3).map(tech => <ExperienceBadge key={tech} name={tech} />)}</div>
 
                   <details className="experience-details"><summary>Explore this role</summary><p className="timeline-desc">{exp.description}</p><ul className="timeline-achievements">
                     {exp.achievements.map((item, idx) => (
@@ -232,9 +249,7 @@ export default function Experience() {
 
                   <div className="timeline-tech-row">
                     {exp.tech.map((t, idx) => (
-                      <span key={idx} className="tech-tag-pill">
-                        {t}
-                      </span>
+                      <ExperienceBadge key={idx} name={t} />
                     ))}
                   </div>
                   </details>

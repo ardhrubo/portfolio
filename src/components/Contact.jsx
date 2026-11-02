@@ -24,7 +24,7 @@ export default function Contact({ onShowToast }) {
     setPrepared(true);
   };
   return <section id="contact" className="section contact-studio"><div className="container">
-    <div className="section-header"><div className="section-tag"><Mail size={15} aria-hidden="true" /><span>07 / Let’s build</span></div><h2 className="section-title">Let’s make something.</h2><p className="section-subtitle">Have an idea? Let’s talk.</p></div>
+    <div className="section-header"><div className="section-tag"><Mail size={15} aria-hidden="true" /><span>Let’s build</span></div><h2 className="section-title">Let’s make something.</h2><p className="section-subtitle">Have an idea? Let’s talk.</p></div>
     <div className="contact-studio-shell">
       <aside className="contact-studio-profile" aria-label="Contact details">
         <div className="contact-portrait-art"><span className="contact-orbit contact-orbit--outer" aria-hidden="true" /><span className="contact-orbit contact-orbit--inner" aria-hidden="true" /><span className="contact-orbit-node" aria-hidden="true" /><img src={personalInfo.avatar} alt="" width="112" height="112" /><span className="contact-art-icon" aria-hidden="true"><Mail size={19} /></span></div>

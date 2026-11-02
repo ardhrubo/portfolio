@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { projectsData } from '../data/portfolioData';
 import Button from './ui/Button';
-import { ArrowUpRight, ArrowRight, FolderOpen, FolderKanban, Layers } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, FolderKanban, Layers } from 'lucide-react';
 import '../styles/projects.css';
 
 // Exact matches only: unavailable marks and methods keep their text labels.
@@ -15,10 +15,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
     return [
       projectsData.find(p => p.id === 'brownsinterior'),
       projectsData.find(p => p.id === 'squicyuap'),
-      projectsData.find(p => p.id === 'horizontaxsolution'),
       projectsData.find(p => p.id === 'scrapeautomate'),
-      projectsData.find(p => p.id === 'admissionbondhu'),
-      projectsData.find(p => p.id === 'emailhider'),
     ].filter(Boolean);
   }, []);
 
@@ -33,7 +30,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
         <div className="section-header">
           <div className="section-tag">
             <FolderKanban size={15} aria-hidden="true" />
-            <span>01 / Selected projects</span>
+            <span>Selected projects</span>
           </div>
           <h2 className="section-title">
             Ideas turned into products
@@ -45,10 +42,9 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
 
         {/* Flagship Grid */}
         <div className="flagship-grid">
-          {flagshipProjects.map((project, index) => (
-            <article key={project.id} className={`flagship-card ${index === 0 ? 'flagship-card--lead' : ''}`}>
+          {flagshipProjects.map((project) => (
+            <article key={project.id} className="flagship-card">
               <div className="flagship-media">
-                <div className="project-preview-bar"><span className="project-preview-dots" aria-hidden="true"><i /><i /><i /></span><span>{project.title}</span><span className="project-preview-index">{String(index + 1).padStart(2, '0')}</span></div>
                 <div className="project-preview-screen">
                 {!imageErrors[project.id] && project.image ? (
                   <img
@@ -67,13 +63,12 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
               </div>
 
               <div className="flagship-body">
-                <div className="project-card-meta"><span>{index === 0 ? 'Featured product' : project.categoryLabel}</span><span>{project.badge}</span></div>
+                <div className="project-card-meta"><span>{project.categoryLabel}</span></div>
                 <h3 className="flagship-title">{project.title}</h3>
-                <p className="project-subtitle">{project.subtitle}</p>
                 <p className="flagship-desc">{project.desc}</p>
 
                 <div className="flagship-tech-row" aria-label="Built with">
-                  {project.tech.filter(t => stackLogos[t]).map((t) => (
+                  {project.tech.filter(t => stackLogos[t]).slice(0, 3).map((t) => (
                     <span key={t} className="project-stack-logo" tabIndex={0}>
                       <span className={`project-stack-mark project-stack-mark--${stackLogos[t]}`}><img src={`/tech/${stackLogos[t]}.svg`} alt={t} width="28" height="28" /></span>
                       <span className="project-stack-tooltip" aria-hidden="true">{t}</span>
@@ -97,7 +92,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
                     className="project-details-button"
                     aria-label={`View project: ${project.title}`}
                   >
-                    <span>Explore the build</span><ArrowRight size={16} aria-hidden="true" />
+                    <span>Details</span><ArrowRight size={16} aria-hidden="true" />
                   </Button>
                 </div>
               </div>
@@ -105,26 +100,9 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
           ))}
         </div>
 
-        {/* CTA Banner to Dedicated All Projects Page */}
-        <div className="vault-cta-banner">
-          <div className="vault-cta-info">
-            <div className="vault-cta-tag">
-              <FolderOpen size={16} aria-hidden="true" />
-              <span>More to explore</span>
-            </div>
-            <h3 className="vault-cta-title">There’s more behind the work.</h3>
-            <p className="vault-cta-desc">
-              Browse web applications, automation tools, and research projects by technology or category.
-            </p>
-          </div>
-          <Button
-            variant="secondary"
-            onClick={onNavigateToAllProjects}
-            className="btn-explore-vault-cta"
-            title="Browse all projects"
-          >
-            <span>All projects</span>
-            <ArrowRight size={17} aria-hidden="true" />
+        <div className="projects-archive-link">
+          <Button variant="secondary" onClick={onNavigateToAllProjects}>
+            All projects <ArrowRight size={17} aria-hidden="true" />
           </Button>
         </div>
       </div>

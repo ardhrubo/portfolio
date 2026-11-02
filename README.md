@@ -32,9 +32,9 @@ npm run lint     # Run Oxlint
 
 ## Important behavior
 
-- The Approach section includes an illustrative mixing animation with Mix and Pause controls, offscreen pausing, and reduced-motion support. Space Grotesk headings and DM Sans body text (self-hosted) use shared section alignment. Metrics use glass tiles.
+- The Approach section shows Design, Build, Automate, and Verify as four cards revealed through normal scrolling; buttons provide direct step navigation. Each step has a workflow illustration with a finite entrance animation and subtle hover depth; reduced motion keeps the artwork static. Space Grotesk headings and DM Sans body text (self-hosted) use shared section alignment. Metrics use glass tiles.
 
-- The hero is a single glass stage: headline, intro, actions, and technology links on the left; a framed portrait with a glass name chip on the right. When the centre column is narrow, the portrait collapses into a compact profile row. A custom connected-D SVG mark appears in navigation and the browser tab; the full-resolution mark is in `public/brand/`.
+- The hero is a single glass stage: headline, intro, actions, and technology links on the left; a framed portrait with a glass name chip on the right. When the centre column is narrow, the portrait collapses into a compact profile row. A faceted emerald D with shallow 3D depth appears in the glass navigation logo and browser tab; the scalable SVG is in `public/brand/`.
 
 - Desktop navigation uses a spacious centered glass section rail (260–304px) and a separate utility dock. Services use translucent visual cards with short summaries and direct contact links.
 
@@ -52,3 +52,9 @@ npm run lint     # Run Oxlint
 - Contact prepares a `mailto:` draft; there is no form backend.
 
 Read [AGENTS.md](AGENTS.md) before UI work. It is the current design authority. The generated [design-system master](design-system/portfolio/MASTER.md) predates the current palette; the architecture guide explains precedence.
+
+Section introductions are centered and use names without numeric prefixes. Approach illustrations sit directly in the shared glass panel without a separate frame, caption bar, or counter.
+
+The separate Technical Stack section has been removed. Technology badges remain in the hero, projects, and experience. Hero badges link to Projects, which also handles legacy `#skills` bookmarks.
+
+Approach uses scroll-revealed cards below 768px and a single selectable panel on larger screens (hover, keyboard focus, or click). Project selection is limited to Brown’s Interior, Squicy UAP, and ScrapeAutomate in compact equal cards; remaining projects are available through All projects.

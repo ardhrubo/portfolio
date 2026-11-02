@@ -12,7 +12,7 @@ class LabBoundary extends Component {
         <div className="section-header">
           <div className="section-tag">
             <Atom size={15} aria-hidden="true" />
-            <span>05 / 3D playground</span>
+            <span>3D playground</span>
           </div>
           <h2 className="section-title">Science, <span className="gradient-text">in motion.</span></h2>
           <p className="section-subtitle">The interactive lab could not load on this device. You can still explore the projects and research.</p>
@@ -34,7 +34,7 @@ export default function DeferredLab(props) {
       <div className="section-header">
         <div className="section-tag">
           <Atom size={15} aria-hidden="true" />
-          <span>05 / 3D playground</span>
+          <span>3D playground</span>
         </div>
         <h2 className="section-title">Science, <span className="gradient-text">in motion.</span></h2>
         {ready ? <ReactionLoader label="Preparing the interactive experiments…" /> : <p className="section-subtitle">Illustrative experiments in motion.</p>}
