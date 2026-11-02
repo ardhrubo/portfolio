@@ -1,5 +1,5 @@
 export const personalInfo = {
-  name: "AR Dhrubo",
+  name: "AR DHRUBO",
   headline: "Product Builder",
   heroHeadline: "A little curiosity.",
   heroHeadlineAccent: "Something useful.",
@@ -17,7 +17,7 @@ export const personalInfo = {
     { label: 'Workflow automation', detail: 'Python / Puppeteer / Data pipelines' },
     { label: 'Backend engineering', detail: 'REST APIs / PostgreSQL / Integrations' },
   ],
-  fullName: "Abdur Rahman Dhrubo",
+  fullName: "ABDUR RAHMAN DHRUBO",
   avatar: "/dhrubo-profile.jpg",
   role: "Full-Stack Software Engineer & Scientific Computing Researcher",
   tagline: "Architecting high-performance full-stack web platforms and scientific computing simulations (Monte Carlo & quantum DFT modeling).",

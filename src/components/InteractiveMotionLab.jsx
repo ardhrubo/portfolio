@@ -667,7 +667,7 @@ export default function InteractiveMotionLab({ onShowToast, onNavigateToReaction
               </div>
               <div>
                 <h3 className="lab-game-teaser-title">Reaction Lab: Interactive Chemistry Game</h3>
-                <p className="lab-game-teaser-desc">Mix reagents, trigger unexpected chemical reactions, and watch Dhrubo’s face react in real-time.</p>
+                <p className="lab-game-teaser-desc">Mix reagents, trigger unexpected chemical reactions, and watch DHRUBO’s face react in real-time.</p>
               </div>
             </div>
             <Button variant="secondary" onClick={onNavigateToReactionLab}>

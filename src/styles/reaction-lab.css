@@ -227,3 +227,52 @@
 .reaction-lab-page .rl-mission h2 { margin: 8px 0; font-size: clamp(20px, 3vw, 28px); color: var(--foreground); }
 .reaction-lab-page .rl-mission p { color: var(--text-secondary); font-size: 14px; }
 .reaction-lab-page .rl-mission .rl-actions { flex-wrap: wrap; }
+/* The playable illustrated laboratory. */
+.reaction-lab-page .rl-game-scene { position: relative; isolation: isolate; overflow: hidden; min-height: 460px; padding: 90px 24px 38px; gap: 0; align-items: end; background: linear-gradient(#173947, #285763); border-color: #517984; }
+.rl-lab-wall { position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(#ffffff06 1px, transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px); background-size: 40px 40px; }
+.rl-lab-wall > span { position: absolute; top: 20px; left: 22px; color: #b3d4d7; font: 10px var(--font-mono); letter-spacing: .15em; }
+.rl-wall-shelf { position: absolute; top: 65px; left: 25px; border-bottom: 8px solid #72918b; color: #d2ecdd; padding: 8px 16px; font-size: 25px; }
+.rl-lab-board { position: absolute; right: 22px; top: 58px; border: 5px solid #ba9471; padding: 12px 20px; background: #1d3938; color: #d2e5c6; font: italic 15px/1.5 Georgia,serif; rotate: -3deg; }
+.rl-lab-bench { position: absolute; bottom: 0; left: 0; right: 0; height: 65px; background: linear-gradient(#dfb383 0 12px,#92745d 12px 16px,#45545e 16px); z-index: -1; border-top: 3px solid #f5d8ad; }
+.rl-experiment { position: relative; z-index: 2; padding-bottom: 0; }
+.reaction-lab-page .rl-experiment .rl-flask { max-width: 210px; }
+.reaction-lab-page .rl-experiment .rl-glass { stroke: #bcebf2; }
+.rl-drop-label { display: block; color: #c0e5e6; font-size: 10px; text-align: center; margin-bottom: 24px; }
+.rl-scientist { position: relative; width: 100%; max-width: 260px; justify-self: center; }
+.rl-scientist svg { width: 100%; display: block; overflow: visible; }
+.rl-speech { position: relative; z-index: 3; padding: 10px 14px; border-radius: 16px 16px 16px 3px; background: #f6efd9; color: #304550; font-size: 13px; font-weight: 650; box-shadow: 0 4px 0 #12313a44; text-align: center; }
+.rl-scientist-name { display: block; color: #e4efeb; font: 9px var(--font-mono); text-align: center; letter-spacing: .1em; }
+.rl-bottle { position: relative; flex: none; width: 26px; height: 34px; border: 2px solid color-mix(in srgb,var(--swatch),#678595 40%); border-radius: 5px 5px 8px 8px; background: linear-gradient(90deg,#ffffff44,transparent 40%),linear-gradient(transparent 25%,var(--swatch) 26%); box-shadow: inset 2px 0 2px #fff5; }
+.rl-bottle::before { content: ''; position: absolute; top: -6px; left: 3px; right: 3px; height: 6px; border-radius: 2px; background: #607b89; }
+.rl-bottle i { position: absolute; inset: 12px 4px 8px; background: #f5efd9; border-radius: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+ .scientist-head { transform-origin: 120px 160px; animation: pip-watch 4s ease-in-out 2; }
+ .rl-scientist[data-mood='excited'] .scientist-body { animation: rl-bounce .6s ease 3; }
+ .rl-scientist:is([data-mood='shocked'],[data-mood='singed']) .scientist-body { animation: pip-recoil .7s ease 2; transform-origin: 120px 320px; }
+ .rl-scientist[data-mood='worried'] .scientist-head { animation: rl-tremble .16s linear 8; }
+ .rl-scientist[data-mood='curious'] .scientist-head { rotate: -9deg; }
+}
+@keyframes pip-watch { 50% { transform: rotate(-4deg); } }
+@keyframes pip-recoil { 30% { transform: rotate(12deg) translateX(12px); } 65% { transform: rotate(-3deg); } }
+@media(max-width: 639px) {
+ .reaction-lab-page .rl-game-scene { min-height: 370px; padding: 100px 12px 35px; gap: 0; }
+ .rl-speech { font-size: 11px; padding: 8px; }
+ .rl-lab-board { top: 50px; right: 15px; font-size: 12px; padding: 8px 15px; }
+ .rl-wall-shelf { left: 14px; font-size: 20px; }
+ .rl-drop-label { font-size: 9px; }
+}
+
+/* Keep the experiment in view instead of burying it under introduction cards. */
+.reaction-lab-page .section-header { margin-bottom: 14px; text-align: left; }
+.reaction-lab-page .section-title { font-size: clamp(24px, 3vw, 36px); margin: 6px 0; }
+.reaction-lab-page .section-subtitle { font-size: 13px; line-height: 1.5; }
+.reaction-lab-page .rl-section { padding-top: 12px; }
+.reaction-lab-page .rl-disclaimer { margin-top: 5px; font-size: 10px; }
+.reaction-lab-page .rl-freeplay-toolbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-radius: 14px; margin-bottom: 12px; gap: 8px; }
+.reaction-lab-page .rl-freeplay-toolbar h2, .reaction-lab-page .rl-freeplay-toolbar p { display: none; }
+.reaction-lab-page .rl-freeplay-toolbar small { font-size: 10px; }
+.reaction-lab-page .rl-game-scene { min-height: 365px; padding-top: 62px; }
+.reaction-lab-page .rl-scientist { max-width: 205px; }
+.reaction-lab-page .rl-experiment .rl-flask { max-width: 175px; }
+@media(min-width: 700px) { .reaction-lab-page .rl-layout { grid-template-columns: minmax(0,1.2fr) minmax(260px,1fr); gap: 12px; } .reaction-lab-page .rl-panel { padding: 12px; } .reaction-lab-page .rl-reagent { padding: 7px; gap: 7px; } }
+@media(max-width: 699px) { .reaction-lab-page .rl-game-scene { min-height: 330px; } .reaction-lab-page .rl-scientist { max-width: 170px; } }

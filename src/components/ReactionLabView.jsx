@@ -138,13 +138,16 @@ export default function ReactionLabView({ onBackToHome }) {
   const toggleReagent = id => {
     if (busy) return;
     if (phase === 'react') { setPhase('idle'); setResult(null); setSelected([id]); return; }
-    setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : prev.length >= 2 ? [prev[0], id] : [...prev, id]);
+    if (selected.includes(id)) { setSelected(selected.filter(x => x !== id)); return; }
+    const pair = selected.length >= 2 ? [selected[0], id] : [...selected, id];
+    setSelected(pair);
+    if (pair.length === 2) mix(pair);
   };
 
-  const mix = () => {
-    if (selected.length !== 2 || busy || (!freePlay && (solved || complete))) return;
+  const mix = (ingredients = selected) => {
+    if (ingredients.length !== 2 || busy || (!freePlay && (solved || complete))) return;
     clearTimers();
-    const reaction = findReaction(...selected);
+    const reaction = findReaction(...ingredients);
     if (!freePlay) {
       setAttempts(n => n + 1);
       if (reaction.id === mission.target) {
@@ -190,10 +193,10 @@ export default function ReactionLabView({ onBackToHome }) {
           <p className="rl-disclaimer">Scripted, simplified chemistry for fun — not a simulator. Don’t try the hazardous mixes at home.</p>
         </header>
 
-        <div className="rl-mission" aria-live="polite">
+        <div className={`rl-mission ${freePlay ? "rl-freeplay-toolbar" : ""}`} aria-live="polite">
           <div><small>{freePlay ? 'FREE PLAY' : complete ? 'ALL CHALLENGES COMPLETE' : `CHALLENGE ${missionIndex + 1} / ${missions.length}`} · {score} points</small>
             <h2>{freePlay ? 'Discover your own combinations' : complete ? 'Lab complete. Well done!' : mission.goal}</h2>
-            <p>{!freePlay && solved && phase === 'react' ? 'Correct reaction! Continue to the next challenge.' : !freePlay && phase === 'react' && !solved ? 'That outcome does not meet the goal. Use what you learned and try another pair.' : 'Select two bottles, then mix. Observe the flask and the reaction result.'}</p>
+            <p>{!freePlay && solved && phase === 'react' ? 'Correct reaction! Continue to the next challenge.' : !freePlay && phase === 'react' && !solved ? 'That outcome does not meet the goal. Use what you learned and try another pair.' : 'Choose two bottles. The second starts the reaction. Clear the bench to experiment again.'}</p>
             {!freePlay && hintOpen && mission && <p>{mission.hint}</p>}
           </div>
           <div className="rl-actions">
@@ -207,7 +210,7 @@ export default function ReactionLabView({ onBackToHome }) {
           <div className="rl-stage rl-game-scene" data-reaction={result?.effect || 'none'}>
             <div className="rl-lab-wall" aria-hidden="true"><span>PiP LAB / EXPERIMENT STATION</span><div className="rl-wall-shelf">⚗ · H₂O · 🧪</div><div className="rl-lab-board">Observe.<br />Mix.<br />Discover.</div></div>
             <div className="rl-experiment" onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); if (byId[id]) toggleReagent(id); }}>
-            <span className="rl-drop-label">{busy ? 'Experiment in progress' : 'Drop bottles here or tap the shelf'}</span>
+            <span className="rl-drop-label">{busy ? 'Experiment in progress' : 'Add two bottles to experiment'}</span>
             <Flask phase={phase} first={first} second={second} result={result} runId={runId} />
             </div><Scientist mood={mood} quote={quote} runId={runId} /><div className="rl-lab-bench" aria-hidden="true" />
           </div>
@@ -230,7 +233,7 @@ export default function ReactionLabView({ onBackToHome }) {
             </div>
 
             <div className="rl-actions">
-              <Button onClick={mix} disabled={selected.length !== 2 || busy || (!freePlay && (solved || complete))}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Run experiment'}</Button>
+              <Button onClick={() => mix()} disabled={selected.length !== 2 || busy || (!freePlay && (solved || complete))}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Run experiment'}</Button>
               <Button variant="secondary" onClick={clear} disabled={busy || (!selected.length && !result)}><RotateCcw size={16} aria-hidden="true" />Clear</Button>
             </div>
 
