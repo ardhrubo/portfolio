@@ -10,7 +10,7 @@
 #portfolio-sidebar::before { background: linear-gradient(115deg, var(--liquid-sheen), transparent 16% 82%, var(--liquid-reflection)); opacity: .4; }
 #portfolio-sidebar > * { flex-shrink: 0; }
 #portfolio-sidebar .sidebar-brand { padding: 10px 10px 4px; gap: 16px; min-height: 68px; }
-#portfolio-sidebar .sidebar-brand strong { font-size: 22px; font-weight: 650; letter-spacing: 0; word-spacing: .08em; white-space: nowrap; line-height: 1.4; }
+#portfolio-sidebar .sidebar-brand strong { font-size: 22px; font-weight: 650; letter-spacing: 0; word-spacing: .08em; white-space: nowrap; line-height: 1.4; text-transform: uppercase; }
 #portfolio-sidebar .sidebar-brand small { font-size: 12px; letter-spacing: .02em; margin-top: 5px; }
 #portfolio-sidebar .sidebar-divider { margin: 24px 10px 22px; background: linear-gradient(90deg, var(--border-medium), transparent); }
 #portfolio-sidebar .sidebar-section-label { margin: 0 16px 14px; font-size: 10px; letter-spacing: .16em; }

@@ -9,7 +9,7 @@
 
 /* A compact signature wordmark paired with the open ribbon D. */
 #sidebar-brand { gap: 8px; }
-#sidebar-brand strong { font-family: var(--font-heading); font-size: 19px; font-weight: 650; letter-spacing: -.065em; line-height: 1.15; }
+#sidebar-brand strong { font-family: var(--font-heading); font-size: 19px; font-weight: 650; letter-spacing: -.065em; line-height: 1.15; text-transform: uppercase; }
 #sidebar-brand small { font-size: 9px; letter-spacing: .12em; text-transform: uppercase; margin-top: 5px; }
 #sidebar-brand .dhrubo-mark { width: 38px !important; height: 38px !important; }
 
