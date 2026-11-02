@@ -25,14 +25,16 @@ flowchart TD
   App --> Nav[Navbar and responsive navigation]
   App --> Home[Home sections]
   App --> Archive[Lazy project archive]
+  App --> ReactionLab[Lazy reaction lab game]
   App --> Overlay[Project drawer, search, guide, toast]
   Home --> Data[src/data/portfolioData.js]
   Archive --> Data
+  ReactionLab --> GameData[src/data/reactionLabData.js]
   Home --> Deferred[DeferredLab]
   Deferred --> Three[Lazy Three.js lab]
 ```
 
-`index.html` applies the saved theme before React mounts to prevent a theme flash. `src/App.jsx` owns theme state and local storage, home/archive view state, hash navigation, selected project, search, guide, toast state, and the global `Ctrl/Cmd+J` shortcut. The archive and guide use `React.lazy`; the 3D lab is deferred until it is near the viewport.
+`index.html` applies the saved theme before React mounts to prevent a theme flash. `src/App.jsx` owns theme state and local storage, home/archive/reaction-lab view state, hash navigation, selected project, search, guide, toast state, and the global `Ctrl/Cmd+J` shortcut. The archive, reaction lab, and guide use `React.lazy`; the 3D lab is deferred until it is near the viewport.
 
 ### Home page order
 
@@ -40,16 +42,16 @@ flowchart TD
 2. `ProjectsShowcase` — 3 curated flagship cards in a compact equal grid (`brownsinterior`, `squicyuap`, `scrapeautomate`), with live links, drawer details triggers, and archive link.
 3. `Experience` — work, education, credentials, events, and photo preview.
 4. `Strategy` — "How I work" process showcase with four workflow illustrations (Design blueprint, Build page assembly, Automate branching pipeline, and Verify checklist). Single-stage interactive tabbed view on desktop (≥768px); sequential scroll revelation below 768px.
-5. `DeferredLab` — placeholder, then interactive science lab.
+5. `DeferredLab` — placeholder, then interactive science lab (includes game teaser leading to `#reaction-lab`).
 6. `Services`, `Contact`, and `Footer`.
 
-The archive is a separate hash-addressable view. The project drawer, search, and guide are dialogs; toast is transient feedback. Legacy `#skills` hash redirects directly to `#projects`.
+The archive and reaction lab are separate hash-addressable views (`#all-projects`, `#reaction-lab`). The project drawer, search, and guide are dialogs; toast is transient feedback. Legacy `#skills` hash redirects directly to `#projects`.
 
 ## Navigation and URL behavior
 
 `src/components/navigation/navConfig.js` is the shared map of section IDs, labels, anchor URLs, and icons. Desktop sidebar, mobile menu, and mobile bottom bar consume it. The bottom bar intentionally includes only `hero`, `projects`, `experience`, and `contact`; the mobile menu exposes every destination. `Navbar.jsx` coordinates the responsive controls and `useActiveSection.js` tracks the current section. The right dock owns search, portfolio guide, GitHub, contact, and theme actions; keep navigation links on the left and utility actions on the right.
 
-`#all-projects` selects the archive. Other section hashes navigate to the home view and scroll. Use `navigateToHome` or `navigateToAllProjects` in `App.jsx` so URL and view state remain coordinated.
+`#all-projects` selects the archive. `#reaction-lab` selects the interactive chemistry face reaction game. Other section hashes navigate to the home view and scroll. Use `navigateToHome`, `navigateToAllProjects`, or `navigateToReactionLab` in `App.jsx` so URL and view state remain coordinated.
 
 ## Content model
 

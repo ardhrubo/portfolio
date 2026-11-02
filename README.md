@@ -42,7 +42,7 @@ npm run lint     # Run Oxlint
 
 - Theme preference is stored as `portfolio-theme`; `index.html` applies it before React starts.
 - One visible theme switch: right utility dock on desktop, top bar on mobile. Experience uses a quiet timeline with expandable contributions and separate education/events views.
-- `#all-projects` opens the project archive. Other section hashes navigate the home view.
+- `#all-projects` opens the project archive. `#reaction-lab` opens the interactive chemical face-reaction game. Other section hashes navigate the home view.
 - Search: `Ctrl/Cmd+K`. Portfolio guide: `Ctrl/Cmd+J`.
 - The Three.js lab loads near the viewport rather than in the initial page bundle.
 - The lazy science lab uses a decorative SVG flask reaction with reduced-motion support; archive and guide use text loading states. Loading never adds an artificial delay.

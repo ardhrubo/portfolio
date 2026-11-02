@@ -13,7 +13,7 @@ export default function Sidebar({ activeSection, onNavClick, onBrandClick }) {
         const Icon = item.icon;
         return <li key={item.id}><a id={`sidebar-link-${item.id}`} href={item.href} onClick={event => onNavClick(event, item)} aria-current={activeSection === item.id ? 'page' : undefined} className="sidebar-nav-link"><Icon size={18} aria-hidden="true" /><span>{item.label}</span><span className="nav-active-dot" /></a></li>;
       })}</ul></nav>
-      <div className="sidebar-availability"><span className="status-dot" /><span>Open for opportunities &bull; Remote &amp; Dhaka</span></div>
+      <div className="sidebar-availability"><span className="status-dot" /><span>Open to opportunities &bull; Remote &amp; Dhaka</span></div>
     </aside>
   );
 }

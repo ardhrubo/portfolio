@@ -12,7 +12,10 @@ import {
   Sliders,
   Pause,
   Play,
+  FlaskConical,
+  ArrowRight,
 } from 'lucide-react';
+import Button from './ui/Button';
 
 // Light Forest Green & Mint Jade Theme
 const THEME_COLORS = {
@@ -73,7 +76,7 @@ function generateC60Vertices() {
   return unique.slice(0, 60);
 }
 
-export default function InteractiveMotionLab({ onShowToast }) {
+export default function InteractiveMotionLab({ onShowToast, onNavigateToReactionLab }) {
   const containerRef = useRef(null);
   const [activeMode, setActiveMode] = useState('fullerene'); // 'fullerene' | 'montecarlo' | 'wave'
   const [study, setStudy] = useState('3d');
@@ -513,6 +516,18 @@ export default function InteractiveMotionLab({ onShowToast }) {
 
         <div className="study-tabs" role="group" aria-label="Choose science study">
           {[[ '3d', '3D', Atom], ['waves', 'Waves', Waves], ['crystal', 'Crystal', Sparkles]].map(([id, label, Icon]) => <button key={id} type="button" aria-pressed={study === id} onClick={() => setStudy(id)}><Icon size={18} aria-hidden="true" />{label}</button>)}
+          {onNavigateToReactionLab && (
+            <button
+              type="button"
+              className="study-tab-game-btn"
+              onClick={onNavigateToReactionLab}
+              title="Play Reaction Lab game"
+            >
+              <FlaskConical size={18} aria-hidden="true" />
+              <span>Mix &amp; React Game</span>
+              <ArrowRight size={14} aria-hidden="true" />
+            </button>
+          )}
         </div>
         <p className="study-caption">Illustrative models, not research calculations.</p>
         <div hidden={study !== '3d'} className="lab-shell glass-panel relative rounded-3xl overflow-hidden border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[var(--surface-highlight)]">
@@ -643,6 +658,24 @@ export default function InteractiveMotionLab({ onShowToast }) {
           </div>
         </div>
         {study !== '3d' && <ScienceStudies key={study} initialMode={study} />}
+
+        {onNavigateToReactionLab && (
+          <div className="lab-game-teaser">
+            <div className="lab-game-teaser-content">
+              <div className="lab-game-teaser-icon">
+                <FlaskConical size={22} aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="lab-game-teaser-title">Reaction Lab: Interactive Chemistry Game</h3>
+                <p className="lab-game-teaser-desc">Mix reagents, trigger unexpected chemical reactions, and watch Dhrubo’s face react in real-time.</p>
+              </div>
+            </div>
+            <Button variant="secondary" onClick={onNavigateToReactionLab}>
+              <span>Play Reaction Lab</span>
+              <ArrowRight size={16} aria-hidden="true" />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

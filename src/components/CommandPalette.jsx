@@ -11,12 +11,13 @@ import {
   Atom,
   Handshake,
   Mail,
+  FlaskConical,
 } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { projectsData, personalInfo } from '../data/portfolioData';
 import AccessibleDialog from './ui/AccessibleDialog';
 
-export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects, onNavigateToHome }) {
+export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects, onNavigateToReactionLab, onNavigateToHome }) {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
     { name: 'Experience & Research', href: '#experience', Icon: Briefcase, keywords: ['jobs', 'career', 'work', 'education', 'research', 'credentials', 'events'] },
     { name: 'Engineering Approach', href: '#strategy', Icon: Compass, keywords: ['methodology', 'strategy', 'process', 'workflow', 'design', 'automate'] },
     { name: '3D Simulation Lab', href: '#simulation-lab', Icon: Atom, keywords: ['threejs', 'webgl', 'physics', 'science', 'crystallography'] },
+    { name: 'Reaction Lab (Chemistry Game)', href: '#reaction-lab', Icon: FlaskConical, keywords: ['game', 'chemistry', 'reaction', 'lab', 'fun', 'face', 'mix', 'experiment'] },
     { name: 'Services', href: '#services', Icon: Handshake, keywords: ['hire', 'consulting', 'freelance', 'contract', 'offerings'] },
     { name: 'Get in Touch', href: '#contact', Icon: Mail, keywords: ['contact', 'email', 'message', 'reach', 'talk', 'hire'] },
   ];
@@ -55,6 +57,8 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
     } else if (type === 'link') {
       if (val === '#all-projects' && onNavigateToAllProjects) {
         onNavigateToAllProjects();
+      } else if (val === '#reaction-lab' && onNavigateToReactionLab) {
+        onNavigateToReactionLab();
       } else {
         onNavigateToHome(val);
       }

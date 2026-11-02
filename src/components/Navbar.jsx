@@ -37,7 +37,7 @@ export default function Navbar({
 
   const handleNavClick = (e, item) => {
     setMobileMenuOpen(false);
-    if (currentView === 'all-projects' || item.id === 'hero') {
+    if (currentView === 'all-projects' || currentView === 'reaction-lab' || item.id === 'hero') {
       e.preventDefault();
       onNavigateToHome(item.href);
     }

@@ -24,10 +24,80 @@
 #simulation-lab .lab-viewport button { min-height: 44px; }
 #simulation-lab .lab-viewport button:focus-visible { outline-color: #b8f5cf; }
 #simulation-lab .study-visual { background: var(--glass-item); box-shadow: inset 0 1px 0 var(--liquid-edge); }
+
+#simulation-lab .study-tabs { display: flex; flex-wrap: wrap; align-items: center; }
+#simulation-lab .study-tab-game-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-color: var(--tint-border);
+  background: linear-gradient(145deg, var(--liquid-reflection), transparent 70%), var(--tint-bg);
+  color: var(--foreground);
+  font-weight: 600;
+  text-decoration: none;
+}
+#simulation-lab .study-tab-game-btn svg:first-child { color: var(--primary); }
+#simulation-lab .study-tab-game-btn:hover {
+  background: var(--glass-item-hover);
+  border-color: var(--primary);
+}
+
+#simulation-lab .lab-game-teaser {
+  margin-top: 24px;
+  padding: 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 10%, transparent), transparent 60%), color-mix(in srgb, var(--glass-bg) 70%, transparent);
+  box-shadow: inset 0 1px 0 var(--liquid-rim), var(--glass-shadow);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+#simulation-lab .lab-game-teaser-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+#simulation-lab .lab-game-teaser-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--tint-bg);
+  border: 1px solid var(--tint-border);
+  color: var(--primary);
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 var(--liquid-edge);
+}
+#simulation-lab .lab-game-teaser-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+}
+#simulation-lab .lab-game-teaser-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
 @media (max-width: 639px) {
   #simulation-lab .study-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   #simulation-lab .study-tabs button { min-width: 0; padding-inline: 9px; }
+  #simulation-lab .study-tab-game-btn { margin-left: 0; grid-column: span 2; justify-content: center; }
   #simulation-lab .lab-toolbar { padding: 14px; }
   #simulation-lab .lab-toolbar button { padding-inline: 12px; }
+  #simulation-lab .lab-game-teaser { padding: 18px; }
+  #simulation-lab .lab-game-teaser-content { flex-direction: column; align-items: flex-start; gap: 12px; }
+  #simulation-lab .lab-game-teaser .ui-button { width: 100%; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) { #simulation-lab button { transition: none; } }

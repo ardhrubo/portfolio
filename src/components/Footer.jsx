@@ -4,7 +4,7 @@ import { Github, Linkedin, Facebook, Youtube } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Logo from './Logo';
 
-export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToHome }) {
+export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToReactionLab, onNavigateToHome }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -13,8 +13,11 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
     if (targetHash === '#all-projects') {
       e.preventDefault();
       if (onNavigateToAllProjects) onNavigateToAllProjects();
+    } else if (targetHash === '#reaction-lab') {
+      e.preventDefault();
+      if (onNavigateToReactionLab) onNavigateToReactionLab();
     } else {
-      if (currentView === 'all-projects') {
+      if (currentView === 'all-projects' || currentView === 'reaction-lab') {
         e.preventDefault();
         if (onNavigateToHome) onNavigateToHome(targetHash);
       }

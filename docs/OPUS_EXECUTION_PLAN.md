@@ -321,8 +321,9 @@ Expected output:
 | **Step 6** | Responsive Workflow Transitions | `src/components/Strategy.jsx`, `src/styles/strategy.css` | Completed ✅ |
 | **Step 7** | Clean Up Dead Code & Stale Files | Removed unmounted `ReactionScene.jsx` | Completed ✅ |
 | **Step 8** | Update Social Preview & Brand Alt | `index.html` | Completed ✅ |
+| **New Game Page** | Interactive Reaction Lab Game (`#reaction-lab`) | `ReactionLabView.jsx`, `reactionLabData.js`, `reaction-lab.css`, `App.jsx`, `InteractiveMotionLab.jsx`, `lab.css` | Completed ✅ |
 
 **Verification**:
 - `oxlint`: 0 warnings, 0 errors.
-- `vite build`: Production bundle built cleanly in ~530ms.
+- `vite build`: Production bundle built cleanly (lazy `ReactionLabView` bundle: ~13 KB js, ~16 KB css).
 

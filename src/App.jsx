@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import HeroBento from './components/HeroBento';
 import ProjectsShowcase from './components/ProjectsShowcase';
 const AllProjectsView = lazy(() => import('./components/AllProjectsView'));
+const ReactionLabView = lazy(() => import('./components/ReactionLabView'));
 import Strategy from './components/Strategy';
 import DeferredLab from './components/DeferredLab';
 import Experience from './components/Experience';
@@ -20,7 +21,9 @@ export default function App() {
     return localStorage.getItem('portfolio-theme') || 'dark';
   });
   const [currentView, setCurrentView] = useState(() => {
-    return window.location.hash === '#all-projects' ? 'all-projects' : 'home';
+    if (window.location.hash === '#all-projects') return 'all-projects';
+    if (window.location.hash === '#reaction-lab') return 'reaction-lab';
+    return 'home';
   });
   const [selectedProject, setSelectedProject] = useState(null);
   const [isCmdOpen, setIsCmdOpen] = useState(false);
@@ -52,14 +55,17 @@ export default function App() {
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
 
-  // Listen to hash changes for deep linking between Home and All Projects view
+  // Listen to hash changes for deep linking between Home, All Projects, and Reaction Lab views
   useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash === '#skills') { window.location.replace('#projects'); return; }
       if (window.location.hash === '#all-projects') {
         setCurrentView('all-projects');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (currentView === 'all-projects') {
+      } else if (window.location.hash === '#reaction-lab') {
+        setCurrentView('reaction-lab');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (currentView !== 'home') {
         setCurrentView('home');
       }
     };
@@ -79,6 +85,12 @@ export default function App() {
   const navigateToAllProjects = () => {
     setCurrentView('all-projects');
     window.location.hash = '#all-projects';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToReactionLab = () => {
+    setCurrentView('reaction-lab');
+    window.location.hash = '#reaction-lab';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -109,6 +121,7 @@ export default function App() {
         onOpenCmd={() => setIsCmdOpen(true)}
         onOpenChat={() => setIsChatOpen(true)}
         onNavigateToAllProjects={navigateToAllProjects}
+        onNavigateToReactionLab={navigateToReactionLab}
         onNavigateToHome={navigateToHome}
       />
 
@@ -120,6 +133,10 @@ export default function App() {
             <Suspense fallback={<p role="status" className="section container">Loading projects…</p>}><AllProjectsView
               onBackToHome={() => navigateToHome('#hero')}
               onSelectProject={(project) => setSelectedProject(project)}
+            /></Suspense>
+          ) : currentView === 'reaction-lab' ? (
+            <Suspense fallback={<p role="status" className="section container">Loading reaction lab…</p>}><ReactionLabView
+              onBackToHome={() => navigateToHome('#simulation-lab')}
             /></Suspense>
           ) : (
             <>
@@ -135,6 +152,7 @@ export default function App() {
               <Strategy />
               <DeferredLab
                 onShowToast={handleShowToast}
+                onNavigateToReactionLab={navigateToReactionLab}
               />
               <Services />
               <Contact
@@ -148,6 +166,7 @@ export default function App() {
         <Footer
           currentView={currentView}
           onNavigateToAllProjects={navigateToAllProjects}
+          onNavigateToReactionLab={navigateToReactionLab}
           onNavigateToHome={navigateToHome}
         />
       </div>
@@ -168,6 +187,7 @@ export default function App() {
         onSelectProject={(p) => setSelectedProject(p)}
         onShowToast={handleShowToast}
         onNavigateToAllProjects={navigateToAllProjects}
+        onNavigateToReactionLab={navigateToReactionLab}
         onNavigateToHome={navigateToHome}
       />
 

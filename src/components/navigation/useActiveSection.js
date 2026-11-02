@@ -9,6 +9,10 @@ export default function useActiveSection(currentView) {
       setActiveSection('projects');
       return undefined;
     }
+    if (currentView === 'reaction-lab') {
+      setActiveSection('simulation-lab');
+      return undefined;
+    }
 
     const ids = NAV_ITEMS.map((item) => item.id).reverse();
     let frame = 0;
