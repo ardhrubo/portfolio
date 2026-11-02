@@ -133,3 +133,5 @@ Section introductions are centered and use names without numeric prefixes. Appro
 The standalone Skills gallery is no longer mounted or linked in navigation/search/footer. Its source and data remain available for reuse. Hero technology links lead to Projects; legacy `#skills` bookmarks resolve to Projects.
 
 Approach uses scroll-revealed cards below 768px and a single selectable panel on larger screens (hover, keyboard focus, or click). Project selection is limited to Brown’s Interior, Squicy UAP, and ScrapeAutomate in compact equal cards; remaining projects are available through All projects.
+
+The reaction lab includes six guided challenges with hints, attempt-based scoring, explicit progression, replay, and free play. Discovery progress remains local. The shared D mark uses a curved, open cyan/lilac glass silhouette without a surrounding tile.

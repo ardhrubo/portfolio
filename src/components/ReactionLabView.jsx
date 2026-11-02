@@ -9,6 +9,14 @@ const STORAGE_KEY = 'reaction-lab-discoveries';
 const POUR_MS = 650;
 const byId = Object.fromEntries(reagents.map(r => [r.id, r]));
 const allReactions = Object.values(reactions);
+const missions = [
+  { target: 'fizz', goal: 'Release carbon dioxide', hint: 'Combine the weak acid with the mild base.' },
+  { target: 'pink', goal: 'Turn the indicator pink', hint: 'The cabbage indicator detects an acid.' },
+  { target: 'teal', goal: 'Turn the indicator blue-green', hint: 'Try the cabbage indicator with a mild base.' },
+  { target: 'neutral', goal: 'Keep the indicator purple', hint: 'A neutral solvent preserves this colour.' },
+  { target: 'foam', goal: 'Release oxygen with an enzyme', hint: 'Catalase breaks down hydrogen peroxide.' },
+  { target: 'layers', goal: 'Create two separate liquid layers', hint: 'Choose a polar and a non-polar liquid.' },
+];
 
 function loadDiscoveries() {
   try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')); }
@@ -99,6 +107,15 @@ export default function ReactionLabView({ onBackToHome }) {
   const [runId, setRunId] = useState(0);
   const [discovered, setDiscovered] = useState(loadDiscoveries);
   const timers = useRef([]);
+  const [missionIndex, setMissionIndex] = useState(0);
+  const [attempts, setAttempts] = useState(0);
+  const [score, setScore] = useState(0);
+  const [solved, setSolved] = useState(false);
+  const [hintOpen, setHintOpen] = useState(false);
+  const [freePlay, setFreePlay] = useState(false);
+  const mission = missions[missionIndex];
+  const complete = missionIndex >= missions.length;
+
 
   const clearTimers = () => { timers.current.forEach(clearTimeout); timers.current = []; };
   useEffect(() => {
@@ -129,13 +146,20 @@ export default function ReactionLabView({ onBackToHome }) {
   const toggleReagent = id => {
     if (busy) return;
     if (phase === 'react') { setPhase('idle'); setResult(null); setSelected([id]); return; }
-    setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : prev.length >= 2 ? [id] : [...prev, id]);
+    setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : prev.length >= 2 ? [prev[0], id] : [...prev, id]);
   };
 
   const mix = () => {
-    if (selected.length !== 2 || busy) return;
+    if (selected.length !== 2 || busy || (!freePlay && (solved || complete))) return;
     clearTimers();
     const reaction = findReaction(...selected);
+    if (!freePlay) {
+      setAttempts(n => n + 1);
+      if (reaction.id === mission.target) {
+        setSolved(true);
+        setScore(n => n + Math.max(25, 100 - attempts * 20 - (hintOpen ? 15 : 0)));
+      }
+    }
     setRunId(n => n + 1);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(reaction); return; }
     setResult(null);
@@ -174,6 +198,19 @@ export default function ReactionLabView({ onBackToHome }) {
           <p className="rl-disclaimer">Scripted, simplified chemistry for fun — not a simulator. Don’t try the hazardous mixes at home.</p>
         </header>
 
+        <div className="rl-mission" aria-live="polite">
+          <div><small>{freePlay ? 'FREE PLAY' : complete ? 'ALL CHALLENGES COMPLETE' : `CHALLENGE ${missionIndex + 1} / ${missions.length}`} · {score} points</small>
+            <h2>{freePlay ? 'Discover your own combinations' : complete ? 'Lab complete. Well done!' : mission.goal}</h2>
+            <p>{!freePlay && solved && phase === 'react' ? 'Correct reaction! Continue to the next challenge.' : !freePlay && phase === 'react' && !solved ? 'That outcome does not meet the goal. Use what you learned and try another pair.' : 'Select two bottles, then mix. Observe the flask and the reaction result.'}</p>
+            {!freePlay && hintOpen && mission && <p>{mission.hint}</p>}
+          </div>
+          <div className="rl-actions">
+            {!freePlay && !complete && !solved && <Button variant="secondary" disabled={busy} onClick={() => setHintOpen(true)}>Hint (−15 points)</Button>}
+            {!freePlay && solved && !busy && <Button onClick={() => { clear(); setMissionIndex(n => n + 1); setSolved(false); setAttempts(0); setHintOpen(false); }}>Next challenge</Button>}
+            <Button variant="secondary" disabled={busy} onClick={() => { clear(); setFreePlay(v => !v); }}>{freePlay ? 'Challenges' : 'Free play'}</Button>
+            {complete && !freePlay && <Button onClick={() => { clear(); setMissionIndex(0); setScore(0); setAttempts(0); setHintOpen(false); setSolved(false); }}>Play again</Button>}
+          </div>
+        </div>
         <div className="rl-layout">
           <div className="rl-stage">
             <Flask phase={phase} first={first} second={second} result={result} runId={runId} />
@@ -198,7 +235,7 @@ export default function ReactionLabView({ onBackToHome }) {
             </div>
 
             <div className="rl-actions">
-              <Button onClick={mix} disabled={selected.length !== 2 || busy}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Mix'}</Button>
+              <Button onClick={mix} disabled={selected.length !== 2 || busy || (!freePlay && (solved || complete))}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Mix'}</Button>
               <Button variant="secondary" onClick={clear} disabled={busy || (!selected.length && !result)}><RotateCcw size={16} aria-hidden="true" />Clear</Button>
             </div>
 
