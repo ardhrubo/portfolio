@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- OpenAI Codex Spiral Mark -->
+  <defs>
+    <linearGradient id="codex-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#10A37F" />
+      <stop offset="100%" stopColor="#0D8C6D" />
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#codex-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 26 A14 14 0 0 1 76 34 L76 56 L64 63 L44 51 L44 38 A14 14 0 0 1 64 26 Z" />
+    <path d="M64 26 L64 50 L44 62 L26 51 A14 14 0 0 1 26 31 L38 24 A14 14 0 0 1 64 26" />
+    <path d="M26 51 L47 63 L47 87 L35 94 A14 14 0 0 1 17 84 L17 64 A14 14 0 0 1 26 51" />
+    <path d="M47 87 L64 77 L84 89 L84 102 A14 14 0 0 1 64 114 L52 107 A14 14 0 0 1 47 87" />
+    <path d="M84 89 L64 77 L64 53 L76 46 A14 14 0 0 1 96 56 L96 76 A14 14 0 0 1 84 89" />
+    <path d="M84 53 L72 46 L72 22 A14 14 0 0 1 92 12 L104 19 A14 14 0 0 1 109 39 L84 53" />
+  </g>
+  <circle cx="64" cy="64" r="8" fill="#10A37F" />
+</svg>

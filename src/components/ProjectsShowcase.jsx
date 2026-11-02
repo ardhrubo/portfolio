@@ -4,8 +4,12 @@ import Button from './ui/Button';
 import { ArrowUpRight, ArrowRight, FolderKanban, Layers } from 'lucide-react';
 import '../styles/projects.css';
 
-// Exact matches only: unavailable marks and methods keep their text labels.
-const stackLogos = { React: 'react', 'React 19': 'react', 'Next.js': 'nextjs', 'Node.js': 'nodejs', 'Three.js': 'threejs', Supabase: 'supabase', Vite: 'vitejs', Puppeteer: 'puppeteer', 'Headless Chrome': 'chrome', Express: 'express', JavaScript: 'javascript', 'Modern CSS': 'css3' };
+const stackLogos = {
+  React: 'react', 'React 19': 'react', 'Next.js': 'nextjs', 'Node.js': 'nodejs',
+  'Three.js': 'threejs', Supabase: 'supabase', Vite: 'vitejs', Puppeteer: 'puppeteer',
+  'Headless Chrome': 'chrome', Express: 'express', JavaScript: 'javascript', 'Modern CSS': 'css3',
+  'Claude Code': 'claudecode', Codex: 'codex', 'Hermes Agent': 'hermes', Antigravity: 'antigravity', Cursor: 'cursor'
+};
 
 export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProjects }) {
   const [imageErrors, setImageErrors] = useState({});

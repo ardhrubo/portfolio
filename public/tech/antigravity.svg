@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Google DeepMind Antigravity Mark (Dynamic Agentic Prism) -->
+  <defs>
+    <linearGradient id="agy-cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#38BDF8" />
+      <stop offset="100%" stopColor="#0284C7" />
+    </linearGradient>
+    <linearGradient id="agy-emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#34D399" />
+      <stop offset="100%" stopColor="#059669" />
+    </linearGradient>
+    <linearGradient id="agy-violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#A78BFA" />
+      <stop offset="100%" stopColor="#6366F1" />
+    </linearGradient>
+  </defs>
+  <!-- Outer Antigravity Orbital Ring -->
+  <circle cx="64" cy="64" r="54" fill="none" stroke="url(#agy-cyan)" stroke-width="3" stroke-dasharray="14 8" opacity="0.4" />
+  <!-- Upper Ascending Prism Face (A) -->
+  <polygon points="64,18 102,82 64,68" fill="url(#agy-cyan)" />
+  <polygon points="64,18 26,82 64,68" fill="url(#agy-emerald)" />
+  <!-- Inverted Gravity Defying Center Wedge (G / Gravity Flip) -->
+  <polygon points="64,68 84,106 64,96" fill="url(#agy-violet)" />
+  <polygon points="64,68 44,106 64,96" fill="url(#agy-cyan)" />
+  <!-- Core Energy Spark -->
+  <circle cx="64" cy="68" r="7" fill="#FFFFFF" />
+</svg>

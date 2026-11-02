@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Cursor AI Isometric Cube -->
+  <defs>
+    <linearGradient id="cursor-top" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#4A4A4A" />
+      <stop offset="100%" stopColor="#2D2D2D" />
+    </linearGradient>
+    <linearGradient id="cursor-left" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#252525" />
+      <stop offset="100%" stopColor="#141414" />
+    </linearGradient>
+    <linearGradient id="cursor-right" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#1E1E1E" />
+      <stop offset="100%" stopColor="#0A0A0A" />
+    </linearGradient>
+  </defs>
+  <!-- Main Isometric Hexagon Cube -->
+  <polygon points="64,16 112,44 112,98 64,126 16,98 16,44" fill="#0A0A0A" />
+  <!-- Top Face -->
+  <polygon points="64,16 112,44 64,72 16,44" fill="url(#cursor-top)" />
+  <!-- Left Face -->
+  <polygon points="16,44 64,72 64,126 16,98" fill="url(#cursor-left)" />
+  <!-- Right Face -->
+  <polygon points="64,72 112,44 112,98 64,126" fill="url(#cursor-right)" />
+  <!-- Precision Edges & Cursor Arrow -->
+  <polyline points="16,44 64,72 112,44" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.8" />
+  <line x1="64" y1="72" x2="64" y2="126" stroke="#FFFFFF" stroke-width="2.5" opacity="0.5" />
+  <!-- Center Arrow Mark -->
+  <polygon points="64,48 76,70 64,65 52,70" fill="#FFFFFF" />
+</svg>

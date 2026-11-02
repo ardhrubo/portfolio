@@ -59,6 +59,8 @@ const experienceLogos = {
   Git: 'git', 'Linux (Ubuntu)': 'ubuntu', HTML5: 'html5', CSS3: 'css3',
   Express: 'express', 'Express.js': 'express', MongoDB: 'mongodb', Redis: 'redis',
   'Tailwind CSS': 'tailwindcss', Playwright: 'playwright', NumPy: 'numpy',
+  'Claude Code': 'claudecode', Codex: 'codex', 'Hermes Agent': 'hermes',
+  Antigravity: 'antigravity', Cursor: 'cursor', 'Cursor AI': 'cursor',
 };
 
 function ExperienceBadge({ name }) {

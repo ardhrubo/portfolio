@@ -9,11 +9,17 @@ export const personalInfo = {
     { name: 'Next.js', logo: 'nextjs' },
     { name: 'Node.js', logo: 'nodejs' },
     { name: 'Python', logo: 'python' },
+    { name: 'Claude Code', logo: 'claudecode' },
+    { name: 'Cursor', logo: 'cursor' },
+    { name: 'Codex', logo: 'codex' },
+    { name: 'Antigravity', logo: 'antigravity' },
+    { name: 'Hermes Agent', logo: 'hermes' },
     { name: 'PostgreSQL', logo: 'postgresql' },
     { name: 'Puppeteer', logo: 'puppeteer' },
   ],
   heroCapabilities: [
     { label: 'Full-stack development', detail: 'React / Next.js / Node.js' },
+    { label: 'Agentic engineering & AI', detail: 'Claude Code / Codex / Hermes / Antigravity / Cursor' },
     { label: 'Workflow automation', detail: 'Python / Puppeteer / Data pipelines' },
     { label: 'Backend engineering', detail: 'REST APIs / PostgreSQL / Integrations' },
   ],
@@ -467,7 +473,7 @@ export const projectsData = [
     badge: "AI Research",
     desc: "Developer testbed exploring autonomous AI coding integrations and terminal command harnesses.",
     longDesc: "Researches terminal command bridging, file system exploration by LLMs, and prompt engineering protocols for automated debugging.",
-    tech: ["AI / LLMs", "Node.js", "CLI Tools", "Prompt Engineering"],
+    tech: ["Claude Code", "Cursor", "Codex", "Antigravity", "Hermes Agent", "Node.js"],
     highlights: ["Autonomous code agent tests", "Terminal automation harness", "Open architecture"],
     hasLiveDemo: false,
     githubUrl: "https://github.com/ardhrubo/free-claude-code"
@@ -577,6 +583,20 @@ export const skillsData = [
       { name: "LLM APIs & Prompt Engineering", level: "Advanced", icon: "fa-solid fa-brain" },
       { name: "Automated E2E QA Suites", level: "Proficient", icon: "fa-solid fa-gears" }
     ]
+  },
+  {
+    category: "AI Agents & Autonomous Coding",
+    icon: "fa-solid fa-wand-magic-sparkles",
+    color: "#38bdf8",
+    description: "Architecting autonomous agent loops, IDE copilot automation, and multi-agent workflows.",
+    skills: [
+      { name: "Claude Code", level: "Expert", icon: "fa-solid fa-terminal" },
+      { name: "Cursor", level: "Expert", icon: "fa-solid fa-laptop-code" },
+      { name: "Codex", level: "Expert", icon: "fa-solid fa-code" },
+      { name: "Antigravity", level: "Advanced", icon: "fa-solid fa-atom" },
+      { name: "Hermes Agent", level: "Advanced", icon: "fa-solid fa-shield-halved" },
+      { name: "LLM Tool Calling & Multi-Agent", level: "Advanced", icon: "fa-solid fa-brain" }
+    ]
   }
 ];
 
@@ -633,7 +653,7 @@ export const experienceData = [
       "Built resilient Puppeteer web scraping pipelines and headless automation clusters with proxy rotation.",
       "Achieved 100% on-time delivery with end-to-end API documentation, testing, and cloud deployments."
     ],
-    tech: ["Node.js", "Python", "PostgreSQL", "Supabase", "Docker", "REST APIs", "Puppeteer"]
+    tech: ["Node.js", "Python", "Claude Code", "Cursor", "Codex", "PostgreSQL", "Supabase", "Docker", "REST APIs", "Puppeteer"]
   },
   {
     role: "Software Engineer",
@@ -651,7 +671,7 @@ export const experienceData = [
       "Responsible for developing scalable crawling features, comprehensive technical documentation, and stability patches.",
       "Collaborated with a fast-paced, high-performance team delivering high-throughput data extraction services."
     ],
-    tech: ["React", "Node.js", "Puppeteer", "Docker", "REST APIs", "Microservices"]
+    tech: ["React", "Node.js", "Puppeteer", "Cursor", "Claude Code", "Docker", "REST APIs", "Microservices"]
   },
   {
     role: "Back End Developer",

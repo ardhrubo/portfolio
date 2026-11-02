@@ -9,6 +9,7 @@ const groups = [
   { title: 'Browsers that do the work', label: 'Automation', tone: 'violet', description: 'Browser testing, data extraction, extensions, and repeatable workflows.', tools: [['Puppeteer', 'puppeteer'], ['Playwright', 'playwright'], ['Chrome', 'chrome']] },
   { title: 'Models & visual thinking', label: 'Scientific computing', tone: 'blue', description: 'Numerical analysis and visualization, alongside SciPy, ORCA, Gaussian, and Monte Carlo methods.', tools: [['Python', 'python'], ['NumPy', 'numpy'], ['Three.js', 'threejs']] },
   { title: 'From local to live', label: 'Delivery & systems', tone: 'mint', description: 'Containers, Linux environments, version control, and automated delivery.', tools: [['Docker', 'docker'], ['Ubuntu', 'ubuntu'], ['Git', 'git'], ['GitHub Actions', 'githubactions'], ['Nginx', 'nginx']] },
+  { title: 'Agentic workflows & AI engineering', label: 'AI & Agents', tone: 'violet', description: 'Autonomous agent loops, prompt engineering, multi-agent systems, and AI-assisted software delivery.', tools: [['Claude Code', 'claudecode'], ['Cursor', 'cursor'], ['Codex', 'codex'], ['Antigravity', 'antigravity'], ['Hermes Agent', 'hermes']], project: 'free-claude-code' },
 ];
 
 export default function Skills() {

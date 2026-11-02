@@ -155,7 +155,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
     // 5. Tech Stack / Skills
     if (lower.includes('skill') || lower.includes('stack') || lower.includes('tech') || lower.includes('language') || lower.includes('framework')) {
       return {
-        text: `Dhrubo's core technical arsenal includes:\n\n• **Frontend**: React, Next.js, TypeScript, Modern Vanilla CSS, Core Web Vitals optimization\n• **Backend**: Node.js, Express, Elysia, PostgreSQL, Supabase, RESTful APIs, Docker, Caddy\n• **Automation**: Puppeteer, Playwright, Headless Chrome, Proxy Rotation, Anti-Bot Bypass\n• **Scientific**: Python, NumPy, Pandas, Monte Carlo Simulations, ORCA & Gaussian DFT`,
+        text: `Dhrubo's core technical arsenal includes:\n\n• **Frontend**: React, Next.js, TypeScript, Modern Vanilla CSS, Core Web Vitals optimization\n• **Backend**: Node.js, Express, Elysia, PostgreSQL, Supabase, RESTful APIs, Docker, Caddy\n• **AI & Agentic Tools**: Claude Code, Cursor, Codex, Hermes Agent, Antigravity, LLM Tool Calling\n• **Automation**: Puppeteer, Playwright, Headless Chrome, Proxy Rotation, Anti-Bot Bypass\n• **Scientific**: Python, NumPy, Pandas, Monte Carlo Simulations, ORCA & Gaussian DFT`,
         suggestedQuestions: ["Show me his flagship projects", "What is his work experience?"]
       };
     }
