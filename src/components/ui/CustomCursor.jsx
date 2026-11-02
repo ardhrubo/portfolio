@@ -5,8 +5,7 @@ const INTERACTIVE = 'a, button, [role="button"], [role="tab"], [role="option"], 
 const TEXT_ENTRY = 'input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="button"]):not([type="submit"]):not([type="reset"]), textarea, [contenteditable="true"]';
 
 /**
- * Decorative pointer: an emerald dot that tracks the mouse exactly and a glass ring
- * that trails it and expands over interactive elements. Only enabled for fine,
+ * Decorative, colorful glass dropper pointer. Only enabled for fine,
  * hover-capable pointers without a reduced-motion preference; text fields keep the
  * native I-beam. Purely visual (aria-hidden, pointer-events: none).
  */
@@ -15,28 +14,20 @@ export default function CustomCursor() {
   const dot = useRef(null);
 
   useEffect(() => {
-    const fineQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const reducedQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    let isBound = false;
-    let visible = false;
     const root = document.documentElement;
 
     const setVisible = (value) => {
-      visible = value;
       if (wrap.current) {
         wrap.current.dataset.visible = String(value);
       }
+      root.classList.toggle('has-custom-cursor', value);
     };
 
     const move = (event) => {
-      if (event.pointerType && event.pointerType !== 'mouse') return;
       if (dot.current) {
-        dot.current.style.transform = `translate3d(${event.clientX - 13}px, ${event.clientY - 35}px, 0)`;
+        dot.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
       }
-      if (!visible) {
-        setVisible(true);
-      }
+      if (wrap.current?.dataset.visible !== 'true') setVisible(true);
       const target = event.target instanceof Element ? event.target : null;
       const state = target?.closest(TEXT_ENTRY) ? 'text' : target?.closest(INTERACTIVE) ? 'hover' : 'default';
       if (wrap.current && wrap.current.dataset.state !== state) {
@@ -46,60 +37,30 @@ export default function CustomCursor() {
 
     const hide = () => setVisible(false);
     const leave = (event) => { if (!event.relatedTarget) setVisible(false); };
-    const down = () => {
-      if (wrap.current) wrap.current.dataset.pressed = 'true';
-    };
+    const down = () => { if (wrap.current) wrap.current.dataset.pressed = 'true'; };
     const up = () => { if (wrap.current) wrap.current.dataset.pressed = 'false'; };
 
-    const bind = () => {
-      if (isBound || !wrap.current) return;
-      isBound = true;
-      root.classList.add('has-custom-cursor');
-      window.addEventListener('pointermove', move, { passive: true });
-      window.addEventListener('pointerdown', down, { passive: true });
-      window.addEventListener('pointerup', up, { passive: true });
-      window.addEventListener('blur', hide);
-      document.addEventListener('mouseleave', hide);
-      document.addEventListener('mouseout', leave);
-    };
+    window.addEventListener('mousemove', move, { passive: true });
+    window.addEventListener('pointerdown', down, { passive: true });
+    window.addEventListener('pointerup', up, { passive: true });
+    window.addEventListener('blur', hide);
+    document.addEventListener('mouseleave', hide);
+    document.addEventListener('mouseout', leave);
 
-    const unbind = () => {
-      if (!isBound) return;
-      isBound = false;
+    return () => {
       hide();
-      root.classList.remove('has-custom-cursor');
-      window.removeEventListener('pointermove', move);
+      window.removeEventListener('mousemove', move);
       window.removeEventListener('pointerdown', down);
       window.removeEventListener('pointerup', up);
       window.removeEventListener('blur', hide);
       document.removeEventListener('mouseleave', hide);
       document.removeEventListener('mouseout', leave);
     };
-
-    const evaluatePreferences = () => {
-      const eligible = fineQuery.matches && !reducedQuery.matches;
-      if (eligible) {
-        bind();
-      } else {
-        unbind();
-      }
-    };
-
-    evaluatePreferences();
-
-    fineQuery.addEventListener('change', evaluatePreferences);
-    reducedQuery.addEventListener('change', evaluatePreferences);
-
-    return () => {
-      fineQuery.removeEventListener('change', evaluatePreferences);
-      reducedQuery.removeEventListener('change', evaluatePreferences);
-      unbind();
-    };
   }, []);
 
   return (
     <div ref={wrap} className="custom-cursor" data-visible="false" data-state="default" aria-hidden="true">
-      <div ref={dot} className="custom-cursor-dot"><span><svg viewBox="0 0 32 38" focusable="false"><defs><linearGradient id="flask-glass" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#c1fff2" stopOpacity=".9"/><stop offset="1" stopColor="#7ba8ff" stopOpacity=".3"/></linearGradient><linearGradient id="flask-liquid" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#42f5c5"/><stop offset=".52" stopColor="#35b5f4"/><stop offset="1" stopColor="#a16cff"/></linearGradient></defs><path className="flask-outline" d="M10 2h12M12 2v11L4 29a5 5 0 0 0 4.6 7h14.8a5 5 0 0 0 4.6-7l-8-16V2"/><path className="flask-liquid" d="M7 24h18l3 6a3 3 0 0 1-2.8 4H6.8A3 3 0 0 1 4 30z"/><path className="flask-glint" d="M13 5v8L6.5 27"/><path className="flask-rim" d="M9 2h14"/></svg></span></div>
+      <div ref={dot} className="custom-cursor-dot"><span><svg viewBox="0 0 44 52" focusable="false"><defs><linearGradient id="pipette-glass" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#d8fff8" stopOpacity=".95"/><stop offset=".5" stopColor="#87dfff" stopOpacity=".8"/><stop offset="1" stopColor="#b993ff" stopOpacity=".86"/></linearGradient><linearGradient id="pipette-fluid" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#39edba"/><stop offset=".55" stopColor="#28b8ec"/><stop offset="1" stopColor="#8b68f6"/></linearGradient></defs><path className="pipette-bulb" d="M15 4Q15 2 18 2h8q3 0 3 2l2 9q0 4-4 5H17q-4-1-4-5z"/><path className="pipette-shaft" d="M17 17h10v20l-5 12-5-12z"/><path className="pipette-fluid" d="M18.5 28h7v9l-3.5 8-3.5-8z"/><path className="pipette-glint" d="M16.5 6l1.5 8m1 6v6m5 1v10"/><path className="pipette-collar" d="M15 16h14"/></svg></span></div>
     </div>
   );
 }

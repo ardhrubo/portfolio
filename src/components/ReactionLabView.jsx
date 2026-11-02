@@ -51,12 +51,34 @@ function Flask({ phase, first, second, result, runId }) {
   );
 }
 
-/** Real portrait with layered, purely decorative reaction effects. */
+const MOOD_AVATARS = {
+  idle: personalInfo.avatar,
+  watching: personalInfo.avatar,
+  ready: personalInfo.avatar,
+  calm: personalInfo.avatar,
+  excited: '/reactions/excited.jpg',
+  blush: '/reactions/curious.jpg',
+  curious: '/reactions/curious.jpg',
+  confused: '/reactions/bored.jpg',
+  shocked: '/reactions/shocked.jpg',
+  singed: '/reactions/singed.jpg',
+  bored: '/reactions/bored.jpg',
+  worried: '/reactions/worried.jpg',
+};
+
+/** Real portrait with reactive facial expressions matching the chemistry outcome. */
 function Portrait({ mood, quote, runId }) {
+  const avatarSrc = MOOD_AVATARS[mood] || personalInfo.avatar;
   return (
     <figure className="rl-face" data-mood={mood}>
       <div className="rl-face-frame" key={`f-${runId}`}>
-        <img src={personalInfo.avatar} alt={`${personalInfo.name}, reacting: ${mood}`} width="320" height="320" />
+        <img
+          key={avatarSrc}
+          src={avatarSrc}
+          alt={`${personalInfo.name}, reacting: ${mood}`}
+          width="320"
+          height="320"
+        />
         <span className="rl-fx rl-tint" aria-hidden="true" />
         <span className="rl-fx rl-blush" aria-hidden="true"><i /><i /></span>
         <span className="rl-fx rl-sweat" aria-hidden="true"><i /><i /></span>
@@ -79,7 +101,15 @@ export default function ReactionLabView({ onBackToHome }) {
   const timers = useRef([]);
 
   const clearTimers = () => { timers.current.forEach(clearTimeout); timers.current = []; };
-  useEffect(() => { window.scrollTo({ top: 0 }); return clearTimers; }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    // Preload dynamic reaction avatars into browser memory
+    Object.values(MOOD_AVATARS).forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    return clearTimers;
+  }, []);
 
   const busy = phase === 'pour1' || phase === 'pour2';
   const [first, second] = selected.map(id => byId[id]);

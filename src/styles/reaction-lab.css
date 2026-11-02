@@ -58,14 +58,12 @@
   color: var(--foreground); font-size: 13px; font-weight: 600; text-align: center;
 }
 
-/* Tint */
-.reaction-lab-page .rl-tint { mix-blend-mode: soft-light; transition: opacity 400ms ease; }
-.reaction-lab-page [data-mood='blush'] .rl-tint { opacity: .55; background: #ff4f9a; }
-.reaction-lab-page [data-mood='curious'] .rl-tint { opacity: .5; background: #14b8a6; }
-.reaction-lab-page [data-mood='calm'] .rl-tint { opacity: .45; background: #8b5cf6; }
-.reaction-lab-page [data-mood='worried'] .rl-tint { opacity: .35; background: #f59e0b; }
-.reaction-lab-page [data-mood='bored'] .rl-face-frame { filter: grayscale(.75) brightness(.95); }
-.reaction-lab-page [data-mood='singed'] .rl-face-frame { filter: brightness(.82) contrast(1.1) sepia(.25); }
+/* Tint - subtle soft accent glow */
+.reaction-lab-page .rl-tint { mix-blend-mode: soft-light; transition: opacity 400ms ease; opacity: 0; }
+.reaction-lab-page [data-mood='blush'] .rl-tint { opacity: .3; background: #ff4f9a; }
+.reaction-lab-page [data-mood='curious'] .rl-tint { opacity: .2; background: #14b8a6; }
+.reaction-lab-page [data-mood='calm'] .rl-tint { opacity: .2; background: #8b5cf6; }
+.reaction-lab-page [data-mood='worried'] .rl-tint { opacity: .2; background: #f59e0b; }
 
 /* Blush cheeks */
 .reaction-lab-page [data-mood='blush'] .rl-blush { opacity: 1; }
