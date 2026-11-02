@@ -276,3 +276,78 @@
 .reaction-lab-page .rl-experiment .rl-flask { max-width: 175px; }
 @media(min-width: 700px) { .reaction-lab-page .rl-layout { grid-template-columns: minmax(0,1.2fr) minmax(260px,1fr); gap: 12px; } .reaction-lab-page .rl-panel { padding: 12px; } .reaction-lab-page .rl-reagent { padding: 7px; gap: 7px; } }
 @media(max-width: 699px) { .reaction-lab-page .rl-game-scene { min-height: 330px; } .reaction-lab-page .rl-scientist { max-width: 170px; } }
+
+/* One play surface: experiment above, tactile bottle shelf below. */
+.reaction-lab-page .rl-layout { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; box-shadow: var(--glass-shadow); }
+.reaction-lab-page .rl-game-scene { border: 0; border-radius: 0; min-height: 300px; padding: 38px max(22px, 12%) 20px; grid-template-columns: 1fr 1fr; background: radial-gradient(ellipse at 35% 80%, #3c7d83, transparent 65%),linear-gradient(130deg,#183743,#2d525b); }
+.reaction-lab-page .rl-scientist { max-width: 165px; }
+.reaction-lab-page .rl-experiment .rl-flask { max-width: 145px; }
+.reaction-lab-page .rl-lab-board { top: 24px; right: 30px; opacity: .6; font-size: 12px; }
+.reaction-lab-page .rl-lab-wall > span { top: 16px; font-size: 9px; }
+.reaction-lab-page .rl-lab-bench { height: 40px; }
+.reaction-lab-page .rl-drop-label { margin-bottom: 10px; font-size: 12px; color: #e0f4ed; }
+.reaction-lab-page .rl-panel { border: 0; border-radius: 0; padding: 16px 20px; gap: 14px; box-shadow: none; background: var(--glass-bg); }
+.rl-shelf-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rl-shelf-heading strong { font-size: 15px; color: var(--foreground); }
+.rl-shelf-heading p { font-size: 12px; margin-top: 3px; color: var(--text-secondary); }
+.reaction-lab-page .rl-mixbar { display: none; }
+.reaction-lab-page .rl-shelf { grid-template-columns: repeat(8,minmax(0,1fr)); gap: 8px; }
+.reaction-lab-page .rl-reagent { position: relative; flex-direction: column; justify-content: start; text-align: center; padding: 15px 5px 9px; gap: 9px; min-height: 104px; border-radius: 12px; background: transparent; }
+.reaction-lab-page .rl-reagent[aria-pressed='true']::after { content: '✓'; position: absolute; top: 5px; right: 7px; color: var(--primary); font-weight: 700; }
+.reaction-lab-page .rl-bottle { width: 28px; height: 37px; }
+.reaction-lab-page .rl-reagent-text strong { font-size: 11px; line-height: 1.3; }
+.reaction-lab-page .rl-reagent-text small { display: none; }
+.reaction-lab-page .rl-result { min-height: 0; border: 0; border-top: 1px solid var(--glass-border); border-radius: 0; background: transparent; padding: 12px 0 0; }
+.reaction-lab-page .rl-result summary { cursor: pointer; color: var(--primary); padding-top: 8px; min-height: 44px; }
+.reaction-lab-page .rl-log > summary { cursor: pointer; min-height: 44px; font-weight: 600; color: var(--text-secondary); }
+@media(max-width: 699px) {
+ .reaction-lab-page .rl-shelf { grid-template-columns: repeat(4,minmax(0,1fr)); }
+ .reaction-lab-page .rl-game-scene { min-height: 270px; padding: 35px 18px 20px; }
+ .reaction-lab-page .rl-scientist { max-width: 145px; }
+ .reaction-lab-page .rl-panel { padding: 14px; }
+ .reaction-lab-page .rl-lab-board { display: none; }
+ .reaction-lab-page .rl-reagent { min-height: 94px; }
+}
+/* Immersive play screen. The character supplies the instruction. */
+.reaction-lab-page .rl-section { max-width: 1040px; padding-top: 18px; }
+.rl-game-header { display: flex; gap: 14px; align-items: center; padding: 0 0 18px; }
+.rl-game-header h1 { font: 650 clamp(22px,3vw,30px)/1.1 var(--font-heading); letter-spacing: -.04em; color: var(--foreground); }
+.rl-game-header h1 span { display: block; margin-top: 6px; font: 12px/1.4 var(--font-body); letter-spacing: 0; color: var(--text-secondary); }
+.rl-exit { width: 44px; height: 44px; display: grid; place-items: center; flex: none; border: 1px solid var(--glass-border); border-radius: 50%; background: var(--glass-bg); color: var(--foreground); }
+.rl-discovery-count { display: flex; align-items: center; gap: 7px; margin-left: auto; color: var(--primary); font-size: 13px; }
+.reaction-lab-page .rl-game-scene { min-height: 350px; padding: 40px 15% 20px; background: radial-gradient(ellipse at 15% 15%,#acc9bc55,transparent 65%),linear-gradient(145deg,#36545b,#223d48); }
+.reaction-lab-page .rl-scientist { max-width: 190px; }
+.reaction-lab-page .rl-experiment .rl-flask { max-width: 180px; }
+.rl-window { position: absolute; left: 6%; top: 24px; width: 110px; height: 130px; border: 8px solid #9db4ae; border-radius: 55px 55px 5px 5px; background: linear-gradient(#a9dfd9,#e4e9b4); box-shadow: 0 12px 50px #cceac41c; opacity: .8; }
+.rl-window::after { content: ''; position: absolute; left: 47%; height: 100%; width: 5px; background: #9db4ae; }
+.rl-window::before { content: ''; position: absolute; top: 53%; width: 100%; height: 5px; background: #9db4ae; }
+.rl-wall-art { position: absolute; right: 5%; top: 30px; font-size: 55px; color: #a3c4c0; opacity: .35; }
+.reaction-lab-page .rl-speech { padding: 12px 16px; border-radius: 18px 18px 18px 4px; font-size: 13px; }
+.reaction-lab-page .rl-scientist-name { display: none; }
+.reaction-lab-page .rl-panel { padding: 12px 18px 18px; }
+.rl-tray-top { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 10px; letter-spacing: .12em; }
+.rl-reset { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 10px; border: 0; background: transparent; color: var(--text-secondary); font-size: 12px; letter-spacing: 0; }
+.rl-reset:disabled { opacity: .35; }
+.reaction-lab-page .rl-reagent { border-color: transparent; box-shadow: none; min-height: 110px; padding-top: 14px; }
+.reaction-lab-page .rl-reagent:hover:not(:disabled) { transform: translateY(-4px); }
+.reaction-lab-page .rl-bottle { width: 34px; height: 48px; border-radius: 7px 7px 11px 11px; }
+.rl-explanation { border-top: 1px solid var(--glass-border); padding-top: 12px; color: var(--text-secondary); font-size: 13px; }
+.rl-explanation summary { display: flex; align-items: center; justify-content: space-between; gap: 15px; cursor: pointer; min-height: 44px; color: var(--foreground); }
+.rl-explanation summary span { font-size: 11px; color: var(--primary); }
+.rl-explanation p { margin: 8px 0; }
+.rl-explanation code { font-size: 11px; overflow-wrap: anywhere; }
+.rl-options { margin-top: 16px; color: var(--text-secondary); font-size: 13px; }
+.rl-options > summary { cursor: pointer; min-height: 44px; padding: 12px 0; }
+.reaction-lab-page .rl-log { border: 0; background: transparent; box-shadow: none; padding: 0; margin-top: 0; font-size: 13px; }
+.rl-footnote { margin-top: 8px; font-size: 10px; color: var(--text-muted); }
+@media(max-width: 699px) {
+ .reaction-lab-page .rl-game-scene { min-height: 280px; padding: 38px 8% 20px; }
+ .reaction-lab-page .rl-scientist { max-width: 145px; }
+ .reaction-lab-page .rl-experiment .rl-flask { max-width: 125px; }
+ .rl-window { width: 65px; height: 85px; left: 5%; border-width: 5px; }
+ .rl-wall-art { font-size: 35px; }
+ .reaction-lab-page .rl-speech { padding: 10px; font-size: 11px; }
+ .rl-game-header h1 span { display: none; }
+ .reaction-lab-page .rl-reagent { min-height: 100px; }
+}
+@media(prefers-reduced-motion:reduce) { .reaction-lab-page .rl-reagent:hover:not(:disabled) { transform: none; } }

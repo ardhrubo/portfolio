@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowLeft, FlaskConical, RotateCcw, Sparkles, TriangleAlert, Lock } from 'lucide-react';
+import { ArrowLeft, RotateCcw, Sparkles, Lock } from 'lucide-react';
 import Button from './ui/Button';
 import { reagents, findReaction, reactionCount, reactions } from '../data/reactionLabData';
 import '../styles/reaction-lab.css';
@@ -170,31 +170,41 @@ export default function ReactionLabView({ onBackToHome }) {
   };
 
   const mood = phase === 'react' ? result.mood : busy ? 'watching' : selected.length ? 'ready' : 'idle';
-  const quote = phase === 'react' ? result.quote : busy ? 'Careful… pouring.' : selected.length === 2 ? 'Go on, mix them.' : selected.length === 1 ? 'And the second one?' : 'Pick two reagents.';
+  const quote = phase === 'react' ? result.quote : busy ? 'Here we go…' : selected.length === 2 ? 'Go on, mix them.' : selected.length === 1 ? 'Nice! Now pick one more.' : 'Tap a bottle. Let’s experiment!';
 
   return (
     <div className="reaction-lab-page">
-      <div className="all-projects-topbar">
-        <div className="container">
-          <button type="button" onClick={onBackToHome} className="btn-back-home"><ArrowLeft size={16} aria-hidden="true" /><span>Back to Home</span></button>
-          <div className="all-projects-breadcrumbs">
-            <button type="button" onClick={onBackToHome} className="breadcrumb-link">Home</button>
-            <span className="breadcrumb-sep">/</span>
-            <span className="breadcrumb-active">Reaction lab</span>
+      <section className="container rl-section" aria-labelledby="rl-title">
+        <header className="rl-game-header">
+          <button type="button" onClick={onBackToHome} className="rl-exit" aria-label="Back to portfolio"><ArrowLeft size={19} /></button>
+          <h1 id="rl-title">Pip’s lab<span>A little curiosity. A big reaction.</span></h1>
+          <span className="rl-discovery-count" aria-label={`${discovered.size} of ${reactionCount} discoveries`}><Sparkles size={16} />{discovered.size}/{reactionCount}</span>
+        </header>
+        <div className="rl-layout">
+          <div className="rl-stage rl-game-scene" data-reaction={result?.effect || 'none'}>
+            <div className="rl-lab-wall" aria-hidden="true"><div className="rl-window"><i /><i /></div><div className="rl-wall-art">⚗</div></div>
+            <div className="rl-experiment" onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); if (byId[id]) toggleReagent(id); }}>
+            <Flask phase={phase} first={first} second={second} result={result} runId={runId} />
+            </div><Scientist mood={mood} quote={quote} runId={runId} /><div className="rl-lab-bench" aria-hidden="true" />
+          </div>
+
+          <div className="rl-panel">
+            <div className="rl-tray-top"><span>INGREDIENTS</span><button type="button" className="rl-reset" onClick={clear} disabled={busy || !selected.length}><RotateCcw size={15} />Reset</button></div>
+            <div className="rl-shelf" role="group" aria-label="Reagent shelf">
+              {reagents.map(r => (
+                <button key={r.id} type="button" className="rl-reagent" draggable={!busy} onDragStart={e => e.dataTransfer.setData("text/plain", r.id)} aria-pressed={selected.includes(r.id)} disabled={busy} onClick={() => toggleReagent(r.id)} style={{ '--swatch': r.color }}>
+                  <span className="rl-bottle" aria-hidden="true"><i /></span>
+                  <span className="rl-reagent-text"><strong>{r.name}</strong><small>{r.formula} · {r.note}</small></span>
+                </button>
+              ))}
+            </div>
+
+            {phase === 'react' && <details className="rl-explanation"><summary>{result.title}<span>What happened?</span></summary><p>{result.text}</p><code>{result.equation}</code></details>}
           </div>
         </div>
-      </div>
 
-      <section className="container rl-section" aria-labelledby="rl-title">
-        <header className="section-header">
-          <div className="section-tag"><FlaskConical size={15} aria-hidden="true" /><span>Reaction lab · game</span></div>
-          <h1 id="rl-title" className="section-title">Dr. Pip’s <span className="gradient-text">curious lab.</span></h1>
-          <p className="section-subtitle">A tiny 2D laboratory. Pick your ingredients, run an experiment, and see how Dr. Pip handles the surprise.</p>
-          <p className="rl-disclaimer">Scripted, simplified chemistry for fun — not a simulator. Don’t try the hazardous mixes at home.</p>
-        </header>
-
-        <div className={`rl-mission ${freePlay ? "rl-freeplay-toolbar" : ""}`} aria-live="polite">
-          <div><small>{freePlay ? 'FREE PLAY' : complete ? 'ALL CHALLENGES COMPLETE' : `CHALLENGE ${missionIndex + 1} / ${missions.length}`} · {score} points</small>
+        <details className="rl-options"><summary>Play challenges</summary>        <div className={`rl-mission ${freePlay ? "rl-freeplay-toolbar" : ""}`} aria-live="polite">
+          <div><small>{freePlay ? `FREE PLAY · ${discovered.size} discoveries` : complete ? 'ALL CHALLENGES COMPLETE' : `CHALLENGE ${missionIndex + 1} / ${missions.length}`}{!freePlay && ` · ${score} points`}</small>
             <h2>{freePlay ? 'Discover your own combinations' : complete ? 'Lab complete. Well done!' : mission.goal}</h2>
             <p>{!freePlay && solved && phase === 'react' ? 'Correct reaction! Continue to the next challenge.' : !freePlay && phase === 'react' && !solved ? 'That outcome does not meet the goal. Use what you learned and try another pair.' : 'Choose two bottles. The second starts the reaction. Clear the bench to experiment again.'}</p>
             {!freePlay && hintOpen && mission && <p>{mission.hint}</p>}
@@ -206,50 +216,8 @@ export default function ReactionLabView({ onBackToHome }) {
             {complete && !freePlay && <Button onClick={() => { clear(); setMissionIndex(0); setScore(0); setAttempts(0); setHintOpen(false); setSolved(false); }}>Play again</Button>}
           </div>
         </div>
-        <div className="rl-layout">
-          <div className="rl-stage rl-game-scene" data-reaction={result?.effect || 'none'}>
-            <div className="rl-lab-wall" aria-hidden="true"><span>PiP LAB / EXPERIMENT STATION</span><div className="rl-wall-shelf">⚗ · H₂O · 🧪</div><div className="rl-lab-board">Observe.<br />Mix.<br />Discover.</div></div>
-            <div className="rl-experiment" onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); if (byId[id]) toggleReagent(id); }}>
-            <span className="rl-drop-label">{busy ? 'Experiment in progress' : 'Add two bottles to experiment'}</span>
-            <Flask phase={phase} first={first} second={second} result={result} runId={runId} />
-            </div><Scientist mood={mood} quote={quote} runId={runId} /><div className="rl-lab-bench" aria-hidden="true" />
-          </div>
-
-          <div className="rl-panel">
-            <div className="rl-mixbar" aria-label="Selected reagents">
-              {[0, 1].map(i => {
-                const r = selected[i] && byId[selected[i]];
-                return <span key={i} className={`rl-slot ${r ? 'is-filled' : ''}`} style={r ? { '--swatch': r.color } : undefined}>{r ? r.name : `Reagent ${i + 1}`}</span>;
-              })}
-            </div>
-
-            <div className="rl-shelf" role="group" aria-label="Reagent shelf">
-              {reagents.map(r => (
-                <button key={r.id} type="button" className="rl-reagent" draggable={!busy} onDragStart={e => e.dataTransfer.setData("text/plain", r.id)} aria-pressed={selected.includes(r.id)} disabled={busy} onClick={() => toggleReagent(r.id)} style={{ '--swatch': r.color }}>
-                  <span className="rl-bottle" aria-hidden="true"><i /></span>
-                  <span className="rl-reagent-text"><strong>{r.name}</strong><small>{r.formula} · {r.note}</small></span>
-                </button>
-              ))}
-            </div>
-
-            <div className="rl-actions">
-              <Button onClick={() => mix()} disabled={selected.length !== 2 || busy || (!freePlay && (solved || complete))}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Run experiment'}</Button>
-              <Button variant="secondary" onClick={clear} disabled={busy || (!selected.length && !result)}><RotateCcw size={16} aria-hidden="true" />Clear</Button>
-            </div>
-
-            <div className="rl-result" aria-live="polite">
-              {phase === 'react' ? (
-                <>
-                  <p className="rl-result-title">{result.effect === 'warn' || result.effect === 'boom' ? <TriangleAlert size={16} aria-hidden="true" /> : <Sparkles size={16} aria-hidden="true" />}{result.title}</p>
-                  <p>{result.text}</p>
-                  <code>{result.equation}</code>
-                </>
-              ) : <p className="rl-result-hint">{busy ? 'Reacting…' : 'Results appear here.'}</p>}
-            </div>
-          </div>
-        </div>
-
-        <div className="rl-log">
+</details>
+        <details className="rl-log"><summary>Your discoveries · {discovered.size} / {reactionCount}</summary>
           <div className="rl-log-head">
             <h2>Discovery log <span>{discovered.size} / {reactionCount}</span></h2>
             {discovered.size > 0 && <button type="button" className="rl-log-reset" onClick={resetProgress}>Reset progress</button>}
@@ -265,7 +233,8 @@ export default function ReactionLabView({ onBackToHome }) {
               );
             })}
           </ul>
-        </div>
+        </details>
+        <p className="rl-footnote">Illustrative chemistry. Virtual experiments only.</p>
       </section>
     </div>
   );

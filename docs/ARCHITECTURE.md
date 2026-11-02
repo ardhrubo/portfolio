@@ -137,3 +137,5 @@ Approach uses scroll-revealed cards below 768px and a single selectable panel on
 The reaction lab includes six guided challenges with hints, attempt-based scoring, explicit progression, replay, and free play. Discovery progress remains local. The shared D mark uses a curved, open cyan/lilac glass silhouette without a surrounding tile.
 
 The reaction lab now opens in free experimentation mode in an illustrated 2D lab. Dr. Pip is an SVG scientist with expression and body reactions driven by outcomes; no portrait photos are used. Bottles support drag onto the flask or tap selection, followed by Run experiment. Guided challenges remain optional.
+
+The lab play screen uses a single scientist speech prompt and bottle tray. Selecting the second bottle starts mixing automatically. Challenges, reaction explanations, and discoveries are collapsed optional sections. Reset clears the current experiment.
