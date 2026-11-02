@@ -163,7 +163,7 @@ export default function AiChatModal({ isOpen, onClose, onSelectProject }) {
     // 6. Availability / Hire / Rates
     if (lower.includes('hire') || lower.includes('available') || lower.includes('rate') || lower.includes('contract') || lower.includes('job') || lower.includes('opportunity')) {
       return {
-        text: `Yes! Dhrubo is currently **available for full-time software engineering roles and select contract projects**. He works worldwide remote with teams across North America, Europe, and Asia-Pacific.`,
+        text: `Yes! Dhrubo is currently **open to opportunities worldwide remote and in Dhaka** (full-time software engineering roles and select contract projects). He collaborates effectively across global time zones.`,
         action: { label: "Send an Email", link: `mailto:${personalInfo.email}` },
         suggestedQuestions: ["How do I contact Dhrubo?", "Where is he based?"]
       };

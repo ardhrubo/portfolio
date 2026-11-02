@@ -36,14 +36,14 @@ flowchart TD
 
 ### Home page order
 
-1. `HeroBento` — single glass stage: availability/location pill, headline, intro, calls to action, technology links, portrait with name chip and socials; metrics below.
-2. `ProjectsShowcase` — featured case study, supporting cards, and archive link.
+1. `HeroBento` — single glass stage: availability/location pill ("Open to opportunities • Remote & Dhaka"), headline, intro, calls to action, technology links, portrait with name chip and socials; metrics below.
+2. `ProjectsShowcase` — 3 curated flagship cards in a compact equal grid (`brownsinterior`, `squicyuap`, `scrapeautomate`), with live links, drawer details triggers, and archive link.
 3. `Experience` — work, education, credentials, events, and photo preview.
-4. `Strategy` — four scroll-revealed process cards.
+4. `Strategy` — "How I work" process showcase with four workflow illustrations (Design blueprint, Build page assembly, Automate branching pipeline, and Verify checklist). Single-stage interactive tabbed view on desktop (≥768px); sequential scroll revelation below 768px.
 5. `DeferredLab` — placeholder, then interactive science lab.
 6. `Services`, `Contact`, and `Footer`.
 
-The archive is a separate hash-addressable view. The project drawer, search, and guide are dialogs; toast is transient feedback.
+The archive is a separate hash-addressable view. The project drawer, search, and guide are dialogs; toast is transient feedback. Legacy `#skills` hash redirects directly to `#projects`.
 
 ## Navigation and URL behavior
 
@@ -57,11 +57,11 @@ The archive is a separate hash-addressable view. The project drawer, search, and
 
 ### Projects
 
-Project records include stable `id`, `title`, `subtitle`, `category`, `categoryLabel`, `badge`, `featured`, `image`, `desc`, `longDesc`, `tech`, `highlights`, `url`, `githubUrl`, and `hasLiveDemo` fields. Put images in `public/projects/` and reference them with root-relative paths. `ProjectsShowcase.jsx` chooses selected work by explicit project IDs; update that list when selections change. `projects.css` owns framed previews and glass stack badges. Exact technology names map to local brand SVGs; unavailable marks keep text. The first card spans the grid; “Explore the build” opens the drawer for descriptions and highlights. Only publish documented numerical outcomes.
+Project records include stable `id`, `title`, `subtitle`, `category`, `categoryLabel`, `badge`, `featured`, `image`, `desc`, `longDesc`, `tech`, `highlights`, `url`, `githubUrl`, and `hasLiveDemo` fields. Put images in `public/projects/` and reference them with root-relative paths. `ProjectsShowcase.jsx` displays 3 curated flagship cards in an equal grid with preview, category, title, concise description, up to 3 technology marks, live link, and a Details drawer trigger. `projects.css` owns framed previews and glass stack badges. Exact technology names map to local brand SVGs; unavailable marks keep text. Only publish documented numerical outcomes.
 
 ### Technical stack
 
-`Skills.jsx` defines six presentation groups, logo names, and group order. The full descriptions and proficiency levels are in `skillsData`; details currently associate by array index. Keep group order aligned with `skillsData`, or migrate to explicit category keys before rearranging. Brand SVGs live in `public/tech/`; source and attribution are in `public/tech/README.md`, with license in `public/tech/LICENSE.txt`. Artwork comes from the Devicon collection. Preserve original logo art and colors. Use text for tools/methods that lack a correctly identified mark, such as ORCA, Gaussian, and Monte Carlo.
+Technology presentation is embedded directly in Hero, Projects, and Experience badges. `Skills.jsx` and `src/styles/stack.css` are unmounted legacy gallery assets retained in source. The structured skills data remains in `skillsData` for AI assistant grounding and search context. Brand SVGs live in `public/tech/`; source and attribution are in `public/tech/README.md`, with license in `public/tech/LICENSE.txt`. Artwork comes from the Devicon collection. Preserve original logo art and colors. Use text for tools/methods that lack a correctly identified mark, such as ORCA, Gaussian, and Monte Carlo.
 
 ## Design tokens and responsive behavior
 

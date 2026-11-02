@@ -122,4 +122,30 @@
 }
 
 #strategy .strategy-active-card[hidden] { display: none; }
-@media (max-width: 767px) { #strategy .strategy-nav-grid { display: none; } #strategy .strategy-scroll-steps { gap: 18px; } #strategy .strategy-active-card { padding: 22px; } }
+@media (max-width: 767px) {
+  #strategy .strategy-nav-grid { display: none; }
+  #strategy .strategy-scroll-steps { gap: 14px; }
+  #strategy .strategy-active-card {
+    padding: 18px 16px;
+    border-radius: 20px;
+    min-height: auto;
+  }
+  #strategy .strategy-card-title {
+    font-size: 20px;
+  }
+  #strategy .strategy-card-desc {
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.55;
+    max-width: none;
+  }
+  #strategy .workflow-stage {
+    height: 175px;
+    margin: 0;
+  }
+  #strategy :is(.workflow-blueprint, .workflow-build, .workflow-pipeline, .workflow-verify) {
+    transform: scale(0.85);
+    transform-origin: center center;
+    top: 0;
+  }
+}

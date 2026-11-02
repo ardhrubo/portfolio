@@ -95,7 +95,7 @@ export default function Strategy() {
         {/* Active Strategy Card */}
         <div className="strategy-scroll-steps">
         {engineeringStrategy.map((current, index) => (
-        <article id={`approach-${index}`} data-step={index} key={current.step} hidden={!mobile && activeStep !== index} className={`strategy-active-card ${!mobile ? 'is-visible' : ''}`}>
+        <article id={`approach-${index}`} data-step={index} key={current.step} hidden={!mobile && activeStep !== index} className={`strategy-active-card ${!mobile || activeStep === index ? 'is-visible' : ''}`}>
           <div className="strategy-story">
             <div className="strategy-card-header"><div>
               <div className="strategy-step-pill">{current.badge}</div>

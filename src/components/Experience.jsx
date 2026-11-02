@@ -236,8 +236,6 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <div className="experience-preview-tech" aria-label="Selected technologies">{exp.tech.slice(0, 3).map(tech => <ExperienceBadge key={tech} name={tech} />)}</div>
-
                   <details className="experience-details"><summary>Explore this role</summary><p className="timeline-desc">{exp.description}</p><ul className="timeline-achievements">
                     {exp.achievements.map((item, idx) => (
                       <li key={idx} className="timeline-achievement-item">

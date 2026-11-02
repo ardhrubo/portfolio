@@ -23,8 +23,9 @@ export const personalInfo = {
   tagline: "Architecting high-performance full-stack web platforms and scientific computing simulations (Monte Carlo & quantum DFT modeling).",
   bio: "Full-stack software engineer and computational researcher with 50+ shipped projects. I build fast React/Next.js web applications, resilient backend architectures, and high-performance scientific simulations.",
   location: "Dhaka, Bangladesh",
+  availabilityLocation: "Remote & Dhaka",
   timezone: "GMT+6 (Worldwide Remote)",
-  status: "Available for Full-time Roles & Contracts",
+  status: "Open to opportunities (Remote & Dhaka)",
   statusColor: "#22c55e", // Technical Emerald
   email: "ardhrubo@gmail.com",
   socials: {

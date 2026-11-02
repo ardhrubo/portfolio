@@ -37,7 +37,7 @@ export default function HeroBento({ onCopyEmail }) {
                 <span className="status-dot" aria-hidden="true" />
                 Open to opportunities
                 <span className="hero-status-sep" aria-hidden="true" />
-                <span className="hero-status-place"><MapPin size={12} aria-hidden="true" />{personalInfo.location}</span>
+                <span className="hero-status-place"><MapPin size={12} aria-hidden="true" />{personalInfo.availabilityLocation || personalInfo.location}</span>
               </p>
 
               <h1>

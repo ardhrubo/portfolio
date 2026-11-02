@@ -35,21 +35,17 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
 
   if (!isOpen) return null;
 
-  const filteredProjects = projectsData.filter(p =>
-    p.title.toLowerCase().includes(query.toLowerCase()) ||
-    p.categoryLabel.toLowerCase().includes(query.toLowerCase()) ||
-    p.tech.some(t => t.toLowerCase().includes(query.toLowerCase()))
-  );
+  const trimmed = query.trim().toLowerCase();
 
   const sections = [
-    { name: 'Overview', href: '#hero', Icon: UserRound },
-    { name: 'Projects Showcase', href: '#projects', Icon: FolderKanban },
-    { name: 'All Projects Archive', href: '#all-projects', Icon: Folder },
-    { name: 'Experience & Research', href: '#experience', Icon: Briefcase },
-    { name: 'Engineering Approach', href: '#strategy', Icon: Compass },
-    { name: '3D Simulation Lab', href: '#simulation-lab', Icon: Atom },
-    { name: 'Services', href: '#services', Icon: Handshake },
-    { name: 'Get in Touch', href: '#contact', Icon: Mail },
+    { name: 'Overview', href: '#hero', Icon: UserRound, keywords: ['hero', 'intro', 'home', 'about', 'bio'] },
+    { name: 'Projects Showcase', href: '#projects', Icon: FolderKanban, keywords: ['work', 'featured', 'portfolio', 'apps'] },
+    { name: 'All Projects Archive', href: '#all-projects', Icon: Folder, keywords: ['archive', 'all', 'complete', 'directory'] },
+    { name: 'Experience & Research', href: '#experience', Icon: Briefcase, keywords: ['jobs', 'career', 'work', 'education', 'research', 'credentials', 'events'] },
+    { name: 'Engineering Approach', href: '#strategy', Icon: Compass, keywords: ['methodology', 'strategy', 'process', 'workflow', 'design', 'automate'] },
+    { name: '3D Simulation Lab', href: '#simulation-lab', Icon: Atom, keywords: ['threejs', 'webgl', 'physics', 'science', 'crystallography'] },
+    { name: 'Services', href: '#services', Icon: Handshake, keywords: ['hire', 'consulting', 'freelance', 'contract', 'offerings'] },
+    { name: 'Get in Touch', href: '#contact', Icon: Mail, keywords: ['contact', 'email', 'message', 'reach', 'talk', 'hire'] },
   ];
 
   const handleAction = async (type, val) => {
@@ -70,6 +66,59 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
     }
   };
 
+  const quickActions = [
+    {
+      id: 'copy-email',
+      title: `Copy Email Address (${personalInfo.email})`,
+      action: () => handleAction('copy'),
+      Icon: Copy,
+      shortcut: 'Enter',
+      keywords: ['email', 'contact', 'mail', 'write', 'reach', 'message', 'copy'],
+    },
+    {
+      id: 'open-github',
+      title: 'Open GitHub Profile (@ardhrubo)',
+      action: () => { window.open(personalInfo.socials.github, '_blank', 'noopener,noreferrer'); onClose(false); },
+      Icon: Github,
+      external: true,
+      keywords: ['github', 'code', 'git', 'repo', 'repositories', 'profile', 'source'],
+    },
+    {
+      id: 'open-linkedin',
+      title: 'Open LinkedIn Profile',
+      action: () => { window.open(personalInfo.socials.linkedin, '_blank', 'noopener,noreferrer'); onClose(false); },
+      Icon: Linkedin,
+      external: true,
+      keywords: ['linkedin', 'social', 'career', 'network', 'profile', 'resume'],
+    },
+  ];
+
+  const filteredActions = trimmed
+    ? quickActions.filter(act =>
+        act.title.toLowerCase().includes(trimmed) ||
+        act.keywords.some(k => k.includes(trimmed))
+      )
+    : quickActions;
+
+  const filteredSections = trimmed
+    ? sections.filter(sec =>
+        sec.name.toLowerCase().includes(trimmed) ||
+        sec.href.toLowerCase().includes(trimmed) ||
+        sec.keywords.some(k => k.includes(trimmed))
+      )
+    : sections;
+
+  const filteredProjects = trimmed
+    ? projectsData.filter(p =>
+        p.title.toLowerCase().includes(trimmed) ||
+        p.categoryLabel.toLowerCase().includes(trimmed) ||
+        p.tech.some(t => t.toLowerCase().includes(trimmed)) ||
+        (p.desc && p.desc.toLowerCase().includes(trimmed))
+      )
+    : projectsData;
+
+  const hasAnyResults = filteredActions.length > 0 || filteredSections.length > 0 || filteredProjects.length > 0;
+
   return (
     <AccessibleDialog title="Search portfolio" description="Find projects and navigate sections. Use arrow keys and Enter to select." onClose={() => onClose(false)} overlayClass="cmd-backdrop" className="cmd-modal" onKeyDown={event => {
       const items = [...event.currentTarget.querySelectorAll('.cmd-item')];
@@ -85,9 +134,9 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
           <Search size={18} className="cmd-search-icon" aria-hidden="true" />
           <input
             type="text"
-            aria-label="Search projects and technologies"
+            aria-label="Search projects, navigation, and commands"
             className="cmd-input"
-            placeholder="Type a project, technology, or command (e.g. 'React', 'Puppeteer', 'Contact')..."
+            placeholder="Search projects, sections, or actions (e.g. 'React', 'Contact', 'Email')..."
             autoFocus
             value={query}
             onChange={e => setQuery(e.target.value)}
@@ -96,45 +145,33 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
         </div>
 
         <div className="cmd-results">
-          {/* Quick Actions */}
-          {query === '' && (
+          {!hasAnyResults && (
+            <div className="cmd-empty">No results found matching "{query}"</div>
+          )}
+
+          {/* Quick Actions (when query matches or on empty query) */}
+          {filteredActions.length > 0 && (
             <div className="cmd-group">
-              <span className="cmd-group-title">Quick Actions</span>
-              <button className="cmd-item" onClick={() => handleAction('copy')}>
-                <div className="cmd-item-icon"><Copy size={16} aria-hidden="true" /></div>
-                <span>Copy Email Address (<code>{personalInfo.email}</code>)</span>
-                <span className="cmd-shortcut">Enter</span>
-              </button>
-              <a
-                href={personalInfo.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cmd-item"
-                onClick={() => onClose(false)}
-              >
-                <div className="cmd-item-icon"><Github size={16} /></div>
-                <span>Open GitHub Profile (@ardhrubo)</span>
-                <ArrowUpRight size={14} className="cmd-ext-icon" aria-hidden="true" />
-              </a>
-              <a
-                href={personalInfo.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cmd-item"
-                onClick={() => onClose(false)}
-              >
-                <div className="cmd-item-icon"><Linkedin size={16} /></div>
-                <span>Open LinkedIn Profile</span>
-                <ArrowUpRight size={14} className="cmd-ext-icon" aria-hidden="true" />
-              </a>
+              <span className="cmd-group-title">{trimmed ? `Actions (${filteredActions.length})` : 'Quick Actions'}</span>
+              {filteredActions.map(act => {
+                const ActionIcon = act.Icon;
+                return (
+                  <button key={act.id} className="cmd-item" onClick={act.action}>
+                    <div className="cmd-item-icon"><ActionIcon size={16} aria-hidden="true" /></div>
+                    <span>{act.title}</span>
+                    {act.shortcut && <span className="cmd-shortcut">{act.shortcut}</span>}
+                    {act.external && <ArrowUpRight size={14} className="cmd-ext-icon" aria-hidden="true" />}
+                  </button>
+                );
+              })}
             </div>
           )}
 
-          {/* Quick Navigation */}
-          {query === '' && (
+          {/* Navigation Sections */}
+          {filteredSections.length > 0 && (
             <div className="cmd-group">
-              <span className="cmd-group-title">Jump to Section</span>
-              {sections.map((sec, i) => {
+              <span className="cmd-group-title">{trimmed ? `Navigation (${filteredSections.length})` : 'Jump to Section'}</span>
+              {filteredSections.map((sec, i) => {
                 const IconComponent = sec.Icon;
                 return (
                   <button key={i} className="cmd-item" onClick={() => handleAction('link', sec.href)}>
@@ -147,14 +184,12 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
           )}
 
           {/* Projects Search Results */}
-          <div className="cmd-group">
-            <span className="cmd-group-title">
-              {query === '' ? 'Projects Directory (Top Matches)' : `Matching Projects (${filteredProjects.length})`}
-            </span>
-            {filteredProjects.length === 0 ? (
-              <div className="cmd-empty">No projects found matching "{query}"</div>
-            ) : (
-              filteredProjects.slice(0, 8).map(p => (
+          {filteredProjects.length > 0 && (
+            <div className="cmd-group">
+              <span className="cmd-group-title">
+                {trimmed ? `Matching Projects (${filteredProjects.length})` : 'Projects Directory (Top Matches)'}
+              </span>
+              {filteredProjects.slice(0, 8).map(p => (
                 <button key={p.id} className="cmd-item" onClick={() => handleAction('project', p)}>
                   <div className="cmd-item-icon"><Folder size={16} aria-hidden="true" /></div>
                   <div className="cmd-item-text">
@@ -163,9 +198,9 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
                   </div>
                   <span className="cmd-badge">{p.badge}</span>
                 </button>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="cmd-footer">
