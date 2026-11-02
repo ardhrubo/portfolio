@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, FlaskConical, RotateCcw, Sparkles, TriangleAlert, Lock } from 'lucide-react';
 import Button from './ui/Button';
-import { personalInfo } from '../data/portfolioData';
 import { reagents, findReaction, reactionCount, reactions } from '../data/reactionLabData';
 import '../styles/reaction-lab.css';
 
@@ -59,45 +58,43 @@ function Flask({ phase, first, second, result, runId }) {
   );
 }
 
-const MOOD_AVATARS = {
-  idle: personalInfo.avatar,
-  watching: personalInfo.avatar,
-  ready: personalInfo.avatar,
-  calm: personalInfo.avatar,
-  excited: '/reactions/excited.jpg',
-  blush: '/reactions/curious.jpg',
-  curious: '/reactions/curious.jpg',
-  confused: '/reactions/bored.jpg',
-  shocked: '/reactions/shocked.jpg',
-  singed: '/reactions/singed.jpg',
-  bored: '/reactions/bored.jpg',
-  worried: '/reactions/worried.jpg',
-};
-
-/** Real portrait with reactive facial expressions matching the chemistry outcome. */
-function Portrait({ mood, quote, runId }) {
-  const avatarSrc = MOOD_AVATARS[mood] || personalInfo.avatar;
-  return (
-    <figure className="rl-face" data-mood={mood}>
-      <div className="rl-face-frame" key={`f-${runId}`}>
-        <img
-          key={avatarSrc}
-          src={avatarSrc}
-          alt={`${personalInfo.name}, reacting: ${mood}`}
-          width="320"
-          height="320"
-        />
-        <span className="rl-fx rl-tint" aria-hidden="true" />
-        <span className="rl-fx rl-blush" aria-hidden="true"><i /><i /></span>
-        <span className="rl-fx rl-sweat" aria-hidden="true"><i /><i /></span>
-        <span className="rl-fx rl-soot" aria-hidden="true"><i /><i /><i /><i /></span>
-        <span className="rl-fx rl-foamface" aria-hidden="true"><i /><i /><i /><i /><i /></span>
-        <span className="rl-fx rl-sparkle" aria-hidden="true"><i /><i /><i /></span>
-        <span className="rl-fx rl-mark" aria-hidden="true" />
-      </div>
-      <figcaption className="rl-quote" key={`q-${runId}`}>{quote}</figcaption>
-    </figure>
-  );
+function Scientist({ mood, quote, runId }) {
+  const alarm = ['shocked', 'singed', 'worried'].includes(mood);
+  const happy = ['excited', 'blush', 'calm'].includes(mood);
+  return <div className="rl-scientist" data-mood={mood} key={runId}>
+    <div className="rl-speech" role="status">{quote}</div>
+    <svg viewBox="0 0 240 340" role="img" aria-label={`Dr. Pip, feeling ${mood}`}>
+      <ellipse cx="120" cy="325" rx="76" ry="10" fill="#102936" opacity=".2" />
+      <g className="scientist-body" stroke="#27384a" strokeWidth="4" strokeLinejoin="round">
+        <path d="M85 267L80 318H109L120 267 130 318H160L153 267" fill="#435673" />
+        <path d="M80 313H109V326H68Q64 314 80 313M130 313H157L174 326H130Z" fill="#26354a" />
+        <path d="M81 164Q57 171 48 230L65 239 89 196M155 165Q178 173 190 227L172 238 150 195" fill="#edf5ef" />
+        <g className="scientist-hand"><path d="M48 228Q31 222 34 239Q40 254 61 244L65 235" fill="#e9ad80" /></g>
+        <path d="M172 232Q190 224 197 236Q200 252 178 249Z" fill="#e9ad80" />
+        <path d="M85 160L110 153H134L156 165 168 283H72Z" fill="#f4f8f0" />
+        <path d="M108 159L120 204 137 159" fill="#60bdad" />
+        <path d="M103 160L92 187 111 205 101 219M140 161L151 186 131 205 142 218M120 206V281" fill="none" />
+        <path d="M136 229H155V252H136Z" fill="#b8dddc" />
+        <path d="M142 227V215" stroke="#e47a81" />
+        <g className="scientist-head">
+          <path d="M103 142V165Q120 179 137 163V140" fill="#e9ad80" />
+          <ellipse cx="72" cy="111" rx="12" ry="18" fill="#e9ad80" /><ellipse cx="168" cy="111" rx="12" ry="18" fill="#e9ad80" />
+          <path d="M74 73Q77 36 122 36Q166 36 167 78V123Q160 157 122 160Q81 158 74 124Z" fill={mood === 'singed' ? '#a99788' : '#efbd92'} />
+          <path d="M73 90L61 64 79 65 73 44 97 49 105 25 122 42 146 30 151 49 175 49 168 81 156 68Q124 88 89 70L81 92" fill="#e6eef5" />
+          <path d="M77 97H164" stroke="#527383" strokeWidth="8" />
+          <rect x="76" y="86" width="42" height="35" rx="13" fill="#d8f5fb" fillOpacity=".8" stroke="#527383" />
+          <rect x="123" y="86" width="42" height="35" rx="13" fill="#d8f5fb" fillOpacity=".8" stroke="#527383" />
+          <ellipse cx="99" cy="103" rx="4" ry={alarm ? 9 : mood === 'bored' ? 2 : 6} fill="#27384a" stroke="none" />
+          <ellipse cx="143" cy="103" rx="4" ry={alarm ? 9 : mood === 'bored' ? 2 : 6} fill="#27384a" stroke="none" />
+          <path d="M120 111L115 124H124" fill="none" strokeWidth="3" />
+          {alarm ? <ellipse cx="121" cy="140" rx="8" ry="10" fill="#604153" /> : <path d={happy ? 'M104 134Q121 154 139 134' : 'M108 140Q122 134 135 139'} fill={happy ? '#fff' : 'none'} strokeWidth="3" />}
+          {mood === 'blush' && <g fill="#e98194" stroke="none"><ellipse cx="91" cy="128" rx="12" ry="6" /><ellipse cx="150" cy="128" rx="12" ry="6" /></g>}
+          {mood === 'singed' && <g fill="#53505a" stroke="none"><ellipse cx="90" cy="128" rx="10" ry="7" /><ellipse cx="143" cy="72" rx="12" ry="8" /></g>}
+        </g>
+      </g>
+    </svg>
+    <span className="rl-scientist-name">DR. PIP · LAB PARTNER</span>
+  </div>;
 }
 
 export default function ReactionLabView({ onBackToHome }) {
@@ -112,7 +109,7 @@ export default function ReactionLabView({ onBackToHome }) {
   const [score, setScore] = useState(0);
   const [solved, setSolved] = useState(false);
   const [hintOpen, setHintOpen] = useState(false);
-  const [freePlay, setFreePlay] = useState(false);
+  const [freePlay, setFreePlay] = useState(true);
   const mission = missions[missionIndex];
   const complete = missionIndex >= missions.length;
 
@@ -120,11 +117,6 @@ export default function ReactionLabView({ onBackToHome }) {
   const clearTimers = () => { timers.current.forEach(clearTimeout); timers.current = []; };
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    // Preload dynamic reaction avatars into browser memory
-    Object.values(MOOD_AVATARS).forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
     return clearTimers;
   }, []);
 
@@ -193,8 +185,8 @@ export default function ReactionLabView({ onBackToHome }) {
       <section className="container rl-section" aria-labelledby="rl-title">
         <header className="section-header">
           <div className="section-tag"><FlaskConical size={15} aria-hidden="true" /><span>Reaction lab · game</span></div>
-          <h1 id="rl-title" className="section-title">Mix it. <span className="gradient-text">Watch me react.</span></h1>
-          <p className="section-subtitle">Pick two reagents, pour them in, and see how the reaction — and my face — turns out.</p>
+          <h1 id="rl-title" className="section-title">Dr. Pip’s <span className="gradient-text">curious lab.</span></h1>
+          <p className="section-subtitle">A tiny 2D laboratory. Pick your ingredients, run an experiment, and see how Dr. Pip handles the surprise.</p>
           <p className="rl-disclaimer">Scripted, simplified chemistry for fun — not a simulator. Don’t try the hazardous mixes at home.</p>
         </header>
 
@@ -212,9 +204,12 @@ export default function ReactionLabView({ onBackToHome }) {
           </div>
         </div>
         <div className="rl-layout">
-          <div className="rl-stage">
+          <div className="rl-stage rl-game-scene" data-reaction={result?.effect || 'none'}>
+            <div className="rl-lab-wall" aria-hidden="true"><span>PiP LAB / EXPERIMENT STATION</span><div className="rl-wall-shelf">⚗ · H₂O · 🧪</div><div className="rl-lab-board">Observe.<br />Mix.<br />Discover.</div></div>
+            <div className="rl-experiment" onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); if (byId[id]) toggleReagent(id); }}>
+            <span className="rl-drop-label">{busy ? 'Experiment in progress' : 'Drop bottles here or tap the shelf'}</span>
             <Flask phase={phase} first={first} second={second} result={result} runId={runId} />
-            <Portrait mood={mood} quote={quote} runId={runId} />
+            </div><Scientist mood={mood} quote={quote} runId={runId} /><div className="rl-lab-bench" aria-hidden="true" />
           </div>
 
           <div className="rl-panel">
@@ -227,15 +222,15 @@ export default function ReactionLabView({ onBackToHome }) {
 
             <div className="rl-shelf" role="group" aria-label="Reagent shelf">
               {reagents.map(r => (
-                <button key={r.id} type="button" className="rl-reagent" aria-pressed={selected.includes(r.id)} disabled={busy} onClick={() => toggleReagent(r.id)} style={{ '--swatch': r.color }}>
-                  <span className="rl-swatch" aria-hidden="true" />
+                <button key={r.id} type="button" className="rl-reagent" draggable={!busy} onDragStart={e => e.dataTransfer.setData("text/plain", r.id)} aria-pressed={selected.includes(r.id)} disabled={busy} onClick={() => toggleReagent(r.id)} style={{ '--swatch': r.color }}>
+                  <span className="rl-bottle" aria-hidden="true"><i /></span>
                   <span className="rl-reagent-text"><strong>{r.name}</strong><small>{r.formula} · {r.note}</small></span>
                 </button>
               ))}
             </div>
 
             <div className="rl-actions">
-              <Button onClick={mix} disabled={selected.length !== 2 || busy || (!freePlay && (solved || complete))}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Mix'}</Button>
+              <Button onClick={mix} disabled={selected.length !== 2 || busy || (!freePlay && (solved || complete))}><FlaskConical size={17} aria-hidden="true" />{busy ? 'Pouring…' : 'Run experiment'}</Button>
               <Button variant="secondary" onClick={clear} disabled={busy || (!selected.length && !result)}><RotateCcw size={16} aria-hidden="true" />Clear</Button>
             </div>
 
