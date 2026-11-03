@@ -1,0 +1,82 @@
+/* One atmospheric layer behind the glass; no legacy ambient selectors. */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  --pointer-x: 60vw;
+  --pointer-y: 35vh;
+  --field-x: 0px;
+  --field-y: 0px;
+}
+
+.atmosphere-color {
+  position: absolute;
+  inset: -60px;
+  background:
+    radial-gradient(ellipse at 48% 5%, color-mix(in srgb, var(--primary) 26%, transparent), transparent 60%),
+    radial-gradient(ellipse at 100% 48%, color-mix(in srgb, var(--color-assistant) 23%, transparent), transparent 58%),
+    radial-gradient(ellipse at 12% 83%, color-mix(in srgb, var(--color-social) 20%, transparent), transparent 55%);
+  transform: translate3d(var(--field-x), var(--field-y), 0);
+}
+
+.atmosphere-contours {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  fill: none;
+  stroke: color-mix(in srgb, var(--primary) 13%, transparent);
+  stroke-width: .7;
+  transform: translate3d(calc(var(--field-x) * -1), calc(var(--field-y) * -1), 0);
+  mask-image: linear-gradient(150deg, transparent 4%, #000 35%, transparent 85%);
+}
+
+.atmosphere-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--foreground) 25%, transparent) .7px, transparent 1px);
+  background-size: 7px 7px;
+  mask-image:
+    radial-gradient(ellipse at 28% 8%, #000, transparent 43%),
+    radial-gradient(ellipse at 96% 65%, #000, transparent 40%),
+    radial-gradient(ellipse at 10% 94%, #000, transparent 28%);
+}
+
+.atmosphere-pointer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--primary) 48%, transparent) 1px, transparent 1.5px);
+  background-size: 7px 7px;
+  mask-image: radial-gradient(260px circle at var(--pointer-x) var(--pointer-y), #000, transparent);
+}
+
+.atmosphere-pointer-light {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 700px;
+  height: 700px;
+  margin: -350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 14%, transparent), var(--ambient-teal) 25%, transparent 65%);
+  transform: translate3d(var(--pointer-x), var(--pointer-y), 0);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .atmosphere[data-active='true'] .atmosphere-pointer { opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  .atmosphere-color { opacity: .8; }
+  .atmosphere-contours { opacity: .55; }
+  .atmosphere-dots { background-size: 9px 9px; opacity: .7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere-color, .atmosphere-contours { transform: none; }
+  .atmosphere-pointer { display: none; transition: none; }
+}

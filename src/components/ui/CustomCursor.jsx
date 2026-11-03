@@ -15,6 +15,7 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const root = document.documentElement;
+    const pointer = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
     let actionTimer;
 
     const setVisible = (value) => {
@@ -25,6 +26,7 @@ export default function CustomCursor() {
     };
 
     const move = (event) => {
+      if (!pointer.matches) { setVisible(false); return; }
       if (dot.current) {
         dot.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
       }
@@ -37,6 +39,7 @@ export default function CustomCursor() {
     };
 
     const hide = () => setVisible(false);
+    const preference = () => { if (!pointer.matches) hide(); };
     const leave = (event) => { if (!event.relatedTarget) setVisible(false); };
     const down = () => { if (wrap.current) wrap.current.dataset.pressed = 'true'; };
     const up = () => { if (wrap.current) wrap.current.dataset.pressed = 'false'; };
@@ -52,6 +55,7 @@ export default function CustomCursor() {
     const squeeze = () => animateAction('squeeze');
 
     window.addEventListener('mousemove', move, { passive: true });
+    pointer.addEventListener('change', preference);
     window.addEventListener('pointerdown', down, { passive: true });
     window.addEventListener('pointerup', up, { passive: true });
     document.addEventListener('copy', absorb);
@@ -65,6 +69,7 @@ export default function CustomCursor() {
       hide();
       window.clearTimeout(actionTimer);
       window.removeEventListener('mousemove', move);
+      pointer.removeEventListener('change', preference);
       window.removeEventListener('pointerdown', down);
       window.removeEventListener('pointerup', up);
       document.removeEventListener('copy', absorb);

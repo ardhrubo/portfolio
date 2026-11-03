@@ -1,3 +1,18 @@
+export const brandLogoAssets = {
+  claudecode: '/tech/claudecode.svg',
+  codex: '/tech/codex.svg',
+  cursor: '/tech/cursor.svg',
+  antigravity: '/tech/antigravity.svg',
+  hermes: '/tech/hermes.png',
+};
+
+export const promoReelData = {
+  title: 'From curiosity to something useful.',
+  intro: 'A few things I’ve brought to life.',
+  projectIds: ['brownsinterior', 'squicyuap', 'scrapeautomate'],
+  closing: 'Your next idea. Let’s build it.',
+};
+
 export const personalInfo = {
   name: "AR DHRUBO",
   headline: "Product Builder",

@@ -29,6 +29,7 @@ export default function Navbar({
   onToggleTheme,
   onOpenCmd,
   onOpenChat,
+  onNavigateToPromo,
   onNavigateToHome,
 }) {
   const activeSection = useActiveSection(currentView);
@@ -61,6 +62,7 @@ export default function Navbar({
       <RightDock
         {...shared}
         onOpenChat={onOpenChat}
+        onNavigateToPromo={onNavigateToPromo}
         onNavigateToHome={onNavigateToHome}
       />
       <MobileTopBar {...shared} onOpenMenu={() => setMobileMenuOpen(true)} />

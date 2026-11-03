@@ -113,6 +113,9 @@
 
 #hero :is(a, button):focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
 
+/* Official monochrome art retains its original color on a quiet light tile. */
+.tech-mark--codex, .tech-mark--cursor, .tech-mark--hermes { background: var(--liquid-rim); border-radius: 4px; padding: 2px; object-fit: contain; }
+
 /* ---------- Two columns once the centre column is wide enough ---------- */
 @container hero (min-width: 720px) {
   .hero-stage { grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); align-items: center; gap: clamp(32px, 5cqi, 64px); }

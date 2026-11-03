@@ -34,24 +34,24 @@ flowchart TD
   Deferred --> Three[Lazy Three.js lab]
 ```
 
-`index.html` applies the saved theme before React mounts to prevent a theme flash. `src/App.jsx` owns theme state and local storage, home/archive/reaction-lab view state, hash navigation, selected project, search, guide, toast state, and the global `Ctrl/Cmd+J` shortcut. The archive, reaction lab, and guide use `React.lazy`; the 3D lab is deferred until it is near the viewport.
+`index.html` applies the saved theme before React mounts to prevent a theme flash. `src/App.jsx` owns theme state and local storage, home/archive/reaction-lab/promo view state, hash navigation, selected project, search, guide, toast state, and the global `Ctrl/Cmd+J` shortcut. The archive, reaction lab, promo reel, and guide use `React.lazy`; the 3D lab is deferred until it is near the viewport.
 
 ### Home page order
 
-1. `HeroBento` — single glass stage: availability/location pill ("Open to opportunities • Remote & Dhaka"), headline, intro, calls to action, technology links, portrait with name chip and socials; metrics below.
+1. `HeroBento` — single glass stage: availability/location pill ("Open to opportunities • Remote & Dhaka"), headline, intro, calls to action (including "Watch Reel" promo trigger), technology links, portrait with name chip and socials; metrics below.
 2. `ProjectsShowcase` — 3 curated flagship cards in a compact equal grid (`brownsinterior`, `squicyuap`, `scrapeautomate`), with live links, drawer details triggers, and archive link.
 3. `Experience` — work, education, credentials, events, and photo preview.
 4. `Strategy` — "How I work" process showcase with four workflow illustrations (Design blueprint, Build page assembly, Automate branching pipeline, and Verify checklist). Single-stage interactive tabbed view on desktop (≥768px); sequential scroll revelation below 768px.
 5. `DeferredLab` — placeholder, then interactive science lab (includes game teaser leading to `#reaction-lab`).
 6. `Services`, `Contact`, and `Footer`.
 
-The archive and reaction lab are separate hash-addressable views (`#all-projects`, `#reaction-lab`). The project drawer, search, and guide are dialogs; toast is transient feedback. Legacy `#skills` hash redirects directly to `#projects`.
+The archive, reaction lab, and promo reel are separate hash-addressable views (`#all-projects`, `#reaction-lab`, `#promo`). The project drawer, search, and guide are dialogs; toast is transient feedback. Legacy `#skills` hash redirects directly to `#projects`.
 
 ## Navigation and URL behavior
 
-`src/components/navigation/navConfig.js` is the shared map of section IDs, labels, anchor URLs, and icons. Desktop sidebar, mobile menu, and mobile bottom bar consume it. The bottom bar intentionally includes only `hero`, `projects`, `experience`, and `contact`; the mobile menu exposes every destination. `Navbar.jsx` coordinates the responsive controls and `useActiveSection.js` tracks the current section. The right dock owns search, portfolio guide, GitHub, contact, and theme actions; keep navigation links on the left and utility actions on the right.
+`src/components/navigation/navConfig.js` is the shared map of section IDs, labels, anchor URLs, and icons. Desktop sidebar, mobile menu, and mobile bottom bar consume it. The bottom bar intentionally includes only `hero`, `projects`, `experience`, and `contact`; the mobile menu exposes every destination. `Navbar.jsx` coordinates the responsive controls and `useActiveSection.js` tracks the current section. The right dock owns search, portfolio guide, motion graphics promo reel trigger, GitHub, contact, and theme actions; keep navigation links on the left and utility actions on the right.
 
-`#all-projects` selects the archive. `#reaction-lab` selects the interactive chemistry face reaction game. Other section hashes navigate to the home view and scroll. Use `navigateToHome`, `navigateToAllProjects`, or `navigateToReactionLab` in `App.jsx` so URL and view state remain coordinated.
+`#all-projects` selects the archive. `#reaction-lab` selects the interactive chemistry face reaction game. `#promo` selects the interactive motion graphics promo reel. Other section hashes navigate to the home view and scroll. Use `navigateToHome`, `navigateToAllProjects`, `navigateToReactionLab`, or `navigateToPromo` in `App.jsx` so URL and view state remain coordinated.
 
 ## Content model
 
@@ -67,13 +67,19 @@ Technology presentation is embedded directly in Hero, Projects, and Experience b
 
 ## Design tokens and responsive behavior
 
-Use semantic values from `theme.css`: `--background`, `--foreground`, `--text-secondary`, `--primary`, `--primary-foreground`, `--glass-bg`, `--glass-border`, `--glass-highlight`, `--glass-shadow`, and the social/assistant/contact/code color variables. Green is the primary action; section icons use distinct vibrant accents against neutral labels. The dark canvas also has a faint square grid in `studio.css`.
+Use semantic values from `theme.css`: `--background`, `--foreground`, `--text-secondary`, `--primary`, `--primary-foreground`, `--glass-bg`, `--glass-border`, `--glass-highlight`, `--glass-shadow`, and the social/assistant/contact/code color variables. Green is the primary action; section icons use distinct vibrant accents against neutral labels. `atmosphere.css` supplies visible dotted clouds, fine contours, and colored light behind the glass in both themes.
 
 A useful glass surface has a translucent fill, fine border, top-edge highlight, soft shadow, and restrained blur. The stack gallery and desktop/mobile navigation rails are clear examples. Keep inner content quieter than parent surfaces. Primary actions use a brighter emerald gradient with modest upper reflection, lower rim, and shallow pressed state; secondary actions use cooler cyan glass. Keep this dimensional treatment on key actions. Avoid heavy extrusion, strong glow on every icon, and opaque nested panels.
 
 The desktop rails appear at `min-width: 1024px`; smaller screens use the mobile header and bottom bar. Sections may switch to one column at wider breakpoints. Fixed controls must respect safe-area insets and must not cover content. Reserve bottom navigation space, use at least 44px control targets where practical, maintain visible keyboard focus, and respect reduced-motion preferences.
 
 ## Interactions and accessibility
+
+`ui/Atmosphere.jsx` and `styles/atmosphere.css` own the fixed decorative background, replacing the legacy ambient blob markup. Existing semantic colors drive its emerald/cyan/lilac gradients, contours, and dot field. Fine hover pointers illuminate the dots and shift the background with frame-rate-independent easing; updates bypass React and requestAnimationFrame stops on settling, pointer exit, blur, hidden tabs, and cleanup. Live reduced-motion and pointer media queries disable tracking; touch devices retain static artwork. The layer is aria-hidden and never intercepts input.
+
+`PromoReel.jsx` is a lightweight 28-second HTML/CSS showreel: opening montage, three actual project previews, and contact closing. `promoReelData` holds its copy and project IDs; project facts come from `projectsData`. A single elapsed-time state drives chapters, controls, and a native range scrubber. Playback pauses at the end, in hidden tabs, for reduced motion, and when project links receive focus. Keyboard shortcuts respect native controls; Escape returns to the portfolio and restores trigger focus. The reel no longer loads Three.js or synthetic audio.
+
+`brandLogoAssets` maps AI tools to exact publisher assets for Hero and Projects; Hermes uses its official PNG app icon. `public/tech/README.md` records origins and distinguishes publisher artwork from Devicon assets.
 
 `src/components/ui/AccessibleDialog.jsx` wraps Radix Dialog with a title/description, focus containment, Escape handling, and focus restoration. Use it for dialogs. `ProjectDrawer.jsx` uses Radix Dialog directly and has its own focus restoration. Keep action elements as buttons/links rather than clickable `div`s. Search supports Up/Down/Enter/Escape and handles clipboard errors.
 

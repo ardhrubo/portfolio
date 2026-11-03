@@ -12,12 +12,13 @@ import {
   Handshake,
   Mail,
   FlaskConical,
+  Film,
 } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
 import { projectsData, personalInfo } from '../data/portfolioData';
 import AccessibleDialog from './ui/AccessibleDialog';
 
-export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects, onNavigateToReactionLab, onNavigateToHome }) {
+export default function CommandPalette({ isOpen, onClose, onSelectProject, onShowToast, onNavigateToAllProjects, onNavigateToReactionLab, onNavigateToPromo, onNavigateToHome }) {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
   const trimmed = query.trim().toLowerCase();
 
   const sections = [
+    { name: 'Motion Graphics Promo Reel', href: '#promo', Icon: Film, keywords: ['promo', 'video', 'motion', 'reel', 'trailer', 'graphics', 'teaser'] },
     { name: 'Overview', href: '#hero', Icon: UserRound, keywords: ['hero', 'intro', 'home', 'about', 'bio'] },
     { name: 'Projects Showcase', href: '#projects', Icon: FolderKanban, keywords: ['work', 'featured', 'portfolio', 'apps'] },
     { name: 'All Projects Archive', href: '#all-projects', Icon: Folder, keywords: ['archive', 'all', 'complete', 'directory'] },
@@ -55,7 +57,9 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
       onSelectProject(val);
       onClose(false);
     } else if (type === 'link') {
-      if (val === '#all-projects' && onNavigateToAllProjects) {
+      if (val === '#promo' && onNavigateToPromo) {
+        onNavigateToPromo();
+      } else if (val === '#all-projects' && onNavigateToAllProjects) {
         onNavigateToAllProjects();
       } else if (val === '#reaction-lab' && onNavigateToReactionLab) {
         onNavigateToReactionLab();

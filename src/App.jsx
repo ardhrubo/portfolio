@@ -4,6 +4,7 @@ import HeroBento from './components/HeroBento';
 import ProjectsShowcase from './components/ProjectsShowcase';
 const AllProjectsView = lazy(() => import('./components/AllProjectsView'));
 const ReactionLabView = lazy(() => import('./components/ReactionLabView'));
+const PromoReel = lazy(() => import('./components/PromoReel'));
 import Strategy from './components/Strategy';
 import DeferredLab from './components/DeferredLab';
 import Experience from './components/Experience';
@@ -14,6 +15,7 @@ import ProjectDrawer from './components/ProjectDrawer';
 import CommandPalette from './components/CommandPalette';
 import Toast from './components/Toast';
 import CustomCursor from './components/ui/CustomCursor';
+import Atmosphere from './components/ui/Atmosphere';
 const AiChatModal = lazy(() => import('./components/AiChatModal'));
 
 export default function App() {
@@ -21,6 +23,7 @@ export default function App() {
     return localStorage.getItem('portfolio-theme') || 'dark';
   });
   const [currentView, setCurrentView] = useState(() => {
+    if (window.location.hash === '#promo') return 'promo';
     if (window.location.hash === '#all-projects') return 'all-projects';
     if (window.location.hash === '#reaction-lab') return 'reaction-lab';
     return 'home';
@@ -59,7 +62,10 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash === '#skills') { window.location.replace('#projects'); return; }
-      if (window.location.hash === '#all-projects') {
+      if (window.location.hash === '#promo') {
+        setCurrentView('promo');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else if (window.location.hash === '#all-projects') {
         setCurrentView('all-projects');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (window.location.hash === '#reaction-lab') {
@@ -80,6 +86,12 @@ export default function App() {
 
   const handleShowToast = (msg) => {
     setToastMessage(msg);
+  };
+
+  const navigateToPromo = () => {
+    setCurrentView('promo');
+    window.location.hash = '#promo';
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const navigateToAllProjects = () => {
@@ -104,14 +116,7 @@ export default function App() {
 
   return (
     <div className="portfolio-app">
-      {/* Dynamic Ambient Background */}
-      <div className="ambient-background" aria-hidden="true">
-        <div className="ambient-blob-1"></div>
-        <div className="ambient-blob-2"></div>
-        <div className="ambient-blob-3"></div>
-        <div className="sidebar-ambient-glow"></div>
-        <div className="ambient-grid"></div>
-      </div>
+      <Atmosphere />
 
       {/* Desktop Sidebar + Mobile Top/Bottom Bars */}
       <Navbar
@@ -122,6 +127,7 @@ export default function App() {
         onOpenChat={() => setIsChatOpen(true)}
         onNavigateToAllProjects={navigateToAllProjects}
         onNavigateToReactionLab={navigateToReactionLab}
+        onNavigateToPromo={navigateToPromo}
         onNavigateToHome={navigateToHome}
       />
 
@@ -129,7 +135,12 @@ export default function App() {
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="app-content-wrapper relative z-10 min-h-screen text-foreground">
         <main id="main-content" className="min-w-0 w-full max-w-6xl mx-auto">
-          {currentView === 'all-projects' ? (
+          {currentView === 'promo' ? (
+            <Suspense fallback={<p role="status" className="section container">Loading promo reel…</p>}><PromoReel
+              onExit={() => navigateToHome('#hero')}
+              onNavigateToHome={navigateToHome}
+            /></Suspense>
+          ) : currentView === 'all-projects' ? (
             <Suspense fallback={<p role="status" className="section container">Loading projects…</p>}><AllProjectsView
               onBackToHome={() => navigateToHome('#hero')}
               onSelectProject={(project) => setSelectedProject(project)}
@@ -143,6 +154,7 @@ export default function App() {
               <HeroBento
                 onCopyEmail={handleShowToast}
                 onOpenCmd={() => setIsCmdOpen(true)}
+                onNavigateToPromo={navigateToPromo}
               />
               <ProjectsShowcase
                 onSelectProject={(project) => setSelectedProject(project)}
@@ -167,6 +179,7 @@ export default function App() {
           currentView={currentView}
           onNavigateToAllProjects={navigateToAllProjects}
           onNavigateToReactionLab={navigateToReactionLab}
+          onNavigateToPromo={navigateToPromo}
           onNavigateToHome={navigateToHome}
         />
       </div>
@@ -188,6 +201,7 @@ export default function App() {
         onShowToast={handleShowToast}
         onNavigateToAllProjects={navigateToAllProjects}
         onNavigateToReactionLab={navigateToReactionLab}
+        onNavigateToPromo={navigateToPromo}
         onNavigateToHome={navigateToHome}
       />
 

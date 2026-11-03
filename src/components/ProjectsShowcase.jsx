@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { projectsData } from '../data/portfolioData';
+import { projectsData, brandLogoAssets } from '../data/portfolioData';
 import Button from './ui/Button';
 import { ArrowUpRight, ArrowRight, FolderKanban, Layers } from 'lucide-react';
 import '../styles/projects.css';
@@ -74,7 +74,7 @@ export default function ProjectsShowcase({ onSelectProject, onNavigateToAllProje
                 <div className="flagship-tech-row" aria-label="Built with">
                   {project.tech.filter(t => stackLogos[t]).slice(0, 3).map((t) => (
                     <span key={t} className="project-stack-logo" tabIndex={0}>
-                      <span className={`project-stack-mark project-stack-mark--${stackLogos[t]}`}><img src={`/tech/${stackLogos[t]}.svg`} alt={t} width="28" height="28" /></span>
+                      <span className={`project-stack-mark project-stack-mark--${stackLogos[t]}`}><img className={`tech-mark tech-mark--${stackLogos[t]}`} src={brandLogoAssets[stackLogos[t]] || `/tech/${stackLogos[t]}.svg`} alt={t} width="28" height="28" /></span>
                       <span className="project-stack-tooltip" aria-hidden="true">{t}</span>
                     </span>
                   ))}

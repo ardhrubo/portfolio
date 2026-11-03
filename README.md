@@ -32,6 +32,9 @@ npm run lint     # Run Oxlint
 
 ## Important behavior
 
+- `Atmosphere.jsx` adds emerald, cyan, and lilac background light, fine contours, and a dot field that illuminates around the pointer. Desktop light follows the pointer with gentle parallax; touch and reduced-motion visitors see a static composition. Animation stops at rest and when the page is hidden.
+- The 28-second showreel uses real project previews, five selectable chapters, playback controls, and an accessible scrubber. It pauses for reduced motion, hidden tabs, and keyboard focus on project links. AI badges use publisher artwork; source details live in `public/tech/README.md`.
+
 - The Approach section shows Design, Build, Automate, and Verify as four cards revealed through normal scrolling; buttons provide direct step navigation. Each step has a workflow illustration with a finite entrance animation and subtle hover depth; reduced motion keeps the artwork static. Space Grotesk headings and DM Sans body text (self-hosted) use shared section alignment. Metrics use glass tiles.
 
 - The hero is a single glass stage: headline, intro, actions, and technology links on the left; a framed portrait with a glass name chip on the right. When the centre column is narrow, the portrait collapses into a compact profile row. A faceted emerald D with shallow 3D depth appears in the glass navigation logo and browser tab; the scalable SVG is in `public/brand/`.
@@ -42,7 +45,7 @@ npm run lint     # Run Oxlint
 
 - Theme preference is stored as `portfolio-theme`; `index.html` applies it before React starts.
 - One visible theme switch: right utility dock on desktop, top bar on mobile. Experience uses a quiet timeline with expandable contributions and separate education/events views.
-- `#all-projects` opens the project archive. `#reaction-lab` opens the interactive chemical face-reaction game. Other section hashes navigate the home view.
+- `#all-projects` opens the project archive. `#reaction-lab` opens the interactive chemical face-reaction game. `#promo` opens the interactive motion graphics promo reel. Other section hashes navigate the home view.
 - Search: `Ctrl/Cmd+K`. Portfolio guide: `Ctrl/Cmd+J`.
 - The Three.js lab loads near the viewport rather than in the initial page bundle.
 - The lazy science lab uses a decorative SVG flask reaction with reduced-motion support; archive and guide use text loading states. Loading never adds an artificial delay.

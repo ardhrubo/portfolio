@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, Mail, MapPin, FlaskConical, Layers3, Clock3, Atom, HeartHandshake } from 'lucide-react';
+import { ArrowUpRight, Check, Mail, MapPin, FlaskConical, Layers3, Clock3, Atom, HeartHandshake, Play } from 'lucide-react';
 import { Github, Linkedin } from './ui/BrandIcons';
-import { personalInfo } from '../data/portfolioData';
+import { personalInfo, brandLogoAssets } from '../data/portfolioData';
 import Button from './ui/Button';
 import '../styles/metrics.css';
 import '../styles/hero.css';
 
 const metricIcons = [Layers3, Clock3, Atom, HeartHandshake];
 
-export default function HeroBento({ onCopyEmail }) {
+export default function HeroBento({ onCopyEmail, onNavigateToPromo }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -53,6 +53,15 @@ export default function HeroBento({ onCopyEmail }) {
                 <Button asChild variant="secondary">
                   <a id="hero-lets-talk" href="#contact">Let’s talk <ArrowUpRight size={17} aria-hidden="true" /></a>
                 </Button>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  id="hero-watch-promo"
+                  onClick={onNavigateToPromo}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                >
+                  <Play size={14} fill="currentColor" aria-hidden="true" /> Watch Reel
+                </Button>
               </div>
 
               <div className="hero-tools">
@@ -60,7 +69,7 @@ export default function HeroBento({ onCopyEmail }) {
                 <div>
                   {personalInfo.heroTechnologies.map(tech => (
                     <a key={tech.logo} href="#projects" aria-label={`${tech.name}: explore my projects`} title={tech.name}>
-                      <img src={`/tech/${tech.logo}.svg`} alt="" width="20" height="20" loading="lazy" />
+                      <img src={brandLogoAssets[tech.logo] || `/tech/${tech.logo}.svg`} className={`tech-mark tech-mark--${tech.logo}`} alt="" width="20" height="20" loading="lazy" />
                       <span>{tech.name}</span>
                     </a>
                   ))}
