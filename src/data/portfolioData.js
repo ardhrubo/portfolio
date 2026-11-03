@@ -48,7 +48,7 @@ export const personalInfo = {
   timezone: "GMT+6 (Worldwide Remote)",
   status: "Open to opportunities (Remote & Dhaka)",
   statusColor: "#22c55e", // Technical Emerald
-  email: "ardhrubo@gmail.com",
+  email: "info@ardhrubo.dev",
   socials: {
     github: "https://github.com/ardhrubo",
     linkedin: "https://www.linkedin.com/in/ardhrubo/",

@@ -77,7 +77,7 @@ The desktop rails appear at `min-width: 1024px`; smaller screens use the mobile 
 
 `ui/Atmosphere.jsx` and `styles/atmosphere.css` own the fixed decorative background, replacing the legacy ambient blob markup. Existing semantic colors drive its emerald/cyan/lilac gradients, contours, and dot field. Fine hover pointers illuminate the dots and shift the background with frame-rate-independent easing; updates bypass React and requestAnimationFrame stops on settling, pointer exit, blur, hidden tabs, and cleanup. Live reduced-motion and pointer media queries disable tracking; touch devices retain static artwork. The layer is aria-hidden and never intercepts input.
 
-`PromoReel.jsx` presents the finished 24-second MP4 using native video controls, a poster, English captions, and a text transcript. Playback starts on user action and pauses in hidden tabs. Escape returns to the portfolio with trigger focus restored. Two download links offer vertical 1080×1920 and widescreen 1920×1080 exports, both H.264/AAC at 30 fps. `scripts/render-promo.py` composes actual project screenshots, portfolio data, animated typography, and an original synthesized soundtrack. Assets live in `public/media/`; reproduction notes are in `docs/PROMO-VIDEO.md`.
+`PromoReel.jsx` presents the finished 24-second MP4 using native video controls, a poster, English captions, and a text transcript. Playback starts on user action and pauses in hidden tabs. Escape returns to the portfolio with trigger focus restored. Two download links offer vertical 1080×1920 and widescreen 1920×1080 exports, both H.264 at 30 fps with no audio track. `scripts/render-promo.py` composes actual project screenshots, portfolio data, animated interface graphics, tool roles, and a visit-and-book call to action. Assets live in `public/media/`; reproduction notes are in `docs/PROMO-VIDEO.md`.
 
 `brandLogoAssets` maps AI tools to exact publisher assets for Hero and Projects; Hermes uses its official PNG app icon. `public/tech/README.md` records origins and distinguishes publisher artwork from Devicon assets.
 
@@ -145,3 +145,5 @@ The reaction lab includes six guided challenges with hints, attempt-based scorin
 The reaction lab now opens in free experimentation mode in an illustrated 2D lab. Dr. Pip is an SVG scientist with expression and body reactions driven by outcomes; no portrait photos are used. Bottles support drag onto the flask or tap selection, followed by Run experiment. Guided challenges remain optional.
 
 The lab play screen uses a single scientist speech prompt and bottle tray. Selecting the second bottle starts mixing automatically. Challenges, reaction explanations, and discoveries are collapsed optional sections. Reset clears the current experiment.
+
+The public contact address is `info@ardhrubo.dev`, shared by the contact UI, resume XML, promo transcript, and rendered video. The promo contains no added project numbering or statistical claims.

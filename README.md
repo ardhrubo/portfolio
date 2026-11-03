@@ -33,7 +33,7 @@ npm run lint     # Run Oxlint
 ## Important behavior
 
 - `Atmosphere.jsx` adds emerald, cyan, and lilac background light, fine contours, and a dot field that illuminates around the pointer. Desktop light follows the pointer with gentle parallax; touch and reduced-motion visitors see a static composition. Animation stops at rest and when the page is hidden.
-- Watch Reel plays an actual 24-second promo video with original music, captions, and native playback controls. Download vertical (1080×1920) or widescreen (1920×1080) MP4s for social posts. See [video production notes](docs/PROMO-VIDEO.md). AI badges use publisher artwork documented in `public/tech/README.md`.
+- Watch Reel plays an actual 24-second promo video with motion graphics, a music-free background, captions, and native playback controls. Download vertical (1080×1920) or widescreen (1920×1080) MP4s for social posts. See [video production notes](docs/PROMO-VIDEO.md). AI badges use publisher artwork documented in `public/tech/README.md`.
 
 - The Approach section shows Design, Build, Automate, and Verify as four cards revealed through normal scrolling; buttons provide direct step navigation. Each step has a workflow illustration with a finite entrance animation and subtle hover depth; reduced motion keeps the artwork static. Space Grotesk headings and DM Sans body text (self-hosted) use shared section alignment. Metrics use glass tiles.
 
