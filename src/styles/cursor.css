@@ -12,15 +12,17 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 .custom-cursor-dot { position: fixed; top: 0; left: 0; will-change: transform; }
 
 .custom-cursor-dot > span {
-  position: absolute; display: block; width: 44px; height: 52px; margin: -49px 0 0 -22px;
-  filter: drop-shadow(0 3px 6px rgba(47, 161, 208, .35));
-  transform: rotate(28deg); transform-origin: 22px 49px; transition: transform .2s cubic-bezier(.2, .8, .2, 1);
+  position: absolute; display: block; width: 28px; height: 42px; margin: -39.9px 0 0 -14px;
+  filter: drop-shadow(0 2px 3px rgba(12, 38, 46, .4));
+  transform: rotate(28deg); transform-origin: 14px 39.9px; transition: transform .2s cubic-bezier(.2, .8, .2, 1);
 }
-.custom-cursor-dot svg { width: 44px; height: 52px; overflow: visible; }
-.pipette-bulb, .pipette-shaft { fill: url(#pipette-glass); stroke: #93eaff; stroke-width: 1.5; stroke-linejoin: round; }
+.custom-cursor-dot svg { width: 28px; height: 42px; overflow: visible; }
+.pipette-shaft { fill: url(#pipette-glass); stroke: #93eaff; stroke-width: 1.5; stroke-linejoin: round; }
 .pipette-fluid { fill: url(#pipette-fluid); stroke: #dcfff6; stroke-width: .65; stroke-linejoin: round; }
 .pipette-glint { fill: none; stroke: rgba(255,255,255,.96); stroke-width: 1.35; stroke-linecap: round; }
-.pipette-collar { fill: none; stroke: #f1ffff; stroke-width: 1.5; stroke-linecap: round; }
+.pipette-bulb { fill: url(#pipette-cap); stroke: #b0e7e4; stroke-width: 1; }
+.pipette-collar { fill: url(#pipette-glass); stroke: #e2faf6; stroke-width: 1; }
+.pipette-measure { fill: none; stroke: #e2faf6; stroke-width: .8; }
 .custom-cursor[data-state="hover"] .custom-cursor-dot > span {
   filter: drop-shadow(0 4px 8px rgba(47, 161, 208, .55));
   transform: rotate(34deg) scale(1.08);
@@ -53,3 +55,5 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor [class*="pipette-"] { animation-duration: .01ms !important; }
 }
+
+html.has-custom-cursor video, html.has-custom-cursor video * { cursor: auto !important; }

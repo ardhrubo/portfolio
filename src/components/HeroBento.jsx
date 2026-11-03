@@ -65,7 +65,7 @@ export default function HeroBento({ onCopyEmail, onNavigateToPromo }) {
               </div>
 
               <div className="hero-tools">
-                <span>BUILT WITH</span>
+                <span>TOOLS BEHIND THE WORK</span>
                 <div>
                   {personalInfo.heroTechnologies.map(tech => (
                     <a key={tech.logo} href="#projects" aria-label={`${tech.name}: explore my projects`} title={tech.name}>

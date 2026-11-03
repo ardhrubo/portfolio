@@ -32,7 +32,7 @@ export default function CustomCursor() {
       }
       if (wrap.current?.dataset.visible !== 'true') setVisible(true);
       const target = event.target instanceof Element ? event.target : null;
-      const state = target?.closest(TEXT_ENTRY) ? 'text' : target?.closest(INTERACTIVE) ? 'hover' : 'default';
+      const state = target?.closest('video') ? 'text' : target?.closest(TEXT_ENTRY) ? 'text' : target?.closest(INTERACTIVE) ? 'hover' : 'default';
       if (wrap.current && wrap.current.dataset.state !== state) {
         wrap.current.dataset.state = state;
       }
@@ -83,7 +83,22 @@ export default function CustomCursor() {
 
   return (
     <div ref={wrap} className="custom-cursor" data-visible="false" data-state="default" aria-hidden="true">
-      <div ref={dot} className="custom-cursor-dot"><span><svg viewBox="0 0 44 52" focusable="false"><defs><linearGradient id="pipette-glass" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#d8fff8" stopOpacity=".95"/><stop offset=".5" stopColor="#87dfff" stopOpacity=".8"/><stop offset="1" stopColor="#b993ff" stopOpacity=".86"/></linearGradient><linearGradient id="pipette-fluid" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#39edba"/><stop offset=".55" stopColor="#28b8ec"/><stop offset="1" stopColor="#8b68f6"/></linearGradient></defs><path className="pipette-bulb" d="M15 4Q15 2 18 2h8q3 0 3 2l2 9q0 4-4 5H17q-4-1-4-5z"/><path className="pipette-shaft" d="M17 17h10v20l-5 12-5-12z"/><path className="pipette-fluid" d="M18.5 28h7v9l-3.5 8-3.5-8z"/><path className="pipette-glint" d="M16.5 6l1.5 8m1 6v6m5 1v10"/><path className="pipette-collar" d="M15 16h14"/></svg></span></div>
+      <div ref={dot} className="custom-cursor-dot"><span>
+        <svg viewBox="0 0 40 60" focusable="false">
+          <defs>
+            <linearGradient id="pipette-glass" x1="0" y1="0" x2="1" y2="0"><stop stopColor="#ddfff7" stopOpacity=".92"/><stop offset=".35" stopColor="#78cbd5" stopOpacity=".28"/><stop offset=".7" stopColor="#b8a5e8" stopOpacity=".38"/><stop offset="1" stopColor="#e5faff" stopOpacity=".86"/></linearGradient>
+            <linearGradient id="pipette-fluid" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#63efba"/><stop offset="1" stopColor="#38b9d9"/></linearGradient>
+            <linearGradient id="pipette-cap" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#8ae0d3"/><stop offset=".5" stopColor="#387b85"/><stop offset="1" stopColor="#293c59"/></linearGradient>
+          </defs>
+          <path className="pipette-bulb" d="M12 18V11a8 8 0 0 1 16 0v7z"/>
+          <path className="pipette-shaft" d="M14 22h12v19l-4 10v6h-4v-6l-4-10z"/>
+          <path className="pipette-fluid" d="M16 33q4 2 8 0v8l-4 10-4-10z"/>
+          <rect className="pipette-collar" x="10" y="17" width="20" height="7" rx="2.5"/>
+          <path className="pipette-glint" d="M15 9q1-4 5-4M16.5 26v14M18.5 44l1.5 4"/>
+          <path className="pipette-measure" d="M22 28h2m-2 4h2m-2 4h2"/>
+          <circle cx="20" cy="57" r="1.1" fill="#d6fff5"/>
+        </svg>
+      </span></div>
     </div>
   );
 }
