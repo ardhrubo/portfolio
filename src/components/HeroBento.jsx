@@ -60,7 +60,7 @@ export default function HeroBento({ onCopyEmail, onNavigateToPromo }) {
                   onClick={onNavigateToPromo}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                 >
-                  <Play size={14} fill="currentColor" aria-hidden="true" /> Watch Reel
+                  <Play size={14} fill="currentColor" aria-hidden="true" /> Promo
                 </Button>
               </div>
 

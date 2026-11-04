@@ -136,7 +136,7 @@ export default function App() {
       <div className="app-content-wrapper relative z-10 min-h-screen text-foreground">
         <main id="main-content" className="min-w-0 w-full max-w-6xl mx-auto">
           {currentView === 'promo' ? (
-            <Suspense fallback={<p role="status" className="section container">Loading promo reel…</p>}><PromoReel
+            <Suspense fallback={<p role="status" className="section container">Loading promo…</p>}><PromoReel
               onExit={() => navigateToHome('#hero')}
               onNavigateToHome={navigateToHome}
             /></Suspense>

@@ -4,20 +4,23 @@ import { Github, Linkedin, Facebook, Youtube } from './ui/BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 import Logo from './Logo';
 
-export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToReactionLab, onNavigateToHome }) {
+export default function Footer({ currentView, onNavigateToAllProjects, onNavigateToReactionLab, onNavigateToPromo, onNavigateToHome }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLinkClick = (e, targetHash) => {
-    if (targetHash === '#all-projects') {
+    if (targetHash === '#promo') {
+      e.preventDefault();
+      if (onNavigateToPromo) onNavigateToPromo();
+    } else if (targetHash === '#all-projects') {
       e.preventDefault();
       if (onNavigateToAllProjects) onNavigateToAllProjects();
     } else if (targetHash === '#reaction-lab') {
       e.preventDefault();
       if (onNavigateToReactionLab) onNavigateToReactionLab();
     } else {
-      if (currentView === 'all-projects' || currentView === 'reaction-lab') {
+      if (currentView === 'all-projects' || currentView === 'reaction-lab' || currentView === 'promo') {
         e.preventDefault();
         if (onNavigateToHome) onNavigateToHome(targetHash);
       }
@@ -112,6 +115,7 @@ export default function Footer({ currentView, onNavigateToAllProjects, onNavigat
 
           <div className="footer-nav">
             <a href="#hero" onClick={(e) => handleLinkClick(e, '#hero')} className="footer-nav-link">Overview</a>
+            <a href="#promo" onClick={(e) => handleLinkClick(e, '#promo')} className="footer-nav-link">Promo</a>
             <a href="#projects" onClick={(e) => handleLinkClick(e, '#projects')} className="footer-nav-link">Projects</a>
             <a href="#experience" onClick={(e) => handleLinkClick(e, '#experience')} className="footer-nav-link">Experience</a>
             <a href="#strategy" onClick={(e) => handleLinkClick(e, '#strategy')} className="footer-nav-link">Approach</a>

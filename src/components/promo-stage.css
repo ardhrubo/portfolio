@@ -1,0 +1,242 @@
+.ps .ss-stage {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #09090b;
+}
+
+/* The window inset top and left, off the right and the bottom */
+.ps-win {
+  position: absolute;
+  top: 48px;
+  left: 48px;
+  /* Off the right by a little: the columns end inside the stage, so only
+     the window's empty margin is cut */
+  width: 744px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+.ps .ss-stage[data-layout='compact'] .ps-win {
+  top: 24px;
+  left: 24px;
+  width: 368px;
+}
+
+.ps-side {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px 10px;
+}
+
+.ps-nav {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: var(--ss-radius-sm);
+}
+
+.ps-nav[data-active] {
+  background: var(--ss-ink-1);
+}
+
+.ps-body {
+  min-height: 460px;
+  padding: 22px 66px 0 26px;
+  background: var(--ss-surface);
+}
+
+.ps .ss-stage[data-layout='compact'] .ps-body {
+  padding: 18px 46px 0 16px;
+}
+
+.ps-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ps-title {
+  margin: 0;
+  color: var(--ss-text-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ps-proj {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ss-text);
+  font-size: 12px;
+}
+
+.ps-list {
+  border-top: 1px solid var(--ss-line-faint);
+}
+
+.ps-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px 36px;
+  align-items: center;
+  gap: 16px;
+  height: 62px;
+  border-bottom: 1px solid var(--ss-line-faint);
+  white-space: nowrap;
+}
+
+.ps .ss-stage[data-layout='compact'] .ps-row {
+  grid-template-columns: minmax(0, 1fr) 84px 28px;
+  gap: 10px;
+}
+
+.ps-lines {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  min-width: 0;
+}
+
+.ps-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  color: var(--ss-text-strong);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ps-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 16px;
+  color: var(--ss-text);
+  font-size: 12px;
+}
+
+/* 12px icons in a 16px line: whole pixels, no half-pixel hop as rows move */
+.ps-meta__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ps-meta svg {
+  color: var(--ss-icon-faint);
+}
+
+.ps-when {
+  color: var(--ss-text-faint);
+}
+
+.ps .ss-stage[data-layout='compact'] .ps-when {
+  display: none;
+}
+
+/* Current moves to the new row once it's Ready: one fades out, one in */
+.ps-current {
+  padding: 1px 7px;
+  border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius-pill);
+  color: var(--ss-text);
+  font-size: 10.5px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  will-change: transform;
+}
+
+.ps-current[data-on] {
+  opacity: 1;
+}
+
+.ps .ss-stage[data-layout='compact'] .ps-current {
+  display: none;
+}
+
+.ps-badge {
+  justify-self: start;
+}
+
+.ps .ss-badge[data-lead] {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.ps-badge .ss-spinner {
+  flex-shrink: 0;
+}
+
+.ps-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* The old row's Ready is quiet, so the new one leads */
+.ps-badge--old {
+  color: var(--ss-text);
+}
+
+.ps-time {
+  justify-self: end;
+  color: var(--ss-text);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-row--filler > .ss-bar:last-child {
+  justify-self: end;
+}
+
+/* Filler lines never run past their column */
+.ps-lines .ss-bar {
+  max-width: 100%;
+}
+
+.ps-mark {
+  display: grid;
+  place-items: center;
+  width: 8px;
+  height: 8px;
+}
+
+.ps-mark > * {
+  grid-area: 1 / 1;
+  transition: opacity 0.2s ease;
+}
+
+.ps-mark[data-ready] .ss-spinner,
+.ps-mark:not([data-ready]) .ps-dot {
+  opacity: 0;
+}
+
+/* The words stack left-aligned in one cell whose width eases. The cell
+   never clips: the word that would be cut is already gone */
+.ps-label {
+  display: grid;
+  justify-items: start;
+  transition: width 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ps-word {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+
+.ps-word[data-on] {
+  opacity: 1;
+  transition: opacity 0.2s ease 0.12s;
+}
+
+/* Shorter: the old word leaves, then the edge comes in */
+.ps-label[data-shrink] {
+  transition-delay: 0.1s;
+}

@@ -1,6 +1,8 @@
-# Portfolio promo video
+# Portfolio promo & motion graphics
 
-The finished exports are `public/media/portfolio-promo-vertical.mp4` (1080×1920, 9:16) and `public/media/portfolio-promo-widescreen.mp4` (1920×1080, 16:9). Both are 24 seconds, 30 fps, H.264 with yuv420p, no audio track, and fast-start MP4 metadata. They are local deliverables; nothing has been posted to social accounts.
+The `#promo` view combines two complementary deliverables:
+1. **Interactive Stageshow motion graphics (`src/components/PromoStage.tsx` & `src/components/promo-stage.css`)**: Built with the Stageshow kit (`src/stageshow/kit`), showcasing a live studio deployment landing on `ardhrubo.dev/studio/deployments`, counting build telemetry, transitioning from `Building` to `Ready` on a single emerald badge, and transferring the `Current` pill with a host `Replay` control. Rehearsal verification is recorded in `src/components/REHEARSAL.md`.
+2. **Rendered MP4 exports (`public/media/portfolio-promo-vertical.mp4` 1080×1920, 9:16 and `public/media/portfolio-promo-widescreen.mp4` 1920×1080, 16:9)**: Both are 24 seconds, 30 fps, H.264 with yuv420p, no audio track, and fast-start MP4 metadata. They are local deliverables; nothing has been posted to social accounts.
 
 The seven scenes invite viewers to the portfolio, assemble interface motion graphics, showcase Brown’s Interior, Squicy UAP, and ScrapeAutomate, explain tool roles, then invite viewers to visit ardhrubo.dev and book a project through info@ardhrubo.dev. Text is embedded for silent viewing. The vertical layout is composed separately with generous top/bottom margins. Preview boards and posters are included. English VTT captions and the website transcript provide a text alternative. There is no spoken narration.
 

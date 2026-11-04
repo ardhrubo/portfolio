@@ -40,7 +40,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectProject, onSho
   const trimmed = query.trim().toLowerCase();
 
   const sections = [
-    { name: 'Motion Graphics Promo Reel', href: '#promo', Icon: Film, keywords: ['promo', 'video', 'motion', 'reel', 'trailer', 'graphics', 'teaser'] },
+    { name: 'Promo (Motion Graphics)', href: '#promo', Icon: Film, keywords: ['promo', 'video', 'motion', 'reel', 'trailer', 'graphics', 'teaser'] },
     { name: 'Overview', href: '#hero', Icon: UserRound, keywords: ['hero', 'intro', 'home', 'about', 'bio'] },
     { name: 'Projects Showcase', href: '#projects', Icon: FolderKanban, keywords: ['work', 'featured', 'portfolio', 'apps'] },
     { name: 'All Projects Archive', href: '#all-projects', Icon: Folder, keywords: ['archive', 'all', 'complete', 'directory'] },

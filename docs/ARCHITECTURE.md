@@ -38,7 +38,7 @@ flowchart TD
 
 ### Home page order
 
-1. `HeroBento` — single glass stage: availability/location pill ("Open to opportunities • Remote & Dhaka"), headline, intro, calls to action (including "Watch Reel" promo trigger), technology links, portrait with name chip and socials; metrics below.
+1. `HeroBento` — single glass stage: availability/location pill ("Open to opportunities • Remote & Dhaka"), headline, intro, calls to action (including "Promo" trigger), technology links, portrait with name chip and socials; metrics below.
 2. `ProjectsShowcase` — 3 curated flagship cards in a compact equal grid (`brownsinterior`, `squicyuap`, `scrapeautomate`), with live links, drawer details triggers, and archive link.
 3. `Experience` — work, education, credentials, events, and photo preview.
 4. `Strategy` — "How I work" process showcase with four workflow illustrations (Design blueprint, Build page assembly, Automate branching pipeline, and Verify checklist). Single-stage interactive tabbed view on desktop (≥768px); sequential scroll revelation below 768px.
@@ -77,7 +77,7 @@ The desktop rails appear at `min-width: 1024px`; smaller screens use the mobile 
 
 `ui/Atmosphere.jsx` and `styles/atmosphere.css` own the fixed decorative background, replacing the legacy ambient blob markup. Existing semantic colors drive its emerald/cyan/lilac gradients, contours, and dot field. Fine hover pointers illuminate the dots and shift the background with frame-rate-independent easing; updates bypass React and requestAnimationFrame stops on settling, pointer exit, blur, hidden tabs, and cleanup. Live reduced-motion and pointer media queries disable tracking; touch devices retain static artwork. The layer is aria-hidden and never intercepts input.
 
-`PromoReel.jsx` presents the finished 24-second MP4 using native video controls, a poster, English captions, and a text transcript. Playback starts on user action and pauses in hidden tabs. Escape returns to the portfolio with trigger focus restored. Two download links offer vertical 1080×1920 and widescreen 1920×1080 exports, both H.264 at 30 fps with no audio track. `scripts/render-promo.py` composes actual project screenshots, portfolio data, animated interface graphics, tool roles, and a visit-and-book call to action. Assets live in `public/media/`; reproduction notes are in `docs/PROMO-VIDEO.md`.
+`PromoReel.jsx` presents the interactive Stageshow motion graphics showcase (`PromoStage.tsx`, built on `src/stageshow/kit` with an explicit Replay control) alongside the rendered 24-second MP4 promo using native video controls, a poster, English captions, and a text transcript. Video playback starts on user action and pauses in hidden tabs. Escape returns to the portfolio with trigger focus restored. Two download links offer vertical 1080×1920 and widescreen 1920×1080 exports, both H.264 at 30 fps with no audio track. `scripts/render-promo.py` composes actual project screenshots, portfolio data, Cairo/Rsvg vector illustrations, tool roles, and a visit-and-book call to action. Assets live in `public/media/`; reproduction notes are in `docs/PROMO-VIDEO.md` and rehearsal records in `src/components/REHEARSAL.md`.
 
 `brandLogoAssets` maps AI tools to exact publisher assets for Hero and Projects; Hermes uses its official PNG app icon. `public/tech/README.md` records origins and distinguishes publisher artwork from Devicon assets.
 
